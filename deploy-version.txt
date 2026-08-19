@@ -1,0 +1,2 @@
+SHIFT deploy refresh — 2026-08-19 21:37 EEST
+Current main branch contains generic demo cases (no ZaiSun block) and current contact section.

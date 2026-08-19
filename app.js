@@ -54,5 +54,5 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   form?.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(form);const name=fd.get('name')||'';const contact=fd.get('contact')||'';const message=fd.get('message')||'';const subject=encodeURIComponent(`Заявка з сайту SHIFT — ${name}`);const body=encodeURIComponent(`Ім'я: ${name}\nКонтакт: ${contact}\n\nЗадача:\n${message}`);document.getElementById('formStatus').textContent='Відкриваю пошту з готовим повідомленням…';window.location.href=`mailto:messaires@gmail.com?subject=${subject}&body=${body}`;});
 })();
 
-// Work section v23: real ZaiSun project + two concepts.
-(()=>{const s=document.createElement('script');s.src='work-v23.js?v=23';s.defer=true;document.head.appendChild(s)})();
+// Work section v24: latest live patch + brighter hero.
+(()=>{const s=document.createElement('script');s.src='work-v23.js?v=24';s.defer=true;document.head.appendChild(s)})();

@@ -9,10 +9,64 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vodilazila-bit/Shiftua@main/styles.css">
 <script>
 try{if(!localStorage.getItem('shift_intro_seen_v1'))document.documentElement.classList.add('show-intro')}catch(e){document.documentElement.classList.add('show-intro')}
 </script>
+
+<style>
+/* ── Реальний проєкт: ZaiSun ─────────────────────────────── */
+.realcase{padding:110px 0 20px;border-top:1px solid rgba(255,255,255,.14)}
+.rc-head{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;align-items:end;margin-bottom:52px}
+.rc-badge{display:inline-flex;align-items:center;gap:8px;font:700 11px/1 "DM Sans",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:#101011;background:#d9ff3f;
+  padding:7px 13px;border-radius:100px;margin-top:14px}
+.rc-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:start}
+.rc-copy h3{font:600 clamp(30px,3.4vw,44px)/1.03 "Manrope",sans-serif;letter-spacing:-.04em;margin:0 0 10px;color:#fff}
+.rc-sub{color:#a2a2a8;font-size:15px;margin:0 0 32px;line-height:1.62;max-width:54ch}
+.rc-block{border-top:1px solid rgba(255,255,255,.14);padding:22px 0}
+.rc-block:last-of-type{border-bottom:1px solid rgba(255,255,255,.14)}
+.rc-label{font:500 11px/1 "DM Sans",sans-serif;letter-spacing:.17em;text-transform:uppercase;
+  color:#85858c;margin-bottom:13px}
+.rc-block ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.rc-block li{position:relative;padding-left:20px;color:#cfcfd4;font-size:14.5px;line-height:1.55}
+.rc-block li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1.5px;background:#d9ff3f}
+.rc-block li b{color:#fff;font-weight:600}
+.rc-link{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;
+  font-size:14.5px;border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:6px;transition:.2s}
+.rc-link:hover{color:#d9ff3f;border-color:#d9ff3f}
+.rc-frame{border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;
+  background:#17171a;position:sticky;top:26px}
+.rc-bar{display:flex;align-items:center;gap:7px;padding:12px 15px;
+  border-bottom:1px solid rgba(255,255,255,.14);background:#141416}
+.rc-bar i{width:9px;height:9px;border-radius:50%;background:#2e2e33;display:block}
+.rc-url{margin-left:9px;font-size:11.5px;color:#85858c;font-family:ui-monospace,monospace}
+.rc-live{position:relative;width:100%;aspect-ratio:16/10;background:#FDFAF6;overflow:hidden}
+.rc-live iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;z-index:2;
+  display:block;background:#FDFAF6}
+.rc-live iframe.failed{display:none}
+.rc-fallback{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:26px;text-decoration:none;background:#0f0f11 center/cover no-repeat;
+  background-image:linear-gradient(180deg,rgba(10,10,11,0) 45%,rgba(10,10,11,.78) 100%),
+    url('https://zaisun.com.ua/hero2.jpg')}
+.rc-fallback span{color:#fff;font-size:13.5px;border:1px solid rgba(255,255,255,.3);
+  padding:9px 18px;border-radius:100px}
+.rc-note{font-size:12px;color:#75757c;margin-top:12px;line-height:1.5}
+@media(max-width:980px){
+  .rc-head{grid-template-columns:1fr;gap:24px}
+  .rc-grid{grid-template-columns:1fr;gap:32px}
+  .rc-frame{position:static}
+}
+
+/* ── Додаткові демонстраційні концепти ───────────────────── */
+.case-demo-link{display:block;color:inherit;text-decoration:none;position:relative}
+.case-demo-link .case-open{pointer-events:none}
+.case-demo-link:focus-visible{outline:2px solid #d9ff3f;outline-offset:4px}
+.case-demo-link img{transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .35s}
+.case-demo-link:hover img{transform:scale(1.025);filter:brightness(.88)}
+.case-demo-link:hover .case-open{color:#d9ff3f}
+
+</style>
 </head>
 <body>
 <div class="intro" id="intro"><div class="panel l"></div><div class="panel r"></div><div class="intro-center"><div class="intro-logo"><span class="shiftmark"><svg viewBox="0 0 64 64"><path d="M5 18h32L48 7h11L42 24H5z" fill="#d9ff3f"/><path d="M59 46H27L16 57H5l17-17h37z" fill="#fff"/></svg></span><span class="wordclip"><span>SHIFT</span></span></div></div><div class="intro-meta"><span>Стратегія / Дизайн / Розробка / performance marketing</span><div class="progress"><i></i></div><span id="count">00</span></div></div>
@@ -21,7 +75,98 @@ try{if(!localStorage.getItem('shift_intro_seen_v1'))document.documentElement.cla
 <section class="hero"><div class="grid"></div><div class="wrap hero-inner"><div class="hero-top"><div class="hero-copy"><strong>SHIFT створює сайти й digital-системи, які переводять бізнес на наступний рівень.</strong> Стратегія, дизайн, розробка, e-commerce та performance — в одному процесі.</div></div><h1 class="hero-title">We&nbsp;&nbsp;shift<br><span class="ghost">brands</span></h1><div class="hero-cards"><article class="visual"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=86" alt="Digital dashboard"><div class="visualcopy"><div><b>Дизайн, який працює.</b><br><small>Не декор. Частина сценарію продажу.</small></div><small>01 / 04</small></div></article><div class="start"><h3>Є бізнес. Зробимо digital, який виглядає на його рівень.</h3><a href="#contact"><span>Обговорити проєкт</span><span>↗</span></a></div></div></div></section>
 <div class="ticker"><div class="ticker-track"><div class="ticker-item">Сайти</div><div class="ticker-item">E-commerce</div><div class="ticker-item">UI / UX</div><div class="ticker-item">Google Ads</div><div class="ticker-item">Аналітика</div><div class="ticker-item">Автоматизація</div><div class="ticker-item">Сайти</div><div class="ticker-item">E-commerce</div><div class="ticker-item">UI / UX</div><div class="ticker-item">Google Ads</div><div class="ticker-item">Аналітика</div><div class="ticker-item">Автоматизація</div></div></div>
 <section class="block what" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">01 / Що робимо</div><h2 class="section-title">Створюємо.<br><em>Запускаємо.</em><br>Розвиваємо.</h2></div><p class="section-copy">Збираємо продукт навколо задачі: від першого контакту з брендом до заявки, оплати й повторної покупки.</p></div><div class="whatgrid"><div class="whatcard reveal"><div class="orb"></div><h3>Сайт.<br>Реклама.<br>Результат.</h3><p>Від структури й дизайну до запуску та просування — один зрозумілий процес без зайвих ланок.</p></div><div><article class="service reveal"><span class="n">01</span><div><h3>Розробка сайтів</h3><p>Лендінги, сайти для компаній, односторінкові сайти-візитки та адаптивні інтерфейси.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">02</span><div><h3>E-commerce</h3><p>Каталоги, фільтри, картки товарів, checkout, оплати, Merchant Center та аналітика.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">03</span><div><h3>Дизайн та UX/UI</h3><p>Структура, інтерфейс, візуальна система, анімації та мікровзаємодії.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">04</span><div><h3>Реклама</h3><p>Google Ads, Meta Ads, ремаркетинг, аналітика та покращення після запуску.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">05</span><div><h3>Інтеграції</h3><p>Форми, CRM, оплати, таблиці, сповіщення та зв’язки між потрібними сервісами.</p></div><span class="arr">↗</span></article></div></div></div></section>
-<section class="deliverables" id="deliverables"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">02 / Що отримуєте</div><h2 class="section-title">Не просто сайт.<br><em>Готовий запуск.</em></h2></div><p class="section-copy">На виході ви отримуєте не набір макетів, а готовий інструмент: адаптивний, підключений і зрозумілий для клієнта.</p></div><div class="deliver-grid"><article class="deliver-card reveal"><span class="dn">01 / Дизайн</span><span class="dicon">✦</span><div><h3>Під ваш бізнес</h3><p>Структура й візуал будуються під задачу, а не під готовий шаблон.</p></div></article><article class="deliver-card reveal"><span class="dn">02 / Mobile</span><span class="dicon">▯</span><div><h3>Адаптив</h3><p>Сайт нормально працює на телефоні, планшеті та великому екрані.</p></div></article><article class="deliver-card reveal"><span class="dn">03 / Analytics</span><span class="dicon">↗</span><div><h3>Готовність до реклами</h3><p>Форми, базова аналітика та потрібні події для подальшого просування.</p></div></article><article class="deliver-card reveal"><span class="dn">04 / Launch</span><span class="dicon">→</span><div><h3>Запуск</h3><p>Допомога з доменом, підключеннями, перевіркою та публікацією сайту.</p></div></article></div></div></section><section class="cases" id="work"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">03 / Приклади рішень</div><h2 class="section-title">Сайти, які<br><em>працюють на бізнес.</em></h2></div><p class="section-copy">Нижче — демонстраційні концепти того, який формат сайту можна зробити для різних типів бізнесу.</p></div><div class="cases-note reveal">Поки що це демонстраційні проєкти — відкрийте будь-яку роботу, щоб побачити підхід і результат.</div><div class="casegrid"><article class="case has-open reveal" data-case="shop" role="button" tabindex="0" aria-label="Відкрити роботу Інтернет-магазин"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=86" alt="Ecommerce concept"><div class="case-meta"><span>E-commerce</span><span>2026</span></div><div class="case-bottom"><h3>Інтернет-<br>магазин</h3><p>Каталог, зручне оформлення замовлення та структура, готова до реклами.</p></div><span class="case-open">Відкрити ↗</span></article><article class="case has-open reveal" data-case="company" role="button" tabindex="0" aria-label="Відкрити роботу Сайт для компанії"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=86" alt="Corporate concept"><div class="case-meta"><span>Сайт для бізнесу</span><span>2026</span></div><div class="case-bottom"><h3>Сайт для<br>компанії</h3><p>Пояснює послуги простими словами, показує переваги й веде клієнта до заявки.</p></div><span class="case-open">Відкрити ↗</span></article><article class="case wide has-open reveal" data-case="commerce" role="button" tabindex="0" aria-label="Відкрити роботу Магазин, де легко замовити"><img src="case-digital-commerce.webp" alt="Digital commerce"><div class="case-meta"><span>E-commerce / UX</span><span>SHIFT / 03</span></div><div class="case-bottom"><h3>Магазин, де<br>легко замовити.</h3><p>Зручний каталог, оплата, аналітика й реклама працюють як одна цілісна система.</p></div><span class="case-open">Відкрити ↗</span></article></div></div></section>
+<section class="deliverables" id="deliverables"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">02 / Що отримуєте</div><h2 class="section-title">Не просто сайт.<br><em>Готовий запуск.</em></h2></div><p class="section-copy">На виході ви отримуєте не набір макетів, а готовий інструмент: адаптивний, підключений і зрозумілий для клієнта.</p></div><div class="deliver-grid"><article class="deliver-card reveal"><span class="dn">01 / Дизайн</span><span class="dicon">✦</span><div><h3>Під ваш бізнес</h3><p>Структура й візуал будуються під задачу, а не під готовий шаблон.</p></div></article><article class="deliver-card reveal"><span class="dn">02 / Mobile</span><span class="dicon">▯</span><div><h3>Адаптив</h3><p>Сайт нормально працює на телефоні, планшеті та великому екрані.</p></div></article><article class="deliver-card reveal"><span class="dn">03 / Analytics</span><span class="dicon">↗</span><div><h3>Готовність до реклами</h3><p>Форми, базова аналітика та потрібні події для подальшого просування.</p></div></article><article class="deliver-card reveal"><span class="dn">04 / Launch</span><span class="dicon">→</span><div><h3>Запуск</h3><p>Допомога з доменом, підключеннями, перевіркою та публікацією сайту.</p></div></article></div></div></section>
+<section class="realcase" id="work"><div class="wrap">
+  <div class="rc-head reveal">
+    <div>
+      <div class="kicker">03 / Реальний проєкт</div>
+      <span class="rc-badge">Живий сайт</span>
+    </div>
+    <p class="section-copy">Приклади вище — концепти. Нижче — магазин, який працює щодня: приймає замовлення, проводить оплати й крутить рекламу.</p>
+  </div>
+
+  <div class="rc-grid reveal">
+    <div class="rc-copy">
+      <h3>ZaiSun</h3>
+      <p class="rc-sub">Бренд дитячого одягу з власним швейним цехом у Луцьку. Продавали через Instagram, сайт стояв на конструкторі — повільний, каталог не тягнув сотні позицій, а товарний фід віддавав дані так, що Merchant Center відхиляв половину асортименту: дублі назв, відсутні розміри й ціни. Через це Google Shopping фактично не працював.</p>
+
+      <div class="rc-block">
+        <div class="rc-label">Що треба було зробити</div>
+        <ul>
+          <li>Перенести магазин з конструктора, не втративши позиції в пошуку</li>
+          <li>Зробити каталог на сотні товарів із розмірами, кольорами й варіантами</li>
+          <li>Дати власнику вести товар самому, без розробника</li>
+          <li>Привести товарний фід до вимог Merchant Center</li>
+          <li>Автоматизувати оформлення: доставка, оплата, сповіщення</li>
+          <li>Побудувати аналітику, яка показує реальні гроші, а не кліки</li>
+        </ul>
+      </div>
+
+      <div class="rc-block">
+        <div class="rc-label">Сайт і автоматизація</div>
+        <ul>
+          <li>Сайт із нуля: каталог, фільтри, пошук, кошик, оформлення</li>
+          <li>Адмін-панель — товари, фото, ціни, статуси замовлень</li>
+          <li><b>Нова Пошта API</b> — автопідстановка міст і відділень</li>
+          <li><b>monobank API</b> — рахунок і підтвердження оплати автоматично</li>
+          <li>776 сторінок товарів із розміткою JSON-LD для пошуку</li>
+        </ul>
+      </div>
+
+      <div class="rc-block">
+        <div class="rc-label">Реклама та аналітика</div>
+        <ul>
+          <li><b>Google Merchant Center</b> — товарний фід, що перегенеровується сам при зміні каталогу</li>
+          <li><b>Google Ads</b> — кампанія Performance Max, тег конверсій, розширені конверсії</li>
+          <li><b>GA4</b> — повна воронка: перегляд товару → кошик → оформлення → оплата</li>
+          <li>Окрема подія на реальну оплату, а не на оформлення — видно гроші, а не наміри</li>
+          <li>Збереження <b>gclid</b> у замовленні: видно, яке замовлення прийшло з рекламного кліку</li>
+          <li><b>Meta Pixel</b> + серверний <b>Conversions API</b> з дедуплікацією подій</li>
+          <li>Аудиторії для ремаркетингу й Lookalike на базі покупців</li>
+        </ul>
+      </div>
+
+      <p style="margin:30px 0 0">
+        <a class="rc-link" href="https://zaisun.com.ua" target="_blank" rel="noopener">
+          Відкрити zaisun.com.ua <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+    </div>
+
+    <div>
+      <div class="rc-frame">
+        <div class="rc-bar"><i></i><i></i><i></i><span class="rc-url">zaisun.com.ua</span></div>
+        <div class="rc-live">
+          <a class="rc-fallback" href="https://zaisun.com.ua" target="_blank" rel="noopener"><span>Відкрити сайт ↗</span></a>
+          <iframe id="rcFrame" src="https://zaisun.com.ua/" title="ZaiSun — живий сайт"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <p class="rc-note">Справжній сайт, завантажений просто зараз — не скриншот. Його можна гортати прямо тут.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="cases" id="concepts"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">03.2 / Концепти</div><h2 class="section-title">Сайти, які<br><em>працюють на бізнес.</em></h2></div><p class="section-copy">Нижче — демонстраційні концепти того, який формат сайту можна зробити для різних типів бізнесу.</p></div><div class="cases-note reveal">Поки що це демонстраційні проєкти — відкрийте будь-яку роботу, щоб побачити підхід і результат.</div><div class="casegrid">
+
+<a class="case case-demo-link reveal" href="shift_concept_vektor_lev_style.html" target="_blank" rel="noopener" aria-label="Відкрити концепт VEKTOR Build">
+  <img src="assets/case-vektor.webp" alt="VEKTOR Build — корпоративний сайт будівельної компанії">
+  <div class="case-meta"><span>Corporate / B2B</span><span>SHIFT / 05</span></div>
+  <div class="case-bottom"><h3>VEKTOR<br>Build</h3><p>Девелоперський концепт у стилі каталогу нерухомості: проєкти, фільтри, статуси, комерція та відділ продажу.</p></div>
+  <span class="case-open">Відкрити сайт ↗</span>
+</a>
+
+<a class="case case-demo-link reveal" href="shift_concept_nova_dental_rikota_style.html" target="_blank" rel="noopener" aria-label="Відкрити концепт NOVA Dental">
+  <img src="assets/case-nova-dental.webp" alt="NOVA Dental — демонстраційний лендінг">
+  <div class="case-meta"><span>Landing / Dental</span><span>SHIFT / 04</span></div>
+  <div class="case-bottom"><h3>NOVA<br>Dental</h3><p>Повноцінний концепт стоматології: послуги, історії пацієнтів, переваги, ціни з прочерками та запис.</p></div>
+  <span class="case-open">Відкрити сайт ↗</span>
+</a>
+
+
+
+</div></div></section>
+
 <section class="block growth" id="growth"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">04 / Реклама та аналітика</div><h2 class="section-title">Після запуску<br><em>починається ріст.</em></h2></div><p class="section-copy">Після запуску ми не просто «наливаємо трафік». Ми дивимось, звідки приходять люди, де вони губляться і що реально дає заявки та продажі.</p></div><div class="growthgrid"><article class="growthitem reveal"><span>01</span><h4>Google Ads<br>і Shopping</h4></article><article class="growthitem reveal"><span>02</span><h4>Meta Ads<br>та ремаркетинг</h4></article><article class="growthitem reveal"><span>03</span><h4>Аналітика<br>та атрибуція</h4></article><article class="growthitem reveal"><span>04</span><h4>CRO<br>та тести</h4></article></div></div></section>
 
 <section class="block prices" id="prices"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">05 / Пакети цін</div><h2 class="section-title">Щоб клієнту було<br><em>все зрозуміло.</em></h2></div><p class="section-copy">Приблизні пакети, щоб людина одразу розуміла порядок бюджету. Остаточна ціна залежить від обсягу сторінок, функцій, інтеграцій та контенту.</p></div><div class="pricegrid">
@@ -32,8 +177,20 @@ try{if(!localStorage.getItem('shift_intro_seen_v1'))document.documentElement.cla
 <article class="pricecard featured reveal"><span class="label">Найпопулярніший</span><h3>Сайт для компанії</h3><p>Для бізнесу, який хоче виглядати солідно й збирати заявки через сайт.</p><div class="price-preview"><div class="preview-top"><span class="preview-logo"><i></i>SHIFT / company</span><span>03</span></div><div class="preview-ui"><div class="preview-hero"><div><h4 class="preview-title">Солідна подача</h4><div class="preview-sub">Головна сторінка, послуги, кейси, процес роботи та нормальний CTA на заявку.</div><span class="preview-button">Обговорити проєкт</span></div><div class="preview-card corp"></div></div><div class="preview-mini-grid"><span></span><span></span><span></span></div></div></div><div class="price">від 22 000 грн<small>2–4 тижні</small></div><ul class="price-list"><li>Головна + 5–10 внутрішніх сторінок</li><li>Продумана структура й тексти</li><li>Анімації та сучасний UI</li><li>Форми, заявки, інтеграції</li><li>GA4, пікселі, базова аналітика</li></ul><a href="#contact" class="pricecta">Обрати пакет ↗</a><div class="price-note">Підійде для компаній, агентств, сервісних бізнесів і B2B.</div></article>
 
 <article class="pricecard reveal"><span class="label">Продажі</span><h3>Інтернет-магазин</h3><p>Для брендів і магазинів, яким потрібен каталог, оплати та готовність до реклами.</p><div class="price-preview dark"><div class="preview-top"><span class="preview-logo"><i></i>SHIFT / shop</span><span>04</span></div><div class="preview-ui"><div class="preview-hero"><div><h4 class="preview-title">Каталог і продаж</h4><div class="preview-sub">Товари, картки, кошик, оплата, доставка і базова аналітика з підготовкою до реклами.</div><span class="preview-button">Запустити магазин</span></div><div class="preview-card shop"></div></div><div class="preview-line mid"></div><div class="preview-mini-grid"><span></span><span></span><span></span></div></div></div><div class="price">від 65 000 грн<small>4–7 тижнів</small></div><ul class="price-list"><li>Каталог, фільтри, картки товарів</li><li>Кошик і оформлення замовлення</li><li>Онлайн-оплата та доставка</li><li>Merchant Center і аналітика</li><li>Підготовка до Google / Meta Ads</li></ul><a href="#contact" class="pricecta">Отримати консультацію ↗</a><div class="price-note">Підійде для одягу, товарки, виробників і брендів.</div></article>
-</div></div></section><section class="block" id="process"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">06 / Процес</div><h2 class="section-title">Прозорий процес.<br><em>Без хаосу.</em></h2></div><p class="section-copy">Клієнт завжди розуміє, на якому етапі робота і який результат він отримає наступним.</p></div><div class="processrow reveal"><span class="num">01</span><h3>Знайомство й аналіз</h3><p>Бізнес, продукт, конкуренти, аудиторія й цілі.</p></div><div class="processrow reveal"><span class="num">02</span><h3>Структура сайту</h3><p>Прототип, сценарій сторінки, офер, CTA та контент.</p></div><div class="processrow reveal"><span class="num">03</span><h3>Дизайн та анімація</h3><p>Візуальна система, типографіка, фото й анімації.</p></div><div class="processrow reveal"><span class="num">04</span><h3>Розробка та запуск</h3><p>Розробка, адаптив, інтеграції, аналітика й запуск.</p></div><div class="processrow reveal"><span class="num">05</span><h3>Підтримка після запуску</h3><p>За потреби — реклама, аналітика, правки та подальший розвиток сайту.</p></div></div></section>
-<section class="block faq" id="faq"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">07 / Питання</div><h2 class="section-title">Коротко про<br><em>важливе.</em></h2></div><p class="section-copy">П’ять питань, які найчастіше виникають перед стартом. Якщо задача нестандартна — обговоримо окремо.</p></div><div class="faq-list reveal"><details><summary><span class="fq">01</span><h3>Скільки часу займає розробка?</h3><span class="plus">+</span></summary><div class="faq-answer">Сайт-візитка може бути готовий за кілька днів. Лендінг — орієнтовно 1–2 тижні. Багатосторінкові сайти та магазини потребують більше часу — строк фіксуємо після узгодження задачі.</div></details><details><summary><span class="fq">02</span><h3>Що потрібно від мене для старту?</h3><span class="plus">+</span></summary><div class="faq-answer">Коротко розповісти про бізнес, послугу або товар, показати приклади сайтів, які подобаються, та передати наявні фото, логотип і матеріали. Якщо частини контенту немає — визначимо, що потрібно підготувати.</div></details><details><summary><span class="fq">03</span><h3>Чи зможу я змінювати сайт після запуску?</h3><span class="plus">+</span></summary><div class="faq-answer">Так. Невеликі зміни можемо вносити ми в рамках підтримки. Якщо вам потрібно регулярно самостійно змінювати тексти, фото, послуги або ціни — підключимо зручну систему керування сайтом.<small style="display:block;margin-top:14px;color:#8f8f95;line-height:1.55;font-weight:600">Адмінпанель не обов'язкова для кожного проєкту — підключаємо її тільки тоді, коли вона дійсно потрібна.</small></div></details><details><summary><span class="fq">04</span><h3>Чи входять тексти, фото та домен у ціну?</h3><span class="plus">+</span></summary><div class="faq-answer">Це залежить від пакета й задачі. Перед початком чітко фіксуємо, що входить у вартість, а що потрібно підготувати або оплатити окремо.</div></details><details><summary><span class="fq">05</span><h3>Чи можна після сайту запустити рекламу?</h3><span class="plus">+</span></summary><div class="faq-answer">Так. Можна окремо підключити Google Ads, Shopping або Meta Ads, а також базову аналітику, щоб бачити заявки та продажі.</div></details></div></div></section><section class="cta" id="contact"><div class="wrap"><div class="ctabox reveal"><div class="ctalog"><span class="shiftmark"><svg viewBox="0 0 64 64"><path d="M5 18h32L48 7h11L42 24H5z" fill="#0a0a0b"/><path d="M59 46H27L16 57H5l17-17h37z" fill="#0a0a0b"/></svg></span>SHIFT</div><h2>Готові<br>рухатись далі?</h2><div class="ctabottom"><div><p>Опишіть задачу двома реченнями. Повернусь із баченням формату сайту, приблизного бюджету й наступного кроку.</p></div><form class="form" id="form"><input name="name" required placeholder="Ім’я"><input name="contact" required placeholder="Телефон / Telegram"><textarea name="message" required placeholder="Що потрібно зробити?"></textarea><button type="submit">Обговорити проєкт ↗</button><div class="form-status" id="formStatus">Форму підключимо після налаштування окремої пошти SHIFT.</div></form></div></div></div></section>
-<div class="case-modal" id="caseModal" aria-hidden="true"><div class="case-dialog" role="dialog" aria-modal="true" aria-labelledby="caseTitle"><button class="case-close" type="button" aria-label="Закрити">×</button><div class="case-detail"><div class="case-detail-top"><div><div class="eyebrow" id="caseEyebrow">Демонстраційний проєкт</div><h2 id="caseTitle">Кейс</h2></div><div class="case-detail-lead" id="caseLead"></div></div><div class="case-facts"><article class="case-fact"><b>Задача</b><p id="caseTask"></p></article><article class="case-fact"><b>Що входить</b><p id="caseDone"></p></article><article class="case-fact"><b>Фокус</b><p id="caseFocus"></p></article><article class="case-fact"><b>Технології</b><p id="caseTech"></p></article></div><div class="mock-stage"><div class="mock-toolbar"><i></i><i></i><i></i><span id="mockUrl">shift.preview/project</span></div><div class="mock-viewport" id="mockViewport"></div><div class="mock-tabs"><button class="mock-tab active" data-screen="0">Головна</button><button class="mock-tab" data-screen="1">Внутрішня</button><button class="mock-tab" data-screen="2">Mobile / CTA</button></div></div><div class="case-benefit"><h3>Що отримує клієнт</h3><ul id="caseBenefits"></ul></div></div></div></div></main><footer><div class="wrap foot"><div><b>SHIFT</b> / незалежна digital-студія</div><div>© 2026</div></div></footer>
-<script src="app.js" defer></script>
+</div></div></section>
+<section class="block" id="process"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">06 / Процес</div><h2 class="section-title">Прозорий процес.<br><em>Без хаосу.</em></h2></div><p class="section-copy">Клієнт завжди розуміє, на якому етапі робота і який результат він отримає наступним.</p></div><div class="processrow reveal"><span class="num">01</span><h3>Знайомство й аналіз</h3><p>Бізнес, продукт, конкуренти, аудиторія й цілі.</p></div><div class="processrow reveal"><span class="num">02</span><h3>Структура сайту</h3><p>Прототип, сценарій сторінки, офер, CTA та контент.</p></div><div class="processrow reveal"><span class="num">03</span><h3>Дизайн та анімація</h3><p>Візуальна система, типографіка, фото й анімації.</p></div><div class="processrow reveal"><span class="num">04</span><h3>Розробка та запуск</h3><p>Розробка, адаптив, інтеграції, аналітика й запуск.</p></div><div class="processrow reveal"><span class="num">05</span><h3>Підтримка після запуску</h3><p>За потреби — реклама, аналітика, правки та подальший розвиток сайту.</p></div></div></section>
+<section class="block faq" id="faq"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">07 / Питання</div><h2 class="section-title">Коротко про<br><em>важливе.</em></h2></div><p class="section-copy">П’ять питань, які найчастіше виникають перед стартом. Якщо задача нестандартна — обговоримо окремо.</p></div><div class="faq-list reveal"><details><summary><span class="fq">01</span><h3>Скільки часу займає розробка?</h3><span class="plus">+</span></summary><div class="faq-answer">Сайт-візитка може бути готовий за кілька днів. Лендінг — орієнтовно 1–2 тижні. Багатосторінкові сайти та магазини потребують більше часу — строк фіксуємо після узгодження задачі.</div></details><details><summary><span class="fq">02</span><h3>Що потрібно від мене для старту?</h3><span class="plus">+</span></summary><div class="faq-answer">Коротко розповісти про бізнес, послугу або товар, показати приклади сайтів, які подобаються, та передати наявні фото, логотип і матеріали. Якщо частини контенту немає — визначимо, що потрібно підготувати.</div></details><details><summary><span class="fq">03</span><h3>Чи зможу я змінювати сайт після запуску?</h3><span class="plus">+</span></summary><div class="faq-answer">Так. Невеликі зміни можемо вносити ми в рамках підтримки. Якщо вам потрібно регулярно самостійно змінювати тексти, фото, послуги або ціни — підключимо зручну систему керування сайтом.<small style="display:block;margin-top:14px;color:#8f8f95;line-height:1.55;font-weight:600">Адмінпанель не обов'язкова для кожного проєкту — підключаємо її тільки тоді, коли вона дійсно потрібна.</small></div></details><details><summary><span class="fq">04</span><h3>Чи входять тексти, фото та домен у ціну?</h3><span class="plus">+</span></summary><div class="faq-answer">Це залежить від пакета й задачі. Перед початком чітко фіксуємо, що входить у вартість, а що потрібно підготувати або оплатити окремо.</div></details><details><summary><span class="fq">05</span><h3>Чи можна після сайту запустити рекламу?</h3><span class="plus">+</span></summary><div class="faq-answer">Так. Можна окремо підключити Google Ads, Shopping або Meta Ads, а також базову аналітику, щоб бачити заявки та продажі.</div></details></div></div></section>
+<section class="cta" id="contact"><div class="wrap"><div class="ctabox reveal"><div class="ctalog"><span class="shiftmark"><svg viewBox="0 0 64 64"><path d="M5 18h32L48 7h11L42 24H5z" fill="#0a0a0b"/><path d="M59 46H27L16 57H5l17-17h37z" fill="#0a0a0b"/></svg></span>SHIFT</div><h2>Готові<br>рухатись далі?</h2><div class="ctabottom"><div><p>Опишіть задачу двома реченнями. Повернусь із баченням формату сайту, приблизного бюджету й наступного кроку.</p></div><form class="form" id="form"><input name="name" required placeholder="Ім’я"><input name="contact" required placeholder="Телефон / Telegram"><textarea name="message" required placeholder="Що потрібно зробити?"></textarea><button type="submit">Обговорити проєкт ↗</button><div class="form-status" id="formStatus">Форму підключимо після налаштування окремої пошти SHIFT.</div></form></div></div></div></section>
+ </main><footer><div class="wrap foot"><div><b>SHIFT</b> / незалежна digital-студія</div><div>© 2026</div></div></footer>
+<script src="https://cdn.jsdelivr.net/gh/vodilazila-bit/Shiftua@main/app.js" defer></script>
+<script src="shift-mesh.js" defer></script>
+
+<script>
+(function(){
+  var f=document.getElementById('rcFrame'); if(!f) return;
+  var ok=false;
+  f.addEventListener('load',function(){ ok=true; });
+  setTimeout(function(){ if(!ok) f.classList.add('failed'); },6000);
+})();
+</script>
 </body></html>

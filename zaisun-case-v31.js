@@ -7,6 +7,28 @@
     {src:window.ZS31_SHOT_5,label:'Instagram'}
   ];
 
+  const patchNavigation=()=>{
+    document.querySelectorAll('.case-demo-link').forEach(link=>{
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+      if(link.dataset.shiftReturnBound==='1')return;
+      link.dataset.shiftReturnBound='1';
+      link.addEventListener('click',()=>{
+        try{sessionStorage.setItem('shift_return_scroll',String(window.scrollY));}catch(e){}
+      });
+    });
+  };
+
+  const restoreScroll=()=>{
+    try{
+      const saved=sessionStorage.getItem('shift_return_scroll');
+      if(!saved)return;
+      const y=parseInt(saved,10);
+      if(Number.isFinite(y))setTimeout(()=>window.scrollTo(0,y),80);
+      sessionStorage.removeItem('shift_return_scroll');
+    }catch(e){}
+  };
+
   const addHeading=(section)=>{
     if(!section || section.querySelector('.zSelectedHead'))return;
     const gallery=section.querySelector('.zGallery');
@@ -18,6 +40,7 @@
   };
 
   const apply=()=>{
+    patchNavigation();
     const section=document.querySelector('.zCase[data-zaisun-v28="1"]') || document.querySelector('#work .zCase') || document.querySelector('.zCase');
     if(!section)return false;
     addHeading(section);
@@ -74,6 +97,9 @@
     return true;
   };
 
+  window.addEventListener('pageshow',restoreScroll);
+  restoreScroll();
+  patchNavigation();
   if(apply())return;
   let tries=0;
   const timer=setInterval(()=>{tries++;if(apply()||tries>60)clearInterval(timer)},100);

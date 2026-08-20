@@ -96,3 +96,13 @@
   },{passive:true});
   draw(performance.now());
 })();
+
+// v28 — premium ZaiSun case study, same-tab concept navigation and scroll return.
+(()=>{
+  if(document.querySelector('script[data-zaisun-case-v28]'))return;
+  const s=document.createElement('script');
+  s.src='zaisun-case-v28.js?v=28';
+  s.defer=true;
+  s.dataset.zaisunCaseV28='1';
+  document.head.appendChild(s);
+})();

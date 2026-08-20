@@ -11,6 +11,32 @@
     .prices{background:rgba(10,10,11,.35)}
     .what{background:rgba(241,239,232,.96)!important}
     .ticker{background:rgba(10,10,11,.58)}
+
+    #concepts .kicker{color:#d9ff3f!important;font-size:12px!important;font-weight:800!important;letter-spacing:.16em!important}
+    #concepts .section-title{line-height:.94!important;color:#fff!important}
+    #concepts .section-title em{color:#d9ff3f!important}
+    #concepts .section-head{margin-bottom:40px!important}
+
+    .startBrief{margin:0 0 34px;border:1px solid rgba(255,255,255,.13);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.025)}
+    .startBriefHead{display:flex;justify-content:space-between;gap:24px;align-items:end;padding:24px 28px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .startBriefHead span{font:700 12px/1.2 "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#fff}
+    .startBriefHead p{margin:0;color:#8e8e95;font-size:12px;line-height:1.5;max-width:430px}
+    .startBriefGrid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .startBriefItem{min-height:120px;padding:22px 28px;border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+    .startBriefItem:nth-child(3n){border-right:0}.startBriefItem:nth-child(n+4){border-bottom:0}
+    .startBriefItem small{display:block;color:#d9ff3f;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+    .startBriefItem b{display:block;color:#fff;font:600 18px/1.1 "Manrope",sans-serif;letter-spacing:-.025em;margin-bottom:7px}
+    .startBriefItem p{margin:0;color:#919198;font-size:11px;line-height:1.5}
+    @media(max-width:760px){
+      #concepts .section-head{margin-bottom:28px!important}
+      .startBriefHead{display:block;padding:20px}.startBriefHead p{margin-top:9px}
+      .startBriefGrid{grid-template-columns:1fr 1fr}
+      .startBriefItem{padding:19px 20px;min-height:112px}
+      .startBriefItem:nth-child(3n){border-right:1px solid rgba(255,255,255,.1)}
+      .startBriefItem:nth-child(2n){border-right:0}
+      .startBriefItem:nth-child(n+4){border-bottom:1px solid rgba(255,255,255,.1)}
+      .startBriefItem:nth-child(n+5){border-bottom:0}
+    }
   `;
   document.head.appendChild(ui);
 
@@ -75,7 +101,7 @@
   draw(performance.now());
 })();
 
-// v34 — Contacts + one-screen ZaiSun case with concise project scope.
+// v35 — content refinements + concise client brief + one-screen ZaiSun case.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -84,6 +110,41 @@
     contactLink.textContent='Контакти';
     navLinks.appendChild(contactLink);
   }
+
+  function applySiteTweaks(){
+    const conceptKicker=document.querySelector('#concepts .kicker');
+    const conceptTitle=document.querySelector('#concepts .section-title');
+    if(conceptKicker)conceptKicker.textContent='03.2 / КОНЦЕПТИ';
+    if(conceptTitle)conceptTitle.innerHTML='Варіанти концептів:<br><em>сайтів під ваш бізнес.</em>';
+
+    const priceCopy=document.querySelector('#prices .section-copy');
+    if(priceCopy)priceCopy.textContent='Приблизні пакети послуг. Остаточна ціна залежить від обсягу сторінок, функцій, інтеграцій та контенту.';
+
+    const processWrap=document.querySelector('#process .wrap');
+    const processHead=processWrap?.querySelector('.section-head');
+    if(processWrap&&processHead&&!processWrap.querySelector('.startBrief')){
+      const brief=document.createElement('div');
+      brief.className='startBrief reveal on';
+      brief.innerHTML=`
+        <div class="startBriefHead"><span>Що потрібно від вас на старті</span><p>Достатньо коротко відповісти на ці пункти — структуру, сценарій і технічні рішення вже збираємо ми.</p></div>
+        <div class="startBriefGrid">
+          <div class="startBriefItem"><small>01</small><b>Бізнес</b><p>Чим займаєтесь, що продаєте або які послуги надаєте.</p></div>
+          <div class="startBriefItem"><small>02</small><b>Мета</b><p>Заявки, продажі, презентація компанії, запуск реклами чи інша задача.</p></div>
+          <div class="startBriefItem"><small>03</small><b>Аудиторія</b><p>Хто ваш клієнт і на яку географію працює бізнес.</p></div>
+          <div class="startBriefItem"><small>04</small><b>Матеріали</b><p>Логотип, фото, тексти, прайс або каталог. Якщо чогось немає — скажіть.</p></div>
+          <div class="startBriefItem"><small>05</small><b>Орієнтири</b><p>Конкуренти та 2–3 сайти, які подобаються або точно не подобаються.</p></div>
+          <div class="startBriefItem"><small>06</small><b>Рамки</b><p>Бажаний термін запуску та приблизний бюджетний орієнтир.</p></div>
+        </div>`;
+      processHead.insertAdjacentElement('afterend',brief);
+    }
+
+    document.querySelectorAll('.z34DoneItem h4').forEach(h=>{
+      if(h.textContent.includes('Видно не кліки'))h.textContent='Бачимо, яка реклама дає продажі';
+    });
+    document.querySelector('.z34Bottom')?.remove();
+  }
+
+  applySiteTweaks();
 
   const load=(src,key)=>new Promise((resolve,reject)=>{
     if(key&&document.querySelector(`script[data-${key}]`)){resolve();return;}
@@ -96,7 +157,10 @@
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=34','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=35','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=34','zaisun-case-v31')).catch(()=>{});
+  start.then(()=>load('zaisun-case-v31.js?v=35','zaisun-case-v31')).then(()=>{
+    applySiteTweaks();
+    setTimeout(applySiteTweaks,150);
+  }).catch(()=>{});
 })();

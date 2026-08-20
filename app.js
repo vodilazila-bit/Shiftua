@@ -51,7 +51,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   document.querySelector('.case-close')?.addEventListener('click',closeCase);modal?.addEventListener('click',e=>{if(e.target===modal)closeCase()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCase()});document.querySelectorAll('.mock-tab').forEach((b,i)=>b.addEventListener('click',()=>setScreen(i)));
 
   const form=document.getElementById('form');
-  form?.addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(form);const name=fd.get('name')||'';const contact=fd.get('contact')||'';const message=fd.get('message')||'';const subject=encodeURIComponent(`Заявка з сайту SHIFT — ${name}`);const body=encodeURIComponent(`Ім'я: ${name}\nКонтакт: ${contact}\n\nЗадача:\n${message}`);document.getElementById('formStatus').textContent='Відкриваю пошту з готовим повідомленням…';window.location.href=`mailto:messaires@gmail.com?subject=${subject}&body=${body}`;});
+  form?.addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('formStatus');if(status)status.textContent='Форму підключимо після налаштування окремої пошти SHIFT.';});
 })();
 
 // Work section v25: mobile-first + full-site mesh.

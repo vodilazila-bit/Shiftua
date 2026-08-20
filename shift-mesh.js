@@ -75,8 +75,16 @@
   draw(performance.now());
 })();
 
-// v31 — selected work heading + only the five supplied ZaiSun screenshots.
+// v32 — add Contacts to the header and keep the selected-work gallery loader.
 (()=>{
+  const navLinks=document.querySelector('.nav .links');
+  if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
+    const contactLink=document.createElement('a');
+    contactLink.href='#contact';
+    contactLink.textContent='Контакти';
+    navLinks.appendChild(contactLink);
+  }
+
   if(document.querySelector('script[data-zaisun-case-v28]'))return;
   const load=(src,key)=>new Promise((resolve,reject)=>{
     if(key&&document.querySelector(`script[data-${key}]`)){resolve();return;}
@@ -85,15 +93,15 @@
     el.onload=resolve;el.onerror=reject;document.head.appendChild(el);
   });
 
-  load('zaisun-case-v28.js?v=31','zaisun-case-v28').then(()=>{
+  load('zaisun-case-v28.js?v=32','zaisun-case-v28').then(()=>{
     const items=[...document.querySelectorAll('.zCase .reveal')];
     if(items.length){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});items.forEach(x=>io.observe(x));}
     return Promise.all([
-      load('assets/zaisun-shot-1-data2.js?v=31'),
-      load('assets/zaisun-shot-2-data.js?v=31'),
-      load('assets/zaisun-shot-3-data.js?v=31'),
-      load('assets/zaisun-shot-4-data.js?v=31'),
-      load('assets/zaisun-shot-5-data.js?v=31')
+      load('assets/zaisun-shot-1-data2.js?v=32'),
+      load('assets/zaisun-shot-2-data.js?v=32'),
+      load('assets/zaisun-shot-3-data.js?v=32'),
+      load('assets/zaisun-shot-4-data.js?v=32'),
+      load('assets/zaisun-shot-5-data.js?v=32')
     ]);
-  }).then(()=>load('zaisun-case-v31.js?v=31','zaisun-case-v31')).catch(()=>{});
+  }).then(()=>load('zaisun-case-v31.js?v=32','zaisun-case-v31')).catch(()=>{});
 })();

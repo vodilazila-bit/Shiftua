@@ -104,5 +104,11 @@
   s.src='zaisun-case-v28.js?v=28';
   s.defer=true;
   s.dataset.zaisunCaseV28='1';
+  s.onload=()=>{
+    const items=[...document.querySelectorAll('.zCase .reveal')];
+    if(!items.length)return;
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
+    items.forEach(x=>io.observe(x));
+  };
   document.head.appendChild(s);
 })();

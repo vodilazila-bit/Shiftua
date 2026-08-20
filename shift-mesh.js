@@ -57,66 +57,43 @@
     ctx.lineJoin='round';
     const rows=innerWidth<760?38:48;
     const cols=innerWidth<760?44:72;
-
     for(let r=0;r<rows;r++){
-      const z=r/(rows-1);
-      ctx.beginPath();
-      for(let c=0;c<=cols;c++){
-        const[x,y]=point(c/cols,z,t);
-        c?ctx.lineTo(x,y):ctx.moveTo(x,y);
-      }
-      const a=.055+.235*Math.pow(z,1.08);
-      ctx.strokeStyle=`rgba(224,228,233,${a.toFixed(3)})`;
-      ctx.lineWidth=.55+.55*z;
-      ctx.stroke();
+      const z=r/(rows-1);ctx.beginPath();
+      for(let c=0;c<=cols;c++){const[x,y]=point(c/cols,z,t);c?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+      const a=.055+.235*Math.pow(z,1.08);ctx.strokeStyle=`rgba(224,228,233,${a.toFixed(3)})`;ctx.lineWidth=.55+.55*z;ctx.stroke();
     }
-
     for(let c=0;c<=cols;c++){
-      const u=c/cols;
-      ctx.beginPath();
-      for(let r=0;r<rows;r++){
-        const[x,y]=point(u,r/(rows-1),t);
-        r?ctx.lineTo(x,y):ctx.moveTo(x,y);
-      }
-      const edge=Math.abs(u-.5)*2;
-      const a=.07+.11*(1-edge*.55);
-      ctx.strokeStyle=`rgba(220,224,230,${a.toFixed(3)})`;
-      ctx.lineWidth=.55;
-      ctx.stroke();
+      const u=c/cols;ctx.beginPath();
+      for(let r=0;r<rows;r++){const[x,y]=point(u,r/(rows-1),t);r?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+      const edge=Math.abs(u-.5)*2,a=.07+.11*(1-edge*.55);ctx.strokeStyle=`rgba(220,224,230,${a.toFixed(3)})`;ctx.lineWidth=.55;ctx.stroke();
     }
-
     if(!reduceMotion)raf=requestAnimationFrame(draw);
   }
 
   resize();
-  addEventListener('resize',()=>{
-    cancelAnimationFrame(raf);
-    resize();
-    draw(performance.now());
-  },{passive:true});
+  addEventListener('resize',()=>{cancelAnimationFrame(raf);resize();draw(performance.now())},{passive:true});
   draw(performance.now());
 })();
 
-// v30 — premium ZaiSun case study + exact catalog screenshot.
+// v31 — selected work heading + only the five supplied ZaiSun screenshots.
 (()=>{
   if(document.querySelector('script[data-zaisun-case-v28]'))return;
-  const s=document.createElement('script');
-  s.src='zaisun-case-v28.js?v=28';
-  s.defer=true;
-  s.dataset.zaisunCaseV28='1';
-  s.onload=()=>{
+  const load=(src,key)=>new Promise((resolve,reject)=>{
+    if(key&&document.querySelector(`script[data-${key}]`)){resolve();return;}
+    const el=document.createElement('script');el.src=src;el.defer=true;
+    if(key)el.dataset[key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]='1';
+    el.onload=resolve;el.onerror=reject;document.head.appendChild(el);
+  });
+
+  load('zaisun-case-v28.js?v=31','zaisun-case-v28').then(()=>{
     const items=[...document.querySelectorAll('.zCase .reveal')];
-    if(items.length){
-      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
-      items.forEach(x=>io.observe(x));
-    }
-    if(!document.querySelector('script[data-zaisun-case-v29]')){
-      const p=document.createElement('script');
-      p.src='zaisun-case-v29.js?v=30';
-      p.defer=true;
-      p.dataset.zaisunCaseV29='1';
-      document.head.appendChild(p);
-    }
-  };
-  document.head.appendChild(s);
+    if(items.length){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});items.forEach(x=>io.observe(x));}
+    return Promise.all([
+      load('assets/zaisun-shot-1-data2.js?v=31'),
+      load('assets/zaisun-shot-2-data.js?v=31'),
+      load('assets/zaisun-shot-3-data.js?v=31'),
+      load('assets/zaisun-shot-4-data.js?v=31'),
+      load('assets/zaisun-shot-5-data.js?v=31')
+    ]);
+  }).then(()=>load('zaisun-case-v31.js?v=31','zaisun-case-v31')).catch(()=>{});
 })();

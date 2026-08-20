@@ -54,5 +54,5 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   form?.addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('formStatus');if(status)status.textContent='Форму підключимо після налаштування окремої пошти SHIFT.';});
 })();
 
-// Work section v25: mobile-first + full-site mesh.
-(()=>{const s=document.createElement('script');s.src='work-v23.js?v=25';s.defer=true;document.head.appendChild(s)})();
+// Work section v27: mobile-first + clean concept previews + full-site mesh.
+(()=>{const s=document.createElement('script');s.src='work-v23.js?v=27';s.defer=true;document.head.appendChild(s)})();

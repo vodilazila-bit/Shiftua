@@ -75,7 +75,7 @@
   draw(performance.now());
 })();
 
-// v33 — Contacts + live-rendered ZaiSun case; no full-page screenshot carousel.
+// v34 — Contacts + one-screen ZaiSun case with concise project scope.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -96,7 +96,7 @@
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=33','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=34','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=33','zaisun-case-v31')).catch(()=>{});
+  start.then(()=>load('zaisun-case-v31.js?v=34','zaisun-case-v31')).catch(()=>{});
 })();

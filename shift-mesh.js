@@ -97,7 +97,7 @@
   draw(performance.now());
 })();
 
-// v29 — premium ZaiSun case study + product catalog replacement slide.
+// v30 — premium ZaiSun case study + exact catalog screenshot.
 (()=>{
   if(document.querySelector('script[data-zaisun-case-v28]'))return;
   const s=document.createElement('script');
@@ -112,7 +112,7 @@
     }
     if(!document.querySelector('script[data-zaisun-case-v29]')){
       const p=document.createElement('script');
-      p.src='zaisun-case-v29.js?v=29';
+      p.src='zaisun-case-v29.js?v=30';
       p.defer=true;
       p.dataset.zaisunCaseV29='1';
       document.head.appendChild(p);

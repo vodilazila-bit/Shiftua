@@ -97,7 +97,7 @@
   draw(performance.now());
 })();
 
-// v28 — premium ZaiSun case study, same-tab concept navigation and scroll return.
+// v29 — premium ZaiSun case study + product catalog replacement slide.
 (()=>{
   if(document.querySelector('script[data-zaisun-case-v28]'))return;
   const s=document.createElement('script');
@@ -106,9 +106,17 @@
   s.dataset.zaisunCaseV28='1';
   s.onload=()=>{
     const items=[...document.querySelectorAll('.zCase .reveal')];
-    if(!items.length)return;
-    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
-    items.forEach(x=>io.observe(x));
+    if(items.length){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
+      items.forEach(x=>io.observe(x));
+    }
+    if(!document.querySelector('script[data-zaisun-case-v29]')){
+      const p=document.createElement('script');
+      p.src='zaisun-case-v29.js?v=29';
+      p.defer=true;
+      p.dataset.zaisunCaseV29='1';
+      document.head.appendChild(p);
+    }
   };
   document.head.appendChild(s);
 })();

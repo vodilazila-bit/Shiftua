@@ -1,5 +1,5 @@
 (()=>{
-  const ENDPOINT = window.SHIFT_FORM_ENDPOINT || '';
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxqmI7d5yqpwn2xtVlUhWwSViv1lK-KsAfLe-sG2lomRvcsjBLaFGu2dvPcfGbO9P4Q/exec';
   const form = document.getElementById('form');
   if (!form || form.dataset.shiftLeadReady === '1') return;
   form.dataset.shiftLeadReady = '1';
@@ -53,14 +53,6 @@
     const button = form.querySelector('button[type="submit"]');
     if (!form.reportValidity()) return;
 
-    if (!ENDPOINT || !/^https:\/\/script\.google\.com\/macros\/s\//.test(ENDPOINT)) {
-      if (status) {
-        status.className = 'form-status err';
-        status.textContent = 'Форма майже готова: потрібно один раз підключити URL Google Apps Script.';
-      }
-      return;
-    }
-
     const fd = new FormData(form);
     const payload = {
       name: fd.get('name') || '',
@@ -79,7 +71,8 @@
         method: 'POST',
         mode: 'no-cors',
         headers: {'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        keepalive: true
       });
       form.reset();
       if (status) {

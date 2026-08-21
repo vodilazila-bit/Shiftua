@@ -5,6 +5,7 @@
     body>header,body>main,body>footer{position:relative;z-index:1}
     .hero .grid{display:none!important}
     .hero:before{background:radial-gradient(circle at 77% 24%,rgba(85,112,255,.18),transparent 29%),radial-gradient(circle at 20% 68%,rgba(255,81,58,.10),transparent 27%),rgba(10,10,11,.58)!important}
+    @media(min-width:761px){.hero-top{transform:translateY(-92px)}}
     .deliverables{background:rgba(10,10,11,.88)!important}
     .growth{background:rgba(18,18,21,.82)!important}
     .faq{background:rgba(17,17,20,.88)!important}

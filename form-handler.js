@@ -8,11 +8,26 @@
   if (status) status.textContent = 'Залиште контакти — відповімо з баченням формату, бюджету й наступного кроку.';
 
   const phone = form.querySelector('[name="contact"]');
+  let phoneField = form.querySelector('.phone-field');
+  let phoneError = form.querySelector('.phone-error');
+
   if (phone) {
     phone.type = 'tel';
     phone.inputMode = 'tel';
     phone.autocomplete = 'tel';
     phone.placeholder = 'Телефон: +380 XX XXX XX XX';
+
+    if (!phoneField) {
+      phoneField = document.createElement('div');
+      phoneField.className = 'phone-field';
+      phone.parentNode.insertBefore(phoneField, phone);
+      phoneField.appendChild(phone);
+    }
+    if (!phoneError) {
+      phoneError = document.createElement('div');
+      phoneError.className = 'phone-error';
+      phoneField.appendChild(phoneError);
+    }
   }
 
   if (!form.querySelector('[name="email"]')) {
@@ -42,24 +57,18 @@
     form.insertBefore(select, message || form.querySelector('button'));
   }
 
-  let phoneError = form.querySelector('.phone-error');
-  if (!phoneError && phone) {
-    phoneError = document.createElement('div');
-    phoneError.className = 'phone-error';
-    phone.insertAdjacentElement('afterend', phoneError);
-  }
-
   const style = document.createElement('style');
   style.textContent = `
+    #form .phone-field{width:100%;display:flex;flex-direction:column;gap:4px;align-self:start}
+    #form .phone-field input{width:100%;box-sizing:border-box}
     #form select{width:100%;min-height:58px;border:1px solid rgba(10,10,11,.18);border-radius:14px;background:rgba(255,255,255,.72);color:#101011;padding:0 16px;font:500 14px/1.2 "DM Sans",sans-serif;outline:none;appearance:none}
     #form select:focus{border-color:#101011}
     #form input[name="contact"].phone-invalid{border-color:#c62828!important;box-shadow:0 0 0 1px rgba(198,40,40,.15)!important}
-    #form .phone-error{grid-column:2/3;height:0;overflow:visible;position:relative;top:-8px;padding:0 4px;color:#b42318;font:600 11px/1.25 "DM Sans",sans-serif;opacity:0;pointer-events:none}
+    #form .phone-error{min-height:14px;padding:0 4px;color:#b42318;font:600 11px/1.25 "DM Sans",sans-serif;opacity:0;pointer-events:none}
     #form .phone-error.show{opacity:1}
     #form .form-status.ok{color:#176c3d!important}
     #form .form-status.err{color:#9f2f2f!important}
     #form button[disabled]{opacity:.58;cursor:wait}
-    @media(max-width:700px){#form .phone-error{grid-column:1/-1;top:-7px}}
   `;
   document.head.appendChild(style);
 
@@ -81,14 +90,14 @@
       message = 'Формат: 0XXXXXXXXX або +380XXXXXXXXX.';
     }
 
-    const valid = !message;
-    phone.setCustomValidity(valid ? '' : message);
-    phone.classList.toggle('phone-invalid', !valid && (showMessage || raw.length > 0));
+    const visible = !!message && (showMessage || raw.length > 0);
+    phone.setCustomValidity(message);
+    phone.classList.toggle('phone-invalid', visible);
     if (phoneError) {
-      phoneError.textContent = (!valid && (showMessage || raw.length > 0)) ? message : '';
-      phoneError.classList.toggle('show', !!phoneError.textContent);
+      phoneError.textContent = visible ? message : '';
+      phoneError.classList.toggle('show', visible);
     }
-    return valid;
+    return !message;
   }
 
   phone?.addEventListener('input', () => validatePhone(false));

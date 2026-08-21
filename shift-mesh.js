@@ -1,4 +1,26 @@
 (()=>{
+  const faviconHref='/favicon.svg?v=1';
+  const existing=document.querySelector('link[rel="icon"],link[rel="shortcut icon"]');
+  if(existing){
+    existing.setAttribute('href',faviconHref);
+    existing.setAttribute('type','image/svg+xml');
+  }else{
+    const icon=document.createElement('link');
+    icon.rel='icon';
+    icon.type='image/svg+xml';
+    icon.href=faviconHref;
+    document.head.appendChild(icon);
+  }
+  if(!document.querySelector('link[rel="shortcut icon"]')){
+    const shortcut=document.createElement('link');
+    shortcut.rel='shortcut icon';
+    shortcut.type='image/svg+xml';
+    shortcut.href=faviconHref;
+    document.head.appendChild(shortcut);
+  }
+})();
+
+(()=>{
   const ui=document.createElement('style');
   ui.textContent=`
     #siteMesh{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1;filter:brightness(1.18) contrast(1.08)}
@@ -118,7 +140,7 @@
   draw(performance.now());
 })();
 
-// v37 — modern SVG CTA arrows + content refinements + Apps Script form loader.
+// v38 — SHIFT favicon + modern SVG CTA arrows + Apps Script form loader.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -186,13 +208,13 @@
   });
 
   // Lead form stays local so form changes are not blocked by jsDelivr cache.
-  load('form-handler.js?v=37','shift-form-handler').catch(()=>{});
+  load('form-handler.js?v=38','shift-form-handler').catch(()=>{});
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=37','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=38','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=37','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=38','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

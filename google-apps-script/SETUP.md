@@ -2,24 +2,41 @@
 
 Spreadsheet: `SHIFT — заявки`
 
-## One-time deployment
+## Production deployment
 
-1. Open the Google Sheet `SHIFT — заявки`.
-2. Extensions → Apps Script.
-3. Replace the default code with `google-apps-script/Code.gs` from this repository.
-4. Project Settings → set time zone to Europe/Kyiv.
-5. Deploy → New deployment → Web app.
-6. Execute as: Me.
-7. Who has access: Anyone.
-8. Deploy and copy the `/exec` URL.
-9. Put that URL into `form-handler.js` as `window.SHIFT_FORM_ENDPOINT` / `ENDPOINT` and push.
+Web app is deployed and connected to `shiftua.com`.
 
-## Optional notifications
+Endpoint:
+`https://script.google.com/macros/s/AKfycbxqmI7d5yqpwn2xtVlUhWwSViv1lK-KsAfLe-sG2lomRvcsjBLaFGu2dvPcfGbO9P4Q/exec`
 
-In Apps Script → Project Settings → Script properties:
+Deployment settings:
 
-- `NOTIFY_EMAIL` — email for new lead notifications. If omitted, script tries to use the effective owner account.
+- Execute as: Me
+- Who has access: Anyone
+- Spreadsheet: `SHIFT — заявки`
+- Sheet: `Leads`
+- Time zone: Europe/Kyiv
+
+`form-handler.js` posts directly to this endpoint. No Make/Integromat is used.
+
+## Notifications
+
+By default the Apps Script sends a new-lead email to the effective owner account.
+
+Optional Script properties:
+
+- `NOTIFY_EMAIL` — override email for new lead notifications.
 - `TELEGRAM_BOT_TOKEN` — optional Telegram bot token.
 - `TELEGRAM_CHAT_ID` — optional Telegram chat ID.
 
-The form stores attribution fields: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `gclid`, `fbclid`.
+## Attribution stored with every lead
+
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `utm_content`
+- `utm_term`
+- `gclid`
+- `fbclid`
+
+Lead statuses in the Sheet: `Новий`, `Зв'язались`, `Прорахунок`, `Думає`, `Продано`, `Відмова`.

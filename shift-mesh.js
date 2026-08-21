@@ -27,6 +27,19 @@
     .startBriefItem small{display:block;color:#d9ff3f;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
     .startBriefItem b{display:block;color:#fff;font:600 18px/1.1 "Manrope",sans-serif;letter-spacing:-.025em;margin-bottom:7px}
     .startBriefItem p{margin:0;color:#919198;font-size:11px;line-height:1.5}
+
+    .modernCta{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s,border-color .28s!important}
+    .modernCta .modernArrow{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:inline-grid;place-items:center;background:#d9ff3f;color:#0a0a0b;transition:transform .32s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s}
+    .modernCta .modernArrow svg{width:15px;height:15px;display:block;overflow:visible}
+    .modernCta:hover{transform:translateY(-2px)}
+    .modernCta:hover .modernArrow{transform:rotate(45deg) scale(1.07)}
+    .navcta.modernCta{padding:8px 9px 8px 20px!important;min-height:54px!important;border-radius:999px!important;box-shadow:0 0 0 1px rgba(255,255,255,.13) inset!important}
+    .navcta.modernCta .modernArrow{width:38px;height:38px;flex-basis:38px;background:#101012;color:#fff}
+    .navcta.modernCta:hover{background:#d9ff3f!important;color:#0a0a0b!important}
+    .navcta.modernCta:hover .modernArrow{background:#0a0a0b;color:#d9ff3f}
+    .pricecta.modernCta,.z34Btn.modernCta{padding-right:9px!important}
+    .case-open.modernCta{width:max-content}
+
     @media(max-width:760px){
       #concepts .section-head{margin-bottom:28px!important}
       .startBriefHead{display:block;padding:20px}.startBriefHead p{margin-top:9px}
@@ -36,6 +49,9 @@
       .startBriefItem:nth-child(2n){border-right:0}
       .startBriefItem:nth-child(n+4){border-bottom:1px solid rgba(255,255,255,.1)}
       .startBriefItem:nth-child(n+5){border-bottom:0}
+      .modernCta .modernArrow{width:30px;height:30px;flex-basis:30px}
+      .navcta.modernCta{padding:7px 8px 7px 15px!important;min-height:48px!important}
+      .navcta.modernCta .modernArrow{width:34px;height:34px;flex-basis:34px}
     }
   `;
   document.head.appendChild(ui);
@@ -101,7 +117,7 @@
   draw(performance.now());
 })();
 
-// v35 — content refinements + concise client brief + one-screen ZaiSun case.
+// v36 — modern SVG CTA arrows + content refinements + concise client brief.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -111,11 +127,23 @@
     navLinks.appendChild(contactLink);
   }
 
+  const arrowMarkup='<span class="modernArrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+
+  function modernizeArrows(){
+    document.querySelectorAll('a,button,.case-open').forEach(el=>{
+      if(el.classList.contains('modernCta'))return;
+      if(!el.textContent.includes('↗'))return;
+      el.innerHTML=el.innerHTML.replace(/↗/g,'').replace(/<span[^>]*>\s*<\/span>/g,'');
+      el.classList.add('modernCta');
+      el.insertAdjacentHTML('beforeend',arrowMarkup);
+    });
+  }
+
   function applySiteTweaks(){
     const conceptKicker=document.querySelector('#concepts .kicker');
     const conceptTitle=document.querySelector('#concepts .section-title');
     if(conceptKicker)conceptKicker.textContent='03.2 / КОНЦЕПТИ';
-    if(conceptTitle)conceptTitle.innerHTML='Варіанти концептів:<br><em>сайтів під ваш бізнес.</em>';
+    if(conceptTitle)conceptTitle.innerHTML='Варіанти концептів:<br><em>сайти під ваш бізнес.</em>';
 
     const priceCopy=document.querySelector('#prices .section-copy');
     if(priceCopy)priceCopy.textContent='Приблизні пакети послуг. Остаточна ціна залежить від обсягу сторінок, функцій, інтеграцій та контенту.';
@@ -142,6 +170,7 @@
       if(h.textContent.includes('Видно не кліки'))h.textContent='Бачимо, яка реклама дає продажі';
     });
     document.querySelector('.z34Bottom')?.remove();
+    modernizeArrows();
   }
 
   applySiteTweaks();
@@ -157,9 +186,9 @@
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=35','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=36','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=35','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=36','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

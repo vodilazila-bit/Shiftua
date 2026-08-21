@@ -117,7 +117,7 @@
   draw(performance.now());
 })();
 
-// v36 — modern SVG CTA arrows + content refinements + concise client brief.
+// v37 — modern SVG CTA arrows + content refinements + Apps Script form loader.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -184,11 +184,14 @@
     document.head.appendChild(el);
   });
 
+  // Lead form stays local so form changes are not blocked by jsDelivr cache.
+  load('form-handler.js?v=37','shift-form-handler').catch(()=>{});
+
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=36','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=37','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=36','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=37','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

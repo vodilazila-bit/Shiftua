@@ -7,6 +7,23 @@
   const status = document.getElementById('formStatus');
   if (status) status.textContent = 'Залиште контакти — відповімо з баченням формату, бюджету й наступного кроку.';
 
+  if (!form.querySelector('.form-brief-guide')) {
+    const guide = document.createElement('div');
+    guide.className = 'form-brief-guide';
+    guide.innerHTML = `
+      <div class="form-brief-head">
+        <b>Що написати в заявці</b>
+        <span>Не треба готувати ТЗ — достатньо 2–4 речень.</span>
+      </div>
+      <div class="form-brief-grid">
+        <div><small>01</small><strong>Бізнес</strong><p>Чим займаєтесь, що продаєте або які послуги надаєте.</p></div>
+        <div><small>02</small><strong>Мета</strong><p>Що має дати сайт: заявки, продажі, презентацію чи запуск реклами.</p></div>
+        <div><small>03</small><strong>Задача</strong><p>Який сайт потрібен або що саме треба переробити чи запустити.</p></div>
+        <div><small>04</small><strong>Рамки</strong><p>Бажаний термін, бюджетний орієнтир і приклади сайтів, якщо вони є.</p></div>
+      </div>`;
+    form.insertBefore(guide, form.firstChild);
+  }
+
   const phone = form.querySelector('[name="contact"]');
   let phoneField = form.querySelector('.phone-field');
   let phoneError = form.querySelector('.phone-error');
@@ -59,6 +76,16 @@
 
   const style = document.createElement('style');
   style.textContent = `
+    #form .form-brief-guide{grid-column:1/-1;border:1px solid rgba(10,10,11,.16);border-radius:16px;background:rgba(255,255,255,.20);overflow:hidden;margin:0 0 2px}
+    #form .form-brief-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:13px 15px;border-bottom:1px solid rgba(10,10,11,.12)}
+    #form .form-brief-head b{font:700 13px/1.2 "DM Sans",sans-serif;color:#101011}
+    #form .form-brief-head span{font:500 11px/1.35 "DM Sans",sans-serif;color:rgba(10,10,11,.58);text-align:right}
+    #form .form-brief-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    #form .form-brief-grid>div{padding:12px 13px 13px;border-right:1px solid rgba(10,10,11,.10)}
+    #form .form-brief-grid>div:last-child{border-right:0}
+    #form .form-brief-grid small{display:block;margin-bottom:5px;font:700 9px/1 "DM Sans",sans-serif;letter-spacing:.12em;color:rgba(10,10,11,.48)}
+    #form .form-brief-grid strong{display:block;margin-bottom:4px;font:700 12px/1.15 "DM Sans",sans-serif;color:#101011}
+    #form .form-brief-grid p{margin:0;font:500 10.5px/1.38 "DM Sans",sans-serif;color:rgba(10,10,11,.62)}
     #form .phone-field{width:100%;display:flex;flex-direction:column;gap:4px;align-self:start}
     #form .phone-field input{width:100%;box-sizing:border-box}
     #form select{width:100%;min-height:58px;border:1px solid rgba(10,10,11,.18);border-radius:14px;background:rgba(255,255,255,.72);color:#101011;padding:0 16px;font:500 14px/1.2 "DM Sans",sans-serif;outline:none;appearance:none}
@@ -69,6 +96,13 @@
     #form .form-status.ok{color:#176c3d!important}
     #form .form-status.err{color:#9f2f2f!important}
     #form button[disabled]{opacity:.58;cursor:wait}
+    @media(max-width:820px){
+      #form .form-brief-head{display:block}
+      #form .form-brief-head span{display:block;margin-top:4px;text-align:left}
+      #form .form-brief-grid{grid-template-columns:1fr 1fr}
+      #form .form-brief-grid>div:nth-child(2){border-right:0}
+      #form .form-brief-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(10,10,11,.10)}
+    }
   `;
   document.head.appendChild(style);
 

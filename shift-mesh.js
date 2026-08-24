@@ -116,8 +116,8 @@
   function point(u,z,t){
     const cx=w*.5,p=1.08+z*.26; // keep the animated grid wider than the viewport at every depth
     let x=cx+(u-.5)*w*p;
-    const horizon=h*.18;
-    const base=horizon+Math.pow(z,1.35)*h*.92;
+    const horizon=-h*.10;
+    const base=horizon+Math.pow(z,1.15)*h*1.25; // extend the grid beyond both vertical viewport edges
     const sp=(u-.5)*Math.PI*2;
     const s=t*.00030,s2=t*.00017;
     const w1=Math.sin(sp*1.55+z*5.1+s);

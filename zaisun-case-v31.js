@@ -62,7 +62,7 @@
     <div class="z34Wrap">
       <div class="z34Head">
         <div><div class="kicker">03 / РЕАЛЬНИЙ ПРОЄКТ</div><h2>ZAISUN</h2></div>
-        <p>Інтернет-магазин дитячого одягу: сайт, автоматизація, аналітика й реклама в одній системі.</p>
+        <p>Дитячий бренд зі спільнотою 50к+: сайт, автоматизація, аналітика й реклама в одній системі.</p>
       </div>
 
       <article class="z34Screen">
@@ -70,7 +70,7 @@
           <img class="z34Logo" src="${A}logo.png" alt="ZaiSun">
           <span class="z34Tag">E-commerce / Design / Development / Ads</span>
           <h3>ZaiSun</h3>
-          <p>Інтернет-магазин дитячого одягу. Каталог, оплата, доставка, аналітика та реклама — одна система.</p>
+          <p>Дитячий бренд зі спільнотою 50к+. Каталог, оплата, доставка, аналітика та реклама — в одній системі.</p>
           <div class="z34Actions">
             <a class="z34Btn" href="https://zaisun.com.ua" target="_blank" rel="noopener">Відкрити ZaiSun ↗</a>
             <a class="z34Btn z34BtnLight" href="#contact">Обговорити схожий проєкт ↗</a>

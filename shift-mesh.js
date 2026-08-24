@@ -241,7 +241,7 @@
     ? Promise.resolve()
     : load('zaisun-case-v28.js?v=38','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=38','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=42','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

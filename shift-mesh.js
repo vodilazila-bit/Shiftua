@@ -23,7 +23,7 @@
 (()=>{
   const ui=document.createElement('style');
   ui.textContent=`
-    #siteMesh{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1;filter:brightness(1.34) contrast(1.12)}
+    #siteMesh{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1;filter:brightness(1.18) contrast(1.08)}
     body>header,body>main,body>footer{position:relative;z-index:1}
     .hero .grid{display:none!important}
     .hero:before{background:radial-gradient(circle at 77% 24%,rgba(85,112,255,.18),transparent 29%),radial-gradient(circle at 20% 68%,rgba(255,81,58,.10),transparent 27%),rgba(10,10,11,.58)!important}
@@ -138,12 +138,12 @@
     for(let r=0;r<rows;r++){
       const z=r/(rows-1);ctx.beginPath();
       for(let c=0;c<=cols;c++){const[x,y]=point(c/cols,z,t);c?ctx.lineTo(x,y):ctx.moveTo(x,y)}
-      const a=.08+.34*Math.pow(z,1.08);ctx.strokeStyle=`rgba(224,228,233,${a.toFixed(3)})`;ctx.lineWidth=.68+.72*z;ctx.stroke();
+      const a=.055+.235*Math.pow(z,1.08);ctx.strokeStyle=`rgba(224,228,233,${a.toFixed(3)})`;ctx.lineWidth=.55+.55*z;ctx.stroke();
     }
     for(let c=0;c<=cols;c++){
       const u=c/cols;ctx.beginPath();
       for(let r=0;r<rows;r++){const[x,y]=point(u,r/(rows-1),t);r?ctx.lineTo(x,y):ctx.moveTo(x,y)}
-      const edge=Math.abs(u-.5)*2,a=.105+.17*(1-edge*.55);ctx.strokeStyle=`rgba(220,224,230,${a.toFixed(3)})`;ctx.lineWidth=.68;ctx.stroke();
+      const edge=Math.abs(u-.5)*2,a=.07+.11*(1-edge*.55);ctx.strokeStyle=`rgba(220,224,230,${a.toFixed(3)})`;ctx.lineWidth=.55;ctx.stroke();
     }
     if(!reduceMotion)raf=requestAnimationFrame(draw);
   }

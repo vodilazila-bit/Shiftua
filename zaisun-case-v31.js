@@ -78,7 +78,7 @@
         </div>
         <div class="z34Visual">
           <img src="${A}hero-autumn.jpg" alt="ZaiSun — дитячий одяг">
-          <div class="z34Float z34F1"><b>814</b><span>товарів у каталозі</span></div>
+          <div class="z34Float z34F1"><b>800+</b><span>товарів у каталозі</span></div>
           <div class="z34Float z34F2"><b>Live</b><span>реальний e-commerce</span></div>
         </div>
       </article>
@@ -89,7 +89,7 @@
           <article class="z34DoneItem">
             <small>01 / Сайт</small>
             <h4>E-commerce з нуля</h4>
-            <p>Каталог, фільтри, пошук, картки товарів, кошик і checkout. Адмін-панель для <b>товарів, фото, цін і статусів замовлень</b>. Створено <b>776 товарних сторінок</b> та JSON-LD для пошуку.</p>
+            <p>Каталог, фільтри, пошук, картки товарів, кошик і checkout. Адмін-панель для <b>товарів, фото, цін і статусів замовлень</b>. Створено <b>800+ товарних сторінок</b> та JSON-LD для пошуку.</p>
           </article>
           <article class="z34DoneItem">
             <small>02 / Автоматизація</small>

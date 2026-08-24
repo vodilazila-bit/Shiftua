@@ -125,7 +125,7 @@
           <div class="zLead">Інтернет-магазин дитячого одягу — від каталогу до оплати й реклами.</div>
           <p class="zIntroText">Замість довгого технічного опису — спочатку сам продукт. Деталі реалізації відкриваються нижче тільки за потреби.</p>
           <div class="zCtaRow"><a class="zOpen zRemember" href="https://zaisun.com.ua">Відкрити сайт ↗</a><span class="zDomain">zaisun.com.ua</span></div>
-          <div class="zFacts"><span class="zFact"><b>776</b> товарних сторінок</span><span class="zFact"><b>GA4</b> ecommerce</span><span class="zFact"><b>API</b> оплата + доставка</span></div>
+          <div class="zFacts"><span class="zFact"><b>800+</b> товарних сторінок</span><span class="zFact"><b>GA4</b> ecommerce</span><span class="zFact"><b>API</b> оплата + доставка</span></div>
         </div>
 
         <div class="zDetails reveal">

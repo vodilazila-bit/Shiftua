@@ -69,7 +69,7 @@
       <option>Інтернет-магазин</option>
       <option>Google / Meta реклама</option>
       <option>Сайт + реклама</option>
-      <option>Ще не визначився</option>`;
+      <option>Інше</option>`;
     const message = form.querySelector('[name="message"]');
     form.insertBefore(select, message || form.querySelector('button'));
   }

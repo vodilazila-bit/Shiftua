@@ -51,19 +51,16 @@
     .startBriefItem b{display:block;color:#fff;font:600 18px/1.1 "Manrope",sans-serif;letter-spacing:-.025em;margin-bottom:7px}
     .startBriefItem p{margin:0;color:#919198;font-size:11px;line-height:1.5}
 
-    /* v40: bespoke visual arrow system for growth and client brief cards */
+    /* v41: one standalone arrow across growth and brief cards */
     .growthitem,.startBriefItem{position:relative;overflow:hidden}
-    .sectionGlyph{display:grid;place-items:center;color:#d9ff3f;border:1px solid rgba(217,255,63,.28);background:rgba(217,255,63,.045);box-shadow:0 0 0 1px rgba(255,255,255,.025) inset;transition:transform .36s cubic-bezier(.2,.8,.2,1),background .28s,border-color .28s,box-shadow .28s}
-    .sectionGlyph svg{width:64%;height:64%;display:block;overflow:visible}
-    .sectionGlyph path,.sectionGlyph circle,.sectionGlyph rect{fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-    #growth .growthitem{isolation:isolate}
-    #growth .growthitem:after{content:"";position:absolute;width:115px;height:115px;right:-34px;top:-39px;border-radius:50%;background:radial-gradient(circle,rgba(217,255,63,.08),transparent 67%);pointer-events:none;z-index:-1;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-    #growth .growthitem .sectionGlyph{position:absolute;right:17px;top:17px;width:62px;height:62px;border-radius:18px}
-    #growth .growthitem:hover .sectionGlyph{transform:translate(3px,-3px) rotate(3deg);background:rgba(217,255,63,.10);border-color:rgba(217,255,63,.58);box-shadow:0 0 28px rgba(217,255,63,.09)}
-    #growth .growthitem:hover:after{transform:scale(1.18);opacity:.9}
-    .startBriefItem{padding-right:88px}
-    .startBriefItem .sectionGlyph{position:absolute;right:22px;top:20px;width:44px;height:44px;border-radius:14px;color:rgba(217,255,63,.82);border-color:rgba(217,255,63,.18);background:rgba(217,255,63,.025)}
-    .startBriefItem:hover .sectionGlyph{transform:translate(2px,-2px);color:#d9ff3f;border-color:rgba(217,255,63,.48);background:rgba(217,255,63,.08)}
+    .sectionGlyph{display:block;color:#d9ff3f;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .28s}
+    .sectionGlyph svg{width:100%;height:100%;display:block;overflow:visible}
+    .sectionGlyph path{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
+    #growth .growthitem .sectionGlyph{position:absolute;right:20px;top:20px;width:38px;height:38px}
+    #growth .growthitem:hover .sectionGlyph{transform:translate(4px,-4px)}
+    .startBriefItem{padding-right:72px}
+    .startBriefItem .sectionGlyph{position:absolute;right:24px;top:22px;width:28px;height:28px;color:#d9ff3f;opacity:.82}
+    .startBriefItem:hover .sectionGlyph{transform:translate(3px,-3px);opacity:1}
 
     .modernCta{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s,border-color .28s!important}
     .modernCta .modernArrow{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:inline-grid;place-items:center;background:#d9ff3f;color:#0a0a0b;transition:transform .32s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s}
@@ -82,8 +79,8 @@
       .startBriefHead{display:block;padding:20px}.startBriefHead p{margin-top:9px}
       .startBriefGrid{grid-template-columns:1fr 1fr}
       .startBriefItem{padding:19px 58px 19px 20px;min-height:112px}
-      .startBriefItem .sectionGlyph{right:14px;top:15px;width:34px;height:34px;border-radius:11px}
-      #growth .growthitem .sectionGlyph{width:52px;height:52px;border-radius:15px}
+      .startBriefItem .sectionGlyph{right:15px;top:17px;width:24px;height:24px}
+      #growth .growthitem .sectionGlyph{right:17px;top:17px;width:32px;height:32px}
       .startBriefItem:nth-child(3n){border-right:1px solid rgba(255,255,255,.1)}
       .startBriefItem:nth-child(2n){border-right:0}
       .startBriefItem:nth-child(n+4){border-bottom:1px solid rgba(255,255,255,.1)}
@@ -156,7 +153,7 @@
   draw(performance.now());
 })();
 
-// v40 — WEBWORK section visuals + modern SVG CTA arrows + Apps Script form loader.
+// v41 — standalone WEBWORK arrows + modern SVG CTA arrows + Apps Script form loader.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -183,26 +180,11 @@
   }
 
   function installSectionVisuals(){
-    const growthGlyphs=[
-      '<path d="M5 27L13 19L19 23L30 10"/><path d="M23 10H30V17"/>',
-      '<path d="M9 11A11 11 0 1 1 7 24"/><path d="M7 17V24H14"/><circle cx="19" cy="18" r="3.2"/>',
-      '<circle cx="7" cy="25" r="2.5"/><circle cx="17" cy="18" r="2.5"/><circle cx="28" cy="9" r="2.5"/><path d="M9 24L15 20M19 16L26 11"/><path d="M22 9H28V15"/>',
-      '<path d="M6 27V18C6 14 9 12 13 12H27"/><path d="M22 7L28 12L22 17"/><path d="M13 12C17 12 19 16 19 20V27"/><path d="M15 23L19 27L23 23"/>'
-    ];
-    document.querySelectorAll('#growth .growthitem').forEach((el,i)=>{
-      if(!el.querySelector('.sectionGlyph'))el.insertAdjacentHTML('afterbegin',sectionGlyph(growthGlyphs[i%growthGlyphs.length]));
-    });
-
-    const briefGlyphs=[
-      '<rect x="7" y="10" width="15" height="17" rx="2"/><path d="M16 19L29 7M22 7H29V14"/>',
-      '<circle cx="17" cy="18" r="10"/><circle cx="17" cy="18" r="4"/><path d="M20 15L29 6M23 6H29V12"/>',
-      '<circle cx="9" cy="23" r="3"/><circle cx="18" cy="12" r="3"/><circle cx="27" cy="23" r="3"/><path d="M11 21L16 14M20 14L25 21"/><path d="M22 8L28 8L28 14"/>',
-      '<rect x="7" y="9" width="17" height="20" rx="2"/><path d="M12 5H29V24"/><path d="M13 20L28 5M21 5H28V12"/>',
-      '<path d="M5 18C9 11 14 8 19 8C24 8 28 11 31 18C28 25 24 28 19 28C14 28 9 25 5 18Z"/><circle cx="19" cy="18" r="3.5"/><path d="M22 15L29 8"/>',
-      '<path d="M6 14V7H13M23 7H30V14M30 22V29H23M13 29H6V22"/><path d="M12 24L25 11M19 11H25V17"/>'
-    ];
-    document.querySelectorAll('.startBriefItem').forEach((el,i)=>{
-      if(!el.querySelector('.sectionGlyph'))el.insertAdjacentHTML('afterbegin',sectionGlyph(briefGlyphs[i%briefGlyphs.length]));
+    const arrow='<path d="M7 29L29 7"/><path d="M18 7H29V18"/>';
+    document.querySelectorAll('#growth .growthitem,.startBriefItem').forEach(el=>{
+      const existing=el.querySelector('.sectionGlyph');
+      if(existing)existing.remove();
+      el.insertAdjacentHTML('afterbegin',sectionGlyph(arrow));
     });
   }
 

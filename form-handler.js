@@ -96,6 +96,21 @@
     #form .form-status.ok{color:#176c3d!important}
     #form .form-status.err{color:#9f2f2f!important}
     #form button[disabled]{opacity:.58;cursor:wait}
+
+    /* v39: one clean arrow language across the live site */
+    .shiftUiArrow{width:100%;height:100%;display:block;overflow:visible}
+    #services .service .arr{font-size:0!important;width:44px!important;height:44px!important;border-radius:14px!important;border:1px solid rgba(10,10,11,.20)!important;background:rgba(255,255,255,.54)!important;color:#101011!important;display:grid!important;place-items:center!important;align-self:center!important;box-shadow:0 1px 0 rgba(255,255,255,.65) inset!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s,color .28s,border-color .28s!important}
+    #services .service .arr svg{width:18px;height:18px;display:block}
+    #services .service:hover .arr{background:#101011!important;color:#fff!important;border-color:#101011!important;transform:translate(2px,-2px)}
+    .modernCta .modernArrow{border-radius:12px!important;background:transparent!important;border:1px solid currentColor!important;box-shadow:none!important}
+    .modernCta .modernArrow svg{width:14px!important;height:14px!important}
+    .navcta.modernCta .modernArrow{background:#101012!important;color:#fff!important;border-color:#101012!important}
+    .navcta.modernCta:hover .modernArrow{background:#101012!important;color:#d9ff3f!important}
+    .ticker-item:after{content:""!important;width:5px;height:5px;border-radius:50%;background:#d9ff3f;display:block;flex:0 0 5px}
+    .dicon.shiftArrowIcon,.proofarrow.shiftArrowIcon{font-size:0!important;display:grid!important;place-items:center!important}
+    .dicon.shiftArrowIcon svg{width:24px;height:24px}
+    .proofarrow.shiftArrowIcon svg{width:110px;height:110px}
+
     @media(max-width:820px){
       #form .form-brief-head{display:block}
       #form .form-brief-head span{display:block;margin-top:4px;text-align:left}
@@ -103,8 +118,46 @@
       #form .form-brief-grid>div:nth-child(2){border-right:0}
       #form .form-brief-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(10,10,11,.10)}
     }
+    @media(max-width:760px){
+      #services .service{grid-template-columns:54px minmax(0,1fr) 44px!important;column-gap:18px!important}
+      #services .service .arr{width:42px!important;height:42px!important;border-radius:13px!important;align-self:start!important;margin-top:1px!important;background:#111214!important;color:#fff!important;border-color:#111214!important}
+      #services .service .arr svg{width:17px;height:17px}
+      .modernCta .modernArrow{width:32px!important;height:32px!important;flex-basis:32px!important;border-radius:10px!important}
+      .navcta.modernCta .modernArrow{width:34px!important;height:34px!important;flex-basis:34px!important}
+    }
   `;
   document.head.appendChild(style);
+
+  const arrowSvg = '<svg class="shiftUiArrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 16.5L16.5 7.5M10 7.5h6.5V14" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function polishSiteUi(){
+    const heroCopy = document.querySelector('.hero-copy');
+    const heroStrong = heroCopy?.querySelector('strong');
+    if (heroCopy && heroStrong) {
+      heroCopy.innerHTML = heroStrong.outerHTML + ' Дизайн, який працює як частина сценарію продажу.';
+    }
+
+    const visualText = document.querySelector('.hero .visualcopy>div');
+    if (visualText) {
+      visualText.innerHTML = '<b>Дизайн, який працює.</b><br><small>Як частина сценарію продажу.</small>';
+    }
+
+    document.querySelectorAll('#services .service .arr').forEach(el=>{
+      el.innerHTML = arrowSvg;
+      el.setAttribute('aria-hidden','true');
+    });
+
+    document.querySelectorAll('.dicon,.proofarrow').forEach(el=>{
+      const txt=(el.textContent||'').trim();
+      if(txt==='↗' || txt==='→' || txt==='➡️' || txt==='➡'){
+        el.classList.add('shiftArrowIcon');
+        el.innerHTML=arrowSvg;
+      }
+    });
+  }
+  polishSiteUi();
+  setTimeout(polishSiteUi,180);
+  setTimeout(polishSiteUi,700);
 
   function validatePhone(showMessage = false) {
     if (!phone) return true;

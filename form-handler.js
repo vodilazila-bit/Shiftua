@@ -244,6 +244,26 @@
       }
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event:'lead_submit', service:payload.service});
+
+      if (typeof window.gtag === 'function') {
+        const digits = phoneValue.replace(/\D/g, '');
+        const phoneE164 = digits.startsWith('380')
+          ? `+${digits}`
+          : digits.startsWith('0')
+            ? `+38${digits}`
+            : '';
+        const userData = {};
+
+        if (emailValue) userData.email = emailValue.toLowerCase();
+        if (phoneE164) userData.phone_number = phoneE164;
+        if (Object.keys(userData).length) {
+          window.gtag('set', 'user_data', userData);
+        }
+
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-975357119/Pi_DCJvos-ccEL-Ji9ED'
+        });
+      }
     } catch (err) {
       if (status) {
         status.className = 'form-status err';

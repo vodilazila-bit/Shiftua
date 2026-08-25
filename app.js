@@ -50,8 +50,6 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   document.querySelectorAll('[data-case]').forEach(el=>{el.addEventListener('click',()=>openCase(el.dataset.case));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCase(el.dataset.case)}})});
   document.querySelector('.case-close')?.addEventListener('click',closeCase);modal?.addEventListener('click',e=>{if(e.target===modal)closeCase()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCase()});document.querySelectorAll('.mock-tab').forEach((b,i)=>b.addEventListener('click',()=>setScreen(i)));
 
-  const form=document.getElementById('form');
-  form?.addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('formStatus');if(status)status.textContent='Форму підключимо після налаштування окремої пошти WEBWORK.';});
 })();
 
 // Work section v27: mobile-first + clean concept previews + full-site mesh.

@@ -43,7 +43,7 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 (function(){
   function enforceIntroBrand(){
     var word=document.querySelector('.intro-logo .wordclip');
-    if(word && word.textContent.replace(/\\s/g,'')!=='WEBWORK'){
+    if(word && word.textContent.replace(/\s/g,'')!=='WEBWORK'){
       word.innerHTML='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';
     }
   }

@@ -13,7 +13,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     const timer=setInterval(()=>{
       n+=Math.ceil((100-n)*.17); if(n>=99)n=100;
       if(count)count.textContent=String(n).padStart(2,'0');
-      if(n===100){clearInterval(timer);setTimeout(()=>{intro.classList.add('open');root.classList.remove('show-intro');try{localStorage.setItem('webwork_intro_seen_v1','1')}catch(e){}setTimeout(()=>intro.remove(),1150)},220)}
+      if(n===100){clearInterval(timer);setTimeout(()=>{intro.classList.add('open');root.classList.remove('show-intro');try{localStorage.setItem('webwork_intro_seen_v2','1')}catch(e){}setTimeout(()=>intro.remove(),1150)},220)}
     },55);
   } else if(intro){ intro.remove(); }
 

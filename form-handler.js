@@ -250,6 +250,13 @@
           send_to: 'AW-18409542106/Ei9nCMuoyeccENqjrcpE'
         });
       }
+
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', {
+          content_name: 'WEBWORK form',
+          content_category: payload.service || 'Website lead'
+        });
+      }
     } catch (err) {
       if (status) {
         status.className = 'form-status err';

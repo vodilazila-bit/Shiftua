@@ -11,30 +11,39 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const legacyBrand=/\bSHIFT\b/i.test(document.title)||legacyIntroText==='SHIFT';
   const brandLockup='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';
 
-  // Compatibility guard for an old cached index.html that still contains SHIFT.
-  // The legacy page loads app.js from @main, so repair it here and mark BOTH
-  // the old and current intro keys. This prevents the stale SHIFT splash from
-  // returning on the next load even if the browser keeps the old HTML cached.
+  // Old cached SHIFT HTML must never morph into WEBWORK on screen.
+  // Hide it immediately, mark old/new intro keys as seen, then reload the
+  // current page under a fresh cache key. This avoids the SHIFT -> WEBWORK
+  // double splash that could happen with stale browser/CDN HTML.
   if(legacyBrand){
-    document.title=document.title.replace(/\bSHIFT\b/gi,'WEBWORK');
-    const desc=document.querySelector('meta[name="description"]');
-    if(desc)desc.setAttribute('content',(desc.getAttribute('content')||'').replace(/\bSHIFT\b/gi,'WEBWORK'));
-
-    const introWord=document.querySelector('.intro-logo .wordclip');
-    if(introWord)introWord.innerHTML=brandLockup;
-
-    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-    const nodes=[];
-    while(walker.nextNode())nodes.push(walker.currentNode);
-    nodes.forEach(node=>{if(/\bSHIFT\b/i.test(node.nodeValue||''))node.nodeValue=node.nodeValue.replace(/\bSHIFT\b/gi,'WEBWORK')});
-
     try{
       localStorage.setItem('shift_intro_seen_v1','1');
       localStorage.setItem('webwork_intro_seen_v1','1');
       localStorage.setItem('webwork_intro_seen_v2','1');
     }catch(e){}
+
     root.classList.remove('show-intro');
-    if(intro)intro.remove();
+    if(intro){
+      intro.style.display='none';
+      intro.remove();
+    }
+
+    const u=new URL(location.href);
+    if(u.searchParams.get('wwfresh')!=='20260829b'){
+      u.searchParams.set('wwfresh','20260829b');
+      location.replace(u.toString());
+      return;
+    }
+
+    // Fallback only if an intermediary still serves the legacy HTML even
+    // under the fresh URL. Keep the stale intro hidden and repair text.
+    document.title=document.title.replace(/\bSHIFT\b/gi,'WEBWORK');
+    const desc=document.querySelector('meta[name="description"]');
+    if(desc)desc.setAttribute('content',(desc.getAttribute('content')||'').replace(/\bSHIFT\b/gi,'WEBWORK'));
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{if(/\bSHIFT\b/i.test(node.nodeValue||''))node.nodeValue=node.nodeValue.replace(/\bSHIFT\b/gi,'WEBWORK')});
   }
 
   const firstVisit=!legacyBrand&&root.classList.contains('show-intro');

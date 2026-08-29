@@ -91,5 +91,9 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 
 })();
 
+// The old work helper still contains a legacy SHIFT session loader. Mark that
+// loader as already seen before the helper is attached, so it can never flash.
+try{sessionStorage.setItem('shift_boot_seen_v3','1')}catch(e){}
+
 // Work section v27: mobile-first + clean concept previews + full-site mesh.
 (()=>{const s=document.createElement('script');s.src='work-v23.js?v=27';s.defer=true;document.head.appendChild(s)})();

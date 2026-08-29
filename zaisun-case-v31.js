@@ -86,3 +86,6 @@
     </div>
   `;
 })();
+
+const webworkHeroGhost=document.querySelector('.hero-title .ghost');
+if(webworkHeroGhost)webworkHeroGhost.textContent=webworkHeroGhost.textContent.replace(/\.\s*$/,'');

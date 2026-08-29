@@ -24,7 +24,7 @@
       .z34Logo{width:122px;height:auto;object-fit:contain;margin:0 auto 24px;filter:none!important}
       .z34Tag{display:inline-flex;padding:8px 11px;border:1px solid rgba(24,21,18,.22);border-radius:999px;margin-bottom:22px;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.15em;text-transform:uppercase}
       .z34Copy>p{font-size:16px;line-height:1.55;max-width:430px;color:#564d45;margin:0 0 26px}
-      .z34Actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+      .z34Actions{display:flex;justify-content:flex-start;align-self:stretch;gap:10px;flex-wrap:wrap}
       .z34Btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;background:#151515;color:#fff;text-decoration:none;font:600 13px/1 "DM Sans",sans-serif;transition:.25s transform,.25s background,.25s color}
       .z34Btn:hover{transform:translateY(-2px);background:#d9ff3f;color:#0b0b0c}
       .z34BtnLight{background:transparent;color:#181512;border:1px solid rgba(24,21,18,.24)}

@@ -7,13 +7,43 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const root=document.documentElement;
   const intro=document.getElementById('intro');
   const count=document.getElementById('count');
-  const firstVisit=root.classList.contains('show-intro');
+  const legacyIntroText=document.querySelector('.intro-logo .wordclip')?.textContent?.replace(/\s/g,'')||'';
+  const legacyBrand=/\bSHIFT\b/i.test(document.title)||legacyIntroText==='SHIFT';
+  const brandLockup='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';
+
+  // Compatibility guard for an old cached index.html that still contains SHIFT.
+  // The legacy page loads app.js from @main, so repair it here and mark BOTH
+  // the old and current intro keys. This prevents the stale SHIFT splash from
+  // returning on the next load even if the browser keeps the old HTML cached.
+  if(legacyBrand){
+    document.title=document.title.replace(/\bSHIFT\b/gi,'WEBWORK');
+    const desc=document.querySelector('meta[name="description"]');
+    if(desc)desc.setAttribute('content',(desc.getAttribute('content')||'').replace(/\bSHIFT\b/gi,'WEBWORK'));
+
+    const introWord=document.querySelector('.intro-logo .wordclip');
+    if(introWord)introWord.innerHTML=brandLockup;
+
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{if(/\bSHIFT\b/i.test(node.nodeValue||''))node.nodeValue=node.nodeValue.replace(/\bSHIFT\b/gi,'WEBWORK')});
+
+    try{
+      localStorage.setItem('shift_intro_seen_v1','1');
+      localStorage.setItem('webwork_intro_seen_v1','1');
+      localStorage.setItem('webwork_intro_seen_v2','1');
+    }catch(e){}
+    root.classList.remove('show-intro');
+    if(intro)intro.remove();
+  }
+
+  const firstVisit=!legacyBrand&&root.classList.contains('show-intro');
   if(firstVisit && intro){
     let n=0;
     const timer=setInterval(()=>{
       n+=Math.ceil((100-n)*.17); if(n>=99)n=100;
       if(count)count.textContent=String(n).padStart(2,'0');
-      if(n===100){clearInterval(timer);setTimeout(()=>{intro.classList.add('open');root.classList.remove('show-intro');try{localStorage.setItem('webwork_intro_seen_v2','1')}catch(e){}setTimeout(()=>intro.remove(),1150)},220)}
+      if(n===100){clearInterval(timer);setTimeout(()=>{intro.classList.add('open');root.classList.remove('show-intro');try{localStorage.setItem('shift_intro_seen_v1','1');localStorage.setItem('webwork_intro_seen_v1','1');localStorage.setItem('webwork_intro_seen_v2','1')}catch(e){}setTimeout(()=>intro.remove(),1150)},220)}
     },55);
   } else if(intro){ intro.remove(); }
 
@@ -29,13 +59,12 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   });
 
   const cases={
-    shop:{title:'Інтернет-магазин',lead:'Демонстрація e-commerce підходу: від першого екрану до каталогу й оформлення замовлення.',task:'Зробити магазин, де товар легко знайти, зрозуміти й купити без зайвих кроків.',done:'Структура каталогу, картка товару, кошик, CTA, мобільна логіка та підготовка до реклами.',focus:'Швидкий шлях від реклами до товару й замовлення.',tech:'HTML / CSS / JS · CMS або e-commerce платформа · GA4 · Merchant Center',url:'shop.shift.preview',theme:'shop',benefits:['Продумана структура каталогу','Адаптивна мобільна версія','Кошик і сценарій покупки','Базова аналітика','Підготовка до Google Shopping','Зрозуміле керування контентом']},
-    company:{title:'Сайт для компанії',lead:'Сайт, який швидко пояснює, хто ви, що робите й чому клієнту варто звернутися саме до вас.',task:'Упакувати послуги компанії у зрозумілу структуру та вести від першого екрану до заявки.',done:'Головна, послуги, кейси, процес роботи, блоки довіри, форми та адаптив.',focus:'Довіра, зрозуміла подача послуг і заявка.',tech:'HTML / CSS / JS · CMS · GA4 · форми та інтеграції',url:'company.shift.preview',theme:'company',benefits:['Індивідуальна структура','Сторінки послуг','Кейси та блоки довіри','Форми звернення','Адаптив під мобільні','Підготовка до реклами']},
-    commerce:{title:'Магазин, де легко замовити',lead:'Більш виразний e-commerce концепт із фокусом на візуал бренду, мобільну покупку та повторні продажі.',task:'Поєднати сильну бренд-подачу з простим сценарієм покупки.',done:'Візуальна система, категорії, товарні блоки, checkout-сценарій, аналітика та рекламна логіка.',focus:'Бренд + конверсія без перевантаження інтерфейсу.',tech:'UI / UX · HTML / CSS / JS · e-commerce · GA4 · Ads integrations',url:'commerce.shift.preview',theme:'commerce',benefits:['Сильний перший екран','Каталог і картка товару','Зручний мобільний checkout','Платіжні інтеграції','Аналітика продажів','Основа для ремаркетингу']}
+    shop:{title:'Інтернет-магазин',lead:'Демонстрація e-commerce підходу: від першого екрану до каталогу й оформлення замовлення.',task:'Зробити магазин, де товар легко знайти, зрозуміти й купити без зайвих кроків.',done:'Структура каталогу, картка товару, кошик, CTA, мобільна логіка та підготовка до реклами.',focus:'Швидкий шлях від реклами до товару й замовлення.',tech:'HTML / CSS / JS · CMS або e-commerce платформа · GA4 · Merchant Center',url:'shop.webwork.preview',theme:'shop',benefits:['Продумана структура каталогу','Адаптивна мобільна версія','Кошик і сценарій покупки','Базова аналітика','Підготовка до Google Shopping','Зрозуміле керування контентом']},
+    company:{title:'Сайт для компанії',lead:'Сайт, який швидко пояснює, хто ви, що робите й чому клієнту варто звернутися саме до вас.',task:'Упакувати послуги компанії у зрозумілу структуру та вести від першого екрану до заявки.',done:'Головна, послуги, кейси, процес роботи, блоки довіри, форми та адаптив.',focus:'Довіра, зрозуміла подача послуг і заявка.',tech:'HTML / CSS / JS · CMS · GA4 · форми та інтеграції',url:'company.webwork.preview',theme:'company',benefits:['Індивідуальна структура','Сторінки послуг','Кейси та блоки довіри','Форми звернення','Адаптив під мобільні','Підготовка до реклами']},
+    commerce:{title:'Магазин, де легко замовити',lead:'Більш виразний e-commerce концепт із фокусом на візуал бренду, мобільну покупку та повторні продажі.',task:'Поєднати сильну бренд-подачу з простим сценарієм покупки.',done:'Візуальна система, категорії, товарні блоки, checkout-сценарій, аналітика та рекламна логіка.',focus:'Бренд + конверсія без перевантаження інтерфейсу.',tech:'UI / UX · HTML / CSS / JS · e-commerce · GA4 · Ads integrations',url:'commerce.webwork.preview',theme:'commerce',benefits:['Сильний перший екран','Каталог і картка товару','Зручний мобільний checkout','Платіжні інтеграції','Аналітика продажів','Основа для ремаркетингу']}
   };
 
   const modal=document.getElementById('caseModal'),viewport=document.getElementById('mockViewport');
-  const brandLockup='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';
   const screens=(theme)=>{
     const cls=theme==='company'?'mock-company':theme==='commerce'?'mock-commerce':'';
     return [

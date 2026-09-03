@@ -142,6 +142,11 @@
       visualText.innerHTML = '<b>Дизайн, який працює.</b><br><small>Як частина сценарію продажу.</small>';
     }
 
+    const contactCopy = document.querySelector('#contact .ctabottom > div > p');
+    if (contactCopy) {
+      contactCopy.textContent = 'Розкажіть коротко про задачу. У відповідь ми надішлемо орієнтовний бюджет, строки та формат роботи. Якщо пропозиція вам підходить — детально обговоримо проєкт і сформуємо наступні кроки.';
+    }
+
     document.querySelectorAll('#services .service .arr').forEach(el=>{
       el.innerHTML = arrowSvg;
       el.setAttribute('aria-hidden','true');

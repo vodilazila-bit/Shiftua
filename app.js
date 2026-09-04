@@ -7,7 +7,23 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const root=document.documentElement;
   const intro=document.getElementById('intro');
   const count=document.getElementById('count');
-  document.querySelector('.navcta')?.remove();
+
+  function setMainCtas(){
+    const nav=document.querySelector('.navcta');
+    if(nav) nav.textContent='Порахувати вартість ↗';
+
+    const hero=document.querySelector('.hero .start a span:first-child');
+    if(hero) hero.textContent='Порахувати вартість';
+
+    document.querySelectorAll('#prices .pricecta').forEach(a=>{
+      a.textContent='Порахувати вартість ↗';
+    });
+
+    const submit=document.querySelector('#contact form button[type="submit"]');
+    if(submit) submit.textContent='Порахувати вартість ↗';
+  }
+  setMainCtas();
+
   const legacyIntroText=document.querySelector('.intro-logo .wordclip')?.textContent?.replace(/\s/g,'')||'';
   const legacyBrand=/\bSHIFT\b/i.test(document.title)||legacyIntroText==='SHIFT';
   const brandLockup='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';

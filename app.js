@@ -7,6 +7,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const root=document.documentElement;
   const intro=document.getElementById('intro');
   const count=document.getElementById('count');
+  document.querySelector('.navcta')?.remove();
   const legacyIntroText=document.querySelector('.intro-logo .wordclip')?.textContent?.replace(/\s/g,'')||'';
   const legacyBrand=/\bSHIFT\b/i.test(document.title)||legacyIntroText==='SHIFT';
   const brandLockup='<span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span>';

@@ -19,6 +19,8 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
       a.textContent='Порахувати вартість ↗';
     });
 
+    document.querySelectorAll('#prices .price-preview').forEach(el=>el.remove());
+
     const submit=document.querySelector('#contact form button[type="submit"]');
     if(submit) submit.textContent='Порахувати вартість ↗';
   }

@@ -8,6 +8,10 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const intro=document.getElementById('intro');
   const count=document.getElementById('count');
 
+  const headerBrandStyle=document.createElement('style');
+  headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';
+  document.head.appendChild(headerBrandStyle);
+
   function setMainCtas(){
     const nav=document.querySelector('.navcta');
     if(nav) nav.textContent='Порахувати вартість ↗';

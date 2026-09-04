@@ -114,3 +114,6 @@ try{sessionStorage.setItem('shift_boot_seen_v3','1')}catch(e){}
 
 // Work section v27: mobile-first + clean concept previews + full-site mesh.
 (()=>{const s=document.createElement('script');s.src='work-v23.js?v=27';s.defer=true;document.head.appendChild(s)})();
+
+// WEBWORK support chat — website <-> Telegram bridge.
+(()=>{if(document.querySelector('script[data-webwork-chat]'))return;const s=document.createElement('script');s.src='chat-widget.js?v=1';s.defer=true;s.dataset.webworkChat='1';document.head.appendChild(s)})();

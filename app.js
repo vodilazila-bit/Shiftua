@@ -32,7 +32,6 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 
   // WEBWORK is a one-person project: keep all author-side copy in first-person singular.
   const soloRules=[
-    ['WEBWORK створює сайти й digital-системи, які переводять бізнес на наступний рівень.','Я створюю сайти й digital-системи, які переводять бізнес на наступний рівень.'],
     ['Що робимо','Що роблю'],
     ['Створюємо','Створюю'],
     ['Запускаємо','Запускаю'],
@@ -94,21 +93,6 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     mutations.forEach(m=>m.addedNodes.forEach(node=>applySoloCopy(node)));
   });
   if(document.body)soloObserver.observe(document.body,{childList:true,subtree:true});
-
-  function setHeroHeadline(){
-    const heroTitle=document.querySelector('.hero-title');
-    if(!heroTitle)return;
-    heroTitle.classList.add('hero-title-long');
-    heroTitle.innerHTML='Digital під продаж<br>зрозуміла аналітика.<br><span class="hero-accent">Не «просто сайт»</span>';
-
-    if(!document.getElementById('hero-title-long-style')){
-      const style=document.createElement('style');
-      style.id='hero-title-long-style';
-      style.textContent='.hero-title.hero-title-long{font-family:"Manrope",sans-serif;font-weight:700;font-size:clamp(56px,6.4vw,104px);line-height:.94;letter-spacing:-.055em;text-transform:none;max-width:1380px}.hero-title.hero-title-long .hero-accent{display:inline-block;color:#d9ff3f;-webkit-text-stroke:0;letter-spacing:-.045em}@media(max-width:700px){.hero-title.hero-title-long{font-size:clamp(40px,10.8vw,64px);line-height:.98;letter-spacing:-.045em}.hero-title.hero-title-long .hero-accent{letter-spacing:-.035em}}';
-      document.head.appendChild(style);
-    }
-  }
-  setHeroHeadline();
 
   const legacyIntroText=document.querySelector('.intro-logo .wordclip')?.textContent?.replace(/\s/g,'')||'';
   const legacyBrand=/\bSHIFT\b/i.test(document.title)||legacyIntroText==='SHIFT';

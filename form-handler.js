@@ -131,12 +131,6 @@
   const arrowSvg = '<svg class="shiftUiArrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 16.5L16.5 7.5M10 7.5h6.5V14" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   function polishSiteUi(){
-    const heroCopy = document.querySelector('.hero-copy');
-    const heroStrong = heroCopy?.querySelector('strong');
-    if (heroCopy && heroStrong) {
-      heroCopy.innerHTML = heroStrong.outerHTML + ' Дизайн, який працює як частина сценарію продажу.';
-    }
-
     const visualText = document.querySelector('.hero .visualcopy>div');
     if (visualText) {
       visualText.innerHTML = '<b>Дизайн, який працює.</b><br><small>Як частина сценарію продажу.</small>';

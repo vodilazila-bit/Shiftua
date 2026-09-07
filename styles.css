@@ -147,3 +147,37 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 /* v21 — stronger outside supporting copy */
 .section-copy{font-weight:600}
 
+
+
+/* WEBWORK hero: two lines, with type sized for Ukrainian text. */
+.hero .hero-inner {
+  width: min(1460px, calc(100% - 64px));
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+.hero .hero-title.hero-title-long {
+  max-width: 100%;
+  margin: 0 !important;
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.1vw, 5.5rem);
+  line-height: 1.22;
+  letter-spacing: -.045em;
+  text-transform: none;
+}
+.hero-title-long .hero-title-line { display: block; }
+.hero-title-long .hero-title-line + .hero-title-line { margin-top: .06em; }
+.hero-title-long .hero-accent { color: var(--acid); }
+@media (max-width: 760px) {
+  .hero .hero-inner {
+    width: calc(100% - 32px) !important;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 28px;
+  }
+  .hero .hero-title.hero-title-long {
+    font-size: clamp(1.75rem, 7.4vw, 3.5rem) !important;
+    line-height: 1.28 !important;
+    letter-spacing: -.035em !important;
+  }
+}

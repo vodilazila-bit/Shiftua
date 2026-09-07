@@ -34,12 +34,12 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     const heroTitle=document.querySelector('.hero-title');
     if(!heroTitle)return;
     heroTitle.classList.add('hero-title-long');
-    heroTitle.innerHTML='Роблю digital під продаж<br>і зрозумілу аналітику —<br><span class="ghost">не «просто сайт»</span>';
+    heroTitle.innerHTML='Digital під продаж<br>і зрозуміла аналітика.<br><span class="hero-accent">Не «просто сайт»</span>';
 
     if(!document.getElementById('hero-title-long-style')){
       const style=document.createElement('style');
       style.id='hero-title-long-style';
-      style.textContent='.hero-title.hero-title-long{font-size:clamp(54px,7vw,112px);line-height:.88;letter-spacing:-.065em}@media(max-width:700px){.hero-title.hero-title-long{font-size:clamp(42px,11.5vw,68px);line-height:.92;letter-spacing:-.055em}}';
+      style.textContent='.hero-title.hero-title-long{font-family:"Manrope",sans-serif;font-weight:700;font-size:clamp(56px,6.4vw,104px);line-height:.94;letter-spacing:-.055em;text-transform:none;max-width:1380px}.hero-title.hero-title-long .hero-accent{display:inline-block;color:#d9ff3f;-webkit-text-stroke:0;letter-spacing:-.045em}@media(max-width:700px){.hero-title.hero-title-long{font-size:clamp(40px,10.8vw,64px);line-height:.98;letter-spacing:-.045em}.hero-title.hero-title-long .hero-accent{letter-spacing:-.035em}}';
       document.head.appendChild(style);
     }
   }

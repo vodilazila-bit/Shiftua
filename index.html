@@ -80,6 +80,12 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 .rc-bar i{width:9px;height:9px;border-radius:50%;background:#2e2e33;display:block}
 .rc-url{margin-left:9px;font-size:11.5px;color:#85858c;font-family:ui-monospace,monospace}
 .rc-live{position:relative;width:100%;aspect-ratio:16/10;background:#FDFAF6;overflow:hidden}
+.rc-slide{position:absolute;inset:0;opacity:1;visibility:visible;transition:opacity .32s ease,visibility .32s ease}
+.rc-site-slide{z-index:2}
+.rc-merchant-slide{z-index:3;display:grid;place-items:center;background:#fff;opacity:0;visibility:hidden}
+.rc-merchant-slide img{display:block;width:100%;height:100%;object-fit:contain}
+.rc-live.is-merchant .rc-site-slide{opacity:0;visibility:hidden;pointer-events:none}
+.rc-live.is-merchant .rc-merchant-slide{opacity:1;visibility:visible}
 .rc-live iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;z-index:2;
   display:block;background:#FDFAF6}
 .rc-live iframe.failed{display:none}
@@ -89,11 +95,19 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
     url('https://zaisun.com.ua/hero2.jpg')}
 .rc-fallback span{color:#fff;font-size:13.5px;border:1px solid rgba(255,255,255,.3);
   padding:9px 18px;border-radius:100px}
+.rc-arrow{position:absolute;z-index:5;top:50%;transform:translateY(-50%);display:grid;place-items:center;
+  width:42px;height:42px;border:1px solid rgba(10,10,11,.1);border-radius:50%;background:rgba(244,240,232,.88);
+  color:#625b50;font:500 25px/1 "Manrope",sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(10,10,11,.08);
+  backdrop-filter:blur(8px);transition:background .2s ease,transform .2s ease,color .2s ease}
+.rc-arrow:hover{background:#fff;color:#0a0a0b;transform:translateY(-50%) scale(1.06)}
+.rc-arrow:focus-visible{outline:2px solid #d9ff3f;outline-offset:3px}
+.rc-arrow-prev{left:14px}.rc-arrow-next{right:14px}
 .rc-note{font-size:12px;color:#75757c;margin-top:12px;line-height:1.5}
 @media(max-width:980px){
   .rc-head{grid-template-columns:1fr;gap:24px}
   .rc-grid{grid-template-columns:1fr;gap:32px}
   .rc-frame{position:static}
+  .rc-arrow{width:38px;height:38px;font-size:23px}.rc-arrow-prev{left:10px}.rc-arrow-next{right:10px}
 }
 
 /* ── Додаткові демонстраційні концепти ───────────────────── */
@@ -188,12 +202,19 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
       <div class="rc-frame">
         <div class="rc-bar"><i></i><i></i><i></i><span class="rc-url">zaisun.com.ua</span></div>
         <div class="rc-live">
-          <a class="rc-fallback" href="https://zaisun.com.ua" target="_blank" rel="noopener"><span>Відкрити сайт ↗</span></a>
-          <iframe id="rcFrame" src="https://zaisun.com.ua/" title="ZaiSun — живий сайт"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="rc-slide rc-site-slide">
+            <a class="rc-fallback" href="https://zaisun.com.ua" target="_blank" rel="noopener"><span>Відкрити сайт ↗</span></a>
+            <iframe id="rcFrame" src="https://zaisun.com.ua/" title="ZaiSun — живий сайт"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="rc-slide rc-merchant-slide" aria-hidden="true">
+            <img src="assets/zaisun-merchant-center-products.webp" alt="Статистика товарів ZaiSun у Google Merchant Center" loading="lazy">
+          </div>
+          <button class="rc-arrow rc-arrow-prev" type="button" aria-label="Попередній екран">‹</button>
+          <button class="rc-arrow rc-arrow-next" type="button" aria-label="Наступний екран">›</button>
         </div>
       </div>
-      <p class="rc-note">Справжній сайт, завантажений просто зараз — не скриншот. Його можна гортати прямо тут.</p>
+      <p class="rc-note">Стрілками можна перемкнути живий сайт на статистику товарів у Merchant Center.</p>
     </div>
   </div>
 </div></section>
@@ -239,10 +260,27 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 
 <script>
 (function(){
-  var f=document.getElementById('rcFrame'); if(!f) return;
+  var f=document.getElementById('rcFrame');
+  var live=document.querySelector('.rc-live');
+  var merchant=document.querySelector('.rc-merchant-slide');
+  var url=document.querySelector('.rc-url');
+  var arrows=document.querySelectorAll('.rc-arrow');
+  if(!f||!live||!merchant||!arrows.length) return;
   var ok=false;
   f.addEventListener('load',function(){ ok=true; });
   setTimeout(function(){ if(!ok) f.classList.add('failed'); },6000);
+
+  var merchantOpen=false;
+  function showMerchant(next){
+    merchantOpen=next;
+    live.classList.toggle('is-merchant',merchantOpen);
+    merchant.setAttribute('aria-hidden',merchantOpen?'false':'true');
+    f.setAttribute('aria-hidden',merchantOpen?'true':'false');
+    url.textContent=merchantOpen?'Merchant Center / Товари':'zaisun.com.ua';
+  }
+  arrows.forEach(function(button){
+    button.addEventListener('click',function(){showMerchant(!merchantOpen)});
+  });
 })();
 </script>
 </body></html>

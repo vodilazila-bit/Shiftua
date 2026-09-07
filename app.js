@@ -99,7 +99,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     const heroTitle=document.querySelector('.hero-title');
     if(!heroTitle)return;
     heroTitle.classList.add('hero-title-long');
-    heroTitle.innerHTML='Digital під продаж<br>і зрозуміла аналітика.<br><span class="hero-accent">Не «просто сайт»</span>';
+    heroTitle.innerHTML='Digital під продаж<br>зрозуміла аналітика.<br><span class="hero-accent">Не «просто сайт»</span>';
 
     if(!document.getElementById('hero-title-long-style')){
       const style=document.createElement('style');

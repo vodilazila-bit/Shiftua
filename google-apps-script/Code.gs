@@ -15,7 +15,7 @@ function doPost(e) {
     const data = parsePayload_(e);
 
     if (data && data.update_id != null) {
-      return handleTelegramUpdate_(data);
+      return handleTelegramUpdate_(data, false);
     }
 
     if (String(data.type || '') === 'chat_message') {
@@ -103,13 +103,13 @@ function handleChatMessage_(data) {
   return json_({ ok: true });
 }
 
-function handleTelegramUpdate_(update) {
+function handleTelegramUpdate_(update, lockAlreadyHeld) {
   const props = PropertiesService.getScriptProperties();
   const expectedChatId = String(props.getProperty('TELEGRAM_CHAT_ID') || '');
   const msg = update && update.message;
   if (!msg || !msg.text) return json_({ ok: true, ignored: true });
   if (expectedChatId && String(msg.chat && msg.chat.id) !== expectedChatId) {
-    return json_({ ok: true, ignored: true });
+    return json_({ ok: true, ignored: true, reason: 'wrong_chat' });
   }
 
   const reply = msg.reply_to_message;
@@ -120,9 +120,7 @@ function handleTelegramUpdate_(update) {
   const session = sessionFromTelegramReply_(reply);
   if (!session) return json_({ ok: true, ignored: true, error: 'session_not_found' });
 
-  const lock = LockService.getScriptLock();
-  lock.waitLock(10000);
-  try {
+  const appendAdmin = () => {
     const sheet = getChatSheet_();
     sheet.appendRow([
       new Date(),
@@ -133,8 +131,14 @@ function handleTelegramUpdate_(update) {
       msg.message_id || '',
       ''
     ]);
-  } finally {
-    lock.releaseLock();
+  };
+
+  if (lockAlreadyHeld) {
+    appendAdmin();
+  } else {
+    const lock = LockService.getScriptLock();
+    lock.waitLock(10000);
+    try { appendAdmin(); } finally { lock.releaseLock(); }
   }
 
   return json_({ ok: true });
@@ -146,6 +150,12 @@ function chatPoll_(e) {
   const after = Math.max(0, Number(p.after || 0) || 0);
   const adminOnly = String(p.admin_only || '') === '1';
   if (!session) return jsonOrJsonp_({ ok: false, error: 'session_required' }, p.callback);
+
+  try {
+    syncTelegramUpdates_();
+  } catch (err) {
+    console.error('Telegram polling failed', err);
+  }
 
   const sheet = getChatSheet_();
   const lastRow = sheet.getLastRow();
@@ -170,6 +180,41 @@ function chatPoll_(e) {
   }
 
   return jsonOrJsonp_({ ok: true, messages: messages }, p.callback);
+}
+
+function syncTelegramUpdates_() {
+  const props = PropertiesService.getScriptProperties();
+  const token = props.getProperty('TELEGRAM_BOT_TOKEN');
+  if (!token) return;
+
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(3000)) return;
+
+  try {
+    const offset = Math.max(0, Number(props.getProperty('TELEGRAM_UPDATE_OFFSET') || 0) || 0);
+    const url = 'https://api.telegram.org/bot' + token + '/getUpdates?timeout=0&limit=100' +
+      (offset ? '&offset=' + encodeURIComponent(offset) : '');
+
+    const response = UrlFetchApp.fetch(url, { method: 'get', muteHttpExceptions: true });
+    const parsed = JSON.parse(response.getContentText() || '{}');
+    if (!parsed || !parsed.ok || !Array.isArray(parsed.result)) {
+      console.error('Telegram getUpdates error: ' + response.getContentText());
+      return;
+    }
+
+    let nextOffset = offset;
+    parsed.result.forEach(update => {
+      const id = Number(update && update.update_id);
+      if (Number.isFinite(id) && id >= nextOffset) nextOffset = id + 1;
+      handleTelegramUpdate_(update, true);
+    });
+
+    if (nextOffset !== offset) {
+      props.setProperty('TELEGRAM_UPDATE_OFFSET', String(nextOffset));
+    }
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function getChatSheet_() {
@@ -236,6 +281,24 @@ function sessionFromTelegramReply_(reply) {
     if (String(values[i][4]) === replyId) return cleanSession_(values[i][0]);
   }
   return '';
+}
+
+function setupTelegramPolling() {
+  const props = PropertiesService.getScriptProperties();
+  const token = props.getProperty('TELEGRAM_BOT_TOKEN');
+  if (!token) throw new Error('TELEGRAM_BOT_TOKEN is missing in Script properties');
+
+  const response = UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/deleteWebhook', {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({ drop_pending_updates: true }),
+    muteHttpExceptions: true
+  });
+
+  props.deleteProperty('TELEGRAM_UPDATE_OFFSET');
+  const result = response.getContentText();
+  console.log(result);
+  return result;
 }
 
 function setupTelegramWebhook() {

@@ -26,12 +26,12 @@
     #shiftBoot{position:fixed;inset:0;z-index:10050;background:#080809;color:#fff;display:grid;place-items:center;overflow:hidden;transition:opacity .55s ease,visibility .55s ease}
     #shiftBoot.done{opacity:0;visibility:hidden}
     .shiftBootCore{display:flex;align-items:center;gap:14px;font:800 clamp(42px,8vw,88px)/1 Manrope,sans-serif;letter-spacing:-.07em}
-    .shiftBootMark{width:.9em;height:.9em;display:block}.shiftBootMark svg{display:block;width:100%;height:100%}
+    .shiftBootMark{width:1.26em;height:.9em;display:block;flex:none}.shiftBootMark svg{display:block;width:100%;height:100%}
     .shiftBootMeta{position:absolute;left:22px;right:22px;bottom:22px;display:grid;grid-template-columns:1fr minmax(120px,220px) 34px;gap:16px;align-items:center;color:#74747b;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase}
     .shiftBootBar{height:2px;background:#222225;overflow:hidden}.shiftBootBar i{display:block;height:100%;width:0;background:#d9ff3f;animation:shiftBootLoad 1.15s ease forwards}@keyframes shiftBootLoad{to{width:100%}}
 
     @media(max-width:760px){
-      .wrap{width:calc(100% - 28px)!important}.block,.cases,.deliverables{padding:66px 0!important}header{padding:8px 0!important}.nav{padding:7px 7px 7px 11px!important}.logo{font-size:16px!important}.logo .shiftmark{width:23px!important;height:23px!important}.navcta{padding:10px 11px!important;font-size:10px!important}.links{display:none!important}
+      .wrap{width:calc(100% - 28px)!important}.block,.cases,.deliverables{padding:66px 0!important}header{padding:8px 0!important}.nav{padding:7px 7px 7px 11px!important}.logo{font-size:16px!important}.logo .shiftmark{width:34px!important;height:24px!important}.navcta{padding:10px 11px!important;font-size:10px!important}.links{display:none!important}
       .hero{min-height:auto!important;padding:90px 0 18px!important}.hero-inner{min-height:calc(100svh - 108px)}.hero-top{display:block!important}.hero-copy{max-width:100%!important;font-size:13.5px!important;line-height:1.5!important}.hero-title{font-size:17.8vw!important;line-height:.83!important;margin:25px 0 18px!important;letter-spacing:-.075em!important}.hero-cards{grid-template-columns:1fr!important;gap:9px!important}.visual{height:168px!important;border-radius:20px!important}.start{height:150px!important;padding:18px!important;border-radius:20px!important}.start h3{font-size:23px!important}.visualcopy{left:14px!important;right:14px!important;bottom:12px!important}
       .section-head{grid-template-columns:1fr!important;gap:15px!important;margin-bottom:30px!important}.section-title{font-size:12.8vw!important;line-height:.92!important}.section-copy{font-size:13px!important;line-height:1.5!important}.kicker{font-size:9px!important}
       .whatgrid{grid-template-columns:1fr!important;gap:16px!important}.whatcard{position:relative!important;top:auto!important;min-height:300px!important;padding:22px!important}.whatcard h3{font-size:11vw!important}.service{grid-template-columns:28px 1fr 18px!important;gap:10px!important;padding:18px 0!important}.service h3{font-size:8.5vw!important}.service p{grid-column:2/-1!important;font-size:13px!important}.service:hover{padding-left:0!important}
@@ -52,7 +52,7 @@
     const oldIntroVisible=document.documentElement.classList.contains('show-intro');
     const seen=sessionStorage.getItem('shift_boot_seen_v3');
     if(!oldIntroVisible && !seen){
-      const boot=document.createElement('div');boot.id='shiftBoot';boot.innerHTML=`<div class="shiftBootCore"><span class="shiftBootMark"><svg viewBox="0 0 64 64"><path d="M5 18h32L48 7h11L42 24H5z" fill="#d9ff3f"/><path d="M59 46H27L16 57H5l17-17h37z" fill="#fff"/></svg></span><span>SHIFT</span></div><div class="shiftBootMeta"><span>Strategy / Design / Development</span><div class="shiftBootBar"><i></i></div><span>100</span></div>`;document.body.appendChild(boot);document.body.style.overflow='hidden';
+      const boot=document.createElement('div');boot.id='shiftBoot';boot.innerHTML=`<div class="shiftBootCore"><span class="shiftBootMark"><img class="webwork-mark" src="/assets/webwork-mark.svg?v=20260907-w" width="80" height="56" alt="" aria-hidden="true"></span><span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span></div><div class="shiftBootMeta"><span>Strategy / Design / Development</span><div class="shiftBootBar"><i></i></div><span>100</span></div>`;document.body.appendChild(boot);document.body.style.overflow='hidden';
       setTimeout(()=>{boot.classList.add('done');document.body.style.overflow='';sessionStorage.setItem('shift_boot_seen_v3','1');setTimeout(()=>boot.remove(),650)},1350);
     }else if(oldIntroVisible){sessionStorage.setItem('shift_boot_seen_v3','1')}
   }catch(e){}

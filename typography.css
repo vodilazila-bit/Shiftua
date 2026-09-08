@@ -1,0 +1,190 @@
+/* Typography mapped from the supplied Apple design reference.
+   Native SF on Apple devices; Inter on other platforms.
+   Scoped rules also cover UI styles injected by the existing scripts. */
+:root {
+  --ww-font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  --ww-font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  --ww-type-hero: 3.5rem;
+  --ww-type-section: 2.5rem;
+  --ww-type-subhead: 1.75rem;
+  --ww-type-card: 1.3125rem;
+  --ww-type-price: 2.125rem;
+  --ww-type-body: 1.0625rem;
+  --ww-type-caption: .875rem;
+}
+
+html body.ww-apple {
+  font-family: var(--ww-font-text);
+  font-size: var(--ww-type-body);
+  line-height: 1.47;
+  letter-spacing: -.022em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html body.ww-apple * { font-family: var(--ww-font-text) !important; }
+html body.ww-apple :is(h1, h2, h3, h4, h1 *, h2 *, h3 *, h4 *) {
+  font-family: var(--ww-font-display) !important;
+}
+html body.ww-apple :is(h1, h2, h3, h4) {
+  font-weight: 600 !important;
+  line-height: 1.19 !important;
+  letter-spacing: -.005em !important;
+  text-transform: none !important;
+  text-wrap: balance;
+}
+/* Preserve the established WEB / WORK wordmark. */
+html body.ww-apple :is(.logo, .intro-logo, .ctalog, .brand-word, .brand-word > i, .word, .word > i) {
+  font-family: "Manrope", sans-serif !important;
+}
+
+/* Hero and closing call to action: 56 / 40 / 34 / 28 px. */
+html body.ww-apple .hero .hero-title.hero-title-long,
+html body.ww-apple .hero h1,
+html body.ww-apple .ctabox h2,
+html body.ww-apple .contact h2 {
+  font-size: var(--ww-type-hero) !important;
+  line-height: 1.07 !important;
+  letter-spacing: -.005em !important;
+}
+html body.ww-apple .hero .hero-title.hero-title-long { transform: none; }
+html body.ww-apple .hero-title-long .hero-title-line + .hero-title-line { margin-top: .08em; }
+html body.ww-apple .hero-title-long .hero-digital {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+}
+html body.ww-apple #top > .hero { min-height: auto; }
+html body.ww-apple .ctabox { min-height: 0; gap: 24px; }
+
+/* Section headings and larger cards. */
+html body.ww-apple .section-title,
+html body.ww-apple #deliverables .section-title,
+html body.ww-apple #concepts .section-title,
+html body.ww-apple .head h2,
+html body.ww-apple .whatcard h3,
+html body.ww-apple .casecopy h3,
+html body.ww-apple .case-detail h2,
+html body.ww-apple .concept-case h3 {
+  font-size: var(--ww-type-section) !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+}
+html body.ww-apple .what .section-title em { -webkit-text-stroke: 0; }
+html body.ww-apple .concept-case h3 { max-width: 18ch !important; }
+html body.ww-apple :is(.service h3, .processrow h3, .rc-copy h3, .mock-title, .case-benefit h3) {
+  font-size: var(--ww-type-subhead) !important;
+  line-height: 1.19 !important;
+  letter-spacing: .011em !important;
+}
+html body.ww-apple :is(.deliver-card h3, .pricecard h3, .feature h3, .step h3, .faq summary h3) {
+  font-size: var(--ww-type-card) !important;
+  line-height: 1.19 !important;
+  letter-spacing: .011em !important;
+}
+html body.ww-apple :is(.price, .amount) {
+  font-family: var(--ww-font-display) !important;
+  font-size: var(--ww-type-price) !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -.011em !important;
+}
+
+/* The green hero card has a title and a lighter supporting line. */
+html body.ww-apple .start-title {
+  font-size: var(--ww-type-subhead);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+html body.ww-apple .start-description {
+  font-size: var(--ww-type-card);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .007em;
+}
+
+/* Reading copy follows the reference's 17 px / 400 scale. */
+html body.ww-apple :is(.section-copy, .herolead, .head > p, .contactcopy, .ctabottom > div > p,
+  .rc-sub, .rc-block li, .service p, .whatcard p, .deliver-card p, .pricecard > p,
+  .processrow p, .step p, .feature p, .casecopy p, .faq-answer, .answer,
+  .price-list li, .pricecard li) {
+  font-family: var(--ww-font-text) !important;
+  font-size: var(--ww-type-body) !important;
+  font-weight: 400 !important;
+  line-height: 1.47 !important;
+  letter-spacing: -.022em !important;
+  text-transform: none !important;
+  text-wrap: pretty;
+}
+html body.ww-apple :is(p strong, p b, li strong, li b) { font-weight: 600; }
+html body.ww-apple #prices .section-copy { max-width: 70ch; }
+
+/* Captions, labels and supporting interface copy. */
+html body.ww-apple :is(.kicker, .eyebrow, .dn, .rc-badge, .rc-label, .label, .term,
+  .price small, .price-note, .rc-note, .cases-note, .trustrow span, .case-fact b,
+  .form-status, .form-brief-head span, .form-brief-grid p, .form-brief-grid strong) {
+  font-size: var(--ww-type-caption) !important;
+  font-weight: 400 !important;
+  line-height: 1.43 !important;
+  letter-spacing: -.016em !important;
+}
+html body.ww-apple :is(.kicker, .eyebrow, .dn, .rc-label, .label, .rc-badge) {
+  font-weight: 600 !important;
+  text-transform: none !important;
+}
+html body.ww-apple :is(.links, .navlinks) a {
+  font-size: .875rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -.01em !important;
+}
+html body.ww-apple :is(.foot, footer .foot, .case-meta, .preview-top) {
+  font-size: .75rem !important;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -.01em;
+}
+
+/* Buttons and fields use the text face, with readable mobile inputs. */
+html body.ww-apple :is(.pricecta, .btn, .rc-link, #form button, #wwChatLauncher) {
+  font-size: var(--ww-type-body) !important;
+  font-weight: 400 !important;
+  line-height: 1.29 !important;
+  letter-spacing: -.016em !important;
+  text-transform: none !important;
+}
+html body.ww-apple :is(.navcta, .case-open, .case .case-open, .concept-case .case-open,
+  .form-brief-head b, #wwChatSend, .ww-brand b, .ww-msg, .ww-welcome) {
+  font-size: var(--ww-type-caption) !important;
+  font-weight: 400 !important;
+  line-height: 1.43 !important;
+  letter-spacing: -.016em !important;
+  text-transform: none !important;
+}
+html body.ww-apple :is(#form input, #form textarea, #form select, #wwChatInput) {
+  font-size: var(--ww-type-body) !important;
+  font-weight: 400 !important;
+  line-height: 1.47 !important;
+  letter-spacing: -.022em !important;
+}
+html body.ww-apple .nav { gap: 12px; }
+html body.ww-apple .navcta { min-width: 0; }
+
+@media (max-width: 1068px) {
+  :root { --ww-type-hero: 2.5rem; --ww-type-section: 2.125rem; }
+}
+@media (max-width: 760px) {
+  :root { --ww-type-subhead: 1.5rem; --ww-type-price: 1.75rem; }
+  html body.ww-apple .start-description { font-size: 1.1875rem; }
+  html body.ww-apple .hero .hero-title.hero-title-long { line-height: 1.14 !important; }
+  html body.ww-apple .navcta.modernCta { gap: 8px !important; }
+  html body.ww-apple .hero-title-line { text-wrap: balance; }
+}
+@media (max-width: 640px) {
+  :root { --ww-type-hero: 2.125rem; --ww-type-section: 1.75rem; }
+}
+@media (max-width: 419px) {
+  :root { --ww-type-hero: 1.75rem; }
+  html body.ww-apple .navcta { font-size: .75rem !important; }
+  html body.ww-apple .nav { gap: 8px; }
+  html body.ww-apple .navcta.modernCta { padding-left: 10px !important; }
+}

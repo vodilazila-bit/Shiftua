@@ -161,49 +161,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 try{sessionStorage.setItem('shift_boot_seen_v3','1')}catch(e){}
 
 // Work section v27: mobile-first + clean concept previews + full-site mesh.
-(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20260907-w';s.defer=true;document.head.appendChild(s)})();
+(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20260908-compact-layout';s.defer=true;document.head.appendChild(s)})();
 
 // WEBWORK support chat — website <-> Telegram bridge.
 (()=>{if(document.querySelector('script[data-webwork-chat]'))return;const s=document.createElement('script');s.src='chat-widget.js?v=1';s.defer=true;s.dataset.webworkChat='1';document.head.appendChild(s)})();
-
-// Direct contacts v55: phone, Telegram and email in the contact section.
-(()=>{
-  function mountDirectContacts(){
-    const host=document.querySelector('#contact .ctabottom > div');
-    if(!host || host.querySelector('.direct-contacts'))return;
-
-    const box=document.createElement('div');
-    box.className='direct-contacts';
-    box.innerHTML=`
-      <a href="tel:+380987064144" class="direct-contact-row" aria-label="Подзвонити 098 706 41 44">
-        <span>Телефон</span><strong>098 706 41 44</strong><i>↗</i>
-      </a>
-      <a href="https://t.me/zaisan123" target="_blank" rel="noopener" class="direct-contact-row" aria-label="Написати в Telegram @zaisan123">
-        <span>Telegram</span><strong>@zaisan123</strong><i>↗</i>
-      </a>
-      <a href="mailto:vodilazila@gmail.com" class="direct-contact-row" aria-label="Написати на vodilazila@gmail.com">
-        <span>Email</span><strong>vodilazila@gmail.com</strong><i>↗</i>
-      </a>`;
-    host.appendChild(box);
-
-    if(!document.getElementById('direct-contacts-style')){
-      const style=document.createElement('style');
-      style.id='direct-contacts-style';
-      style.textContent=`
-        .direct-contacts{margin-top:28px;border-top:1px solid rgba(10,10,11,.24);max-width:520px}
-        .direct-contact-row{display:grid;grid-template-columns:90px minmax(0,1fr) 28px;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(10,10,11,.18);color:#0a0a0b;transition:transform .22s ease,opacity .22s ease}
-        .direct-contact-row:hover{transform:translateX(6px);opacity:.72}
-        .direct-contact-row span{font:700 10px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.58}
-        .direct-contact-row strong{font:700 clamp(17px,1.5vw,22px)/1.15 "Manrope",sans-serif;letter-spacing:-.025em;overflow-wrap:anywhere}
-        .direct-contact-row i{font:600 20px/1 "Manrope",sans-serif;font-style:normal;text-align:right}
-        @media(max-width:700px){.direct-contacts{margin-top:22px}.direct-contact-row{grid-template-columns:74px minmax(0,1fr) 24px;gap:10px;padding:13px 0}.direct-contact-row strong{font-size:16px}.direct-contact-row i{font-size:18px}}
-      `;
-      document.head.appendChild(style);
-    }
-  }
-
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mountDirectContacts,{once:true});
-  else mountDirectContacts();
-  setTimeout(mountDirectContacts,350);
-  setTimeout(mountDirectContacts,1200);
-})();

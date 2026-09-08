@@ -90,9 +90,9 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 .deliverables{background:var(--paper);color:var(--ink);padding:86px 0 96px}
 .deliverables .kicker{color:#6e6e73}.deliverables .section-copy{color:#59595f}
 .deliver-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:38px}
-.deliver-card{position:relative;min-height:245px;padding:24px;border-radius:24px;border:1px solid rgba(0,0,0,.11);background:rgba(255,255,255,.55);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:.28s ease}
+.deliver-card{position:relative;min-height:0;padding:24px;border-radius:24px;border:1px solid rgba(0,0,0,.11);background:rgba(255,255,255,.55);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;transition:.28s ease}
 .deliver-card:hover{transform:translateY(-6px);background:#fff;box-shadow:0 20px 55px rgba(0,0,0,.08)}
-.deliver-card .dn{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7f7f84}.deliver-card .dicon{position:absolute;right:18px;top:18px;width:50px;height:50px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:grid;place-items:center;font-size:20px}.deliver-card h3{margin:72px 0 10px;font:700 27px/1 "Manrope";letter-spacing:-.045em}.deliver-card p{margin:0;color:#5e5e64;line-height:1.55;font-size:14px}
+.deliver-card .dn{padding-right:54px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7f7f84}.deliver-card .dicon{position:absolute;right:18px;top:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);display:grid;place-items:center;font-size:20px}.deliver-card h3{margin:32px 0 10px;font:700 27px/1 "Manrope";letter-spacing:-.045em}.deliver-card p{margin:0;color:#5e5e64;line-height:1.55;font-size:14px}
 
 /* clickable works */
 .case{cursor:pointer}.case .case-open{position:absolute;z-index:4;right:24px;bottom:24px;transform:translateY(14px);opacity:0;display:inline-flex;align-items:center;gap:10px;padding:11px 14px;border-radius:999px;background:var(--acid);color:#0b0b0c;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;transition:.28s ease}
@@ -135,13 +135,13 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 .deliverables .section-title{color:#fff}
 .deliverables .section-title em{color:var(--acid)}
 .deliver-grid{gap:16px;margin-top:42px}
-.deliver-card{min-height:265px;padding:24px;border:1px solid rgba(255,255,255,.12);background:#111114;color:#fff;box-shadow:none}
+.deliver-card{min-height:0;padding:24px;border:1px solid rgba(255,255,255,.12);background:#111114;color:#fff;box-shadow:none}
 .deliver-card:hover{transform:translateY(-6px);background:#151519;border-color:rgba(217,255,63,.28);box-shadow:0 24px 70px rgba(0,0,0,.28)}
 .deliver-card .dn{color:#85858d}
 .deliver-card .dicon{border-color:rgba(255,255,255,.15);color:var(--acid);background:rgba(217,255,63,.035)}
 .deliver-card h3{color:#fff}
 .deliver-card p{color:#a8a8af}
-@media(max-width:700px){.deliverables{padding:84px 0}}
+@media(max-width:700px){.deliverables{padding:84px 0}.deliver-card{padding:20px}.deliver-card .dn{padding-right:46px}.deliver-card .dicon{top:16px;right:16px;width:36px;height:36px;font-size:18px}.deliver-card h3{margin-top:24px}}
 
 
 /* v21 — stronger outside supporting copy */
@@ -193,7 +193,10 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 }
 
 /* More breathing room for the launch-readiness heading. */
-#prices.block { padding-bottom: 48px !important; }
+#concepts.cases { padding-bottom: 24px !important; }
+#prices .section-head { display: block; margin-bottom: 28px; }
+#prices .section-copy { margin: 14px 0 0; max-width: 70ch; }
+#prices.block { padding-top: 24px !important; padding-bottom: 48px !important; }
 #process.block { padding-top: 48px !important; }
 
 #deliverables .section-head {
@@ -212,10 +215,21 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
   #deliverables .section-head { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
-  #prices.block { padding-bottom: 28px !important; }
+  #concepts.cases { padding-bottom: 16px !important; }
+  #prices.block { padding-top: 16px !important; padding-bottom: 28px !important; }
   #process.block { padding-top: 28px !important; }
   #deliverables .section-title {
     margin-top: 18px;
     font-size: clamp(28px, 7.6vw, 48px) !important;
   }
+}
+
+/* Keep the hero card copy balanced and the process close to its heading. */
+.hero-cards .start { justify-content: center; }
+.hero-cards .start h3 { display: grid; gap: 8px; max-width: 100%; line-height: 1.15; letter-spacing: -.035em; }
+.start-title { font-size: clamp(26px, 2.5vw, 36px); }
+.start-description { max-width: 30ch; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; line-height: 1.35; text-wrap: pretty; }
+#process .section-head { margin-bottom: 28px !important; }
+@media (max-width: 760px) {
+  #process .section-head { margin-bottom: 20px !important; }
 }

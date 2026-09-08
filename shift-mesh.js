@@ -175,24 +175,6 @@
     const priceCopy=document.querySelector('#prices .section-copy');
     if(priceCopy)priceCopy.textContent='Приблизні пакети послуг. Остаточна ціна залежить від обсягу сторінок, функцій, інтеграцій та контенту.';
 
-    const processWrap=document.querySelector('#process .wrap');
-    const processHead=processWrap?.querySelector('.section-head');
-    if(processWrap&&processHead&&!processWrap.querySelector('.startBrief')){
-      const brief=document.createElement('div');
-      brief.className='startBrief reveal on';
-      brief.innerHTML=`
-        <div class="startBriefHead"><span>Що потрібно від вас на старті</span><p>Достатньо коротко відповісти на ці пункти — структуру, сценарій і технічні рішення вже збираємо ми.</p></div>
-        <div class="startBriefGrid">
-          <div class="startBriefItem"><small>01</small><b>Бізнес</b><p>Чим займаєтесь, що продаєте або які послуги надаєте.</p></div>
-          <div class="startBriefItem"><small>02</small><b>Мета</b><p>Заявки, продажі, презентація компанії, запуск реклами чи інша задача.</p></div>
-          <div class="startBriefItem"><small>03</small><b>Аудиторія</b><p>Хто ваш клієнт і на яку географію працює бізнес.</p></div>
-          <div class="startBriefItem"><small>04</small><b>Матеріали</b><p>Логотип, фото, тексти, прайс або каталог. Якщо чогось немає — скажіть.</p></div>
-          <div class="startBriefItem"><small>05</small><b>Орієнтири</b><p>Конкуренти та 2–3 сайти, які подобаються або точно не подобаються.</p></div>
-          <div class="startBriefItem"><small>06</small><b>Рамки</b><p>Бажаний термін запуску та приблизний бюджетний орієнтир.</p></div>
-        </div>`;
-      processHead.insertAdjacentElement('afterend',brief);
-    }
-
     document.querySelectorAll('.z34DoneItem h4').forEach(h=>{
       if(h.textContent.includes('Видно не кліки'))h.textContent='Бачимо, яка реклама дає продажі';
     });
@@ -224,3 +206,4 @@
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});
 })();
+

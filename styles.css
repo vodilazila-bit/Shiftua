@@ -168,6 +168,14 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 .hero-title-long .hero-title-line { display: block; }
 .hero-title-long .hero-title-line + .hero-title-line { margin-top: .06em; }
 .hero-title-long .hero-accent { color: var(--acid); }
+.hero-title-long .hero-digital {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  letter-spacing: -.085em;
+  color: #0a0a0b;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, .76);
+}
+
 @media (max-width: 760px) {
   .hero .hero-inner {
     width: calc(100% - 32px) !important;

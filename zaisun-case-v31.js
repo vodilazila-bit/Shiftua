@@ -57,7 +57,7 @@
   target.innerHTML=`
     <div class="z34Wrap">
       <div class="z34Head">
-        <div><div class="kicker">03 / РЕАЛЬНИЙ ПРОЄКТ</div><h2>ZAISUN</h2></div>
+        <div><div class="kicker">03 / НАШ ПРОЄКТ</div><h2>ZAISUN</h2></div>
         <p>Дитячий бренд зі спільнотою 50к+: сайт, автоматизація, аналітика й реклама в одній системі.</p>
       </div>
 

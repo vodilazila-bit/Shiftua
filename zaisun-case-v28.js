@@ -120,7 +120,7 @@
 
       <div class="zInfo">
         <div class="zIntro reveal">
-          <div class="zKicker"><b>03 /</b><span>Реальний проєкт</span></div>
+          <div class="zKicker"><b>03 /</b><span>Наш проєкт</span></div>
           <h2>ZaiSun</h2>
           <div class="zLead">Інтернет-магазин дитячого одягу — від каталогу до оплати й реклами.</div>
           <p class="zIntroText">Замість довгого технічного опису — спочатку сам продукт. Деталі реалізації відкриваються нижче тільки за потреби.</p>

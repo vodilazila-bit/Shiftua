@@ -14,9 +14,9 @@
     .ticker{background:rgba(10,10,11,.58)}
 
     #concepts .kicker{color:#d9ff3f!important;font-size:12px!important;font-weight:800!important;letter-spacing:.16em!important}
-    #concepts .section-title{line-height:.94!important;color:#fff!important}
+    #concepts .section-title{font-size:clamp(25px,3.85vw,56px)!important;line-height:1.08!important;letter-spacing:-.055em!important;max-width:100%;color:#fff!important}
     #concepts .section-title em{color:#d9ff3f!important}
-    #concepts .section-head{margin-bottom:40px!important}
+    #concepts .section-head{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;align-items:start;margin-bottom:40px!important}
 
     .startBrief{margin:0 0 34px;border:1px solid rgba(255,255,255,.13);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.025)}
     .startBriefHead{display:flex;justify-content:space-between;gap:24px;align-items:end;padding:24px 28px;border-bottom:1px solid rgba(255,255,255,.12)}
@@ -53,7 +53,7 @@
     .case-open.modernCta{width:max-content}
 
     @media(max-width:760px){
-      #concepts .section-head{margin-bottom:28px!important}
+      #concepts .section-head{margin-bottom:28px!important}#concepts .section-title{font-size:clamp(24px,6.4vw,28px)!important}
       .startBriefHead{display:block;padding:20px}.startBriefHead p{margin-top:9px}
       .startBriefGrid{grid-template-columns:1fr 1fr}
       .startBriefItem{padding:19px 58px 19px 20px;min-height:112px}
@@ -217,9 +217,9 @@
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=38','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=20260908-layout','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=42','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=20260908-layout','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

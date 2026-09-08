@@ -16,9 +16,6 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     const nav=document.querySelector('.navcta');
     if(nav) nav.textContent='Порахувати вартість ↗';
 
-    const hero=document.querySelector('.hero .start a span:first-child');
-    if(hero) hero.textContent='Порахувати вартість';
-
     document.querySelectorAll('#prices .pricecta').forEach(a=>{
       a.textContent='Порахувати вартість ↗';
     });

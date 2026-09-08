@@ -164,6 +164,7 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
   line-height: 1.22;
   letter-spacing: -.045em;
   text-transform: none;
+  transform: translateY(-64px);
 }
 .hero-title-long .hero-title-line { display: block; }
 .hero-title-long .hero-title-line + .hero-title-line { margin-top: .06em; }
@@ -187,5 +188,34 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
     font-size: clamp(1.75rem, 7.4vw, 3.5rem) !important;
     line-height: 1.28 !important;
     letter-spacing: -.035em !important;
+    transform: translateY(-32px);
+  }
+}
+
+/* More breathing room for the launch-readiness heading. */
+#prices.block { padding-bottom: 48px !important; }
+#process.block { padding-top: 48px !important; }
+
+#deliverables .section-head {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+  gap: clamp(28px, 5vw, 72px);
+}
+#deliverables .section-title {
+  margin-top: 22px;
+  font-size: clamp(32px, 4.2vw, 62px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.035em;
+  word-spacing: .04em;
+  text-transform: none;
+}
+@media (max-width: 1000px) {
+  #deliverables .section-head { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  #prices.block { padding-bottom: 28px !important; }
+  #process.block { padding-top: 28px !important; }
+  #deliverables .section-title {
+    margin-top: 18px;
+    font-size: clamp(28px, 7.6vw, 48px) !important;
   }
 }

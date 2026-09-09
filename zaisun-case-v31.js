@@ -89,3 +89,25 @@
 
 const webworkHeroGhost=document.querySelector('.hero-title .ghost');
 if(webworkHeroGhost)webworkHeroGhost.textContent=webworkHeroGhost.textContent.replace(/\.\s*$/,'');
+
+// Keep approach descriptions visually uniform; headings stay unchanged.
+(()=>{
+  const st=document.createElement('style');
+  st.id='approachUniformTypography';
+  st.textContent=`
+    #approach p,
+    #approach p strong{
+      font-family:"DM Sans",sans-serif!important;
+      font-size:16px!important;
+      font-weight:400!important;
+      line-height:1.6!important;
+      color:#a2a2a8!important;
+      letter-spacing:0!important;
+    }
+    @media(max-width:760px){
+      #approach p,
+      #approach p strong{font-size:15px!important;}
+    }
+  `;
+  document.head.appendChild(st);
+})();

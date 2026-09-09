@@ -233,3 +233,20 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 @media (max-width: 760px) {
   #process .section-head { margin-bottom: 20px !important; }
 }
+
+/* Apple-style typography only for the services introduction heading. */
+#services .section-title {
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  font-size: 40px !important;
+  font-weight: 600;
+  line-height: 1.1 !important;
+  letter-spacing: 0;
+  text-transform: none;
+}
+#services .section-title em { font-family: inherit; font-weight: inherit; -webkit-text-stroke: 0; }
+@media (max-width: 1068px) {
+  #services .section-title { font-size: 34px !important; }
+}
+@media (max-width: 640px) {
+  #services .section-title { font-size: 28px !important; }
+}

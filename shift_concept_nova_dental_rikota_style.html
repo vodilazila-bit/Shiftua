@@ -94,16 +94,17 @@ header{background:rgba(235,235,235,.96)}
 @media(max-width:980px){.hero-film{height:450px}}
 @media(max-width:620px){.hero-film{height:390px}}
 
-/* Preserve the photo's proportions independently of the taller video column. */
+/* Portrait frame for slides 2–3; keep the doctor on the left in slide 1. */
 .hero-media{
   align-self:start;
   min-height:0;
   height:auto;
-  aspect-ratio:16/15;
+  aspect-ratio:4/5;
   background:var(--paper);
 }
 .hero-media .slide{transform:none}
-.hero-media .slide img{object-fit:contain;object-position:center top}
+.hero-media .slide img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-media .slide:first-child img{object-position:left top}
 </style></head><body>
 <div class="topline"><div class="shell"><span>Цифрова стоматологія нового покоління</span><span>Пн–Сб / 09:00–20:00</span></div></div>
 <header><div class="shell"><nav class="nav"><a href="#services">Послуги</a><a href="#technology">Технології</a><a href="#team">Лікарі</a><a href="#prices">Ціни</a></nav><a class="logo" href="#top">NOVA Dental<small>DIGITAL DENTISTRY</small></a><div class="header-action"><a class="phone" href="tel:+380000000000">+38 (000) 000 00 00</a><a class="button" href="#booking">Записатись</a></div></div></header>

@@ -45,10 +45,35 @@ body{overflow-x:clip}
   .section-head.experience-head { margin-bottom: 24px; }
   .section-head.experience-head h2 { font-size: 20px; }
 }
+
+/* A quiet cinematic opening: motion study, then the headline. */
+.hero{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);min-height:calc(100svh - 130px)}
+.hero-copy{position:relative;min-width:0;padding:clamp(32px,4vw,64px);justify-content:flex-start;overflow:hidden}
+.hero h1{position:relative;z-index:2;font-family:Manrope,Arial,sans-serif;font-size:clamp(38px,4.8vw,84px);line-height:1.08;letter-spacing:-.065em;margin:22px 0 0;max-width:100%}
+.hero-title-line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.hero-title-line>span{display:block}
+.hero-film{position:relative;width:100%;height:clamp(230px,25vw,380px);margin:0;flex-shrink:0;isolation:isolate}
+.hero-film video{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.hero-lead{font-size:16px;line-height:1.65;margin:4px 0 0;max-width:560px}
+.hero-actions{margin-top:24px}
+.hero-media{min-height:760px}
+.hero.intro-pending .hero-title-line>span{opacity:0;transform:translateY(115%)}
+.hero.intro-pending .hero-lead,.hero.intro-pending .hero-actions{opacity:0;transform:translateY(20px)}
+.hero.intro-playing .hero-title-line>span{animation:nova-title 1.25s cubic-bezier(.16,1,.3,1) both}
+.hero.intro-playing .hero-title-line:nth-child(2)>span{animation-delay:180ms}
+.hero.intro-playing .hero-lead{animation:nova-title 1s 420ms cubic-bezier(.16,1,.3,1) both}
+.hero.intro-playing .hero-actions{animation:nova-title 1s 560ms cubic-bezier(.16,1,.3,1) both}
+.hero.intro-pending .hero-film{transform:translateY(-60px) scale(1.12)}
+.hero.intro-playing .hero-film{animation:nova-film 1.8s cubic-bezier(.16,1,.3,1) both}
+@keyframes nova-title{from{opacity:0;transform:translateY(110%)}to{opacity:1;transform:translateY(0)}}
+@keyframes nova-film{from{transform:translateY(-60px) scale(1.12)}to{transform:none}}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.hero-copy{padding:38px 24px}.hero h1{font-size:clamp(38px,7.7vw,72px)}.hero-film{height:300px}.hero-media{min-height:560px}}
+@media(max-width:620px){.hero-copy{padding:32px 18px}.hero h1{font-size:clamp(32px,8.4vw,50px);margin:18px 0 0}.hero-film{height:260px}.hero-lead{font-size:15px}.hero-media{min-height:480px}.hero-actions{gap:10px}.hero-actions .button{padding:0 18px}}
+@media(prefers-reduced-motion:reduce){.hero .hero-title-line>span,.hero .hero-film,.hero .hero-lead,.hero .hero-actions{animation:none!important;transform:none!important;opacity:1!important}}
 </style></head><body>
 <div class="topline"><div class="shell"><span>Цифрова стоматологія нового покоління</span><span>Пн–Сб / 09:00–20:00</span></div></div>
 <header><div class="shell"><nav class="nav"><a href="#services">Послуги</a><a href="#technology">Технології</a><a href="#team">Лікарі</a><a href="#prices">Ціни</a></nav><a class="logo" href="#top">NOVA Dental<small>DIGITAL DENTISTRY</small></a><div class="header-action"><a class="phone" href="tel:+380000000000">+38 (000) 000 00 00</a><a class="button" href="#booking">Записатись</a></div></div></header>
-<main id="top"><section class="hero"><div class="hero-copy"><div class="eyebrow">NOVA / CLINIC CONCEPT / 2026</div><h1>Стоматологія,<br>якій довіряють.</h1><p class="hero-lead">Сучасна клініка, де точна діагностика, досвід лікарів і комфортний сервіс працюють разом — від профілактики до складного відновлення усмішки.</p><div class="hero-actions"><a class="button primary" href="#booking">Записатись на візит</a><a class="button" href="#services">Усі послуги ↓</a></div></div><div class="hero-media" data-slider>
+<main id="top"><section class="hero"><div class="hero-copy"><div class="eyebrow">NOVA / CLINIC CONCEPT / 2026</div><h1 aria-label="Стоматологія, якій довіряють."><span class="hero-title-line"><span>Стоматологія,</span></span><span class="hero-title-line"><span>якій довіряють.</span></span></h1><div class="hero-film" aria-hidden="true"><video id="nova-intro-video" muted playsinline preload="auto" poster="assets/dental-intro-poster.jpg"><source src="assets/dental-intro.mp4" type="video/mp4"></video></div><p class="hero-lead">Сучасна клініка, де точна діагностика, досвід лікарів і комфортний сервіс працюють разом — від профілактики до складного відновлення усмішки.</p><div class="hero-actions"><a class="button primary" href="#booking">Записатись на візит</a><a class="button" href="#services">Усі послуги ↓</a></div></div><div class="hero-media" data-slider>
 <figure class="slide active"><img src="assets/dental-01.webp" alt="Консультація у NOVA Dental"><span class="shade"></span><figcaption class="caption">Спокійна консультація, зрозумілий план лікування та рішення без зайвих процедур.</figcaption></figure><figure class="slide"><img src="assets/dental-02.webp" alt="Цифрова діагностика зубів"><span class="shade"></span><figcaption class="caption">3D-сканування допомагає побачити майбутній результат ще до початку лікування.</figcaption></figure><figure class="slide"><img src="assets/dental-03.webp" alt="Лікування зубів під збільшенням"><span class="shade"></span><figcaption class="caption">Мікроскоп і оптика лікаря дають точність там, де важливий кожен міліметр.</figcaption></figure><div class="dots"><button class="dot active" aria-label="Фото 1"></button><button class="dot" aria-label="Фото 2"></button><button class="dot" aria-label="Фото 3"></button></div></div></section>
 <section class="stats"><div class="stat"><b>4.9 / 5</b><span>оцінка пацієнтів</span></div><div class="stat"><b>8 років</b><span>практики команди</span></div><div class="stat"><b>1 візит</b><span>для плану лікування</span></div><div class="stat"><b>100%</b><span>цифровий протокол</span></div></section>
 <section class="section" id="services"><div class="shell"><div class="section-head reveal"><div><div class="eyebrow">01 / напрямки</div><h2>Усе для здорової<br><em>усмішки.</em></h2></div><p class="section-intro">Команда суміжних спеціалістів працює за одним планом. Пацієнту не потрібно самостійно координувати лікування між різними кабінетами.</p></div><div class="services">
@@ -67,8 +92,8 @@ body{overflow-x:clip}
 
   // Animate individual blocks instead of hiding an entire long section.
   document.querySelectorAll('.tech-layout,.process,.prices').forEach(el=>el.classList.remove('reveal'));
-  document.querySelectorAll('.hero-copy,.stat,.tech-photo,.tech-item,.step,.price-row,.price-note').forEach(el=>el.classList.add('reveal'));
-  document.querySelectorAll('.hero-copy,.service').forEach(el=>el.dataset.reveal='left');
+  document.querySelectorAll('.stat,.tech-photo,.tech-item,.step,.price-row,.price-note').forEach(el=>el.classList.add('reveal'));
+  document.querySelectorAll('.service').forEach(el=>el.dataset.reveal='left');
   document.querySelectorAll('.doctor-copy,.tech-item').forEach(el=>el.dataset.reveal='right');
   document.querySelectorAll('.tech-photo,.doctor-photo,.care-card').forEach(el=>el.dataset.reveal='image');
   document.querySelectorAll('.services,.tech-list,.process,.prices,.stats,.care-grid').forEach(group=>{
@@ -93,4 +118,25 @@ body{overflow-x:clip}
     if(event.matches){root.classList.remove('motion-ready');observer.disconnect()}
   });
 })();</script>
+
+<script>
+(()=>{
+ const hero=document.querySelector('.hero'),video=document.getElementById('nova-intro-video');
+ if(!hero||!video)return;
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ if(motion.matches)return;
+ hero.classList.add('intro-pending');
+ let revealed=false,delay;
+ const reveal=()=>{if(revealed)return;revealed=true;clearTimeout(delay);hero.classList.remove('intro-pending');hero.classList.add('intro-playing')};
+ const fallback=setTimeout(reveal,2400);
+ video.muted=true;
+ video.addEventListener('playing',()=>{delay=setTimeout(reveal,1000)},{once:true});
+ video.addEventListener('error',reveal,{once:true});
+ video.querySelector('source').addEventListener('error',reveal,{once:true});
+ const attempt=video.play();if(attempt)attempt.catch(reveal);
+ hero.addEventListener('focusin',reveal,{once:true});
+ motion.addEventListener('change',()=>{if(motion.matches){clearTimeout(fallback);reveal();video.pause()}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();reveal()}});
+})();
+</script>
 </body></html>

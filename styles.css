@@ -290,3 +290,21 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
   #approach h3 { font-size: 24px; line-height: 1.25; }
   #approach p { font-size: 15px; }
 }
+
+/* Tighten the transition from the ticker into services. */
+#services.block { padding-top: 48px !important; }
+@media (max-width: 760px) {
+  #services.block { padding-top: 28px !important; }
+}
+
+/* Match the concepts typography while retaining the process heading size. */
+#process .section-title,
+#process .section-title em {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+#process .section-title { line-height: 1.02 !important; }

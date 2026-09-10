@@ -175,6 +175,12 @@
     const priceCopy=document.querySelector('#prices .section-copy');
     if(priceCopy)priceCopy.textContent='Приблизні пакети послуг. Остаточна ціна залежить від обсягу сторінок, функцій, інтеграцій та контенту.';
 
+    const packagePrices=[...document.querySelectorAll('#prices .price')];
+    packagePrices.forEach((price,index)=>{
+      price.querySelector('small')?.remove();
+      if(index===0)price.textContent='6 000 грн';
+    });
+
     document.querySelectorAll('.z34DoneItem h4').forEach(h=>{
       if(h.textContent.includes('Видно не кліки'))h.textContent='Бачимо, яка реклама дає продажі';
     });

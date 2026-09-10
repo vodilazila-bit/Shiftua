@@ -15,6 +15,7 @@ window.gtag('config','G-CZ9YTRCWV7');
     .growth{background:rgba(18,18,21,.82)!important}
     .faq{background:rgba(17,17,20,.88)!important}
     .prices{background:rgba(10,10,11,.35)}
+    #prices .price small{display:none!important}
     .what{background:rgba(241,239,232,.96)!important}
     .ticker{background:rgba(10,10,11,.58)}
 
@@ -136,7 +137,7 @@ window.gtag('config','G-CZ9YTRCWV7');
   draw(performance.now());
 })();
 
-// v48 — restored the original softer animated grid brightness.
+// v49 — 5000 simple website price; package delivery times removed.
 (()=>{
   const navLinks=document.querySelector('.nav .links');
   if(navLinks&&!navLinks.querySelector('a[href="#contact"]')){
@@ -183,7 +184,7 @@ window.gtag('config','G-CZ9YTRCWV7');
     const packagePrices=[...document.querySelectorAll('#prices .price')];
     packagePrices.forEach((price,index)=>{
       price.querySelector('small')?.remove();
-      if(index===0)price.textContent='6 000 грн';
+      if(index===0)price.textContent='від 5 000 грн';
     });
 
     document.querySelectorAll('.z34DoneItem h4').forEach(h=>{

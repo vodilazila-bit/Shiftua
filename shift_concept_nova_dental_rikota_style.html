@@ -37,6 +37,15 @@ gtag('config', 'AW-18409542106');
 .hero-film video{position:absolute;left:50%;top:-20%;transform:translateX(-50%);width:124%;height:124%;object-fit:cover;object-position:center;margin:0}
 .hero-lead{margin:22px 18px 0;font-size:15px}.hero-actions{margin:22px 18px 0;gap:10px}.hero-actions .button{padding:0 18px}.hero-media{min-height:480px}.caption{left:22px;right:64px;bottom:28px}.dots{right:20px;bottom:34px;flex-direction:column}.dot{width:2px;height:22px}.stat{padding:24px 20px}.stat b{font-size:28px}.section-head{margin-bottom:48px}.section-head h2{font-size:50px}.service{padding:27px 0}.service h3{font-size:22px}.tech-photo{min-height:430px}.tech-item{padding:25px 18px}.care-grid{grid-template-columns:1fr}.care-card{min-height:500px}.team-grid{gap:30px}.doctor-photo{min-height:480px}.process{grid-template-columns:1fr}.step{min-height:240px;border-right:0;border-bottom:1px solid var(--line)}.price-row{grid-template-columns:42px 1fr auto;gap:12px}.price-row h3{font-size:20px}.price-row b{font-size:18px}.booking{padding:80px 0}.booking h2{font-size:60px}.foot{grid-template-columns:1fr;gap:30px}.foot-links{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.slide,.reveal{transition:none;transform:none}.motion-ready .reveal,.motion-ready .reveal>img{opacity:1;transform:none!important;animation:none!important;transition:none!important}}
+/* Desktop: use the tooth film as the entire left panel's background. */
+@media (min-width:981px){
+  .hero-copy{position:relative;isolation:isolate;overflow:hidden}
+  .hero-copy .hero-stage{position:static;background:transparent}
+  .hero-copy .hero-film{position:absolute;inset:0;z-index:-2;width:100%;height:100%;margin:0;pointer-events:none}
+  .hero-copy .hero-film video{width:100%;height:100%;margin:0;object-fit:cover;object-position:center}
+  .hero-copy::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(238,238,238,.94) 0%,rgba(238,238,238,.64) 23%,rgba(238,238,238,.06) 43%,rgba(238,238,238,.06) 59%,rgba(238,238,238,.88) 83%,#eeeeee 100%)}
+  .hero-copy .hero-lead{margin-top:auto;padding-top:32px;color:var(--ink)}
+}
 </style></head><body>
 <div class="topline"><div class="shell"><span>Цифрова стоматологія нового покоління</span><span>Пн–Сб / 09:00–20:00</span></div></div>
 <header><div class="shell"><nav class="nav"><a href="#services">Послуги</a><a href="#technology">Технології</a><a href="#team">Лікарі</a><a href="#prices">Ціни</a></nav><a class="logo" href="#top">NOVA Dental<small>DIGITAL DENTISTRY</small></a><div class="header-action"><a class="phone" href="tel:+380000000000">+38 (000) 000 00 00</a><a class="button" href="#booking">Записатись</a></div></div></header>

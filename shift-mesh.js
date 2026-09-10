@@ -1,3 +1,8 @@
+// GA4: connect the WEBWORK Analytics property to the existing Google tag loader.
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+window.gtag('config','G-CZ9YTRCWV7');
+
 (()=>{
   const ui=document.createElement('style');
   ui.textContent=`
@@ -212,4 +217,3 @@
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});
 })();
-

@@ -32,10 +32,41 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     body>header .nav{padding:8px 9px 8px 15px!important}
     body>header .links{gap:22px!important;color:#f4f4f4!important}
     body>header .links a{color:#f4f4f4!important}
+
+    /* The long message in the black services card needs calmer proportions. */
+    body .whatcard h3.whatcard-long{
+      font-size:clamp(38px,4.15vw,64px)!important;
+      line-height:.96!important;
+      letter-spacing:-.06em!important;
+      max-width:10.8ch!important;
+    }
+    body .whatcard h3.whatcard-long .whatcard-accent{
+      display:block;
+      margin-top:.12em;
+      color:#d9ff3f;
+      font-size:.82em;
+      line-height:1.02;
+      letter-spacing:-.045em;
+    }
+    body .whatcard p.whatcard-old-copy{display:none!important}
+
     @media(max-width:760px){
-      body>header{top:10px!important;padding:0!important}
+      body>header{top:4px!important;padding:0!important}
       body>header .wrap{width:calc(100% - 20px)!important}
       body>header .nav{padding:7px 7px 7px 11px!important}
+
+      /* Keep a small clean gap between the floating nav and the hero title. */
+      body main .hero{padding-top:108px!important}
+      body main .hero-inner{min-height:calc(100svh - 126px)!important}
+
+      body .whatcard h3.whatcard-long{
+        font-size:9.6vw!important;
+        line-height:.98!important;
+        max-width:11.2ch!important;
+      }
+      body .whatcard h3.whatcard-long .whatcard-accent{
+        font-size:.84em!important;
+      }
     }
   `;
   document.head.appendChild(compactHeaderStyle);
@@ -44,6 +75,14 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   if(headerLinks){
     headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a><a href="#contact">Контакти</a>';
   }
+
+  const serviceCardTitle=document.querySelector('.whatcard h3');
+  if(serviceCardTitle){
+    serviceCardTitle.classList.add('whatcard-long');
+    serviceCardTitle.innerHTML='Від структури<br>й дизайну<br><span class="whatcard-accent">до запуску та<br>просування.</span>';
+  }
+  const serviceCardCopy=document.querySelector('.whatcard p');
+  if(serviceCardCopy) serviceCardCopy.classList.add('whatcard-old-copy');
 
   const headerBrandStyle=document.createElement('style');
   headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';

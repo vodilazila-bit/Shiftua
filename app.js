@@ -53,11 +53,40 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     @media(max-width:760px){
       body>header{top:4px!important;padding:0!important}
       body>header .wrap{width:calc(100% - 20px)!important}
-      body>header .nav{padding:7px 7px 7px 11px!important}
+      body>header .nav{
+        display:grid!important;
+        grid-template-columns:minmax(0,1fr) auto!important;
+        grid-template-areas:"logo cta" "links links"!important;
+        align-items:center!important;
+        row-gap:3px!important;
+        padding:7px 7px 6px 11px!important;
+      }
+      body>header .logo{grid-area:logo!important}
+      body>header .navcta{grid-area:cta!important}
+      body>header .links{
+        grid-area:links!important;
+        display:flex!important;
+        width:100%!important;
+        justify-content:center!important;
+        align-items:center!important;
+        gap:20px!important;
+        padding:2px 4px 3px!important;
+      }
+      body>header .links a{
+        display:block!important;
+        font-size:11px!important;
+        line-height:1.2!important;
+        color:#f4f4f4!important;
+      }
 
-      /* Keep a small clean gap between the floating nav and the hero title. */
-      body main .hero{padding-top:108px!important}
-      body main .hero-inner{min-height:calc(100svh - 126px)!important}
+      /* Keep the title and both hero cards on one compact rhythm. */
+      body main .hero{padding-top:116px!important}
+      body main .hero-inner{
+        min-height:0!important;
+        justify-content:flex-start!important;
+      }
+      body main .hero-title{margin:25px 0 9px!important}
+      body main .hero-cards{margin-top:0!important;gap:9px!important}
 
       body .whatcard h3.whatcard-long{
         font-size:9.6vw!important;

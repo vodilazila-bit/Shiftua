@@ -103,7 +103,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         justify-content:flex-start!important;
       }
       body main .hero-title{margin:25px 0 9px!important}
-      body main .hero-cards{margin-top:0!important;gap:16px!important}
+      body main .hero-cards{margin-top:0!important;gap:30px!important}
 
       body .whatcard h3.whatcard-long{
         font-size:9.6vw!important;

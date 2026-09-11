@@ -9,13 +9,29 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const count=document.getElementById('count');
 
   // Compact floating header: keep the existing WEBWORK visual language,
-  // only narrow it and keep the two useful section links.
+  // remove the full-width header strip and keep the pill fixed to the viewport.
   const compactHeaderStyle=document.createElement('style');
   compactHeaderStyle.textContent=`
-    body>header{top:18px!important;left:0!important;right:0!important;padding:0!important;transform:none!important;transition:none!important}
+    body>header{
+      position:fixed!important;
+      z-index:1000!important;
+      top:18px!important;
+      left:0!important;
+      right:0!important;
+      width:100%!important;
+      height:auto!important;
+      padding:0!important;
+      margin:0!important;
+      background:transparent!important;
+      border:0!important;
+      box-shadow:none!important;
+      transform:translateY(0)!important;
+      transition:none!important;
+    }
     body>header .wrap{width:min(780px,calc(100% - 28px))!important;margin:0 auto!important}
     body>header .nav{padding:8px 9px 8px 15px!important}
-    body>header .links{gap:22px!important}
+    body>header .links{gap:22px!important;color:#f4f4f4!important}
+    body>header .links a{color:#f4f4f4!important}
     @media(max-width:760px){
       body>header{top:10px!important;padding:0!important}
       body>header .wrap{width:calc(100% - 20px)!important}
@@ -24,10 +40,10 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   `;
   document.head.appendChild(compactHeaderStyle);
 
-  document.querySelectorAll('.nav .links a').forEach(a=>{
-    const href=a.getAttribute('href')||'';
-    if(href!=='#services' && href!=='#prices') a.remove();
-  });
+  const headerLinks=document.querySelector('.nav .links');
+  if(headerLinks){
+    headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a><a href="#contact">Контакти</a>';
+  }
 
   const headerBrandStyle=document.createElement('style');
   headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';
@@ -184,7 +200,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   }),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 
-  // Header stays attached to the viewport while the page moves, like the reference floating nav.
+  // Header stays attached to the viewport at all times.
   const header=document.querySelector('header');
   if(header) header.style.transform='translateY(0)';
 

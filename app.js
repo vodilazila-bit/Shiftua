@@ -88,6 +88,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         line-height:1.2!important;
         color:#f4f4f4!important;
       }
+      body>header .links a:nth-child(n+3){display:none!important}
       body>header .navcta{
         flex:0 0 auto!important;
         white-space:nowrap!important;
@@ -102,7 +103,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         justify-content:flex-start!important;
       }
       body main .hero-title{margin:25px 0 9px!important}
-      body main .hero-cards{margin-top:0!important;gap:9px!important}
+      body main .hero-cards{margin-top:0!important;gap:16px!important}
 
       body .whatcard h3.whatcard-long{
         font-size:9.6vw!important;
@@ -119,6 +120,11 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const headerLinks=document.querySelector('.nav .links');
   if(headerLinks){
     headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a>';
+    const trimHeaderLinks=()=>{
+      [...headerLinks.querySelectorAll('a')].slice(2).forEach(a=>a.remove());
+    };
+    trimHeaderLinks();
+    new MutationObserver(trimHeaderLinks).observe(headerLinks,{childList:true});
   }
 
   const serviceCardTitle=document.querySelector('.whatcard h3');

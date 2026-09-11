@@ -96,13 +96,13 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         font-size:9.5px!important;
       }
 
-      /* Keep the title and both hero cards on one compact rhythm. */
-      body main .hero{padding-top:92px!important}
+      /* Two visual blank lines below the floating header, tighter gap above animation. */
+      body main .hero{padding-top:132px!important}
       body main .hero-inner{
         min-height:0!important;
         justify-content:flex-start!important;
       }
-      body main .hero-title{margin:25px 0 9px!important}
+      body main .hero-title{margin:25px 0 2px!important}
       body main .hero-cards{margin-top:0!important;gap:30px!important}
 
       body .whatcard h3.whatcard-long{

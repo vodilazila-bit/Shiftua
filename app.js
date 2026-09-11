@@ -8,6 +8,27 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   const intro=document.getElementById('intro');
   const count=document.getElementById('count');
 
+  // Compact floating header: keep the existing WEBWORK visual language,
+  // only narrow it and keep the two useful section links.
+  const compactHeaderStyle=document.createElement('style');
+  compactHeaderStyle.textContent=`
+    body>header{top:18px!important;left:0!important;right:0!important;padding:0!important;transform:none!important;transition:none!important}
+    body>header .wrap{width:min(780px,calc(100% - 28px))!important;margin:0 auto!important}
+    body>header .nav{padding:8px 9px 8px 15px!important}
+    body>header .links{gap:22px!important}
+    @media(max-width:760px){
+      body>header{top:10px!important;padding:0!important}
+      body>header .wrap{width:calc(100% - 20px)!important}
+      body>header .nav{padding:7px 7px 7px 11px!important}
+    }
+  `;
+  document.head.appendChild(compactHeaderStyle);
+
+  document.querySelectorAll('.nav .links a').forEach(a=>{
+    const href=a.getAttribute('href')||'';
+    if(href!=='#services' && href!=='#prices') a.remove();
+  });
+
   const headerBrandStyle=document.createElement('style');
   headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';
   document.head.appendChild(headerBrandStyle);
@@ -163,13 +184,9 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   }),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 
-  let last=0;
+  // Header stays attached to the viewport while the page moves, like the reference floating nav.
   const header=document.querySelector('header');
-  addEventListener('scroll',()=>{
-    const y=scrollY;
-    if(header)header.style.transform=(y>last&&y>180)?'translateY(-120%)':'translateY(0)';
-    last=y;
-  },{passive:true});
+  if(header) header.style.transform='translateY(0)';
 
   document.querySelectorAll('.case').forEach(card=>{
     card.addEventListener('mousemove',e=>{

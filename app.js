@@ -12,6 +12,27 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
   headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';
   document.head.appendChild(headerBrandStyle);
 
+  const navSlideStyle=document.createElement('style');
+  navSlideStyle.textContent=`
+    .nav .links a{opacity:0;transform:translateX(44px);will-change:transform,opacity}
+    .nav-links-ready .nav .links a{animation:webwork-nav-slide .72s cubic-bezier(.16,1,.3,1) forwards}
+    .nav-links-ready .nav .links a:nth-child(1){animation-delay:.00s}
+    .nav-links-ready .nav .links a:nth-child(2){animation-delay:.07s}
+    .nav-links-ready .nav .links a:nth-child(3){animation-delay:.14s}
+    .nav-links-ready .nav .links a:nth-child(4){animation-delay:.21s}
+    .nav-links-ready .nav .links a:nth-child(5){animation-delay:.28s}
+    @keyframes webwork-nav-slide{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:translateX(0)}}
+    @media(prefers-reduced-motion:reduce){.nav .links a{opacity:1!important;transform:none!important;animation:none!important}}
+  `;
+  document.head.appendChild(navSlideStyle);
+
+  let navSlideStarted=false;
+  function startNavSlide(){
+    if(navSlideStarted)return;
+    navSlideStarted=true;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('nav-links-ready')));
+  }
+
   function setMainCtas(){
     const nav=document.querySelector('.navcta');
     if(nav) nav.textContent='Порахувати вартість ↗';
@@ -126,12 +147,16 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         clearInterval(timer);
         setTimeout(()=>{
           intro.classList.add('open');root.classList.remove('show-intro');
+          setTimeout(startNavSlide,260);
           try{localStorage.setItem('shift_intro_seen_v1','1');localStorage.setItem('webwork_intro_seen_v1','1');localStorage.setItem('webwork_intro_seen_v2','1')}catch(e){}
           setTimeout(()=>intro.remove(),1150);
         },220);
       }
     },55);
-  }else if(intro){intro.remove()}
+  }else{
+    if(intro)intro.remove();
+    setTimeout(startNavSlide,90);
+  }
 
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}

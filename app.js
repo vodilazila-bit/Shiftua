@@ -52,35 +52,51 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 
     @media(max-width:760px){
       body>header{top:4px!important;padding:0!important}
-      body>header .wrap{width:calc(100% - 20px)!important}
+      body>header .wrap{width:calc(100% - 8px)!important}
       body>header .nav{
-        display:grid!important;
-        grid-template-columns:minmax(0,1fr) auto!important;
-        grid-template-areas:"logo cta" "links links"!important;
-        align-items:center!important;
-        row-gap:3px!important;
-        padding:7px 7px 6px 11px!important;
-      }
-      body>header .logo{grid-area:logo!important}
-      body>header .navcta{grid-area:cta!important}
-      body>header .links{
-        grid-area:links!important;
         display:flex!important;
-        width:100%!important;
+        flex-wrap:nowrap!important;
+        align-items:center!important;
+        justify-content:space-between!important;
+        gap:6px!important;
+        padding:6px 6px 6px 8px!important;
+      }
+      body>header .logo{
+        flex:0 0 auto!important;
+        gap:5px!important;
+        font-size:14px!important;
+      }
+      body>header .logo .shiftmark{
+        width:30px!important;
+        height:22px!important;
+      }
+      body>header .links{
+        display:flex!important;
+        flex:0 1 auto!important;
+        width:auto!important;
+        min-width:0!important;
         justify-content:center!important;
         align-items:center!important;
-        gap:20px!important;
-        padding:2px 4px 3px!important;
+        gap:10px!important;
+        padding:0!important;
+        margin-left:auto!important;
       }
       body>header .links a{
         display:block!important;
-        font-size:11px!important;
+        white-space:nowrap!important;
+        font-size:10.5px!important;
         line-height:1.2!important;
         color:#f4f4f4!important;
       }
+      body>header .navcta{
+        flex:0 0 auto!important;
+        white-space:nowrap!important;
+        padding:9px 10px!important;
+        font-size:9.5px!important;
+      }
 
       /* Keep the title and both hero cards on one compact rhythm. */
-      body main .hero{padding-top:116px!important}
+      body main .hero{padding-top:92px!important}
       body main .hero-inner{
         min-height:0!important;
         justify-content:flex-start!important;
@@ -102,7 +118,7 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 
   const headerLinks=document.querySelector('.nav .links');
   if(headerLinks){
-    headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a><a href="#contact">Контакти</a>';
+    headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a>';
   }
 
   const serviceCardTitle=document.querySelector('.whatcard h3');

@@ -1,4 +1,6 @@
 (()=>{
+  if (typeof window.gtag === 'function') window.gtag('config', 'G-ZC9YTRCWV7');
+
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxqmI7d5yqpwn2xtVlUhWwSViv1lK-KsAfLe-sG2lomRvcsjBLaFGu2dvPcfGbO9P4Q/exec';
   const form = document.getElementById('form');
   if (!form || form.dataset.shiftLeadReady === '1') return;

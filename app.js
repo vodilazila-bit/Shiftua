@@ -1,5 +1,5 @@
 (()=>{
-  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" src="assets/zaisun-case-autumn.webp?v=20260912-1945" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
+  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
 
   const style=document.createElement('style');
   style.id='zaisun-force-clean-style';
@@ -20,7 +20,7 @@
     #work.zaisun-force-clean .rc-link:hover{background:#d9ff3f!important;border-color:#d9ff3f!important;color:#111!important}
     #work.zaisun-force-clean .rc-link span{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border:1px solid #111!important;border-radius:11px!important;font-size:15px!important}
     #work.zaisun-force-clean .zaisun-clean-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
-    #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
+    #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:900/441!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
     @media(max-width:760px){
       #work.zaisun-force-clean{padding:68px 0 18px!important}
       #work.zaisun-force-clean .rc-head{margin-bottom:28px!important}
@@ -41,24 +41,38 @@
   document.head.appendChild(style);
 
   let applying=false;
+  let heroPromise=null;
+  function loadZaiHero(){
+    const img=document.querySelector('#work .zai-user-shot');
+    if(!img)return;
+    if(!heroPromise){
+      const files=[1,2,3,4,5,6].map(n=>`assets/zaihero-0${n}.txt?v=20260912-2005`);
+      heroPromise=Promise.all(files.map(url=>fetch(url,{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error(url);return r.text()})))
+        .then(parts=>'data:image/webp;base64,'+parts.join('').replace(/\s+/g,''));
+    }
+    heroPromise.then(src=>{const current=document.querySelector('#work .zai-user-shot');if(current)current.src=src}).catch(()=>{});
+  }
+
   function isClean(z){
     return z && z.classList.contains('zaisun-force-clean') && z.querySelector('.zai-done') && !z.querySelector('.rc-badge,.rc-frame');
   }
   function applyZai(){
     if(applying)return;
     const z=document.querySelector('#work.realcase, #work');
-    if(!z || isClean(z))return;
+    if(!z)return;
+    if(isClean(z)){loadZaiHero();return}
     applying=true;
     z.className='realcase zaisun-force-clean';
     z.innerHTML=ZAI_HTML;
     applying=false;
+    loadZaiHero();
   }
 
   function watchZai(){
     applyZai();
     const z=document.getElementById('work');
     if(!z)return;
-    new MutationObserver(()=>{if(!isClean(z))applyZai()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(!isClean(z))applyZai();else loadZaiHero()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
   function enforceHeaderCta(){
@@ -88,9 +102,9 @@
   setTimeout(enforceHeaderCta,250);setTimeout(enforceHeaderCta,900);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260912-1945';
+  s.src='app-main-20260912.js?v=20260912-2005';
   s.defer=true;
-  s.onload=()=>{applyZai();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
+  s.onload=()=>{applyZai();loadZaiHero();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
   document.head.appendChild(s);
   window.addEventListener('resize',enforceHeaderCta,{passive:true});
 })();

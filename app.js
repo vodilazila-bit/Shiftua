@@ -1,5 +1,5 @@
 (()=>{
-  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="case-lines"><div class="case-line">Каталог, фільтри, кошик, checkout та <strong>800+ товарних сторінок</strong>.</div><div class="case-line"><strong>Нова Пошта + monobank</strong>, адмінка та автоматичний товарний фід.</div><div class="case-line"><strong>Google Ads, GA4, Meta Pixel + CAPI</strong> — від кліку до реальної оплати.</div></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="https://zaisun.com.ua/hero2.jpg" alt="ZaiSun — бренд дитячого одягу"></a></div></div></div>`;
+  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="assets/zaisun-case-autumn.webp?v=20260912-1907" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
 
   const style=document.createElement('style');
   style.id='zaisun-force-clean-style';
@@ -9,20 +9,27 @@
     #work.zaisun-force-clean .rc-grid{display:grid!important;grid-template-columns:.72fr 1.28fr!important;gap:44px!important;align-items:start!important}
     #work.zaisun-force-clean .rc-copy{display:flex!important;flex-direction:column!important;gap:18px!important}
     #work.zaisun-force-clean .rc-copy h3{margin:0!important;color:#fff!important;font:600 clamp(30px,3.4vw,44px)/1.03 Manrope,sans-serif!important;letter-spacing:-.04em!important}
-    #work.zaisun-force-clean .rc-sub{margin:0!important;max-width:31ch!important;color:#d8d8dc!important;font-size:18px!important;line-height:1.55!important}
-    #work.zaisun-force-clean .case-lines{display:grid!important;margin-top:10px!important;border-top:1px solid rgba(255,255,255,.14)!important}
-    #work.zaisun-force-clean .case-line{padding:18px 0!important;border-bottom:1px solid rgba(255,255,255,.14)!important;color:#d8d8dc!important;font-size:15px!important;line-height:1.55!important}
-    #work.zaisun-force-clean .case-line strong{color:#fff!important;font-weight:700!important}
-    #work.zaisun-force-clean .rc-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;width:max-content!important;min-width:190px!important;margin-top:2px!important;padding:14px 18px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:999px!important;background:#fff!important;color:#111!important;font-weight:800!important;text-decoration:none!important}
+    #work.zaisun-force-clean .rc-sub{margin:0!important;max-width:34ch!important;color:#d8d8dc!important;font-size:18px!important;line-height:1.55!important}
+    #work.zaisun-force-clean .rc-block{margin-top:8px!important;padding:22px 24px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:20px!important;background:#111113!important}
+    #work.zaisun-force-clean .rc-label{margin-bottom:15px!important;color:#d9ff3f!important;font:700 11px/1 "DM Sans",sans-serif!important;letter-spacing:.17em!important;text-transform:uppercase!important}
+    #work.zaisun-force-clean .rc-block ul{margin:0!important;padding:0!important;list-style:none!important;display:grid!important;gap:11px!important}
+    #work.zaisun-force-clean .rc-block li{position:relative!important;padding-left:25px!important;color:#e0e0e3!important;font-size:14.5px!important;line-height:1.55!important}
+    #work.zaisun-force-clean .rc-block li:before{content:""!important;position:absolute!important;left:0!important;top:.72em!important;width:10px!important;height:2px!important;background:#d9ff3f!important}
+    #work.zaisun-force-clean .rc-block li b{color:#fff!important;font-weight:700!important}
+    #work.zaisun-force-clean .rc-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;width:max-content!important;min-width:210px!important;margin-top:6px!important;padding:14px 18px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:999px!important;background:#fff!important;color:#111!important;font-weight:800!important;text-decoration:none!important}
     #work.zaisun-force-clean .rc-link:hover{background:#d9ff3f!important;border-color:#d9ff3f!important;color:#111!important}
+    #work.zaisun-force-clean .rc-link span{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border:1px solid #111!important;border-radius:11px!important;font-size:15px!important}
     #work.zaisun-force-clean .zaisun-clean-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
     #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
     @media(max-width:760px){
       #work.zaisun-force-clean{padding:68px 0 18px!important}
+      #work.zaisun-force-clean .rc-head{margin-bottom:28px!important}
       #work.zaisun-force-clean .rc-grid{grid-template-columns:1fr!important;gap:24px!important}
-      #work.zaisun-force-clean .rc-sub{font-size:16px!important}
-      #work.zaisun-force-clean .case-line{padding:15px 0!important;font-size:14px!important}
-      #work.zaisun-force-clean .rc-link{width:100%!important;justify-content:center!important}
+      #work.zaisun-force-clean .rc-copy{gap:18px!important}
+      #work.zaisun-force-clean .rc-sub{font-size:16px!important;max-width:none!important}
+      #work.zaisun-force-clean .rc-block{padding:19px 18px!important;border-radius:18px!important}
+      #work.zaisun-force-clean .rc-block li{font-size:14px!important;padding-left:23px!important}
+      #work.zaisun-force-clean .rc-link{width:max-content!important;min-width:0!important;justify-content:space-between!important;padding:13px 16px!important}
       #work.zaisun-force-clean .zaisun-clean-preview{padding:6px!important;border-radius:18px!important}
       #work.zaisun-force-clean .zaisun-clean-preview img{border-radius:13px!important}
     }
@@ -31,7 +38,7 @@
 
   let applying=false;
   function isClean(z){
-    return z && z.classList.contains('zaisun-force-clean') && z.querySelector('.case-lines') && !z.querySelector('.rc-badge,.rc-block,.rc-frame');
+    return z && z.classList.contains('zaisun-force-clean') && z.querySelector('.zai-done') && !z.querySelector('.rc-badge,.rc-frame');
   }
   function applyZai(){
     if(applying)return;
@@ -43,59 +50,43 @@
     applying=false;
   }
 
-  function watch(){
+  function watchZai(){
     applyZai();
     const z=document.getElementById('work');
     if(!z)return;
-    new MutationObserver(()=>{ if(!isClean(z)) applyZai(); }).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(!isClean(z))applyZai()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
-  function restoreMobileCostCta(){
+  function enforceHeaderCta(){
     let fix=document.getElementById('mobile-cost-cta-fix');
     if(!fix){
       fix=document.createElement('style');
       fix.id='mobile-cost-cta-fix';
-      fix.textContent=`@media(max-width:760px){
-        body>header .nav{overflow:hidden!important}
-        body>header .navcta{
-          display:inline-flex!important;
-          align-items:center!important;
-          justify-content:center!important;
-          flex:0 0 auto!important;
-          width:auto!important;
-          min-width:0!important;
-          max-width:none!important;
-          height:36px!important;
-          min-height:36px!important;
-          margin:0!important;
-          padding:0 12px!important;
-          border:1px solid rgba(255,255,255,.22)!important;
-          border-radius:999px!important;
-          background:#fff!important;
-          color:#111!important;
-          box-shadow:0 4px 16px rgba(0,0,0,.18)!important;
-          font-size:10px!important;
-          font-weight:700!important;
-          line-height:1!important;
-          letter-spacing:-.01em!important;
-          white-space:nowrap!important;
-        }
-      }`;
+      fix.textContent=`@media(max-width:760px){body>header .nav{overflow:hidden!important}body>header .navcta{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;height:36px!important;min-height:36px!important;margin:0!important;padding:0 12px!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:999px!important;background:#fff!important;color:#111!important;box-shadow:0 4px 16px rgba(0,0,0,.18)!important;font-size:10px!important;font-weight:700!important;line-height:1!important;letter-spacing:-.01em!important;white-space:nowrap!important}}`;
       document.head.appendChild(fix);
     }
     const cta=document.querySelector('body>header .navcta');
-    if(cta)cta.textContent=window.innerWidth<=760?'Порахувати ↗':'Порахувати вартість ↗';
+    if(!cta)return;
+    const wanted=window.innerWidth<=760?'Порахувати':'Порахувати вартість';
+    if(cta.textContent!==wanted)cta.textContent=wanted;
   }
 
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch,{once:true});else watch();
-  setTimeout(applyZai,250);
-  setTimeout(applyZai,900);
-  setTimeout(applyZai,2200);
+  function watchHeaderCta(){
+    enforceHeaderCta();
+    const cta=document.querySelector('body>header .navcta');
+    if(!cta)return;
+    new MutationObserver(enforceHeaderCta).observe(cta,{childList:true,subtree:true,characterData:true});
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{watchZai();watchHeaderCta()},{once:true});
+  else{watchZai();watchHeaderCta()}
+  setTimeout(applyZai,250);setTimeout(applyZai,900);setTimeout(applyZai,2200);
+  setTimeout(enforceHeaderCta,250);setTimeout(enforceHeaderCta,900);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260912-1845';
+  s.src='app-main-20260912.js?v=20260912-1907';
   s.defer=true;
-  s.onload=()=>{applyZai();restoreMobileCostCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(restoreMobileCostCta,50);setTimeout(restoreMobileCostCta,600)};
+  s.onload=()=>{applyZai();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
   document.head.appendChild(s);
-  window.addEventListener('resize',restoreMobileCostCta,{passive:true});
+  window.addEventListener('resize',enforceHeaderCta,{passive:true});
 })();

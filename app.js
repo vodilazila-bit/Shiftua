@@ -20,7 +20,7 @@
     #work.zaisun-force-clean .rc-link:hover{background:#d9ff3f!important;border-color:#d9ff3f!important;color:#111!important}
     #work.zaisun-force-clean .rc-link span{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border:1px solid #111!important;border-radius:11px!important;font-size:15px!important}
     #work.zaisun-force-clean .zaisun-clean-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
-    #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:720/327!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
+    #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:480/218!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
     @media(max-width:760px){
       #work.zaisun-force-clean{padding:68px 0 18px!important}
       #work.zaisun-force-clean .rc-head{margin-bottom:28px!important}
@@ -49,8 +49,8 @@
     if(!heroReady){
       heroReady=new Promise(resolve=>{
         const h=document.createElement('script');
-        h.src='assets/zaisun-hero-inline.js?v=20260912-2015';
-        h.defer=true;
+        h.src='assets/zaisun-hero-inline-v2.js?v=20260912-2032';
+        h.async=true;
         h.onload=()=>resolve(window.__ZAI_HERO||null);
         h.onerror=()=>resolve(null);
         document.head.appendChild(h);
@@ -108,7 +108,7 @@
   setTimeout(enforceHeaderCta,250);setTimeout(enforceHeaderCta,900);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260912-2015';
+  s.src='app-main-20260912.js?v=20260912-2032';
   s.defer=true;
   s.onload=()=>{applyZai();loadZaiHero();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
   document.head.appendChild(s);

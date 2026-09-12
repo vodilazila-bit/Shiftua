@@ -1,1 +1,63 @@
-(()=>{const s=document.createElement('script');s.src='app-main-20260912.js?v=20260912-1830';s.defer=true;s.onload=()=>{const f=document.createElement('script');f.src='zaisun-final-v2.js?v=20260912-1830';f.defer=true;document.head.appendChild(f)};document.head.appendChild(s)})();
+(()=>{
+  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="case-lines"><div class="case-line">Каталог, фільтри, кошик, checkout та <strong>800+ товарних сторінок</strong>.</div><div class="case-line"><strong>Нова Пошта + monobank</strong>, адмінка та автоматичний товарний фід.</div><div class="case-line"><strong>Google Ads, GA4, Meta Pixel + CAPI</strong> — від кліку до реальної оплати.</div></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="https://zaisun.com.ua/hero2.jpg" alt="ZaiSun — бренд дитячого одягу"></a></div></div></div>`;
+
+  const style=document.createElement('style');
+  style.id='zaisun-force-clean-style';
+  style.textContent=`
+    #work.zaisun-force-clean{padding:96px 0 34px!important;border-top:1px solid rgba(255,255,255,.14)!important}
+    #work.zaisun-force-clean .rc-head{display:grid!important;grid-template-columns:1fr!important;margin:0 0 34px!important}
+    #work.zaisun-force-clean .rc-grid{display:grid!important;grid-template-columns:.72fr 1.28fr!important;gap:44px!important;align-items:start!important}
+    #work.zaisun-force-clean .rc-copy{display:flex!important;flex-direction:column!important;gap:18px!important}
+    #work.zaisun-force-clean .rc-copy h3{margin:0!important;color:#fff!important;font:600 clamp(30px,3.4vw,44px)/1.03 Manrope,sans-serif!important;letter-spacing:-.04em!important}
+    #work.zaisun-force-clean .rc-sub{margin:0!important;max-width:31ch!important;color:#d8d8dc!important;font-size:18px!important;line-height:1.55!important}
+    #work.zaisun-force-clean .case-lines{display:grid!important;margin-top:10px!important;border-top:1px solid rgba(255,255,255,.14)!important}
+    #work.zaisun-force-clean .case-line{padding:18px 0!important;border-bottom:1px solid rgba(255,255,255,.14)!important;color:#d8d8dc!important;font-size:15px!important;line-height:1.55!important}
+    #work.zaisun-force-clean .case-line strong{color:#fff!important;font-weight:700!important}
+    #work.zaisun-force-clean .rc-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;width:max-content!important;min-width:190px!important;margin-top:2px!important;padding:14px 18px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:999px!important;background:#fff!important;color:#111!important;font-weight:800!important;text-decoration:none!important}
+    #work.zaisun-force-clean .rc-link:hover{background:#d9ff3f!important;border-color:#d9ff3f!important;color:#111!important}
+    #work.zaisun-force-clean .zaisun-clean-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
+    #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
+    @media(max-width:760px){
+      #work.zaisun-force-clean{padding:68px 0 18px!important}
+      #work.zaisun-force-clean .rc-grid{grid-template-columns:1fr!important;gap:24px!important}
+      #work.zaisun-force-clean .rc-sub{font-size:16px!important}
+      #work.zaisun-force-clean .case-line{padding:15px 0!important;font-size:14px!important}
+      #work.zaisun-force-clean .rc-link{width:100%!important;justify-content:center!important}
+      #work.zaisun-force-clean .zaisun-clean-preview{padding:6px!important;border-radius:18px!important}
+      #work.zaisun-force-clean .zaisun-clean-preview img{border-radius:13px!important}
+    }
+  `;
+  document.head.appendChild(style);
+
+  let applying=false;
+  function isClean(z){
+    return z && z.classList.contains('zaisun-force-clean') && z.querySelector('.case-lines') && !z.querySelector('.rc-badge,.rc-block,.rc-frame');
+  }
+  function applyZai(){
+    if(applying)return;
+    const z=document.querySelector('#work.realcase, #work');
+    if(!z || isClean(z))return;
+    applying=true;
+    z.className='realcase zaisun-force-clean';
+    z.innerHTML=ZAI_HTML;
+    applying=false;
+  }
+
+  function watch(){
+    applyZai();
+    const z=document.getElementById('work');
+    if(!z)return;
+    new MutationObserver(()=>{ if(!isClean(z)) applyZai(); }).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch,{once:true});else watch();
+  setTimeout(applyZai,250);
+  setTimeout(applyZai,900);
+  setTimeout(applyZai,2200);
+
+  const s=document.createElement('script');
+  s.src='app-main-20260912.js?v=20260912-1845';
+  s.defer=true;
+  s.onload=()=>{applyZai();setTimeout(applyZai,400);setTimeout(applyZai,1500)};
+  document.head.appendChild(s);
+})();

@@ -32,6 +32,9 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     body>header .nav{padding:8px 9px 8px 15px!important}
     body>header .links{gap:22px!important;color:#f4f4f4!important}
     body>header .links a{color:#f4f4f4!important}
+    @media(min-width:761px){
+      body>header .links{transform:translateX(55px)!important}
+    }
 
     /* The long message in the black services card needs calmer proportions. */
     body .whatcard h3.whatcard-long{

@@ -1,5 +1,5 @@
 (()=>{
-  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
+  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" src="assets/zaisun-case-autumn.webp?v=20260912-1945" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
 
   const style=document.createElement('style');
   style.id='zaisun-force-clean-style';
@@ -41,42 +41,24 @@
   document.head.appendChild(style);
 
   let applying=false;
-  let shotData=null;
-  let shotPromise=null;
-
-  function loadZaiShot(){
-    const img=document.querySelector('#work .zai-user-shot');
-    if(!img)return;
-    if(shotData){img.src=shotData;return}
-    if(!shotPromise){
-      shotPromise=fetch('assets/zaisun-user-screen.webp.b64?v=20260912-1935',{cache:'force-cache'})
-        .then(r=>{if(!r.ok)throw new Error('shot');return r.text()})
-        .then(t=>{shotData='data:image/webp;base64,'+t.trim();return shotData})
-        .catch(()=>null);
-    }
-    shotPromise.then(src=>{const current=document.querySelector('#work .zai-user-shot');if(src&&current)current.src=src});
-  }
-
   function isClean(z){
     return z && z.classList.contains('zaisun-force-clean') && z.querySelector('.zai-done') && !z.querySelector('.rc-badge,.rc-frame');
   }
   function applyZai(){
     if(applying)return;
     const z=document.querySelector('#work.realcase, #work');
-    if(!z)return;
-    if(isClean(z)){loadZaiShot();return}
+    if(!z || isClean(z))return;
     applying=true;
     z.className='realcase zaisun-force-clean';
     z.innerHTML=ZAI_HTML;
     applying=false;
-    loadZaiShot();
   }
 
   function watchZai(){
     applyZai();
     const z=document.getElementById('work');
     if(!z)return;
-    new MutationObserver(()=>{if(!isClean(z))applyZai();else loadZaiShot()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(!isClean(z))applyZai()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
   function enforceHeaderCta(){
@@ -106,9 +88,9 @@
   setTimeout(enforceHeaderCta,250);setTimeout(enforceHeaderCta,900);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260912-1935';
+  s.src='app-main-20260912.js?v=20260912-1945';
   s.defer=true;
-  s.onload=()=>{applyZai();loadZaiShot();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
+  s.onload=()=>{applyZai();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
   document.head.appendChild(s);
   window.addEventListener('resize',enforceHeaderCta,{passive:true});
 })();

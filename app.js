@@ -50,6 +50,43 @@
     new MutationObserver(()=>{ if(!isClean(z)) applyZai(); }).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
+  function restoreMobileCostCta(){
+    let fix=document.getElementById('mobile-cost-cta-fix');
+    if(!fix){
+      fix=document.createElement('style');
+      fix.id='mobile-cost-cta-fix';
+      fix.textContent=`@media(max-width:760px){
+        body>header .nav{overflow:hidden!important}
+        body>header .navcta{
+          display:inline-flex!important;
+          align-items:center!important;
+          justify-content:center!important;
+          flex:0 0 auto!important;
+          width:auto!important;
+          min-width:0!important;
+          max-width:none!important;
+          height:36px!important;
+          min-height:36px!important;
+          margin:0!important;
+          padding:0 12px!important;
+          border:1px solid rgba(255,255,255,.22)!important;
+          border-radius:999px!important;
+          background:#fff!important;
+          color:#111!important;
+          box-shadow:0 4px 16px rgba(0,0,0,.18)!important;
+          font-size:10px!important;
+          font-weight:700!important;
+          line-height:1!important;
+          letter-spacing:-.01em!important;
+          white-space:nowrap!important;
+        }
+      }`;
+      document.head.appendChild(fix);
+    }
+    const cta=document.querySelector('body>header .navcta');
+    if(cta)cta.textContent=window.innerWidth<=760?'Порахувати ↗':'Порахувати вартість ↗';
+  }
+
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch,{once:true});else watch();
   setTimeout(applyZai,250);
   setTimeout(applyZai,900);
@@ -58,6 +95,7 @@
   const s=document.createElement('script');
   s.src='app-main-20260912.js?v=20260912-1845';
   s.defer=true;
-  s.onload=()=>{applyZai();setTimeout(applyZai,400);setTimeout(applyZai,1500)};
+  s.onload=()=>{applyZai();restoreMobileCostCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(restoreMobileCostCta,50);setTimeout(restoreMobileCostCta,600)};
   document.head.appendChild(s);
+  window.addEventListener('resize',restoreMobileCostCta,{passive:true});
 })();

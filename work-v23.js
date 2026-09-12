@@ -1,11 +1,25 @@
 (()=>{
-  // v27: mobile-first polish, clean concept previews, session loader and full-site mesh.
+  // v28: mobile-first polish, clean concept previews, session loader, clean ZaiSun case and full-site mesh.
   const ui=document.createElement('style');
   ui.textContent=`
     #siteMesh{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1;filter:brightness(1.18) contrast(1.08)}
     body>header,body>main,body>footer{position:relative;z-index:1}
     .hero .grid{display:none!important}.hero:before{background:radial-gradient(circle at 77% 24%,rgba(85,112,255,.18),transparent 29%),radial-gradient(circle at 20% 68%,rgba(255,81,58,.10),transparent 27%),rgba(10,10,11,.58)!important}
     .deliverables{background:rgba(10,10,11,.88)!important}.growth{background:rgba(18,18,21,.82)!important}.faq{background:rgba(17,17,20,.88)!important}.prices{background:rgba(10,10,11,.35)}.what{background:rgba(241,239,232,.96)!important}.ticker{background:rgba(10,10,11,.58)}
+
+    /* clean ZaiSun portfolio case */
+    #work.zaisun-clean{padding-top:96px!important}
+    #work.zaisun-clean .rc-head{grid-template-columns:1fr!important;margin-bottom:34px!important}
+    #work.zaisun-clean .rc-grid{grid-template-columns:.72fr 1.28fr!important;gap:44px!important;align-items:start!important}
+    #work.zaisun-clean .rc-copy{display:flex!important;flex-direction:column!important;gap:18px!important}
+    #work.zaisun-clean .rc-sub{font-size:18px!important;color:#d8d8dc!important;max-width:31ch!important;margin:0!important;line-height:1.55!important}
+    #work.zaisun-clean .case-lines{display:grid;gap:0;margin-top:10px;border-top:1px solid rgba(255,255,255,.14)}
+    #work.zaisun-clean .case-line{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);color:#d8d8dc;font-size:15px;line-height:1.55}
+    #work.zaisun-clean .case-line strong{color:#fff;font-weight:700}
+    #work.zaisun-clean .rc-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;width:max-content!important;min-width:190px!important;margin-top:2px!important;padding:14px 18px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:999px!important;background:#fff!important;color:#111!important;font-weight:800!important;text-decoration:none!important}
+    #work.zaisun-clean .rc-link:hover{background:#d9ff3f!important;color:#111!important;border-color:#d9ff3f!important}
+    #work.zaisun-clean .zaisun-clean-preview{display:block;position:relative;border:1px solid rgba(255,255,255,.14);border-radius:24px;overflow:hidden;background:#111;color:#fff;text-decoration:none;padding:10px}
+    #work.zaisun-clean .zaisun-clean-preview img{display:block;width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;background:#111;border-radius:16px}
 
     /* compact, clean portfolio cards */
     .concept-case{isolation:isolate;background:#111!important}
@@ -19,7 +33,7 @@
     .concept-case .case-bottom{left:22px!important;right:22px!important;bottom:22px!important;gap:18px!important;align-items:flex-end!important}
     .concept-case h3{font-size:clamp(38px,4.6vw,66px)!important;line-height:.86!important;max-width:7ch!important;text-shadow:0 2px 20px rgba(0,0,0,.28)}
     .concept-case p{max-width:250px!important;font-size:12px!important;line-height:1.42!important;color:rgba(255,255,255,.8)!important}
-    .concept-case .case-open{top:18px!important;right:18px!important;bottom:auto!important;padding:9px 13px!important;border-radius:999px!important;background:#d9ff3f!important;color:#0a0a0b!important;font-size:10px!important;font-weight:800!important;letter-spacing:.04em!important;text-transform:uppercase!important;box-shadow:0 8px 28px rgba(0,0,0,.18)!important}
+    .concept-case .case-open{top:18px!important;right:18px!important;bottom:auto!important;padding:9px 13px!important;border-radius:999px!important;background:#d9ff3f!important;color:#0a0b!important;font-size:10px!important;font-weight:800!important;letter-spacing:.04em!important;text-transform:uppercase!important;box-shadow:0 8px 28px rgba(0,0,0,.18)!important}
     .concept-case:hover .case-open{color:#0a0a0b!important;transform:translateY(-2px)!important}
 
     /* session loader for returning visitors */
@@ -41,6 +55,12 @@
       .growthgrid{grid-template-columns:1fr!important}.growthitem{min-height:126px!important}.pricegrid{grid-template-columns:1fr!important;gap:12px!important}.pricecard{padding:18px!important;border-radius:22px!important}.pricecard.featured{transform:none!important}.price{font-size:7.5vw!important}.price-preview{height:145px!important;transform:none!important;opacity:1!important}
       .processrow{grid-template-columns:32px 1fr!important;gap:9px!important;padding:18px 0!important}.processrow h3{font-size:8.1vw!important}.processrow p{grid-column:2!important;font-size:13px!important}.faq summary{grid-template-columns:28px 1fr 20px!important;gap:9px!important;padding:18px 0!important}.faq summary h3{font-size:6.2vw!important}.faq-answer{padding:0 0 20px 37px!important;font-size:13px!important}
       .realcase{padding:66px 0 8px!important}.rc-head{grid-template-columns:1fr!important;gap:14px!important;margin-bottom:30px!important}.rc-grid{grid-template-columns:1fr!important;gap:24px!important}.rc-copy h3{font-size:34px!important}.rc-sub{font-size:13px!important;line-height:1.55!important;margin-bottom:22px!important}.rc-block{padding:17px 0!important}.rc-block li{font-size:13px!important}.rc-frame{position:static!important;border-radius:18px!important}.rc-live{aspect-ratio:4/5!important}.rc-note{font-size:10.5px!important}
+      #work.zaisun-clean .rc-grid{grid-template-columns:1fr!important;gap:24px!important}
+      #work.zaisun-clean .rc-sub{font-size:16px!important}
+      #work.zaisun-clean .case-line{font-size:14px;padding:15px 0}
+      #work.zaisun-clean .rc-link{width:100%!important;justify-content:center!important}
+      #work.zaisun-clean .zaisun-clean-preview{padding:6px!important;border-radius:18px!important}
+      #work.zaisun-clean .zaisun-clean-preview img{border-radius:13px!important}
       .ctabox{min-height:auto!important;padding:22px 17px!important;border-radius:22px!important}.ctabox h2{font-size:14.5vw!important;margin:26px 0 32px!important}.ctabottom{grid-template-columns:1fr!important;gap:20px!important}.ctabottom p{font-size:15px!important}.contact-links{grid-template-columns:1fr!important}.form{grid-template-columns:1fr!important}.form textarea,.form button,.form-status{grid-column:auto!important}.foot{flex-direction:column!important;gap:7px!important}
       .shiftBootMeta{grid-template-columns:1fr 28px;gap:10px}.shiftBootMeta>span:first-child{display:none}.shiftBootBar{grid-column:1}.shiftBootMeta>span:last-child{grid-column:2;grid-row:1}
     }
@@ -64,6 +84,13 @@
       if(price)price.childNodes[0].nodeValue='від 35 000 грн';
     }
   });
+
+  // Force the clean ZaiSun case after all legacy markup has loaded.
+  const zaisunCase=document.querySelector('#work.realcase');
+  if(zaisunCase){
+    zaisunCase.classList.add('zaisun-clean');
+    zaisunCase.innerHTML=`<div class="wrap"><div class="rc-head reveal"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="case-lines"><div class="case-line">Каталог, фільтри, кошик, checkout та <strong>800+ товарних сторінок</strong>.</div><div class="case-line"><strong>Нова Пошта + monobank</strong>, адмінка та автоматичний товарний фід.</div><div class="case-line"><strong>Google Ads, GA4, Meta Pixel + CAPI</strong> — від кліку до реальної оплати.</div></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="https://zaisun.com.ua/hero2.jpg" alt="ZaiSun — дитячий бренд" loading="lazy"></a></div></div></div>`;
+  }
 
   // Reduce copy in the concept section and use clean visual previews instead of browser screenshots.
   const conceptSection=document.querySelector('#concepts');
@@ -141,4 +168,3 @@
   addEventListener('resize',()=>{cancelAnimationFrame(raf);resize();draw(performance.now())},{passive:true});
   draw(performance.now());
 })();
-

@@ -21,6 +21,7 @@
     #work.zaisun-force-clean .rc-link span{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border:1px solid #111!important;border-radius:11px!important;font-size:15px!important}
     #work.zaisun-force-clean .zaisun-clean-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
     #work.zaisun-force-clean .zaisun-clean-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:480/218!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
+    @media(min-width:761px){body>header .navcta{margin-left:18px!important}}
     @media(max-width:760px){
       #work.zaisun-force-clean{padding:68px 0 18px!important}
       #work.zaisun-force-clean .rc-head{margin-bottom:28px!important}
@@ -81,7 +82,7 @@
     new MutationObserver(()=>{if(!isClean(z))applyZai();else loadZaiHero()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
-  function enforceHeaderCta(){
+  function enforceCostCtas(){
     let fix=document.getElementById('mobile-cost-cta-fix');
     if(!fix){
       fix=document.createElement('style');
@@ -89,28 +90,27 @@
       fix.textContent=`@media(max-width:760px){body>header .nav{overflow:hidden!important}body>header .navcta{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;height:36px!important;min-height:36px!important;margin:0!important;padding:0 12px!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:999px!important;background:#fff!important;color:#111!important;box-shadow:0 4px 16px rgba(0,0,0,.18)!important;font-size:10px!important;font-weight:700!important;line-height:1!important;letter-spacing:-.01em!important;white-space:nowrap!important}}`;
       document.head.appendChild(fix);
     }
-    const cta=document.querySelector('body>header .navcta');
-    if(!cta)return;
-    const wanted=window.innerWidth<=760?'Порахувати':'Порахувати вартість';
-    if(cta.textContent!==wanted)cta.textContent=wanted;
+    const nav=document.querySelector('body>header .navcta');
+    if(nav){const wanted=window.innerWidth<=760?'Порахувати':'Порахувати вартість';if(nav.textContent!==wanted)nav.textContent=wanted}
+    document.querySelectorAll('#prices .pricecta').forEach(a=>{if(a.textContent.trim()!=='Порахувати вартість')a.textContent='Порахувати вартість'});
+    const submit=document.querySelector('#contact form button[type="submit"]');
+    if(submit&&submit.textContent.trim()!=='Порахувати вартість')submit.textContent='Порахувати вартість';
   }
 
-  function watchHeaderCta(){
-    enforceHeaderCta();
-    const cta=document.querySelector('body>header .navcta');
-    if(!cta)return;
-    new MutationObserver(enforceHeaderCta).observe(cta,{childList:true,subtree:true,characterData:true});
+  function watchCostCtas(){
+    enforceCostCtas();
+    new MutationObserver(enforceCostCtas).observe(document.body,{childList:true,subtree:true,characterData:true});
   }
 
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{watchZai();watchHeaderCta()},{once:true});
-  else{watchZai();watchHeaderCta()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{watchZai();watchCostCtas()},{once:true});
+  else{watchZai();watchCostCtas()}
   setTimeout(applyZai,250);setTimeout(applyZai,900);setTimeout(applyZai,2200);
-  setTimeout(enforceHeaderCta,250);setTimeout(enforceHeaderCta,900);
+  setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);
 
   const s=document.createElement('script');
   s.src='app-main-20260912.js?v=20260912-2032';
   s.defer=true;
-  s.onload=()=>{applyZai();loadZaiHero();enforceHeaderCta();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceHeaderCta,50);setTimeout(enforceHeaderCta,600)};
+  s.onload=()=>{applyZai();loadZaiHero();enforceCostCtas();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceCostCtas,50);setTimeout(enforceCostCtas,600);setTimeout(enforceCostCtas,1800)};
   document.head.appendChild(s);
-  window.addEventListener('resize',enforceHeaderCta,{passive:true});
+  window.addEventListener('resize',enforceCostCtas,{passive:true});
 })();

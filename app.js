@@ -52,16 +52,11 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 
     /* SHIFT case */
     .shiftcase{padding-top:96px!important}
-    .shiftcase-preview{display:block;position:relative;border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;background:#111;color:#fff;text-decoration:none;min-height:420px}
-    .shiftcase-browser{display:flex;align-items:center;gap:7px;padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.14);background:#141416}
-    .shiftcase-browser i{width:9px;height:9px;border-radius:50%;background:#2e2e33;display:block}
-    .shiftcase-browser span{margin-left:9px;font-size:11.5px;color:#85858c;font-family:ui-monospace,monospace}
-    .shiftcase-screen{min-height:370px;display:flex;flex-direction:column;justify-content:space-between;padding:34px;background:radial-gradient(circle at 78% 22%,rgba(85,112,255,.34),transparent 30%),radial-gradient(circle at 20% 78%,rgba(217,255,63,.13),transparent 27%),#0d0d0f}
-    .shiftcase-kicker{font:700 10px/1 "DM Sans",sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#8a8a91}
-    .shiftcase-title{font:700 clamp(48px,6vw,86px)/.82 "Manrope",sans-serif;letter-spacing:-.075em;margin:0;text-transform:uppercase}
-    .shiftcase-title em{font-style:normal;color:#d9ff3f}
-    .shiftcase-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;color:#a8a8ae;font-size:13px;line-height:1.45}
-    .shiftcase-open{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:999px;background:#fff;color:#111;font-weight:800;font-size:11px;white-space:nowrap}
+    .shiftcase .rc-head{grid-template-columns:1fr!important;margin-bottom:34px!important}
+    .shiftcase .rc-grid{grid-template-columns:.72fr 1.28fr!important;gap:44px!important;align-items:start!important}
+    .shiftcase .rc-sub{font-size:18px!important;color:#d8d8dc!important;max-width:28ch!important;margin-bottom:0!important}
+    .shiftcase-preview{display:block;position:relative;border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;background:#111;color:#fff;text-decoration:none}
+    .shiftcase-preview img{display:block;width:100%;height:auto;aspect-ratio:1886/896;object-fit:cover;background:#111}
 
     @media(max-width:760px){
       body>header{top:4px!important;padding:0!important}
@@ -127,11 +122,8 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
         font-size:.84em!important;
       }
       .shiftcase{padding-top:68px!important}
-      .shiftcase-preview{min-height:330px}
-      .shiftcase-screen{min-height:282px;padding:22px}
-      .shiftcase-title{font-size:15vw}
-      .shiftcase-bottom{font-size:11px}
-      .shiftcase-open{padding:9px 12px;font-size:10px}
+      .shiftcase .rc-grid{grid-template-columns:1fr!important;gap:24px!important}
+      .shiftcase .rc-sub{font-size:16px!important}
     }
   `;
   document.head.appendChild(compactHeaderStyle);
@@ -317,36 +309,17 @@ window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
     shiftCase.innerHTML=`
       <div class="wrap">
         <div class="rc-head reveal">
-          <div><div class="kicker">03.1 / Наш проєкт</div><span class="rc-badge">Живий сайт</span></div>
-          <p class="section-copy">Ще один живий проєкт у портфоліо WEBWORK — з акцентом на сучасну подачу, анімації та адаптив.</p>
+          <div><div class="kicker">03.1 / Наш проєкт</div></div>
         </div>
         <div class="rc-grid reveal">
           <div class="rc-copy">
             <h3>SHIFT</h3>
-            <p class="rc-sub">Кастомний сайт із сучасною візуальною системою, плавними переходами та адаптацією під телефон.</p>
-            <div class="rc-block"><div class="rc-label">Що зроблено</div><ul>
-              <li>Структура сторінки та логіка переходів</li>
-              <li>Індивідуальна подача без готового шаблону</li>
-              <li>Анімації та мікровзаємодії</li>
-              <li>Повна мобільна адаптація</li>
-            </ul></div>
-            <div class="rc-block"><div class="rc-label">Розробка</div><ul>
-              <li><b>Чистий код</b> без конструктора</li>
-              <li>Оптимізована структура та швидке завантаження</li>
-              <li>Готовність до подальшого розвитку</li>
-            </ul></div>
-            <a class="rc-link" href="https://shiftua.com/" target="_blank" rel="noopener">shiftua.com ↗</a>
+            <p class="rc-sub">Односторінковий сайт-візитка.</p>
           </div>
           <div>
             <a class="shiftcase-preview" href="https://shiftua.com/" target="_blank" rel="noopener" aria-label="Відкрити SHIFT">
-              <div class="shiftcase-browser"><i></i><i></i><i></i><span>shiftua.com</span></div>
-              <div class="shiftcase-screen">
-                <div class="shiftcase-kicker">WEBWORK / LIVE PROJECT</div>
-                <h3 class="shiftcase-title">SHIFT<br><em>UA</em></h3>
-                <div class="shiftcase-bottom"><span>Кастомний сайт<br>Анімації / адаптив / чистий код</span><span class="shiftcase-open">Відкрити сайт ↗</span></div>
-              </div>
+              <img src="https://image.thum.io/get/width/1886/crop/896/noanimate/https://shiftua.com/" alt="SHIFT — односторінковий сайт-візитка" loading="lazy">
             </a>
-            <p class="rc-note">Натисніть на прев’ю, щоб відкрити живий сайт.</p>
           </div>
         </div>
       </div>`;

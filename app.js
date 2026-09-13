@@ -41,6 +41,56 @@
   `;
   document.head.appendChild(style);
 
+  const approachStyle=document.createElement('style');
+  approachStyle.id='approach-disclosure-style';
+  approachStyle.textContent=`
+    #approach.approach-disclosure{display:block!important;margin:34px 0 0!important;padding:0!important;background:transparent!important;border:0!important}
+    #approach.approach-disclosure .approach-toggle{position:relative!important;isolation:isolate!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:20px 22px 20px 24px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:22px!important;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 48%,rgba(217,255,63,.045))!important;color:#fff!important;text-align:left!important;cursor:pointer!important;overflow:hidden!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 16px 44px rgba(0,0,0,.20)!important;transition:border-color .28s ease,transform .28s ease,background .28s ease,box-shadow .28s ease!important}
+    #approach.approach-disclosure .approach-toggle:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 0 62%,rgba(217,255,63,.07) 78%,transparent 100%);transform:translateX(-24%);transition:transform .55s cubic-bezier(.16,1,.3,1)}
+    #approach.approach-disclosure .approach-toggle:hover{border-color:rgba(217,255,63,.38)!important;transform:translateY(-2px)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 54px rgba(0,0,0,.28),0 0 24px rgba(217,255,63,.04)!important}
+    #approach.approach-disclosure .approach-toggle:hover:before{transform:translateX(18%)}
+    #approach .approach-toggle-copy{display:flex;min-width:0;flex-direction:column;gap:7px}
+    #approach .approach-toggle-kicker{font:700 10px/1 "DM Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#d9ff3f}
+    #approach .approach-toggle-title{font:600 clamp(20px,2.1vw,30px)/1.05 Manrope,sans-serif;letter-spacing:-.035em;color:#f7f7f7}
+    #approach .approach-toggle-icon{position:relative;display:block;flex:0 0 52px;width:52px;height:52px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:#0c0c0e;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:transform .4s cubic-bezier(.16,1,.3,1),background .28s ease,border-color .28s ease}
+    #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:1.5px;border-radius:99px;background:#d9ff3f;transform:translate(-50%,-50%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
+    #approach .approach-toggle-icon:after{transform:translate(-50%,-50%) rotate(90deg)}
+    #approach.is-open .approach-toggle{border-color:rgba(217,255,63,.30)!important;background:linear-gradient(135deg,rgba(217,255,63,.08),rgba(255,255,255,.025) 50%,rgba(255,255,255,.045))!important}
+    #approach.is-open .approach-toggle-icon{transform:rotate(90deg);background:#d9ff3f;border-color:#d9ff3f}
+    #approach.is-open .approach-toggle-icon:before,#approach.is-open .approach-toggle-icon:after{background:#0a0a0b}
+    #approach.is-open .approach-toggle-icon:after{transform:translate(-50%,-50%) rotate(0deg)}
+    #approach .approach-panel{display:grid!important;grid-template-rows:0fr!important;opacity:0!important;transform:translateY(-8px)!important;transition:grid-template-rows .55s cubic-bezier(.16,1,.3,1),opacity .34s ease,transform .55s cubic-bezier(.16,1,.3,1)!important}
+    #approach .approach-panel-inner{min-height:0!important;overflow:hidden!important}
+    #approach.is-open .approach-panel{grid-template-rows:1fr!important;opacity:1!important;transform:translateY(0)!important}
+    #approach .approach-window{position:relative;margin-top:14px!important;padding:18px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:26px!important;background:linear-gradient(180deg,#0f0f11 0%,#0b0b0d 100%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 70px rgba(0,0,0,.27)!important;overflow:hidden!important}
+    #approach .approach-window:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 220px at 86% 0%,rgba(217,255,63,.07),transparent 58%)}
+    #approach .approach-window>#approach-title{display:none!important}
+    #approach .approach-grid{position:relative!important;z-index:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;margin:0!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:18px!important;overflow:hidden!important;background:rgba(255,255,255,.07)!important}
+    #approach .approach-item{margin:0!important;padding:25px 24px!important;background:#0d0d0f!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+    #approach .approach-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.08)!important}
+    #approach .approach-item:nth-last-child(-n+2){border-bottom:0!important}
+    #approach .approach-label{margin-bottom:14px!important;color:#d9ff3f!important;font:700 10px/1 "DM Sans",sans-serif!important;letter-spacing:.17em!important;text-transform:uppercase!important}
+    #approach .approach-item h3{margin:0 0 11px!important;color:#fff!important;font:600 18px/1.18 Manrope,sans-serif!important;letter-spacing:-.025em!important}
+    #approach .approach-item p{margin:0!important;color:#aaaab0!important;font-size:14px!important;line-height:1.65!important}
+    #approach .approach-item p strong{color:#ededf0!important;font-weight:600!important}
+    @media(max-width:760px){
+      #approach.approach-disclosure{margin-top:24px!important}
+      #approach.approach-disclosure .approach-toggle{padding:16px 15px 16px 17px!important;border-radius:18px!important;gap:14px!important}
+      #approach .approach-toggle-copy{gap:6px}
+      #approach .approach-toggle-kicker{font-size:8px!important;letter-spacing:.16em!important}
+      #approach .approach-toggle-title{font-size:17px!important;line-height:1.12!important}
+      #approach .approach-toggle-icon{flex-basis:44px;width:44px;height:44px;border-radius:13px}
+      #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{width:15px}
+      #approach .approach-window{margin-top:10px!important;padding:8px!important;border-radius:20px!important}
+      #approach .approach-grid{grid-template-columns:1fr!important;border-radius:14px!important}
+      #approach .approach-item{padding:20px 18px!important;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+      #approach .approach-item:last-child{border-bottom:0!important}
+      #approach .approach-item h3{font-size:16px!important}
+      #approach .approach-item p{font-size:13.5px!important;line-height:1.58!important}
+    }
+  `;
+  document.head.appendChild(approachStyle);
+
   let applying=false;
   let heroReady=null;
   function loadZaiHero(){
@@ -82,6 +132,42 @@
     new MutationObserver(()=>{if(!isClean(z))applyZai();else loadZaiHero()}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
+  function setupApproachDisclosure(){
+    const approach=document.getElementById('approach');
+    if(!approach||approach.classList.contains('approach-disclosure'))return;
+    const original=[...approach.children];
+    if(!original.length)return;
+    approach.classList.add('approach-disclosure');
+
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='approach-toggle';
+    button.setAttribute('aria-expanded','false');
+    button.setAttribute('aria-controls','approach-panel');
+    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Як я підходжу до сайту</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
+
+    const panel=document.createElement('div');
+    panel.className='approach-panel';
+    panel.id='approach-panel';
+    panel.setAttribute('aria-hidden','true');
+    const inner=document.createElement('div');
+    inner.className='approach-panel-inner';
+    const win=document.createElement('div');
+    win.className='approach-window';
+    original.forEach(el=>win.appendChild(el));
+    inner.appendChild(win);
+    panel.appendChild(inner);
+    approach.appendChild(button);
+    approach.appendChild(panel);
+
+    button.addEventListener('click',()=>{
+      const open=!approach.classList.contains('is-open');
+      approach.classList.toggle('is-open',open);
+      button.setAttribute('aria-expanded',open?'true':'false');
+      panel.setAttribute('aria-hidden',open?'false':'true');
+    });
+  }
+
   function enforceCostCtas(){
     let fix=document.getElementById('mobile-cost-cta-fix');
     if(!fix){
@@ -102,15 +188,16 @@
     new MutationObserver(enforceCostCtas).observe(document.body,{childList:true,subtree:true,characterData:true});
   }
 
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{watchZai();watchCostCtas()},{once:true});
-  else{watchZai();watchCostCtas()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{watchZai();watchCostCtas();setupApproachDisclosure()},{once:true});
+  else{watchZai();watchCostCtas();setupApproachDisclosure()}
   setTimeout(applyZai,250);setTimeout(applyZai,900);setTimeout(applyZai,2200);
   setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);
+  setTimeout(setupApproachDisclosure,300);setTimeout(setupApproachDisclosure,1200);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260912-2032';
+  s.src='app-main-20260912.js?v=20260913-approach';
   s.defer=true;
-  s.onload=()=>{applyZai();loadZaiHero();enforceCostCtas();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceCostCtas,50);setTimeout(enforceCostCtas,600);setTimeout(enforceCostCtas,1800)};
+  s.onload=()=>{applyZai();loadZaiHero();enforceCostCtas();setupApproachDisclosure();setTimeout(applyZai,400);setTimeout(applyZai,1500);setTimeout(enforceCostCtas,50);setTimeout(enforceCostCtas,600);setTimeout(enforceCostCtas,1800);setTimeout(setupApproachDisclosure,500)};
   document.head.appendChild(s);
   window.addEventListener('resize',enforceCostCtas,{passive:true});
 })();

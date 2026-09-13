@@ -45,19 +45,19 @@
   approachStyle.id='approach-disclosure-style';
   approachStyle.textContent=`
     #approach.approach-disclosure{display:block!important;margin:34px 0 0!important;padding:0!important;background:transparent!important;border:0!important}
-    #approach.approach-disclosure .approach-toggle{position:relative!important;isolation:isolate!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:20px 22px 20px 24px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:22px!important;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 48%,rgba(217,255,63,.045))!important;color:#fff!important;text-align:left!important;cursor:pointer!important;overflow:hidden!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 16px 44px rgba(0,0,0,.20)!important;transition:border-color .28s ease,transform .28s ease,background .28s ease,box-shadow .28s ease!important}
-    #approach.approach-disclosure .approach-toggle:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 0 62%,rgba(217,255,63,.07) 78%,transparent 100%);transform:translateX(-24%);transition:transform .55s cubic-bezier(.16,1,.3,1)}
-    #approach.approach-disclosure .approach-toggle:hover{border-color:rgba(217,255,63,.38)!important;transform:translateY(-2px)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 54px rgba(0,0,0,.28),0 0 24px rgba(217,255,63,.04)!important}
+    #approach.approach-disclosure .approach-toggle{position:relative!important;isolation:isolate!important;width:100%!important;min-height:166px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:28px!important;padding:30px 34px!important;border:1.5px solid rgba(190,224,55,.72)!important;border-radius:28px!important;background:linear-gradient(135deg,#f7f6f1 0%,#efeee8 58%,#f5f6df 100%)!important;color:#101011!important;text-align:left!important;cursor:pointer!important;overflow:hidden!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 18px 46px rgba(0,0,0,.14)!important;transition:border-color .28s ease,transform .28s ease,background .28s ease,box-shadow .28s ease!important}
+    #approach.approach-disclosure .approach-toggle:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 0 58%,rgba(217,255,63,.20) 78%,transparent 100%);transform:translateX(-24%);transition:transform .55s cubic-bezier(.16,1,.3,1)}
+    #approach.approach-disclosure .approach-toggle:hover{border-color:#c9ef34!important;transform:translateY(-2px)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 22px 58px rgba(0,0,0,.18),0 0 26px rgba(217,255,63,.10)!important}
     #approach.approach-disclosure .approach-toggle:hover:before{transform:translateX(18%)}
-    #approach .approach-toggle-copy{display:flex;min-width:0;flex-direction:column;gap:7px}
-    #approach .approach-toggle-kicker{font:700 10px/1 "DM Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#d9ff3f}
-    #approach .approach-toggle-title{font:600 clamp(20px,2.1vw,30px)/1.05 Manrope,sans-serif;letter-spacing:-.035em;color:#f7f7f7}
-    #approach .approach-toggle-icon{position:relative;display:block;flex:0 0 52px;width:52px;height:52px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:#0c0c0e;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:transform .4s cubic-bezier(.16,1,.3,1),background .28s ease,border-color .28s ease}
-    #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:1.5px;border-radius:99px;background:#d9ff3f;transform:translate(-50%,-50%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
+    #approach .approach-toggle-copy{display:flex;min-width:0;flex-direction:column;gap:12px}
+    #approach .approach-toggle-kicker{font:800 12px/1 "DM Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#111!important;opacity:.72}
+    #approach .approach-toggle-title{font:700 clamp(28px,2.8vw,40px)/1.02 Manrope,sans-serif;letter-spacing:-.04em;color:#111!important}
+    #approach .approach-toggle-icon{position:relative;display:block;flex:0 0 68px;width:68px;height:68px;border:1px solid #bfe329;border-radius:20px;background:#d9ff3f;box-shadow:inset 0 1px 0 rgba(255,255,255,.52),0 10px 24px rgba(156,188,27,.20);transition:transform .4s cubic-bezier(.16,1,.3,1),background .28s ease,border-color .28s ease}
+    #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{content:"";position:absolute;left:50%;top:50%;width:22px;height:2px;border-radius:99px;background:#101011;transform:translate(-50%,-50%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
     #approach .approach-toggle-icon:after{transform:translate(-50%,-50%) rotate(90deg)}
-    #approach.is-open .approach-toggle{border-color:rgba(217,255,63,.30)!important;background:linear-gradient(135deg,rgba(217,255,63,.08),rgba(255,255,255,.025) 50%,rgba(255,255,255,.045))!important}
-    #approach.is-open .approach-toggle-icon{transform:rotate(90deg);background:#d9ff3f;border-color:#d9ff3f}
-    #approach.is-open .approach-toggle-icon:before,#approach.is-open .approach-toggle-icon:after{background:#0a0a0b}
+    #approach.is-open .approach-toggle{border-color:#c5e935!important;background:linear-gradient(135deg,#f8f7f2,#f1f0e9 52%,#f4f7da)!important}
+    #approach.is-open .approach-toggle-icon{transform:rotate(90deg);background:#111;border-color:#111}
+    #approach.is-open .approach-toggle-icon:before,#approach.is-open .approach-toggle-icon:after{background:#d9ff3f}
     #approach.is-open .approach-toggle-icon:after{transform:translate(-50%,-50%) rotate(0deg)}
     #approach .approach-panel{display:grid!important;grid-template-rows:0fr!important;opacity:0!important;transform:translateY(-8px)!important;transition:grid-template-rows .55s cubic-bezier(.16,1,.3,1),opacity .34s ease,transform .55s cubic-bezier(.16,1,.3,1)!important}
     #approach .approach-panel-inner{min-height:0!important;overflow:hidden!important}
@@ -75,12 +75,12 @@
     #approach .approach-item p strong{color:#ededf0!important;font-weight:600!important}
     @media(max-width:760px){
       #approach.approach-disclosure{margin-top:24px!important}
-      #approach.approach-disclosure .approach-toggle{padding:16px 15px 16px 17px!important;border-radius:18px!important;gap:14px!important}
-      #approach .approach-toggle-copy{gap:6px}
-      #approach .approach-toggle-kicker{font-size:8px!important;letter-spacing:.16em!important}
-      #approach .approach-toggle-title{font-size:17px!important;line-height:1.12!important}
-      #approach .approach-toggle-icon{flex-basis:44px;width:44px;height:44px;border-radius:13px}
-      #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{width:15px}
+      #approach.approach-disclosure .approach-toggle{min-height:124px!important;padding:22px 20px!important;border-radius:22px!important;gap:16px!important}
+      #approach .approach-toggle-copy{gap:8px}
+      #approach .approach-toggle-kicker{font-size:9px!important;letter-spacing:.16em!important;opacity:.68}
+      #approach .approach-toggle-title{font-size:22px!important;line-height:1.08!important;color:#111!important}
+      #approach .approach-toggle-icon{flex-basis:56px;width:56px;height:56px;border-radius:17px}
+      #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{width:19px}
       #approach .approach-window{margin-top:10px!important;padding:8px!important;border-radius:20px!important}
       #approach .approach-grid{grid-template-columns:1fr!important;border-radius:14px!important}
       #approach .approach-item{padding:20px 18px!important;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}

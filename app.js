@@ -74,11 +74,11 @@
     #approach .approach-item p{margin:0!important;color:#aaaab0!important;font-size:14px!important;line-height:1.65!important}
     #approach .approach-item p strong{color:#ededf0!important;font-weight:600!important}
     @media(max-width:760px){
-      #approach.approach-disclosure{margin-top:24px!important}
-      #approach.approach-disclosure .approach-toggle{min-height:124px!important;padding:22px 20px!important;border-radius:22px!important;gap:16px!important}
-      #approach .approach-toggle-copy{gap:8px}
-      #approach .approach-toggle-kicker{font-size:9px!important;letter-spacing:.16em!important;opacity:.68}
-      #approach .approach-toggle-title{font-size:22px!important;line-height:1.08!important;color:#111!important}
+      #approach.approach-disclosure{margin:24px 0 38px!important}
+      #approach.approach-disclosure .approach-toggle{min-height:124px!important;padding:18px 20px 16px 20px!important;border-radius:22px!important;gap:16px!important;align-items:center!important}
+      #approach .approach-toggle-copy{gap:8px;align-self:stretch!important;justify-content:center!important;padding-top:10px!important}
+      #approach .approach-toggle-kicker{position:absolute!important;top:14px!important;left:20px!important;font-size:9px!important;letter-spacing:.16em!important;opacity:.68}
+      #approach .approach-toggle-title{font-size:22px!important;line-height:1.08!important;color:#111!important;transform:translateY(-4px)!important}
       #approach .approach-toggle-icon{flex-basis:56px;width:56px;height:56px;border-radius:17px}
       #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{width:19px}
       #approach .approach-window{margin-top:10px!important;padding:8px!important;border-radius:20px!important}

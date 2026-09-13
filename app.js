@@ -91,6 +91,14 @@
   `;
   document.head.appendChild(approachStyle);
 
+  const conceptOpenStyle=document.createElement('style');
+  conceptOpenStyle.id='concept-open-white-style';
+  conceptOpenStyle.textContent=`
+    html body .concept-case .case-open{background:#fff!important;color:#101011!important;border:1px solid rgba(10,10,11,.20)!important;box-shadow:0 8px 28px rgba(0,0,0,.18)!important}
+    html body .concept-case:hover .case-open{background:#fff!important;color:#101011!important}
+  `;
+  document.head.appendChild(conceptOpenStyle);
+
   let applying=false;
   let heroReady=null;
   function loadZaiHero(){

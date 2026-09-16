@@ -1,1 +1,1 @@
-window.__ZAI_HERO='https://image.thum.io/get/crop/540/noanimate/https://zaisun.com.ua/';
+window.__ZAI_HERO='https://image.thum.io/get/width/1704/crop/848/noanimate/https://zaisun.com.ua/';

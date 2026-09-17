@@ -77,11 +77,11 @@
     }else if(oldIntroVisible){sessionStorage.setItem('shift_boot_seen_v3','1')}
   }catch(e){}
 
-  // Keep agreed starting price grid: 6 / 15 / 22 / 35.
+  // Keep agreed starting price grid: 6 / 15 / 22 / 30.
   document.querySelectorAll('.pricecard').forEach(card=>{
     if(card.querySelector('h3')?.textContent.includes('Інтернет-магазин')){
       const price=card.querySelector('.price');
-      if(price)price.childNodes[0].nodeValue='від 35 000 грн';
+      if(price)price.childNodes[0].nodeValue='від 30 000 грн';
     }
   });
 

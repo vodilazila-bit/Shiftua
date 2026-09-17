@@ -85,4 +85,4 @@ const header=document.querySelector('header');if(header)header.style.transform='
 document.querySelectorAll('.case').forEach(card=>{card.addEventListener('mousemove',e=>{if(innerWidth<900)return;const img=card.querySelector('img');if(!img)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;img.style.transform=`scale(1.045) translate(${x*-10}px,${y*-8}px)`});card.addEventListener('mouseleave',()=>{const img=card.querySelector('img');if(img)img.style.transform=''})});
 })();
 try{sessionStorage.setItem('shift_boot_seen_v3','1')}catch(e){}
-(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20260908-compact-layout';s.defer=true;document.head.appendChild(s)})();
+(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20260917-shop30';s.defer=true;document.head.appendChild(s)})();

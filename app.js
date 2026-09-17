@@ -176,7 +176,7 @@
     approach.classList.add('approach-disclosure');
     const button=document.createElement('button');
     button.type='button';button.className='approach-toggle';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','approach-panel');
-    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Як я підходжу до сайту</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
+    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Наш підхід</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
     const panel=document.createElement('div');panel.className='approach-panel';panel.id='approach-panel';panel.setAttribute('aria-hidden','true');
     const inner=document.createElement('div');inner.className='approach-panel-inner';
     const win=document.createElement('div');win.className='approach-window';original.forEach(el=>win.appendChild(el));inner.appendChild(win);panel.appendChild(inner);approach.appendChild(button);approach.appendChild(panel);
@@ -203,7 +203,7 @@
   setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);setTimeout(setupApproachDisclosure,300);setTimeout(setupApproachDisclosure,1200);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260917-shop30-title';
+  s.src='app-main-20260912.js?v=20260917-approach-prices';
   s.defer=true;
   s.onload=()=>{applyZai();ensureShiftCase();loadZaiHero();enforceCostCtas();setupApproachDisclosure();[100,400,900,1800].forEach(ms=>setTimeout(()=>{applyZai();ensureShiftCase();enforceCostCtas()},ms));setTimeout(setupApproachDisclosure,500)};
   document.head.appendChild(s);

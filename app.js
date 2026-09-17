@@ -1,5 +1,5 @@
 (()=>{
-  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><div class="zai-slider" data-slide="0"><div class="zai-slides"><div class="zai-slide is-on"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div><div class="zai-slide"><div class="zaisun-clean-preview zai-merchant-frame"><img src="assets/zaisun-merchant-center-products.webp?v=20260917-mc" alt="Google Merchant Center — схвалені товари ZaiSun" loading="lazy"></div></div><button class="zai-arrow zai-prev" type="button" aria-label="Попереднє фото">‹</button><button class="zai-arrow zai-next" type="button" aria-label="Наступне фото">›</button><div class="zai-dots" aria-hidden="true"><i class="is-on"></i><i></i></div></div><p class="zai-slide-note">Стрілкою можна глянути статистику в Merchant Center</p></div></div></div>`;
+  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>800+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b> — від кліку до реальної оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
 
   const SHIFT_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03.1 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>SHIFT</h3><p class="rc-sub">Односторінковий сайт транспортної компанії.</p><div class="rc-block"><div class="rc-label">Що зроблено</div><ul><li>Структура сторінки та логіка переходів</li><li>Анімації та мікровзаємодії</li><li>Повна мобільна адаптація</li></ul></div><a class="rc-link" href="https://shiftua.com/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="shift-visual"><a class="shiftcase-preview" href="https://shiftua.com/" target="_blank" rel="noopener" aria-label="Відкрити SHIFT"><img src="https://image.thum.io/get/width/1886/noanimate/https://shiftua.com/" alt="SHIFT — односторінковий сайт транспортної компанії" loading="lazy"></a></div></div></div>`;
 
@@ -23,23 +23,6 @@
     #work.zaisun-force-clean .rc-link span,#shift-case .rc-link span{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;border:1px solid #111!important;border-radius:11px!important;font-size:15px!important}
     #work.zaisun-force-clean .zaisun-clean-preview,#shift-case .shiftcase-preview{display:block!important;padding:10px!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:24px!important;overflow:hidden!important;background:#111!important;text-decoration:none!important}
     #work.zaisun-force-clean .zaisun-clean-preview img,#shift-case .shiftcase-preview img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;border-radius:16px!important;background:#111!important}
-    #work.zaisun-force-clean .zai-visual{display:flex!important;flex-direction:column!important;gap:12px!important}
-    #work.zaisun-force-clean .zai-slider{position:relative!important}
-    #work.zaisun-force-clean .zai-slides{position:relative!important;aspect-ratio:1704/848!important;overflow:hidden!important;border-radius:16px!important;background:#111!important}
-    #work.zaisun-force-clean .zai-slide{position:absolute!important;inset:0!important;display:none!important;margin:0!important}
-    #work.zaisun-force-clean .zai-slide.is-on{display:block!important}
-    #work.zaisun-force-clean .zai-slide .zaisun-clean-preview,#work.zaisun-force-clean .zai-slide .zai-merchant-frame{height:100%!important;padding:0!important;border:0!important;border-radius:16px!important;overflow:hidden!important;background:#111!important}
-    #work.zaisun-force-clean .zai-slide img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center top!important;border-radius:16px!important;background:#111!important}
-    #work.zaisun-force-clean .zai-merchant-frame{pointer-events:none!important;background:#fff!important}
-    #work.zaisun-force-clean .zai-merchant-frame img{object-fit:contain!important;object-position:center!important;background:#fff!important}
-    #work.zaisun-force-clean .zai-arrow{position:absolute!important;z-index:8!important;top:50%!important;transform:translateY(-50%)!important;display:grid!important;place-items:center!important;width:52px!important;height:52px!important;border:0!important;border-radius:50%!important;background:#111!important;color:#fff!important;font:600 28px/1 Manrope,sans-serif!important;cursor:pointer!important;box-shadow:0 6px 20px rgba(0,0,0,.35)!important;transition:background .2s ease,transform .2s ease!important}
-    #work.zaisun-force-clean .zai-arrow:hover{background:#000!important;color:#d9ff3f!important;transform:translateY(-50%) scale(1.04)!important}
-    #work.zaisun-force-clean .zai-prev{left:14px!important}
-    #work.zaisun-force-clean .zai-next{right:14px!important}
-    #work.zaisun-force-clean .zai-dots{position:absolute!important;left:50%!important;bottom:14px!important;transform:translateX(-50%)!important;display:flex!important;gap:7px!important;z-index:8!important}
-    #work.zaisun-force-clean .zai-dots i{width:7px!important;height:7px!important;border-radius:50%!important;background:rgba(255,255,255,.45)!important;display:block!important}
-    #work.zaisun-force-clean .zai-dots i.is-on{width:22px!important;border-radius:99px!important;background:#d9ff3f!important}
-    #work.zaisun-force-clean .zai-slide-note{margin:0!important;color:#85858c!important;font-size:12.5px!important;line-height:1.45!important}
     @media(min-width:761px){body>header .navcta{margin-left:18px!important}}
     @media(max-width:760px){
       #work.zaisun-force-clean,#shift-case.shiftcase{padding:68px 0 18px!important}
@@ -53,9 +36,6 @@
       #work.zaisun-force-clean .rc-link,#shift-case .rc-link{width:max-content!important;min-width:0!important;justify-content:space-between!important;padding:13px 16px!important}
       #work.zaisun-force-clean .zaisun-clean-preview,#shift-case .shiftcase-preview{padding:6px!important;border-radius:18px!important}
       #work.zaisun-force-clean .zaisun-clean-preview img,#shift-case .shiftcase-preview img{border-radius:13px!important}
-      #work.zaisun-force-clean .zai-arrow{width:46px!important;height:46px!important;font-size:26px!important}
-      #work.zaisun-force-clean .zai-prev{left:10px!important}
-      #work.zaisun-force-clean .zai-next{right:10px!important}
     }
   `;
   document.head.appendChild(style);
@@ -141,46 +121,24 @@
     if(title.innerHTML!==wanted)title.innerHTML=wanted;
   }
 
-  function bindZaiSlider(){
-    forceServicesTitle();
-    const root=document.querySelector('#work .zai-slider');
-    if(!root||root.dataset.bound==='1')return;
-    root.dataset.bound='1';
-    const slides=[...root.querySelectorAll('.zai-slide')];
-    const dots=[...root.querySelectorAll('.zai-dots i')];
-    if(slides.length<2)return;
-    let i=0;
-    function show(n){
-      i=(n+slides.length)%slides.length;
-      slides.forEach((el,idx)=>el.classList.toggle('is-on',idx===i));
-      dots.forEach((el,idx)=>el.classList.toggle('is-on',idx===i));
-      root.dataset.slide=String(i);
-    }
-    const prev=root.querySelector('.zai-prev');
-    const next=root.querySelector('.zai-next');
-    if(prev)prev.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();show(i-1)});
-    if(next)next.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();show(i+1)});
-  }
-
-  function isClean(z){return z&&z.classList.contains('zaisun-force-clean')&&z.querySelector('.zai-done')&&z.querySelector('.zai-slider')&&!z.querySelector('.rc-badge,.rc-frame')}
+  function isClean(z){return z&&z.classList.contains('zaisun-force-clean')&&z.querySelector('.zai-done')&&!z.querySelector('.rc-badge,.rc-frame')}
   function applyZai(){
     if(applying)return;
     const z=document.querySelector('#work.realcase,#work');
     if(!z)return;
-    if(isClean(z)){loadZaiHero();forceServicesTitle();bindZaiSlider();return}
+    if(isClean(z)){loadZaiHero();forceServicesTitle();return}
     applying=true;
     z.className='realcase zaisun-force-clean';
     z.innerHTML=ZAI_HTML;
     applying=false;
     loadZaiHero();
     forceServicesTitle();
-    bindZaiSlider();
   }
   function watchZai(){
     applyZai();
     const z=document.getElementById('work');
     if(!z)return;
-    new MutationObserver(()=>{if(!isClean(z))applyZai();else{loadZaiHero();bindZaiSlider()}}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    new MutationObserver(()=>{if(!isClean(z))applyZai();else{loadZaiHero();forceServicesTitle()}}).observe(z,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
   }
 
   let shiftApplying=false;

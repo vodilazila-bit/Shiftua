@@ -1,6 +1,4 @@
 if('scrollRestoration'in history)history.scrollRestoration='manual';
-window.addEventListener('load',()=>{window.scrollTo(0,0);setTimeout(()=>window.scrollTo(0,0),0)});
-window.addEventListener('beforeunload',()=>window.scrollTo(0,0));
 (()=>{
 const root=document.documentElement,intro=document.getElementById('intro'),count=document.getElementById('count');
 const compactHeaderStyle=document.createElement('style');compactHeaderStyle.textContent=`

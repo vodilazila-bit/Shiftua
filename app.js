@@ -203,9 +203,62 @@
   setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);setTimeout(setupApproachDisclosure,300);setTimeout(setupApproachDisclosure,1200);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260923-scrollfix';
+  s.src='app-main-20260912.js?v=20260924-contact-scroll';
   s.defer=true;
   s.onload=()=>{applyZai();ensureShiftCase();loadZaiHero();enforceCostCtas();setupApproachDisclosure();[100,400,900,1800].forEach(ms=>setTimeout(()=>{applyZai();ensureShiftCase();enforceCostCtas()},ms));setTimeout(setupApproachDisclosure,500)};
   document.head.appendChild(s);
+  // Reliable in-page anchors: fixed header + late layout (lazy imgs / injected cases)
+  // otherwise #contact undershoots and lands on FAQ.
+  function headerScrollOffset(){
+    const nav=document.querySelector('body>header .nav')||document.querySelector('body>header');
+    return Math.round((nav?nav.getBoundingClientRect().height:72)+28);
+  }
+  function anchorTarget(hash){
+    const id=decodeURIComponent(String(hash||'').replace(/^#/,''));
+    if(!id) return null;
+    const el=document.getElementById(id);
+    if(!el) return null;
+    if(id==='contact') return el.querySelector('.ctabox')||el.querySelector('#form')||el;
+    return el;
+  }
+  function scrollToAnchor(hash, behavior){
+    const target=anchorTarget(hash);
+    if(!target) return false;
+    target.classList.add('on');
+    if(target.querySelectorAll) target.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
+    const top=Math.max(0, Math.round(target.getBoundingClientRect().top+window.pageYOffset-headerScrollOffset()));
+    window.scrollTo({top, behavior: behavior||'smooth'});
+    let passes=0;
+    const correct=()=>{
+      passes+=1;
+      const t=anchorTarget(hash);
+      if(!t) return;
+      const desired=Math.max(0, Math.round(t.getBoundingClientRect().top+window.pageYOffset-headerScrollOffset()));
+      if(Math.abs(window.pageYOffset-desired)>48){
+        window.scrollTo({top:desired, behavior:'auto'});
+      }
+      if(passes<10) setTimeout(correct, 100+passes*80);
+    };
+    setTimeout(correct, 180);
+    return true;
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const href=a.getAttribute('href');
+    if(!href||href==='#'||href==='#top') return;
+    if(a.origin && a.origin!==location.origin) return;
+    if(!anchorTarget(href)) return;
+    e.preventDefault();
+    if(history.pushState) history.pushState(null,'',href);
+    else location.hash=href;
+    scrollToAnchor(href, 'smooth');
+  }, true);
+  window.addEventListener('hashchange',()=>scrollToAnchor(location.hash,'smooth'));
+  const bootHash=()=>{ if(location.hash) scrollToAnchor(location.hash,'auto'); };
+  if(document.readyState==='complete') setTimeout(bootHash,50);
+  else window.addEventListener('load',()=>setTimeout(bootHash,50));
+  [400,900,1600,2800].forEach(ms=>setTimeout(()=>{ if(location.hash==='#contact'||location.hash==='#form') scrollToAnchor(location.hash,'auto'); }, ms));
+
   window.addEventListener('resize',enforceCostCtas,{passive:true});
 })();

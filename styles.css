@@ -310,3 +310,9 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
   -webkit-text-stroke: 0 !important;
 }
 #process .section-title { line-height: 1.02 !important; }
+
+/* Store offer: separate heading and body, allow the longer copy to grow. */
+.hero-cards .start.start-shop { height: auto; min-height: 255px; gap: 18px; padding: clamp(22px, 2.2vw, 32px); }
+.hero-cards .start-shop h3 { gap: 2px; font-family: "Golos Text", Arial, sans-serif; font-size: clamp(24px, 2.2vw, 34px); font-weight: 500; line-height: 1.12; letter-spacing: -.035em; }
+.hero-cards .start-shop p { position: relative; z-index: 1; margin: 0; max-width: 48ch; font: 400 clamp(15px, 1.15vw, 17px)/1.5 "Golos Text", Arial, sans-serif; letter-spacing: -.015em; }
+@media (max-width: 700px) { .hero-cards .start.start-shop { min-height: 0; padding: 24px 22px; } }

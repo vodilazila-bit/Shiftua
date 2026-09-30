@@ -221,25 +221,39 @@
     if(id==='contact') return el.querySelector('.ctabox')||el.querySelector('#form')||el;
     return el;
   }
+  // An anchor owns one cancellable correction timer. Manual scrolling always wins.
+  let anchorTimer=0;
+  let anchorGeneration=0;
+  let userHasScrolled=false;
+  function cancelAnchorScroll(){
+    userHasScrolled=true;
+    anchorGeneration+=1;
+    clearTimeout(anchorTimer);
+    anchorTimer=0;
+  }
+  ['touchstart','wheel','pointerdown'].forEach(type=>
+    window.addEventListener(type,cancelAnchorScroll,{passive:true}));
+  window.addEventListener('keydown',e=>{
+    if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '].includes(e.key)) cancelAnchorScroll();
+  });
   function scrollToAnchor(hash, behavior){
     const target=anchorTarget(hash);
     if(!target) return false;
+    clearTimeout(anchorTimer);
+    const generation=++anchorGeneration;
     target.classList.add('on');
-    if(target.querySelectorAll) target.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
-    const top=Math.max(0, Math.round(target.getBoundingClientRect().top+window.pageYOffset-headerScrollOffset()));
-    window.scrollTo({top, behavior: behavior||'smooth'});
+    target.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
+    const targetTop=()=>Math.max(0,Math.round(target.getBoundingClientRect().top+window.pageYOffset-headerScrollOffset()));
+    const motion=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':(behavior||'smooth');
+    window.scrollTo({top:targetTop(),behavior:motion});
     let passes=0;
     const correct=()=>{
-      passes+=1;
-      const t=anchorTarget(hash);
-      if(!t) return;
-      const desired=Math.max(0, Math.round(t.getBoundingClientRect().top+window.pageYOffset-headerScrollOffset()));
-      if(Math.abs(window.pageYOffset-desired)>48){
-        window.scrollTo({top:desired, behavior:'auto'});
-      }
-      if(passes<10) setTimeout(correct, 100+passes*80);
+      if(generation!==anchorGeneration||!target.isConnected) return;
+      const desired=targetTop();
+      if(Math.abs(window.pageYOffset-desired)>48) window.scrollTo({top:desired,behavior:'instant'});
+      if(++passes<4) anchorTimer=setTimeout(correct,250);
     };
-    setTimeout(correct, behavior==='smooth' ? 650 : 50);
+    anchorTimer=setTimeout(correct,motion==='smooth'?650:50);
     return true;
   }
   document.addEventListener('click',e=>{
@@ -255,10 +269,11 @@
     scrollToAnchor(href, 'smooth');
   }, true);
   window.addEventListener('hashchange',()=>scrollToAnchor(location.hash,'smooth'));
-  const bootHash=()=>{ if(location.hash) scrollToAnchor(location.hash,'auto'); };
-  if(document.readyState==='complete') setTimeout(bootHash,50);
-  else window.addEventListener('load',()=>setTimeout(bootHash,50));
-  [400,900,1600,2800].forEach(ms=>setTimeout(()=>{ if(location.hash==='#contact'||location.hash==='#form') scrollToAnchor(location.hash,'auto'); }, ms));
+  const bootHash=()=>{
+    if(location.hash&&!userHasScrolled) scrollToAnchor(location.hash,'instant');
+  };
+  if(document.readyState==='complete') bootHash();
+  else window.addEventListener('load',bootHash,{once:true});
 
   window.addEventListener('resize',enforceCostCtas,{passive:true});
 })();

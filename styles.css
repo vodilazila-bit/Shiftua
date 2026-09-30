@@ -158,11 +158,13 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 .hero .hero-title.hero-title-long {
   max-width: 100%;
   margin: 0 !important;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: clamp(2rem, 5.1vw, 5.5rem);
-  line-height: 1.22;
-  letter-spacing: -.025em;
+  font-family: "Golos Text", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.7vw, 6rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  text-align: center;
+  width: 100%;
   text-transform: none;
   transform: translateY(-64px);
 }
@@ -186,7 +188,7 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
   }
   .hero .hero-title.hero-title-long {
     font-size: clamp(1.5rem, 6.9vw, 3.25rem) !important;
-    line-height: 1.28 !important;
+    line-height: 1.12 !important;
     letter-spacing: -.025em !important;
     transform: translateY(-32px);
   }

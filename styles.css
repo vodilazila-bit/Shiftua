@@ -316,3 +316,9 @@ header{position:fixed;z-index:90;top:0;left:0;right:0;padding:15px 0;transition:
 .hero-cards .start-shop h3 { gap: 2px; font-family: "Golos Text", Arial, sans-serif; font-size: clamp(24px, 2.2vw, 34px); font-weight: 500; line-height: 1.12; letter-spacing: -.035em; }
 .hero-cards .start-shop p { position: relative; z-index: 1; margin: 0; max-width: 48ch; font: 400 clamp(15px, 1.15vw, 17px)/1.5 "Golos Text", Arial, sans-serif; letter-spacing: -.015em; }
 @media (max-width: 700px) { .hero-cards .start.start-shop { min-height: 0; padding: 24px 22px; } }
+
+/* Readable offer copy and a single desktop heading line. */
+.hero-cards .start.start-shop { container-type: inline-size; }
+.hero-cards .start.start-shop h3 { display: block; font-size: clamp(16px, 5.2cqw, 30px); white-space: nowrap; }
+.hero-cards .start.start-shop p { font-size: clamp(20px, 1.5vw, 23px); line-height: 1.5; }
+@media(max-width:760px) { .hero-cards .start.start-shop h3 { white-space: normal; font-size: 25px !important; } .hero-cards .start.start-shop p { font-size: 20px; } }

@@ -153,6 +153,50 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 @media(max-width:760px){.visual.site-build{height:auto!important;aspect-ratio:10/3}.visual.site-build>video{object-fit:contain}}
 
 </style>
+
+<style>
+/* 2026-10-01 mobile shop hero: replace desktop title/card on phones */
+@media (max-width:760px){
+  .hero .hero-title.hero-title-long{
+    margin:18px 0 30px!important;
+    font:600 clamp(38px,10.8vw,50px)/1.02 "Manrope",sans-serif!important;
+    letter-spacing:-.055em!important;
+    text-transform:none!important;
+    max-width:92%!important;
+    overflow:visible!important;
+  }
+  .hero .hero-title.hero-title-long .hero-title-line{
+    display:none!important;
+  }
+  .hero .hero-title.hero-title-long::after{
+    content:"Ваші товари. Ваш інтернет-магазин.";
+    display:block;
+    color:#f7f7f5;
+    opacity:0;
+    transform:translateX(72px);
+    animation:mobileShopTitleIn .85s cubic-bezier(.22,1,.36,1) .12s forwards;
+    will-change:transform,opacity;
+  }
+  .hero .start.start-shop{
+    display:none!important;
+  }
+  .hero .hero-cards{
+    grid-template-columns:1fr!important;
+  }
+}
+@keyframes mobileShopTitleIn{
+  from{opacity:0;transform:translateX(72px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@media (prefers-reduced-motion:reduce) and (max-width:760px){
+  .hero .hero-title.hero-title-long::after{
+    opacity:1;
+    transform:none;
+    animation:none;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="intro" id="intro"><div class="panel l"></div><div class="panel r"></div><div class="intro-center"><div class="intro-logo"><span class="shiftmark"><img class="webwork-mark" src="/assets/webwork-mark.svg?v=20260907-w" width="80" height="56" alt="" aria-hidden="true"></span><span class="wordclip"><span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span></span></div></div><div class="intro-meta"><span>Стратегія / Дизайн / Розробка / performance marketing</span><div class="progress"><i></i></div><span id="count">00</span></div></div>

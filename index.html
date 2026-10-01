@@ -203,13 +203,29 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
   grid-template-columns:1fr!important;
 }
 @media (max-width:760px){
+  .hero .hero-inner{
+    gap:10px!important;
+  }
   .hero .hero-title.hero-title-long{
-    margin:18px 0 30px!important;
+    margin:18px 0 0!important;
     font:600 clamp(38px,10.8vw,50px)/1.02 "Manrope",sans-serif!important;
     letter-spacing:-.055em!important;
     text-transform:none!important;
-    max-width:92%!important;
+    max-width:100%!important;
     overflow:visible!important;
+    transform:none!important;
+  }
+  .hero .hero-title.hero-title-long .hero-title-copy{
+    width:100%;
+    max-width:none;
+    font-size:20px;
+    line-height:1.35;
+    letter-spacing:-.02em;
+    text-align:left;
+    color:#fff;
+  }
+  .hero .hero-cards{
+    margin-top:0!important;
   }
 }
 </style>

@@ -164,19 +164,39 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 }
 .hero .hero-title.hero-title-long .hero-title-main{
   display:block;
-  font-size:clamp(1.6rem,4.56vw,4.8rem);
-  line-height:1.08;
+  opacity:0;
+  transform:translateX(90px);
+  animation:heroTitleSlideIn .85s cubic-bezier(.22,1,.36,1) .12s forwards;
 }
 .hero .hero-title.hero-title-long .hero-title-copy{
   display:block;
   max-width:980px;
   font-family:"Golos Text",Arial,sans-serif;
-  font-size:clamp(26.4px,2.76vw,45.6px);
+  font-size:clamp(22px,2.3vw,38px);
   font-weight:400;
   line-height:1.35;
   letter-spacing:-.025em;
   text-align:center;
   color:#f7f7f5;
+  opacity:0;
+  transform:translateX(90px);
+  animation:heroCopySlideIn .85s cubic-bezier(.22,1,.36,1) .48s forwards;
+}
+@keyframes heroTitleSlideIn{
+  from{opacity:0;transform:translateX(90px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes heroCopySlideIn{
+  from{opacity:0;transform:translateX(90px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero .hero-title.hero-title-long .hero-title-main,
+  .hero .hero-title.hero-title-long .hero-title-copy{
+    opacity:1;
+    transform:none;
+    animation:none;
+  }
 }
 .hero .hero-cards{
   grid-template-columns:1fr!important;

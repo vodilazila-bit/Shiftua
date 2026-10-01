@@ -155,7 +155,10 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 </style>
 
 <style>
-/* 2026-10-01 mobile shop hero: replace desktop title/card on phones */
+/* 2026-10-01 shop hero: single headline and full-width animation */
+.hero .hero-cards{
+  grid-template-columns:1fr!important;
+}
 @media (max-width:760px){
   .hero .hero-title.hero-title-long{
     margin:18px 0 30px!important;
@@ -165,35 +168,6 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
     max-width:92%!important;
     overflow:visible!important;
   }
-  .hero .hero-title.hero-title-long .hero-title-line{
-    display:none!important;
-  }
-  .hero .hero-title.hero-title-long::after{
-    content:"Ваші товари. Ваш інтернет-магазин.";
-    display:block;
-    color:#f7f7f5;
-    opacity:0;
-    transform:translateX(72px);
-    animation:mobileShopTitleIn .85s cubic-bezier(.22,1,.36,1) .12s forwards;
-    will-change:transform,opacity;
-  }
-  .hero .start.start-shop{
-    display:none!important;
-  }
-  .hero .hero-cards{
-    grid-template-columns:1fr!important;
-  }
-}
-@keyframes mobileShopTitleIn{
-  from{opacity:0;transform:translateX(72px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@media (prefers-reduced-motion:reduce) and (max-width:760px){
-  .hero .hero-title.hero-title-long::after{
-    opacity:1;
-    transform:none;
-    animation:none;
-  }
 }
 </style>
 
@@ -202,7 +176,7 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 <div class="intro" id="intro"><div class="panel l"></div><div class="panel r"></div><div class="intro-center"><div class="intro-logo"><span class="shiftmark"><img class="webwork-mark" src="/assets/webwork-mark.svg?v=20260907-w" width="80" height="56" alt="" aria-hidden="true"></span><span class="wordclip"><span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span></span></div></div><div class="intro-meta"><span>Стратегія / Дизайн / Розробка / performance marketing</span><div class="progress"><i></i></div><span id="count">00</span></div></div>
 <header><div class="wrap"><nav class="nav"><a href="#top" class="logo"><span class="shiftmark"><img class="webwork-mark" src="/assets/webwork-mark.svg?v=20260907-w" width="80" height="56" alt="" aria-hidden="true"></span><span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span></a><div class="links"><a href="#work">Роботи</a><a href="#services">Послуги</a><a href="#prices">Ціни</a><a href="#process">Процес</a></div><a href="#contact" class="navcta">Обговорити проєкт ↗</a></nav></div></header>
 <main id="top">
-<section class="hero"><div class="grid"></div><div class="wrap hero-inner"><h1 class="hero-title hero-title-long"><span class="hero-title-line">Ваш інтернет-магазин.</span> <span class="hero-title-line">Від ідеї до запуску.</span></h1><div class="hero-cards"><article class="visual site-build"><video autoplay muted loop playsinline preload="auto" aria-label="Анімація: сайт збирається на очах"><source src="assets/webwork-site-builds-itself-uk-v58.mp4?v=58" type="video/mp4"></video></article><div class="start start-shop"><h3>Ваші товари. Ваш інтернет-магазин.</h3><p>Від каталогу до оформлення замовлення — створюємо магазин під ваш бренд. Поєднуємо досвід і можливості ШІ, щоб запускати магазини швидше та за доступною ціною.</p></div></div></div></section>
+<section class="hero"><div class="grid"></div><div class="wrap hero-inner"><h1 class="hero-title hero-title-long">Ваші товари. Ваш інтернет-магазин.</h1><div class="hero-cards"><article class="visual site-build"><video autoplay muted loop playsinline preload="auto" aria-label="Анімація: сайт збирається на очах"><source src="assets/webwork-site-builds-itself-uk-v58.mp4?v=58" type="video/mp4"></video></article></div></div></section>
 <section class="block what" id="services"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">01 / Що робимо</div><h2 class="section-title">Створення і запуск.<br>Підтримка після запуску:<br><span class="title-indent">Лендінгу від 1 місяця.</span><br><span class="title-indent">Магазину — від 6 місяців.</span></h2></div><p class="section-copy">Збираємо продукт навколо задачі: від першого контакту з брендом до заявки, оплати й повторної покупки.</p></div><section class="approach" id="approach" aria-labelledby="approach-title"><h2 id="approach-title">Наш підхід</h2><div class="approach-grid"><article class="approach-item"><div class="approach-label">01 / Досвід</div><h3>Дивлюсь на сайт як власник бізнесу</h3><p>Сам веду свій магазин багато років, тому розумію, що реально треба клієнту. Маю <strong>власний досвід продажів, реклами й роботи з покупцями</strong>. Тому продумую весь шлях: від першого переходу на сайт до замовлення.</p></article><article class="approach-item"><div class="approach-label">02 / Google</div><h3>Під Google і Merchant Center</h3><p>Сайт збирається з чистою логікою під пошук і рекламу. Фіди не дублюються й не губляться. Каталог одразу підганяю під <strong>Google Merchant Center: чіткі назви, атрибути, наявність, ціни</strong>.</p></article><article class="approach-item"><div class="approach-label">03 / Розробка</div><h3>Сайт під вашу задачу</h3><p>Структура, каталог і оформлення замовлення <strong>підлаштовуються під ваш бізнес</strong>. Ви отримуєте потрібні функції без зайвих елементів готового шаблону.</p><p><strong>Чистий код</strong> — сайт вантажиться швидше, ніж на типових конструкторах і шаблонах. Нема зайвих плагінів і «важкого» шару, який гальмує.</p></article><article class="approach-item"><div class="approach-label">04 / Розвиток</div><h3>Готовність до змін</h3><p>Можна почати з основного, а згодом <strong>додати нові функції, змінити дизайн чи підключити сервіси</strong>. ШІ та цифрові технології швидко розвиваються, тому сайт має бути готовим до нових задач.</p><p>Залежність від закритої платформи сьогодні може стати обмеженням завтра. Продумана розробка з доступом до коду дає більше свободи для розвитку, інтеграції інструментів ШІ та автоматизації процесів.</p></article><article class="approach-item"><div class="approach-label">05 / Власність</div><h3>Сайт лишається вашим</h3><p><strong>Код і доступи у вас</strong>. Нема прив’язки до конструктора, з якого важко винести каталог і дизайн.</p></article></div></section><div class="whatgrid"><div class="whatcard reveal"><div class="orb"></div><h3>Сайт.<br>Реклама.<br>Результат.</h3><p>Від структури й дизайну до запуску та просування.</p></div><div><article class="service reveal"><span class="n">01</span><div><h3>Розробка сайтів</h3><p>Лендінги, сайти для компаній, односторінкові сайти-візитки та адаптивні інтерфейси.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">02</span><div><h3>E-commerce</h3><p>Каталоги, фільтри, картки товарів, checkout, оплати, Merchant Center та аналітика.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">03</span><div><h3>Дизайн та UX/UI</h3><p>Структура, інтерфейс, візуальна система, анімації та мікровзаємодії.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">04</span><div><h3>Реклама</h3><p>Google Ads, Meta Ads, ремаркетинг, аналітика та покращення після запуску.</p></div><span class="arr">↗</span></article><article class="service reveal"><span class="n">05</span><div><h3>Інтеграції</h3><p>Форми, CRM, оплати, таблиці, сповіщення та зв’язки між потрібними сервісами.</p></div><span class="arr">↗</span></article></div></div></div></section>
 <section class="deliverables" id="deliverables"><div class="wrap"><div class="section-head reveal"><div><div class="kicker">02 / Що отримуєте</div><h2 class="section-title">Сайт готовий до:<br><em>реклами й продажів.</em></h2></div><p class="section-copy">На виході ви отримуєте не набір макетів, а готовий інструмент: адаптивний, підключений і зрозумілий для клієнта.</p></div><div class="deliver-grid"><article class="deliver-card reveal"><span class="dn">01 / Дизайн</span><span class="dicon">✦</span><div><h3>Під ваш бізнес</h3><p>Структура й візуал будуються під задачу, а не під готовий шаблон.</p></div></article><article class="deliver-card reveal"><span class="dn">02 / Mobile</span><span class="dicon">▯</span><div><h3>Адаптив</h3><p>Сайт нормально працює на телефоні, планшеті та великому екрані.</p></div></article><article class="deliver-card reveal"><span class="dn">03 / Analytics</span><span class="dicon">↗</span><div><h3>Готовність до реклами</h3><p>Форми, базова аналітика та потрібні події для подальшого просування.</p></div></article><article class="deliver-card reveal"><span class="dn">04 / Launch</span><span class="dicon">→</span><div><h3>Запуск</h3><p>Допомога з доменом, підключеннями, перевіркою та публікацією сайту.</p></div></article></div></div></section>
 <section class="realcase" id="work"><div class="wrap">

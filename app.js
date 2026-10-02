@@ -176,7 +176,7 @@
     approach.classList.add('approach-disclosure');
     const button=document.createElement('button');
     button.type='button';button.className='approach-toggle';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','approach-panel');
-    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Наш підхід</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
+    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Як я працюю</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
     const panel=document.createElement('div');panel.className='approach-panel';panel.id='approach-panel';panel.setAttribute('aria-hidden','true');
     const inner=document.createElement('div');inner.className='approach-panel-inner';
     const win=document.createElement('div');win.className='approach-window';original.forEach(el=>win.appendChild(el));inner.appendChild(win);panel.appendChild(inner);approach.appendChild(button);approach.appendChild(panel);

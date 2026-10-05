@@ -43,7 +43,7 @@
   const approachStyle=document.createElement('style');
   approachStyle.id='approach-disclosure-style';
   approachStyle.textContent=`
-    #approach.approach-disclosure{display:block!important;margin:34px 0 0!important;padding:0!important;background:transparent!important;border:0!important}
+    #approach.approach-disclosure{display:block!important;margin:34px 0 38px!important;padding:0!important;background:transparent!important;border:0!important}
     #approach.approach-disclosure .approach-toggle{position:relative!important;isolation:isolate!important;width:100%!important;min-height:166px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:28px!important;padding:30px 34px!important;border:1.5px solid rgba(190,224,55,.72)!important;border-radius:28px!important;background:linear-gradient(135deg,#f7f6f1 0%,#efeee8 58%,#f5f6df 100%)!important;color:#101011!important;text-align:left!important;cursor:pointer!important;overflow:hidden!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 18px 46px rgba(0,0,0,.14)!important;transition:border-color .28s ease,transform .28s ease,background .28s ease,box-shadow .28s ease!important}
     #approach.approach-disclosure .approach-toggle:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 0 58%,rgba(217,255,63,.20) 78%,transparent 100%);transform:translateX(-24%);transition:transform .55s cubic-bezier(.16,1,.3,1)}
     #approach.approach-disclosure .approach-toggle:hover{border-color:#c9ef34!important;transform:translateY(-2px)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 22px 58px rgba(0,0,0,.18),0 0 26px rgba(217,255,63,.10)!important}

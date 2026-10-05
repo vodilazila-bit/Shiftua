@@ -64,7 +64,7 @@
     #approach .approach-window{position:relative;margin-top:14px!important;padding:18px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:26px!important;background:linear-gradient(180deg,#0f0f11 0%,#0b0b0d 100%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 70px rgba(0,0,0,.27)!important;overflow:hidden!important}
     #approach .approach-window:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 220px at 86% 0%,rgba(217,255,63,.07),transparent 58%)}
     #approach .approach-window>#approach-title{display:none!important}
-    #approach .approach-grid{position:relative!important;z-index:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;margin:0!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:18px!important;overflow:hidden!important;background:rgba(255,255,255,.07)!important}
+    #approach .approach-grid{position:relative!important;z-index:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;margin:0!important;border:0!important;border-radius:18px!important;overflow:hidden!important;background:rgba(255,255,255,.07)!important}
     #approach .approach-item{margin:0!important;padding:25px 24px!important;background:#0d0d0f!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
     #approach .approach-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.08)!important}
     #approach .approach-item:nth-last-child(-n+2){border-bottom:0!important}

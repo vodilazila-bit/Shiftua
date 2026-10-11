@@ -201,7 +201,7 @@
   setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);setTimeout(setupApproachDisclosure,300);setTimeout(setupApproachDisclosure,1200);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20261011-transline';
+  s.src='app-main-20260912.js?v=20261011-clean-urls';
   s.defer=true;
   s.onload=()=>{applyZai();ensureShiftCase();loadZaiHero();enforceCostCtas();setupApproachDisclosure();[100,400,900,1800].forEach(ms=>setTimeout(()=>{applyZai();ensureShiftCase();enforceCostCtas()},ms));setTimeout(setupApproachDisclosure,500)};
   document.head.appendChild(s);

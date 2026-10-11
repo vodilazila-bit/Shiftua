@@ -121,7 +121,7 @@
       #form .form-brief-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(10,10,11,.10)}
     }
     @media(max-width:760px){
-      #services .service{grid-template-columns:54px minmax(0,1fr) 44px!important;column-gap:18px!important}
+      #services .service{grid-template-columns:minmax(0,1fr) 44px!important;column-gap:18px!important}
       #services .service .arr{width:42px!important;height:42px!important;border-radius:13px!important;align-self:start!important;margin-top:1px!important;background:#111214!important;color:#fff!important;border-color:#111214!important}
       #services .service .arr svg{width:17px;height:17px}
       .modernCta .modernArrow{width:32px!important;height:32px!important;flex-basis:32px!important;border-radius:10px!important}

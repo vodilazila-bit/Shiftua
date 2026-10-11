@@ -205,7 +205,7 @@ window.gtag('config','G-CZ9YTRCWV7');
   });
 
   // Lead form stays local so form changes are not blocked by jsDelivr cache.
-  load('form-handler.js?v=38','shift-form-handler').catch(()=>{});
+  load('form-handler.js?v=20261011-clean-urls','shift-form-handler').catch(()=>{});
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()

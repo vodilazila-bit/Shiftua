@@ -1,14 +1,22 @@
-/* TransLine — scroll-scrubbed frame sequence. Plain JS, no dependencies. */
+/* TransLine — scroll-scrubbed frame sequence. Plain JS, no dependencies.
+   Desktop (non-iOS, H.264 capable): all-keyframe MP4 scrubbed via currentTime, drawn to canvas.
+   Mobile / fallback: WebP frames fetched as compressed blobs, decoded off-thread with
+   createImageBitmap in a sliding window around the current frame (+ low-res keyframes as fallback). */
 (function () {
   'use strict';
-  var FRAME_COUNT = 482;          // total frames in assets/concepts/transline/frames/{d,m}
+  var BASE = 'assets/concepts/transline/';  // asset base relative to the page
+  var FRAME_COUNT = 482;          // total frames in frames/{d,m}
   var WHITE_FROM = 478;           // frames >= this are pure #ffffff -> drawn as a solid fill
   var END_AT = 0.965;             // scroll progress at which the last frame is reached
   var BG = '#ffffff';             // must equal body background
+  var VIDEO_FPS = 30;             // fps of seq-*.mp4 (frames 0..WHITE_FROM-1, every frame a keyframe)
+  var LERP = 0.2;                 // smoothing toward the scroll target
+  var HEAD = 60;                  // first frames loaded in order so the start is instantly smooth
+  var KEY_STEP = 16;              // coarse keyframes kept decoded (low-res) as a never-blank fallback
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canvas = document.getElementById('seq');
-  var ctx = canvas.getContext('2d', { alpha: false });
+  var ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
   var section = document.getElementById('scrolly');
   var shade = document.getElementById('shade');
   var hint = document.getElementById('hint');
@@ -17,96 +25,238 @@
   var topbar = document.getElementById('topbar');
   var beats = Array.prototype.slice.call(document.querySelectorAll('.beat'));
 
-  // pick frame set: mobile (960x540) on small screens, desktop (1280x720) otherwise
   var small = Math.min(screen.width, screen.height) < 768 || window.innerWidth < 900;
-  var dir = small ? 'assets/concepts/transline/frames/m/' : 'assets/concepts/transline/frames/d/';
+  var iOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var dir = BASE + (small ? 'frames/m/' : 'frames/d/');
   function src(i) { return dir + String(i).padStart(4, '0') + '.webp'; }
+  var hasBitmap = typeof createImageBitmap === 'function' && typeof fetch === 'function';
+  var probe = document.createElement('video');
+  var useVideo = !small && !iOS && !reduce && typeof fetch === 'function' &&
+    !!probe.canPlayType && probe.canPlayType('video/mp4; codecs="avc1.640028"') !== '';
+  var forced = (location.search.match(/[?&]seq=(img|video)\b/) || [])[1];   // debug override
+  // Measured in Chrome: bitmap frames draw in ~0.1 ms vs 7-11 ms for drawImage(video) + seek latency,
+  // so images are the default everywhere; the MP4 path stays available for A/B checks via ?seq=video.
+  useVideo = useVideo && forced === 'video';
+  // decoded full-res frames kept around the current one (memory: desktop ~3.7 MB, mobile ~2 MB each)
+  var BEHIND = small ? 14 : 20, AHEAD = small ? 36 : 50;
 
-  var images = new Array(FRAME_COUNT);
-  var loaded = new Uint8Array(FRAME_COUNT);
-  var current = 0, target = 0, lastDrawn = -1, lastDrawnImg = null;
+  // ---------- state ----------
+  var blobs = new Array(FRAME_COUNT);     // compressed bytes (Blob) or HTMLImageElement in fallback
+  var bitmaps = new Array(FRAME_COUNT);   // decoded full-res frames (sliding window)
+  var keys = new Array(FRAME_COUNT);      // decoded low-res keyframes (permanent)
+  var fetching = new Uint8Array(FRAME_COUNT), decoding = new Uint8Array(FRAME_COUNT);
+  var current = 0, target = 0, dirSign = 1, lastIdx = -1, lastSrc = null;
 
-  // ---------- canvas sizing (DPR aware) ----------
+  // ---------- canvas sizing (DPR aware, only on resize) ----------
   var cw = 0, ch = 0;
   function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w = canvas.clientWidth, h = canvas.clientHeight;
-    var W = Math.round(w * dpr), H = Math.round(h * dpr);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var W = Math.round(canvas.clientWidth * dpr), H = Math.round(canvas.clientHeight * dpr);
     if (W === cw && H === ch) return;
-    cw = canvas.width = W; ch = canvas.height = H;
+    cw = canvas.width = W; ch = canvas.height = H;     // resets context state, so set smoothing here once
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    lastDrawn = -1; draw(Math.round(current));
+    lastIdx = -1; lastSrc = null; render(true);
   }
 
   // ---------- drawing (object-fit: cover) ----------
-  function nearestLoaded(i) {
-    if (loaded[i]) return i;
-    for (var d = 1; d < FRAME_COUNT; d++) {
-      if (i - d >= 0 && loaded[i - d]) return i - d;
-      if (i + d < FRAME_COUNT && loaded[i + d]) return i + d;
-    }
-    return -1;
+  function cover(img, iw, ih) {
+    var s = Math.max(cw / iw, ch / ih), dw = iw * s, dh = ih * s;
+    var fx = cw < ch ? 0.56 : 0.5;   // portrait: keep the truck a bit right of centre
+    ctx.drawImage(img, (cw - dw) * fx, (ch - dh) / 2, dw, dh);
   }
-  function draw(i) {
+  function white() { ctx.fillStyle = BG; ctx.fillRect(0, 0, cw, ch); }
+  function nearestDecoded(i) {
+    if (bitmaps[i]) return bitmaps[i];
+    var best = null, bd = 1e9, d, k;
+    for (d = 1; d <= AHEAD + BEHIND; d++) {
+      if (i - d >= 0 && bitmaps[i - d]) { best = bitmaps[i - d]; bd = d; break; }
+      if (i + d < WHITE_FROM && bitmaps[i + d]) { best = bitmaps[i + d]; bd = d; break; }
+    }
+    // a low-res keyframe that is much closer beats a far full-res frame
+    for (d = 0; d < KEY_STEP * 2 && d < bd; d++) {
+      k = i - d; if (k >= 0 && keys[k]) return keys[k];
+      k = i + d; if (k < WHITE_FROM && keys[k]) return keys[k];
+    }
+    if (best) return best;
+    for (d = 0; d < WHITE_FROM; d++) {
+      if (i - d >= 0 && keys[i - d]) return keys[i - d];
+      if (i + d < WHITE_FROM && keys[i + d]) return keys[i + d];
+    }
+    return null;
+  }
+  var video = null, videoReady = false, seeking = false, vidWant = -1, vidShown = -1;
+  function drawFrame(i, force) {
     if (!cw) return;
     if (i >= WHITE_FROM) {
-      if (lastDrawn === -2) return;
-      ctx.fillStyle = BG; ctx.fillRect(0, 0, cw, ch); lastDrawn = -2; return;
+      if (lastSrc !== 'white') { white(); lastSrc = 'white'; }
+      lastIdx = i; window.__tlFrame = i; return;
     }
-    var n = nearestLoaded(i);
-    if (n < 0 || n === lastDrawn) return;
-    var img = images[n];
-    var iw = img.naturalWidth, ih = img.naturalHeight;
-    var s = Math.max(cw / iw, ch / ih);
-    var dw = iw * s, dh = ih * s;
-    // portrait screens: keep the truck a bit right of centre so the cab stays visible
-    var fx = cw < ch ? 0.56 : 0.5;
-    var dx = (cw - dw) * fx, dy = (ch - dh) / 2;
-    ctx.drawImage(img, dx, dy, dw, dh);
-    lastDrawn = n;
+    if (videoReady) {
+      lastIdx = i;
+      if (i === vidShown && !seeking && (lastSrc !== video || force)) { cover(video, video.videoWidth, video.videoHeight); lastSrc = video; window.__tlFrame = i; }
+      else seekVideo(i);
+      return;
+    }
+    var img = nearestDecoded(i);
+    if (!img || (img === lastSrc && !force)) { lastIdx = i; return; }
+    cover(img, img.width || img.naturalWidth, img.height || img.naturalHeight);
+    lastSrc = img; lastIdx = i; window.__tlFrame = img.__i;
+  }
+  function render(force) {
+    var i = Math.round(current);
+    if (force || i !== lastIdx) drawFrame(i, force);
   }
 
-  // ---------- progressive loading ----------
-  function buildOrder() {
-    var seen = new Uint8Array(FRAME_COUNT), order = [];
-    function add(i) { if (i >= 0 && i < FRAME_COUNT && !seen[i]) { seen[i] = 1; order.push(i); } }
-    add(0);
-    [64, 32, 16, 8, 4, 2, 1].forEach(function (step) {
-      for (var i = 0; i < WHITE_FROM; i += step) add(i);
+  // ---------- video scrubbing (desktop) ----------
+  function seekVideo(i) {
+    vidWant = i;
+    if (seeking || i === vidShown) return;
+    seeking = true;
+    video.currentTime = (i + 0.5) / VIDEO_FPS;
+  }
+  function onVideoFrame() {
+    seeking = false;
+    var shown = Math.min(WHITE_FROM - 1, Math.floor(video.currentTime * VIDEO_FPS));
+    if (lastIdx < WHITE_FROM) {            // never paint video over the white end state
+      cover(video, video.videoWidth, video.videoHeight);
+      lastSrc = video; window.__tlFrame = shown;
+    }
+    vidShown = shown;
+    if (vidWant !== vidShown && vidWant < WHITE_FROM) seekVideo(vidWant);
+  }
+  function startVideo() {
+    var url = BASE + 'seq-d.mp4?v=20261011';
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('video ' + res.status);
+      var total = +res.headers.get('Content-Length') || 0;
+      if (!res.body || !total || typeof Response === 'undefined') return res.blob();
+      var reader = res.body.getReader(), got = 0, chunks = [];
+      function pump() {
+        return reader.read().then(function (r) {
+          if (r.done) return new Blob(chunks, { type: 'video/mp4' });
+          chunks.push(r.value); got += r.value.length; setProgress(0.25 + 0.75 * got / total);
+          return pump();
+        });
+      }
+      return pump();
+    }).then(function (blob) {
+      return new Promise(function (resolve, reject) {
+        video = document.createElement('video');
+        video.muted = true; video.playsInline = true; video.preload = 'auto';
+        video.setAttribute('muted', ''); video.setAttribute('playsinline', ''); video.setAttribute('aria-hidden', 'true');
+        video.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:0;top:0';
+        video.addEventListener('seeked', onVideoFrame);
+        video.addEventListener('error', function () { reject(new Error('video decode')); }, { once: true });
+        video.addEventListener('loadeddata', function () { resolve(); }, { once: true });
+        video.src = URL.createObjectURL(blob);
+        section.appendChild(video);
+      });
+    }).then(function () {
+      videoReady = true; setProgress(1);
+      // free full-res image bitmaps, keep the low-res keyframes
+      for (var i = 0; i < FRAME_COUNT; i++) if (bitmaps[i]) { if (bitmaps[i].close) bitmaps[i].close(); bitmaps[i] = null; }
+      lastIdx = -1; render(true);
     });
-    return order;
   }
-  var KEY_STEP = 8, keyTotal = Math.ceil(WHITE_FROM / KEY_STEP), keyLoaded = 0, totalLoaded = 0;
-  function onLoad(i, img) {
-    images[i] = img; loaded[i] = 1; totalLoaded++;
-    if (i % KEY_STEP === 0) keyLoaded++;
-    var p = Math.min(1, keyLoaded / keyTotal);
-    loaderBar.style.width = (p * 100).toFixed(1) + '%';
-    loader.setAttribute('aria-valuenow', Math.round(p * 100));
-    if (p >= 1) loader.classList.add('done');
-    // redraw if this frame is closer to what we want than what is on screen
-    var want = Math.round(current);
-    if (want < WHITE_FROM && Math.abs(i - want) < Math.abs(lastDrawn - want)) { lastDrawn = -1; draw(want); }
-  }
-  function loadFrame(i) {
+
+  // ---------- image pipeline (fetch blob -> decode in window) ----------
+  function loadOne(i) {
+    fetching[i] = 1;
+    if (hasBitmap) {
+      return fetch(src(i)).then(function (r) { return r.ok ? r.blob() : null; })
+        .then(function (b) { if (b) blobs[i] = b; }, function () {})
+        .then(function () { fetching[i] = 2; onFetched(i); });
+    }
     return new Promise(function (res) {
-      var img = new Image();
-      img.decoding = 'async';
-      img.onload = function () {
-        var done = function () { onLoad(i, img); res(); };
-        if (img.decode) img.decode().then(done, done); else done();
-      };
-      img.onerror = function () { res(); };
+      var img = new Image(); img.decoding = 'async';
+      img.onload = function () { var ok = function () { img.__i = i; blobs[i] = img; bitmaps[i] = img; if (i % KEY_STEP === 0) keys[i] = img; fetching[i] = 2; onFetched(i); res(); }; if (img.decode) img.decode().then(ok, ok); else ok(); };
+      img.onerror = function () { fetching[i] = 2; res(); };
       img.src = src(i);
     });
   }
-  function preload() {
-    var order = buildOrder(), idx = 0, CONC = 6;
-    function next() { if (idx >= order.length) return; var i = order[idx++]; return loadFrame(i).then(next); }
-    loadFrame(order[idx++]).then(function () {
-      draw(0);
-      for (var k = 0; k < CONC; k++) next();
+  function decodeOne(i, low) {
+    decoding[i] = 1;
+    var opts = low ? { resizeWidth: small ? 480 : 640, resizeQuality: 'medium' } : undefined;
+    return (opts ? createImageBitmap(blobs[i], opts) : createImageBitmap(blobs[i])).then(function (bm) {
+      bm.__i = i;
+      if (low) keys[i] = bm;
+      else if (inWindow(i)) bitmaps[i] = bm;
+      else if (bm.close) bm.close();
+    }, function () {}).then(function () {
+      decoding[i] = 0;
+      var want = Math.round(current);
+      if (Math.abs(i - want) <= Math.abs((lastSrc && lastSrc.__i !== undefined ? lastSrc.__i : 1e9) - want) && !videoReady) render(true);
     });
+  }
+  function inWindow(i) {
+    var c = Math.round(current);
+    return dirSign >= 0 ? (i >= c - BEHIND && i <= c + AHEAD) : (i <= c + BEHIND && i >= c - AHEAD);
+  }
+  // fetch order: head frames, then keyframes, then frames ahead of the reader (images only if no video)
+  var headDone = 0, keyTotal = Math.ceil(WHITE_FROM / KEY_STEP), keyDone = 0, inflight = 0, CONC = 6;
+  function nextToFetch() {
+    var i;
+    for (i = 0; i < HEAD; i++) if (!fetching[i]) return i;
+    for (i = 0; i < WHITE_FROM; i += KEY_STEP) if (!fetching[i]) return i;
+    if (useVideo) return -1;
+    var c = Math.round(current), best = -1, bs = 1e9, s, d;
+    for (i = 0; i < WHITE_FROM; i++) {
+      if (fetching[i]) continue;
+      d = i - c; s = (d * dirSign >= 0) ? Math.abs(d) : Math.abs(d) * 3;
+      if (s < bs) { bs = s; best = i; }
+    }
+    return best;
+  }
+  function pumpFetch() {
+    while (inflight < CONC) {
+      var i = nextToFetch(); if (i < 0) return;
+      inflight++;
+      loadOne(i).then(function () { inflight--; pumpFetch(); });
+    }
+  }
+  function onFetched(i) {
+    if (i < HEAD) headDone++;
+    if (i % KEY_STEP === 0) keyDone++;
+    if (!useVideo) setProgress((headDone + keyDone) / (HEAD + keyTotal));
+    else setProgress(0.25 * (headDone + keyDone) / (HEAD + keyTotal));
+    if (i === 0 && !lastSrc) { if (hasBitmap) decodeOne(0, false).then(function () { render(true); }); else render(true); }
+    scheduleDecode();
+  }
+  function setProgress(p) {
+    p = Math.min(1, p);
+    loaderBar.style.width = (p * 100).toFixed(1) + '%';
+    loader.setAttribute('aria-valuenow', Math.round(p * 100));
+    if (p >= 1) loader.classList.add('done');
+  }
+  // decode scheduler: keyframes (low-res) + sliding window of full-res bitmaps, nearest-first in scroll direction
+  var decInflight = 0, DEC_CONC = 2, decScheduled = false;
+  var idle = window.requestIdleCallback || function (fn) { return setTimeout(fn, 16); };
+  function scheduleDecode() {
+    if (!hasBitmap || decScheduled) return;
+    decScheduled = true;
+    idle(function () { decScheduled = false; pumpDecode(); }, { timeout: 50 });
+  }
+  function evict() {
+    for (var i = 0; i < WHITE_FROM; i++) if (bitmaps[i] && !inWindow(i)) { if (bitmaps[i] !== lastSrc && bitmaps[i].close) bitmaps[i].close(); bitmaps[i] = null; }
+  }
+  function nextToDecode() {
+    var c = Math.round(current), d, i, k;
+    if (!videoReady) {
+      for (d = 0; d <= AHEAD; d++) {
+        i = c + d * dirSign; if (i >= 0 && i < WHITE_FROM && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false];
+        if (d <= BEHIND) { i = c - d * dirSign; if (i >= 0 && i < WHITE_FROM && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false]; }
+      }
+    }
+    for (k = 0; k < WHITE_FROM; k += KEY_STEP) if (blobs[k] && !keys[k] && !decoding[k]) return [k, true];
+    return null;
+  }
+  function pumpDecode() {
+    if (!videoReady) evict();
+    while (decInflight < DEC_CONC) {
+      var n = nextToDecode(); if (!n) return;
+      decInflight++;
+      decodeOne(n[0], n[1]).then(function () { decInflight--; scheduleDecode(); });
+    }
   }
 
   // ---------- scroll -> progress ----------
@@ -127,35 +277,42 @@
       else if (p < to) o = (to - p) / fade;
       else o = 0;
       o = smooth(Math.max(0, Math.min(1, o)));
+      if (el.__o === o) continue;          // skip style writes when nothing changes
+      el.__o = o;
       el.style.opacity = o.toFixed(3);
       el.style.visibility = o > 0.001 ? 'visible' : 'hidden';
       el.style.transform = (el.classList.contains('beat-hero') && window.innerWidth > 720 ? 'translateY(-50%) ' : '') + 'translateY(' + ((1 - o) * 24).toFixed(1) + 'px)';
     }
     // darkening gradient behind text fades away before the white flash
     var sh = p < 0.82 ? 1 : Math.max(0, 1 - (p - 0.82) / 0.06);
-    shade.style.opacity = sh.toFixed(3);
-    hint.style.opacity = p > 0.02 ? 0 : 1;
+    if (shade.__o !== sh) { shade.__o = sh; shade.style.opacity = sh.toFixed(3); }
+    var ho = p > 0.02 ? 0 : 1;
+    if (hint.__o !== ho) { hint.__o = ho; hint.style.opacity = ho; }
   }
-  function updateTopbar() {
+  function updateTopbar(p) {
     var r = section.getBoundingClientRect();
-    var solid = progress() > 0.9 || r.bottom < 80;
+    var solid = (p === undefined ? progress() : p) > 0.9 || r.bottom < 80;
     topbar.classList.toggle('solid', solid);
   }
 
-  // ---------- render loop (lerp toward target frame) ----------
+  // ---------- render loop (lerp toward target frame, stops when settled) ----------
   var running = false;
   function tick() {
     var diff = target - current;
-    current += diff * 0.14;
-    if (Math.abs(diff) < 0.05) current = target;
-    draw(Math.round(current));
-    if (current !== target) requestAnimationFrame(tick); else running = false;
+    current += diff * LERP;
+    if (Math.abs(diff) < 0.3) current = target;
+    render(false);
+    if (current !== target) requestAnimationFrame(tick);
+    else { running = false; scheduleDecode(); }
   }
+  var lastTarget = 0;
   function onScroll() {
     var p = progress();
     target = Math.min(1, p / END_AT) * (FRAME_COUNT - 1);
+    if (target !== lastTarget) { dirSign = target > lastTarget ? 1 : -1; lastTarget = target; }
     updateOverlays(p);
-    updateTopbar();
+    updateTopbar(p);
+    scheduleDecode();
     if (!running) { running = true; requestAnimationFrame(tick); }
   }
 
@@ -180,18 +337,19 @@
   if (reduce) {
     // static frame, no scrubbing, no bulk loading
     var still = new Image();
-    still.onload = function () { images[0] = still; loaded[0] = 1; resize(); draw(0); };
+    still.onload = function () { still.__i = 0; bitmaps[0] = still; resize(); drawFrame(0, true); };
     still.src = src(0);
     loader.classList.add('done');
     window.addEventListener('resize', resize);
-    window.addEventListener('scroll', updateTopbar, { passive: true });
+    window.addEventListener('scroll', function () { updateTopbar(); }, { passive: true });
     updateTopbar();
     return;
   }
   resize();
-  preload();
+  pumpFetch();
+  if (useVideo) startVideo().catch(function () { useVideo = false; videoReady = false; pumpFetch(); });
   window.addEventListener('resize', function () { resize(); onScroll(); });
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  current = target; draw(Math.round(current));
+  current = target; render(true);
 })();

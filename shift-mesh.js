@@ -19,7 +19,7 @@ window.gtag('config','G-CZ9YTRCWV7');
     .what{background:rgba(241,239,232,.96)!important}
     .ticker{background:rgba(10,10,11,.58)}
 
-    #concepts .kicker{color:#d9ff3f!important;font-size:12px!important;font-weight:800!important;letter-spacing:.16em!important}
+    #concepts 
     #concepts .section-title{font-size:clamp(25px,3.85vw,56px)!important;line-height:1.08!important;letter-spacing:-.055em!important;max-width:100%;color:#fff!important}
     #concepts .section-title em{color:#d9ff3f!important}
     #concepts .section-head{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;align-items:start;margin-bottom:40px!important}
@@ -173,9 +173,7 @@ window.gtag('config','G-CZ9YTRCWV7');
   }
 
   function applySiteTweaks(){
-    const conceptKicker=document.querySelector('#concepts .kicker');
     const conceptTitle=document.querySelector('#concepts .section-title');
-    if(conceptKicker)conceptKicker.textContent='03.2 / КОНЦЕПТИ';
     if(conceptTitle)conceptTitle.innerHTML='Варіанти концептів:<br><em>сайти під ваш бізнес.</em>';
 
     const priceCopy=document.querySelector('#prices .section-copy');
@@ -213,7 +211,7 @@ window.gtag('config','G-CZ9YTRCWV7');
     ? Promise.resolve()
     : load('zaisun-case-v28.js?v=20260908-layout','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=20260908-layout','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=20261011-transline','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

@@ -1,7 +1,7 @@
 (()=>{
-  const ZAI_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>900+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b>.</li><li><b>Інтеграція Checkbox</b> — автоматичне видавання чеків після оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
+  const ZAI_HTML=`<div class="wrap"><div class="rc-grid reveal on"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="rc-block zai-done"><div class="rc-label">Що зроблено</div><ul><li>Каталог, фільтри, кошик, checkout та <b>900+ товарних сторінок</b>.</li><li><b>Нова Пошта + monobank</b>, адмінка та автоматичний товарний фід.</li><li><b>Google Ads, GA4, Meta Pixel + CAPI</b>.</li><li><b>Інтеграція Checkbox</b> — автоматичне видавання чеків після оплати.</li></ul></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="zai-visual"><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img class="zai-user-shot" alt="ZaiSun — осіння колекція"></a></div></div></div>`;
 
-  const SHIFT_HTML=`<div class="wrap"><div class="rc-head reveal on"><div><div class="kicker">03.1 / Наш проєкт</div></div></div><div class="rc-grid reveal on"><div class="rc-copy"><h3>SHIFT</h3><p class="rc-sub">Односторінковий сайт транспортної компанії.</p><div class="rc-block"><div class="rc-label">Що зроблено</div><ul><li>Структура сторінки та логіка переходів</li><li>Анімації та мікровзаємодії</li><li>Повна мобільна адаптація</li></ul></div><a class="rc-link" href="https://shiftua.com/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="shift-visual"><a class="shiftcase-preview" href="https://shiftua.com/" target="_blank" rel="noopener" aria-label="Відкрити SHIFT"><img src="https://image.thum.io/get/width/1886/noanimate/https://shiftua.com/" alt="SHIFT — односторінковий сайт транспортної компанії" loading="lazy"></a></div></div></div>`;
+  const SHIFT_HTML=`<div class="wrap"><div class="rc-grid reveal on"><div class="rc-copy"><h3>SHIFT</h3><p class="rc-sub">Односторінковий сайт транспортної компанії.</p><div class="rc-block"><div class="rc-label">Що зроблено</div><ul><li>Структура сторінки та логіка переходів</li><li>Анімації та мікровзаємодії</li><li>Повна мобільна адаптація</li></ul></div><a class="rc-link" href="https://shiftua.com/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div class="shift-visual"><a class="shiftcase-preview" href="https://shiftua.com/" target="_blank" rel="noopener" aria-label="Відкрити SHIFT"><img src="https://image.thum.io/get/width/1886/noanimate/https://shiftua.com/" alt="SHIFT — односторінковий сайт транспортної компанії" loading="lazy"></a></div></div></div>`;
 
   const style=document.createElement('style');
   style.id='portfolio-force-clean-style';
@@ -49,7 +49,6 @@
     #approach.approach-disclosure .approach-toggle:hover{border-color:#c9ef34!important;transform:translateY(-2px)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 22px 58px rgba(0,0,0,.18),0 0 26px rgba(217,255,63,.10)!important}
     #approach.approach-disclosure .approach-toggle:hover:before{transform:translateX(18%)}
     #approach .approach-toggle-copy{display:flex;min-width:0;flex-direction:column;gap:12px}
-    #approach .approach-toggle-kicker{font:800 12px/1 "DM Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#111!important;opacity:.72}
     #approach .approach-toggle-title{font:700 clamp(28px,2.8vw,40px)/1.02 Manrope,sans-serif;letter-spacing:-.04em;color:#111!important}
     #approach .approach-toggle-icon{position:relative;display:block;flex:0 0 68px;width:68px;height:68px;border:1px solid #bfe329;border-radius:20px;background:#d9ff3f;box-shadow:inset 0 1px 0 rgba(255,255,255,.52),0 10px 24px rgba(156,188,27,.20);transition:transform .4s cubic-bezier(.16,1,.3,1),background .28s ease,border-color .28s ease}
     #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{content:"";position:absolute;left:50%;top:50%;width:22px;height:2px;border-radius:99px;background:#101011;transform:translate(-50%,-50%);transition:transform .38s cubic-bezier(.16,1,.3,1)}
@@ -75,9 +74,8 @@
     @media(max-width:760px){
       #approach.approach-disclosure{margin:24px 0 38px!important}
       #approach.approach-disclosure .approach-toggle{min-height:124px!important;padding:18px 20px 16px 20px!important;border-radius:22px!important;gap:16px!important;align-items:center!important}
-      #approach .approach-toggle-copy{gap:8px;align-self:stretch!important;justify-content:center!important;padding-top:10px!important}
-      #approach .approach-toggle-kicker{position:absolute!important;top:14px!important;left:20px!important;font-size:9px!important;letter-spacing:.16em!important;opacity:.68}
-      #approach .approach-toggle-title{font-size:22px!important;line-height:1.08!important;color:#111!important;transform:translateY(-4px)!important}
+      #approach .approach-toggle-copy{gap:8px;align-self:stretch!important;justify-content:center!important;padding-top:0!important}
+      #approach .approach-toggle-title{font-size:22px!important;line-height:1.08!important;color:#111!important}
       #approach .approach-toggle-icon{flex-basis:56px;width:56px;height:56px;border-radius:17px}
       #approach .approach-toggle-icon:before,#approach .approach-toggle-icon:after{width:19px}
       #approach .approach-window{margin-top:10px!important;padding:8px!important;border-radius:20px!important}
@@ -176,7 +174,7 @@
     approach.classList.add('approach-disclosure');
     const button=document.createElement('button');
     button.type='button';button.className='approach-toggle';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','approach-panel');
-    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-kicker">WEBWORK / ПІДХІД</span><span class="approach-toggle-title">Як я працюю</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
+    button.innerHTML='<span class="approach-toggle-copy"><span class="approach-toggle-title">Як я працюю</span></span><span class="approach-toggle-icon" aria-hidden="true"></span>';
     const panel=document.createElement('div');panel.className='approach-panel';panel.id='approach-panel';panel.setAttribute('aria-hidden','true');
     const inner=document.createElement('div');inner.className='approach-panel-inner';
     const win=document.createElement('div');win.className='approach-window';original.forEach(el=>win.appendChild(el));inner.appendChild(win);panel.appendChild(inner);approach.appendChild(button);approach.appendChild(panel);
@@ -203,7 +201,7 @@
   setTimeout(enforceCostCtas,250);setTimeout(enforceCostCtas,900);setTimeout(setupApproachDisclosure,300);setTimeout(setupApproachDisclosure,1200);
 
   const s=document.createElement('script');
-  s.src='app-main-20260912.js?v=20260924-contact-scroll2';
+  s.src='app-main-20260912.js?v=20261011-transline';
   s.defer=true;
   s.onload=()=>{applyZai();ensureShiftCase();loadZaiHero();enforceCostCtas();setupApproachDisclosure();[100,400,900,1800].forEach(ms=>setTimeout(()=>{applyZai();ensureShiftCase();enforceCostCtas()},ms));setTimeout(setupApproachDisclosure,500)};
   document.head.appendChild(s);

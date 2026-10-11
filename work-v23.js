@@ -47,13 +47,13 @@
     @media(max-width:760px){
       .wrap{width:calc(100% - 28px)!important}.block,.cases,.deliverables{padding:66px 0!important}header{padding:8px 0!important}.nav{padding:7px 7px 7px 11px!important}.logo{font-size:16px!important}.logo .shiftmark{width:34px!important;height:24px!important}.navcta{padding:10px 11px!important;font-size:10px!important}.links{display:none!important}
       .hero{min-height:auto!important;padding:90px 0 18px!important}.hero-inner{min-height:calc(100svh - 108px)}.hero-top{display:block!important}.hero-copy{max-width:100%!important;font-size:13.5px!important;line-height:1.5!important}.hero-title{font-size:17.8vw!important;line-height:.83!important;margin:25px 0 18px!important;letter-spacing:-.075em!important}.hero-cards{grid-template-columns:1fr!important;gap:9px!important}.visual{height:168px!important;border-radius:20px!important}.start{height:auto!important;min-height:132px;padding:22px!important;border-radius:20px!important}.start h3{font-size:23px!important}.visualcopy{left:14px!important;right:14px!important;bottom:12px!important}
-      .section-head{grid-template-columns:1fr!important;gap:15px!important;margin-bottom:30px!important}.section-title{font-size:12.8vw!important;line-height:.92!important}.section-copy{font-size:13px!important;line-height:1.5!important}.kicker{font-size:9px!important}
+      .section-head{grid-template-columns:1fr!important;gap:15px!important;margin-bottom:30px!important}.section-title{font-size:12.8vw!important;line-height:.92!important}.section-copy{font-size:13px!important;line-height:1.5!important}
       .whatgrid{grid-template-columns:1fr!important;gap:16px!important}.whatcard{position:relative!important;top:auto!important;min-height:300px!important;padding:22px!important}.whatcard h3{font-size:11vw!important}.service{grid-template-columns:28px 1fr 18px!important;gap:10px!important;padding:18px 0!important}.service h3{font-size:8.5vw!important}.service p{grid-column:2/-1!important;font-size:13px!important}.service:hover{padding-left:0!important}
       .deliver-grid{grid-template-columns:1fr!important}.deliver-card{min-height:0!important;padding:20px!important}.casegrid{grid-template-columns:1fr!important;gap:12px!important}.case,.case.wide{grid-column:auto!important;min-height:390px!important;border-radius:20px!important}
       .concept-case .case-meta{left:16px!important;right:16px!important;top:15px!important}.concept-case .case-meta span:last-child{display:none!important}
       .concept-case .case-bottom{left:16px!important;right:16px!important;bottom:16px!important;gap:7px!important;align-items:flex-start!important;flex-direction:column!important}.concept-case h3{font-size:11.2vw!important;max-width:8ch!important}.concept-case p{display:none!important}.concept-case .case-open{right:13px!important;top:13px!important;padding:8px 10px!important;font-size:9px!important}
       .growthgrid{grid-template-columns:1fr!important}.growthitem{min-height:126px!important}.pricegrid{grid-template-columns:1fr!important;gap:12px!important}.pricecard{padding:18px!important;border-radius:22px!important}.pricecard.featured{transform:none!important}.price{font-size:7.5vw!important}.price-preview{height:145px!important;transform:none!important;opacity:1!important}
-      .processrow{grid-template-columns:32px 1fr!important;gap:9px!important;padding:18px 0!important}.processrow h3{font-size:8.1vw!important}.processrow p{grid-column:2!important;font-size:13px!important}.faq summary{grid-template-columns:28px 1fr 20px!important;gap:9px!important;padding:18px 0!important}.faq summary h3{font-size:6.2vw!important}.faq-answer{padding:0 0 20px 37px!important;font-size:13px!important}
+      .processrow{grid-template-columns:1fr!important;gap:9px!important;padding:18px 0!important}.processrow h3{font-size:8.1vw!important}.processrow p{grid-column:auto!important;font-size:13px!important}.faq summary{grid-template-columns:28px 1fr 20px!important;gap:9px!important;padding:18px 0!important}.faq summary h3{font-size:6.2vw!important}.faq-answer{padding:0 0 20px 37px!important;font-size:13px!important}
       .realcase{padding:66px 0 8px!important}.rc-head{grid-template-columns:1fr!important;gap:14px!important;margin-bottom:30px!important}.rc-grid{grid-template-columns:1fr!important;gap:24px!important}.rc-copy h3{font-size:34px!important}.rc-sub{font-size:13px!important;line-height:1.55!important;margin-bottom:22px!important}.rc-block{padding:17px 0!important}.rc-block li{font-size:13px!important}.rc-frame{position:static!important;border-radius:18px!important}.rc-live{aspect-ratio:4/5!important}.rc-note{font-size:10.5px!important}
       #work.zaisun-clean .rc-grid{grid-template-columns:1fr!important;gap:24px!important}
       #work.zaisun-clean .rc-sub{font-size:16px!important}
@@ -89,17 +89,23 @@
   const zaisunCase=document.querySelector('#work.realcase');
   if(zaisunCase){
     zaisunCase.classList.add('zaisun-clean');
-    zaisunCase.innerHTML=`<div class="wrap"><div class="rc-head reveal"><div><div class="kicker">03 / Наш проєкт</div></div></div><div class="rc-grid reveal"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="case-lines"><div class="case-line">Каталог, фільтри, кошик, checkout та <strong>800+ товарних сторінок</strong>.</div><div class="case-line"><strong>Нова Пошта + monobank</strong>, адмінка та автоматичний товарний фід.</div><div class="case-line"><strong>Google Ads, GA4, Meta Pixel + CAPI</strong> — від кліку до реальної оплати.</div></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="https://zaisun.com.ua/hero2.jpg" alt="ZaiSun — дитячий бренд" loading="lazy"></a></div></div></div>`;
+    zaisunCase.innerHTML=`<div class="wrap"><div class="rc-grid reveal"><div class="rc-copy"><h3>ZaiSun</h3><p class="rc-sub">E-commerce для бренду дитячого одягу.</p><div class="case-lines"><div class="case-line">Каталог, фільтри, кошик, checkout та <strong>800+ товарних сторінок</strong>.</div><div class="case-line"><strong>Нова Пошта + monobank</strong>, адмінка та автоматичний товарний фід.</div><div class="case-line"><strong>Google Ads, GA4, Meta Pixel + CAPI</strong> — від кліку до реальної оплати.</div></div><a class="rc-link" href="https://zaisun.com.ua/" target="_blank" rel="noopener">Відвідати сайт <span aria-hidden="true">↗</span></a></div><div><a class="zaisun-clean-preview" href="https://zaisun.com.ua/" target="_blank" rel="noopener" aria-label="Відкрити ZaiSun"><img src="https://zaisun.com.ua/hero2.jpg" alt="ZaiSun — дитячий бренд" loading="lazy"></a></div></div></div>`;
   }
 
   // Reduce copy in the concept section and use clean visual previews instead of browser screenshots.
   const conceptSection=document.querySelector('#concepts');
   if(conceptSection){
-    const copy=conceptSection.querySelector('.section-copy');if(copy)copy.textContent='Два різні бізнеси — дві різні візуальні системи.';
+    const copy=conceptSection.querySelector('.section-copy');if(copy)copy.textContent='Різні бізнеси — різні візуальні системи.';
     const note=conceptSection.querySelector('.cases-note');if(note)note.textContent='Відкрийте концепт, щоб переглянути повну сторінку.';
   }
 
   const concepts=[
+    {
+      match:'shift_concept_transline_scroll.html',
+      text:'Транспортна компанія · анімація на скролі',
+      open:'Відкрити ↗',
+      slides:['assets/concepts/transline/preview.webp','assets/concepts/transline/frames/d/0400.webp','assets/concepts/transline/frames/d/0080.webp']
+    },
     {
       match:'shift_concept_vektor_lev_style.html',
       text:'Сайт девелопера: проєкти, статуси, продажі.',

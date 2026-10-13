@@ -26,7 +26,7 @@
       .z34Copy>p{font-size:16px;line-height:1.55;max-width:430px;color:#564d45;margin:0 0 26px}
       .z34Actions{display:flex;justify-content:flex-start;align-self:stretch;gap:10px;flex-wrap:wrap}
       .z34Btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;background:#151515;color:#fff;text-decoration:none;font:600 13px/1 "DM Sans",sans-serif;transition:.25s transform,.25s background,.25s color}
-      .z34Btn:hover{transform:translateY(-2px);background:#d9ff3f;color:#0b0b0c}
+      .z34Btn:hover{transform:translateY(-2px);background:#b5c24a;color:#0b0b0c}
       .z34BtnLight{background:transparent;color:#181512;border:1px solid rgba(24,21,18,.24)}
 
       .z34Visual{position:relative;min-height:570px;overflow:hidden;background:#c58c62}
@@ -39,7 +39,7 @@
       .z34Quick{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;border:1px solid rgba(255,255,255,.13);border-radius:22px;overflow:hidden;background:#111113}
       .z34QuickItem{position:relative;padding:22px 24px 24px;border-right:1px solid rgba(255,255,255,.11);min-height:142px}
       .z34QuickItem:last-child{border-right:0}
-      .z34QuickItem small{display:block;color:#d9ff3f;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+      .z34QuickItem small{display:block;color:#b5c24a;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
       .z34QuickItem h4{margin:0 0 8px;font:600 20px/1.05 "Manrope",sans-serif;letter-spacing:-.035em}
       .z34QuickItem p{margin:0;color:#929299;font-size:12px;line-height:1.55}
       .z34QuickItem b{color:#fff;font-weight:600}

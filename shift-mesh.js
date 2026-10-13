@@ -21,7 +21,7 @@ window.gtag('config','G-CZ9YTRCWV7');
 
     #concepts 
     #concepts .section-title{font-size:clamp(25px,3.85vw,56px)!important;line-height:1.08!important;letter-spacing:-.055em!important;max-width:100%;color:#fff!important}
-    #concepts .section-title em{color:#d9ff3f!important}
+    #concepts .section-title em{color:#b5c24a!important}
     #concepts .section-head{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;align-items:start;margin-bottom:40px!important}
 
     .startBrief{margin:0 0 34px;border:1px solid rgba(255,255,255,.13);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.025)}
@@ -31,30 +31,30 @@ window.gtag('config','G-CZ9YTRCWV7');
     .startBriefGrid{display:grid;grid-template-columns:repeat(3,1fr)}
     .startBriefItem{min-height:120px;padding:22px 28px;border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
     .startBriefItem:nth-child(3n){border-right:0}.startBriefItem:nth-child(n+4){border-bottom:0}
-    .startBriefItem small{display:block;color:#d9ff3f;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+    .startBriefItem small{display:block;color:#b5c24a;font:700 9px/1.2 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
     .startBriefItem b{display:block;color:#fff;font:600 18px/1.1 "Manrope",sans-serif;letter-spacing:-.025em;margin-bottom:7px}
     .startBriefItem p{margin:0;color:#919198;font-size:11px;line-height:1.5}
 
     /* v41: one standalone arrow across growth and brief cards */
     .growthitem,.startBriefItem{position:relative;overflow:hidden}
-    .sectionGlyph{display:block;color:#d9ff3f;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .28s}
+    .sectionGlyph{display:block;color:#b5c24a;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .28s}
     .sectionGlyph svg{width:100%;height:100%;display:block;overflow:visible}
     .sectionGlyph path{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
     #growth .growthitem .sectionGlyph{position:absolute;right:20px;top:20px;width:38px;height:38px}
     #growth .growthitem:hover .sectionGlyph{transform:translate(4px,-4px)}
     .startBriefItem{padding-right:72px}
-    .startBriefItem .sectionGlyph{position:absolute;right:24px;top:22px;width:28px;height:28px;color:#d9ff3f;opacity:.82}
+    .startBriefItem .sectionGlyph{position:absolute;right:24px;top:22px;width:28px;height:28px;color:#b5c24a;opacity:.82}
     .startBriefItem:hover .sectionGlyph{transform:translate(3px,-3px);opacity:1}
 
     .modernCta{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s,border-color .28s!important}
-    .modernCta .modernArrow{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:inline-grid;place-items:center;background:#d9ff3f;color:#0a0a0b;transition:transform .32s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s}
+    .modernCta .modernArrow{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:inline-grid;place-items:center;background:#b5c24a;color:#0a0a0b;transition:transform .32s cubic-bezier(.2,.8,.2,1),background-color .28s,color .28s}
     .modernCta .modernArrow svg{width:15px;height:15px;display:block;overflow:visible}
     .modernCta:hover{transform:translateY(-2px)}
     .modernCta:hover .modernArrow{transform:rotate(45deg) scale(1.07)}
     .navcta.modernCta{padding:8px 9px 8px 20px!important;min-height:54px!important;border-radius:999px!important;box-shadow:0 0 0 1px rgba(255,255,255,.13) inset!important}
     .navcta.modernCta .modernArrow{width:38px;height:38px;flex-basis:38px;background:#101012;color:#fff}
-    .navcta.modernCta:hover{background:#d9ff3f!important;color:#0a0a0b!important}
-    .navcta.modernCta:hover .modernArrow{background:#0a0a0b;color:#d9ff3f}
+    .navcta.modernCta:hover{background:#b5c24a!important;color:#0a0a0b!important}
+    .navcta.modernCta:hover .modernArrow{background:#0a0a0b;color:#b5c24a}
     .pricecta.modernCta,.z34Btn.modernCta{padding-right:9px!important}
     .case-open.modernCta{width:max-content}
 
@@ -205,13 +205,13 @@ window.gtag('config','G-CZ9YTRCWV7');
   });
 
   // Lead form stays local so form changes are not blocked by jsDelivr cache.
-  load('form-handler.js?v=20261011-clean-urls','shift-form-handler').catch(()=>{});
+  load('form-handler.js?v=20261013-olive','shift-form-handler').catch(()=>{});
 
   const start=document.querySelector('script[data-zaisun-case-v28]')
     ? Promise.resolve()
-    : load('zaisun-case-v28.js?v=20260908-layout','zaisun-case-v28');
+    : load('zaisun-case-v28.js?v=20261013-olive','zaisun-case-v28');
 
-  start.then(()=>load('zaisun-case-v31.js?v=20261011-transline','zaisun-case-v31')).then(()=>{
+  start.then(()=>load('zaisun-case-v31.js?v=20261013-olive','zaisun-case-v31')).then(()=>{
     applySiteTweaks();
     setTimeout(applySiteTweaks,150);
   }).catch(()=>{});

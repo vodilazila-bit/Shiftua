@@ -9,7 +9,7 @@ body>header .links{gap:22px!important;color:#f4f4f4!important}
 body>header .links a{color:#f4f4f4!important}
 @media(min-width:761px){body>header .links{transform:translateX(55px)!important}}
 body .whatcard h3.whatcard-long{font-size:clamp(38px,4.15vw,64px)!important;line-height:.96!important;letter-spacing:-.06em!important;max-width:10.8ch!important}
-body .whatcard h3.whatcard-long .whatcard-accent{display:block;margin-top:.12em;color:#d9ff3f;font-size:.82em;line-height:1.02;letter-spacing:-.045em}
+body .whatcard h3.whatcard-long .whatcard-accent{display:block;margin-top:.12em;color:#b5c24a;font-size:.82em;line-height:1.02;letter-spacing:-.045em}
 body .whatcard p.whatcard-old-copy{display:none!important}
 
 /* clean ZaiSun + SHIFT portfolio cards */
@@ -22,13 +22,13 @@ body .whatcard p.whatcard-old-copy{display:none!important}
 .zaisun-clean .case-line{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);color:#d8d8dc;font-size:15px;line-height:1.55}
 .zaisun-clean .case-line strong{color:#fff;font-weight:700}
 .zaisun-clean .rc-link,.shiftcase .rc-link{display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;width:max-content!important;min-width:190px!important;margin-top:2px!important;padding:14px 18px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:999px!important;background:#fff!important;color:#111!important;font-weight:800!important;text-decoration:none!important}
-.zaisun-clean .rc-link:hover,.shiftcase .rc-link:hover{background:#d9ff3f!important;color:#111!important;border-color:#d9ff3f!important}
+.zaisun-clean .rc-link:hover,.shiftcase .rc-link:hover{background:#b5c24a!important;color:#111!important;border-color:#b5c24a!important}
 .zaisun-clean-preview,.shiftcase-preview{display:block;position:relative;border:1px solid rgba(255,255,255,.14);border-radius:24px;overflow:hidden;background:#111;color:#fff;text-decoration:none;padding:10px}
 .zaisun-clean-preview img,.shiftcase-preview img{display:block;width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;background:#111;border-radius:16px}
 
 .shiftcase .rc-block{margin-top:8px!important;padding:22px 24px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:20px!important;background:#111113!important}
 .shiftcase .rc-block:last-of-type{border-bottom:1px solid rgba(255,255,255,.13)!important}
-.shiftcase .rc-label{margin-bottom:15px!important;color:#d9ff3f!important}
+.shiftcase .rc-label{margin-bottom:15px!important;color:#b5c24a!important}
 .shiftcase .rc-block ul{gap:11px!important}
 .shiftcase .rc-block li{color:#e0e0e3!important;font-size:14.5px!important}
 
@@ -60,7 +60,7 @@ body .whatcard h3.whatcard-long .whatcard-accent{font-size:.84em!important}
 const headerLinks=document.querySelector('.nav .links');if(headerLinks){headerLinks.innerHTML='<a href="#services">Послуги</a><a href="#prices">Ціни</a>';const trim=()=>[...headerLinks.querySelectorAll('a')].slice(2).forEach(a=>a.remove());trim();new MutationObserver(trim).observe(headerLinks,{childList:true})}
 const serviceCardTitle=document.querySelector('.whatcard h3');if(serviceCardTitle){serviceCardTitle.classList.add('whatcard-long');serviceCardTitle.innerHTML='Від структури<br>й дизайну<br><span class="whatcard-accent">до запуску та<br>просування.</span>'}
 const serviceCardCopy=document.querySelector('.whatcard p');if(serviceCardCopy)serviceCardCopy.classList.add('whatcard-old-copy');
-const headerBrandStyle=document.createElement('style');headerBrandStyle.textContent='header .logo .brand-work{color:#d9ff3f!important}';document.head.appendChild(headerBrandStyle);
+const headerBrandStyle=document.createElement('style');headerBrandStyle.textContent='header .logo .brand-work{color:#b5c24a!important}';document.head.appendChild(headerBrandStyle);
 const navSlideStyle=document.createElement('style');navSlideStyle.textContent=`.nav .links a{opacity:0;transform:translateX(44px);will-change:transform,opacity}.nav-links-ready .nav .links a{animation:webwork-nav-slide .72s cubic-bezier(.16,1,.3,1) forwards}.nav-links-ready .nav .links a:nth-child(1){animation-delay:.00s}.nav-links-ready .nav .links a:nth-child(2){animation-delay:.07s}@keyframes webwork-nav-slide{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:translateX(0)}}@media(prefers-reduced-motion:reduce){.nav .links a{opacity:1!important;transform:none!important;animation:none!important}}`;document.head.appendChild(navSlideStyle);
 let navSlideStarted=false;function startNavSlide(){if(navSlideStarted)return;navSlideStarted=true;requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('nav-links-ready')))}
 function setMainCtas(){const nav=document.querySelector('.navcta');if(nav)nav.textContent='Порахувати вартість ↗';document.querySelectorAll('#prices .pricecta').forEach(a=>a.textContent='Порахувати вартість ↗');document.querySelectorAll('#prices .price-preview').forEach(el=>el.remove());const submit=document.querySelector('#contact form button[type="submit"]');if(submit)submit.textContent='Порахувати вартість ↗'}setMainCtas();
@@ -83,4 +83,4 @@ const header=document.querySelector('header');if(header)header.style.transform='
 document.querySelectorAll('.case').forEach(card=>{card.addEventListener('mousemove',e=>{if(innerWidth<900)return;const img=card.querySelector('img');if(!img)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;img.style.transform=`scale(1.045) translate(${x*-10}px,${y*-8}px)`});card.addEventListener('mouseleave',()=>{const img=card.querySelector('img');if(img)img.style.transform=''})});
 })();
 try{sessionStorage.setItem('shift_boot_seen_v3','1')}catch(e){}
-(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20261011-clean-urls';s.defer=true;document.head.appendChild(s)})();
+(()=>{const s=document.createElement('script');s.src='work-v23.js?v=20261013-olive';s.defer=true;document.head.appendChild(s)})();

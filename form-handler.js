@@ -107,8 +107,8 @@
     .modernCta .modernArrow{border-radius:12px!important;background:transparent!important;border:1px solid currentColor!important;box-shadow:none!important}
     .modernCta .modernArrow svg{width:14px!important;height:14px!important}
     .navcta.modernCta .modernArrow{background:#101012!important;color:#fff!important;border-color:#101012!important}
-    .navcta.modernCta:hover .modernArrow{background:#101012!important;color:#d9ff3f!important}
-    .ticker-item:after{content:""!important;width:5px;height:5px;border-radius:50%;background:#d9ff3f;display:block;flex:0 0 5px}
+    .navcta.modernCta:hover .modernArrow{background:#101012!important;color:#b5c24a!important}
+    .ticker-item:after{content:""!important;width:5px;height:5px;border-radius:50%;background:#b5c24a;display:block;flex:0 0 5px}
     .dicon.shiftArrowIcon,.proofarrow.shiftArrowIcon{font-size:0!important;display:grid!important;place-items:center!important}
     .dicon.shiftArrowIcon svg{width:24px;height:24px}
     .proofarrow.shiftArrowIcon svg{width:110px;height:110px}

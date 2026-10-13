@@ -78,21 +78,21 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    #form .form-brief-guide{grid-column:1/-1;border:1px solid rgba(15,42,34,.16);border-radius:16px;background:,.20);overflow:hidden;margin:0 0 2px}
-    #form .form-brief-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:13px 15px;border-bottom:1px solid rgba(15,42,34,.12)}
-    #form .form-brief-head b{font:700 13px/1.2 "DM Sans",sans-serif;color:#0b211a}
-    #form .form-brief-head span{font:500 11px/1.35 "DM Sans",sans-serif;color:rgba(15,42,34,.58);text-align:right}
+    #form .form-brief-guide{grid-column:1/-1;border:1px solid rgba(10,10,11,.16);border-radius:16px;background:rgba(255,255,255,.20);overflow:hidden;margin:0 0 2px}
+    #form .form-brief-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:13px 15px;border-bottom:1px solid rgba(10,10,11,.12)}
+    #form .form-brief-head b{font:700 13px/1.2 "DM Sans",sans-serif;color:#101011}
+    #form .form-brief-head span{font:500 11px/1.35 "DM Sans",sans-serif;color:rgba(10,10,11,.58);text-align:right}
     #form .form-brief-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-    #form .form-brief-grid>div{padding:12px 13px 13px;border-right:1px solid rgba(15,42,34,.10)}
+    #form .form-brief-grid>div{padding:12px 13px 13px;border-right:1px solid rgba(10,10,11,.10)}
     #form .form-brief-grid>div:last-child{border-right:0}
-    #form .form-brief-grid small{display:block;margin-bottom:5px;font:700 9px/1 "DM Sans",sans-serif;letter-spacing:.12em;color:rgba(15,42,34,.48)}
-    #form .form-brief-grid strong{display:block;margin-bottom:4px;font:700 12px/1.15 "DM Sans",sans-serif;color:#0b211a}
-    #form .form-brief-grid p{margin:0;font:500 10.5px/1.38 "DM Sans",sans-serif;color:rgba(15,42,34,.62)}
+    #form .form-brief-grid small{display:block;margin-bottom:5px;font:700 9px/1 "DM Sans",sans-serif;letter-spacing:.12em;color:rgba(10,10,11,.48)}
+    #form .form-brief-grid strong{display:block;margin-bottom:4px;font:700 12px/1.15 "DM Sans",sans-serif;color:#101011}
+    #form .form-brief-grid p{margin:0;font:500 10.5px/1.38 "DM Sans",sans-serif;color:rgba(10,10,11,.62)}
     #form .phone-field{width:100%;display:flex;flex-direction:column;gap:4px;align-self:start}
     #form .phone-field input{width:100%;box-sizing:border-box}
-    #form select{width:100%;min-height:58px;border:1px solid rgba(15,42,34,.18);border-radius:14px;background:,.72);color:#0b211a;padding:0 16px;font:500 14px/1.2 "DM Sans",sans-serif;outline:none;appearance:none}
-    #form select:focus{border-color:#0b211a}
-    #form input[name="contact"].phone-invalid{border-color:#c62828!important;box-shadow:0 0 0 1px ,.15)!important}
+    #form select{width:100%;min-height:58px;border:1px solid rgba(10,10,11,.18);border-radius:14px;background:rgba(255,255,255,.72);color:#101011;padding:0 16px;font:500 14px/1.2 "DM Sans",sans-serif;outline:none;appearance:none}
+    #form select:focus{border-color:#101011}
+    #form input[name="contact"].phone-invalid{border-color:#c62828!important;box-shadow:0 0 0 1px rgba(198,40,40,.15)!important}
     #form .phone-error{min-height:14px;padding:0 4px;color:#b42318;font:600 11px/1.25 "DM Sans",sans-serif;opacity:0;pointer-events:none}
     #form .phone-error.show{opacity:1}
     #form .form-status.ok{color:#176c3d!important}
@@ -101,14 +101,14 @@
 
     /* v39: one clean arrow language across the live site */
     .shiftUiArrow{width:100%;height:100%;display:block;overflow:visible}
-    #services .service .arr{font-size:0!important;width:44px!important;height:44px!important;border-radius:14px!important;border:1px solid rgba(15,42,34,.20)!important;background:,.54)!important;color:#0b211a!important;display:grid!important;place-items:center!important;align-self:center!important;box-shadow:0 1px 0 ,.65) inset!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s,color .28s,border-color .28s!important}
+    #services .service .arr{font-size:0!important;width:44px!important;height:44px!important;border-radius:14px!important;border:1px solid rgba(10,10,11,.20)!important;background:rgba(255,255,255,.54)!important;color:#101011!important;display:grid!important;place-items:center!important;align-self:center!important;box-shadow:0 1px 0 rgba(255,255,255,.65) inset!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s,color .28s,border-color .28s!important}
     #services .service .arr svg{width:18px;height:18px;display:block}
-    #services .service:hover .arr{background:#0b211a!important;color:#fff!important;border-color:#0b211a!important;transform:translate(2px,-2px)}
+    #services .service:hover .arr{background:#101011!important;color:#fff!important;border-color:#101011!important;transform:translate(2px,-2px)}
     .modernCta .modernArrow{border-radius:12px!important;background:transparent!important;border:1px solid currentColor!important;box-shadow:none!important}
     .modernCta .modernArrow svg{width:14px!important;height:14px!important}
-    .navcta.modernCta .modernArrow{background:#0b211a!important;color:#fff!important;border-color:#0b211a!important}
-    .navcta.modernCta:hover .modernArrow{background:#0b211a!important;color:#e9d9b8!important}
-    .ticker-item:after{content:""!important;width:5px;height:5px;border-radius:50%;background:#e9d9b8;display:block;flex:0 0 5px}
+    .navcta.modernCta .modernArrow{background:#101012!important;color:#fff!important;border-color:#101012!important}
+    .navcta.modernCta:hover .modernArrow{background:#101012!important;color:#d9ff3f!important}
+    .ticker-item:after{content:""!important;width:5px;height:5px;border-radius:50%;background:#d9ff3f;display:block;flex:0 0 5px}
     .dicon.shiftArrowIcon,.proofarrow.shiftArrowIcon{font-size:0!important;display:grid!important;place-items:center!important}
     .dicon.shiftArrowIcon svg{width:24px;height:24px}
     .proofarrow.shiftArrowIcon svg{width:110px;height:110px}
@@ -118,11 +118,11 @@
       #form .form-brief-head span{display:block;margin-top:4px;text-align:left}
       #form .form-brief-grid{grid-template-columns:1fr 1fr}
       #form .form-brief-grid>div:nth-child(2){border-right:0}
-      #form .form-brief-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(15,42,34,.10)}
+      #form .form-brief-grid>div:nth-child(-n+2){border-bottom:1px solid rgba(10,10,11,.10)}
     }
     @media(max-width:760px){
       #services .service{grid-template-columns:minmax(0,1fr) 44px!important;column-gap:18px!important}
-      #services .service .arr{width:42px!important;height:42px!important;border-radius:13px!important;align-self:start!important;margin-top:1px!important;background:#0c241c!important;color:#fff!important;border-color:#0c241c!important}
+      #services .service .arr{width:42px!important;height:42px!important;border-radius:13px!important;align-self:start!important;margin-top:1px!important;background:#111214!important;color:#fff!important;border-color:#111214!important}
       #services .service .arr svg{width:17px;height:17px}
       .modernCta .modernArrow{width:32px!important;height:32px!important;flex-basis:32px!important;border-radius:10px!important}
       .navcta.modernCta .modernArrow{width:34px!important;height:34px!important;flex-basis:34px!important}

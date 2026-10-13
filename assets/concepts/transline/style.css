@@ -110,6 +110,63 @@ a{color:inherit}
   .wrap{padding:0 20px}
   .scroll-hint{display:none}
 }
+
+/* phones only (portrait <768px + landscape touch with short viewport); desktop untouched */
+@media (max-width:767px){
+  .topbar{padding:calc(10px + env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) 10px max(14px,env(safe-area-inset-left));gap:10px}
+  .logo{min-height:44px;font-size:18px;gap:8px}
+  .logo-mark{width:24px;height:24px}
+  .topbar .btn-sm{min-height:44px;padding:0 16px;font-size:13px;white-space:nowrap}
+  .sticky{height:100svh}
+  .shade{background:linear-gradient(0deg,rgba(10,12,16,.78) 0%,rgba(10,12,16,.45) 38%,rgba(10,12,16,.08) 65%,rgba(10,12,16,0) 80%),linear-gradient(180deg,rgba(10,12,16,.35),rgba(10,12,16,0) 18%)}
+  .beat-hero{left:max(20px,env(safe-area-inset-left));right:max(20px,env(safe-area-inset-right));bottom:calc(6svh + env(safe-area-inset-bottom))}
+  .beat-hero h1{font-size:clamp(30px,8.8vw,40px);line-height:1.06;margin:.25em 0 .35em;text-wrap:balance}
+  .lead{font-size:16px;margin-bottom:22px;text-wrap:pretty}
+  .eyebrow{font-size:12px;letter-spacing:.14em}
+  .cta-row{flex-direction:column;gap:10px}
+  .cta-row .btn{width:100%;min-height:52px;padding:0 20px}
+  .beat-side,.beat-right{left:max(20px,env(safe-area-inset-left));right:max(20px,env(safe-area-inset-right));bottom:calc(8svh + env(safe-area-inset-bottom))}
+  .beat-side h2{font-size:clamp(32px,9.5vw,44px);text-wrap:balance}
+  .beat-side p{font-size:16px;max-width:34ch}
+  .section{padding:64px 0}
+  .h2{font-size:clamp(28px,8vw,34px);margin:8px 0 26px;text-wrap:balance}
+  .note{margin:-14px 0 22px}
+  .cards,.stats{gap:12px}
+  .card,.stat{padding:22px 20px}
+  .card h3{margin-top:14px}
+  .stats{grid-template-columns:repeat(2,1fr);margin-bottom:28px}
+  .stat b{font-size:clamp(26px,7.4vw,32px)}
+  .why-list{gap:14px}
+  .form-wrap{gap:22px}
+  .form input{min-height:52px}
+  .form .btn{justify-self:stretch;min-height:54px}
+  .contacts .contact-grid{gap:18px}
+  .contact-grid a{display:inline-flex;align-items:center;min-height:44px}
+  .footer{padding:22px 0 calc(22px + env(safe-area-inset-bottom))}
+  .footer-in{flex-direction:column;gap:4px}
+  .wrap{padding:0 max(20px,env(safe-area-inset-left))}
+  .card:hover{transform:none;box-shadow:none}
+}
+@media (max-width:359px){.stats{grid-template-columns:1fr}.topbar .btn-sm{padding:0 12px;font-size:12px}}
+@media (orientation:landscape) and (max-height:500px) and (pointer:coarse){
+  .nav{display:none}
+  .topbar{padding:calc(8px + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) 8px max(20px,env(safe-area-inset-left))}
+  .logo{min-height:44px}
+  .topbar .btn-sm{margin-left:auto;min-height:44px;padding:0 18px}
+  .beat-hero{left:max(24px,env(safe-area-inset-left));top:54%;max-width:min(560px,62vw)}
+  .beat-hero h1{font-size:clamp(26px,4.6vw,36px);margin:.2em 0 .3em}
+  .lead{font-size:15px;margin-bottom:16px;max-width:460px}
+  .cta-row .btn{min-height:46px;padding:0 20px;font-size:15px}
+  .beat-side{left:max(24px,env(safe-area-inset-left));bottom:10svh;max-width:420px}
+  .beat-right{left:auto;right:max(24px,env(safe-area-inset-right))}
+  .beat-side h2{font-size:clamp(28px,4.4vw,38px)}
+  .beat-side p{font-size:15px}
+  .scroll-hint{display:none}
+  .section{padding:64px 0}
+  .wrap{padding:0 max(24px,env(safe-area-inset-left))}
+  .contact-grid a{display:inline-flex;align-items:center;min-height:44px}
+  .form input{min-height:50px}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .scrolly{height:auto}

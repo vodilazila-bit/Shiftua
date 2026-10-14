@@ -233,6 +233,136 @@ try{if(!localStorage.getItem('webwork_intro_seen_v2'))document.documentElement.c
 }
 </style>
 
+<style id="webwork-white-olive-theme">
+
+/* WEBWORK / White, charcoal, dark-olive, olive.
+   Appearance only: existing markup, scripts, analytics and forms are preserved. */
+:root{
+  --bg:#ffffff;--paper:#f5f6f0;--white:#ffffff;--ink:#252f24;
+  --acid:#71864c;--blue:#44563a;--red:#a7b37d;
+  --muted:#5c6659;--line:rgba(37,47,36,.16);
+}
+body{background:#fff!important;color:#1b211a!important}
+.hero{background:#fff!important;color:#1b211a!important}
+.hero:before{background:radial-gradient(circle at 79% 23%,rgba(153,174,119,.18),transparent 32%),radial-gradient(circle at 17% 83%,rgba(113,134,76,.08),transparent 29%),#fff!important}
+.hero .grid{opacity:.22!important;background-image:linear-gradient(rgba(37,47,36,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(37,47,36,.10) 1px,transparent 1px)!important}
+.hero .hero-title.hero-title-long .hero-title-main{color:#252f24!important}
+.hero .hero-title.hero-title-long .hero-title-copy{color:#333b30!important}
+.hero .hero-title.hero-title-long .hero-title-copy strong{color:#151a13!important}
+.hero .hero-copy,.hero .status,.hero .intro-meta{color:#535f50!important}
+.hero .ghost{-webkit-text-stroke:1px #252f24!important}
+.hero .hero-title-long .hero-digital{color:#252f24!important;-webkit-text-stroke:0!important}
+header .nav{background:rgba(255,255,255,.94)!important;border-color:rgba(37,47,36,.18)!important;box-shadow:0 8px 34px rgba(37,47,36,.07)!important}
+header .nav .logo,header .nav .links,header .nav .links a{color:#1d261d!important}
+header .nav .links a:after{background:#71864c!important}
+header .nav .navcta{background:#252f24!important;color:#fff!important}
+header .nav .navcta:hover{background:#71864c!important;color:#fff!important}
+header .navcta.modernCta .modernArrow{background:#f5f6f0!important;border-color:#d4ddcc!important;color:#252f24!important}
+header .navcta.modernCta:hover .modernArrow{background:#f5f6f0!important;color:#71864c!important}
+.intro,.intro .panel{background:#252f24!important}
+.intro .intro-logo,.intro .brand-word{color:#fff!important}
+.ticker{background:#f5f6f0!important;border-block:1px solid #dce2d7!important}
+.ticker-item{color:#465344!important}
+.ticker-item:after{background:#71864c!important;color:#71864c!important}
+#services.what,.what{background:#fff!important;color:#151a13!important}
+#services .section-title,#services .section-title em{color:#252f24!important}
+#services .section-copy,.what .section-copy{color:#586054!important}
+#services .service{border-color:rgba(37,47,36,.17)!important}
+#services .service h3{color:#252f24!important}
+#services .service p{color:#586354!important}
+#services .service .arr{color:#252f24!important;border-color:#c9d3c5!important;background:#f5f6f0!important}
+#services .service:hover .arr{background:#252f24!important;border-color:#252f24!important;color:#fff!important}
+#services .whatcard{background:#252f24!important;color:#fff!important}
+#services .whatcard h3{color:#fff!important}
+#services .whatcard p{color:#d9e3d3!important}
+#services .orb{background:radial-gradient(circle at 28% 27%,#a9bd80,rgba(113,134,76,.65) 42%,transparent 70%)!important}
+#services #approach .approach-grid{background:#252f24!important;color:#fff!important;border-color:#4c5d42!important}
+#services #approach .approach-item{border-color:#4c5d42!important}
+#services #approach h3{color:#fff!important}
+#services #approach p{color:#d6dfd1!important}
+#services #approach .approach-mark{color:#b2c38a!important}
+#deliverables,.deliverables{background:#f5f6f0!important;color:#202820!important}
+.deliverables:before{background:radial-gradient(circle at 80% 25%,rgba(113,134,76,.08),transparent 34%)!important}
+#deliverables .section-title,#deliverables .section-title em{color:#252f24!important}
+#deliverables .section-copy{color:#5b6559!important}
+#deliverables .deliver-card{background:#fff!important;color:#202820!important;border-color:#d9dfd5!important;box-shadow:none!important}
+#deliverables .deliver-card:hover{background:#fff!important;border-color:#71864c!important;box-shadow:0 17px 50px rgba(37,47,36,.11)!important}
+#deliverables .deliver-card h3{color:#252f24!important}
+#deliverables .deliver-card p{color:#5e675b!important}
+#deliverables .deliver-card .dicon{background:#eef2e6!important;color:#526a39!important;border-color:#d2ddc3!important}
+#work.realcase,.realcase,#concepts.cases,#concepts,#prices.prices,#prices,#process,#faq.faq,#faq,.cta{background:#fff!important;color:#171d17!important}
+.realcase{border-color:#dce2d7!important}
+.realcase .rc-copy h3{color:#252f24!important}
+.realcase .rc-sub{color:#60695c!important}
+.realcase .rc-label,.realcase .rc-note{color:#64715d!important}
+.realcase .rc-block{border-color:#d8e0d3!important}
+.realcase .rc-block li{color:#424a3f!important}
+.realcase .rc-block li b{color:#1d261d!important}
+.realcase .rc-link{color:#253422!important;border-color:#71864c!important}
+.realcase .rc-link:hover{color:#71864c!important}
+.realcase .rc-badge{background:#71864c!important;color:#fff!important}
+.realcase .rc-block li:before{background:#71864c!important}
+.realcase .rc-frame,.realcase .rc-bar{background:#252f24!important}
+#concepts .section-title,#concepts .section-title em,
+#process .section-title,#process .section-title em,
+#faq .section-title,#faq .section-title em,
+#prices .section-title{color:#252f24!important}
+#concepts .section-copy,#process .section-copy,#faq .section-copy,#prices .section-copy{color:#5b6558!important}
+#concepts .cases-note{color:#566250!important}
+#concepts .case .case-open{background:#a0b47b!important;color:#1f2b1d!important}
+#concepts .case-meta,#concepts .case-bottom h3{color:#fff!important}
+#concepts .case-bottom p{color:#eff1eb!important}
+#prices:before{background:radial-gradient(circle at 20% 35%,rgba(113,134,76,.075),transparent 33%)!important}
+#prices .pricecard{background:#f7f8f4!important;box-shadow:none!important;border:1px solid #dce3d7!important;color:#1b211a!important}
+#prices .pricecard:hover{border-color:#71864c!important;box-shadow:0 15px 35px rgba(37,47,36,.10)!important}
+#prices .pricecard h3,#prices .pricecard .price,#prices .pricecard .price-list li{color:#252f24!important}
+#prices .pricecard p,#prices .pricecard .label,#prices .pricecard .price small{color:#576451!important}
+#prices .pricecard .price{border-color:#d4ddcf!important}
+#prices .pricecard .price-list li:before{background:#e0e9d7!important;box-shadow:inset 0 0 0 1px #71864c!important}
+#prices .pricecard .price-list li:after{background:#71864c!important}
+#prices .pricecard .label{border-color:#d0dac7!important;background:#eaf0e5!important}
+#prices .pricecard.featured{background:#eaf0e1!important;border-color:#71864c!important}
+#prices .pricecard.featured .price{color:#252f24!important}
+#prices .pricecard.featured .label,#prices .pricecard.featured .pricecta{background:#252f24!important;color:#fff!important}
+#prices .pricecard .pricecta{background:#252f24!important;color:#fff!important}
+#prices .pricecard .pricecta:hover,#prices .pricecard.featured .pricecta:hover{background:#71864c!important;color:#fff!important}
+#process .processrow{border-color:#d3dfce!important}
+#process .processrow h3{color:#252f24!important}
+#process .processrow p{color:#606b5e!important}
+#faq .faq-list,#faq details{border-color:#d4ded0!important}
+#faq summary,#faq summary h3{color:#252f24!important}
+#faq .faq-answer{color:#586356!important}
+#contact.cta{background:#fff!important}
+#contact .ctabox{background:#252f24!important;color:#fff!important}
+#contact .ctabox:before{border-color:rgba(245,246,240,.15)!important;box-shadow:0 0 0 70px rgba(245,246,240,.022),0 0 0 140px rgba(245,246,240,.018)!important}
+#contact .ctabox h2{color:#fff!important}
+#contact .ctabox .ctabottom p{color:#dfe8d8!important}
+#contact .ctalog,#contact .ctalog .brand-word{color:#fff!important}
+#contact .ctalog .webwork-mark{filter:brightness(0) invert(1)!important}
+#contact .ctabox .form-brief-guide{background:#f1f3ed!important;border-color:#cad4c4!important}
+#contact #form .form-brief-head,#contact #form .form-brief-grid>div{border-color:#cad4c4!important}
+#contact #form .form-brief-head b,#contact #form .form-brief-grid strong{color:#252f24!important}
+#contact #form .form-brief-head span,#contact #form .form-brief-grid p,#contact #form .form-brief-grid small{color:#5f6d5c!important}
+#contact .ctabox input,#contact .ctabox textarea,#contact .ctabox select{background:#fff!important;color:#252f24!important;border-color:#c0d0b5!important}
+#contact .ctabox input::placeholder,#contact .ctabox textarea::placeholder{color:#5a6656!important}
+#contact .ctabox button[type=submit]{background:#9bad74!important;color:#172017!important}
+#contact .ctabox button[type=submit]:hover{background:#c5d5a0!important}
+#contact .ctabox .form-status{color:#d3e0ca!important}
+#contact .ctabox .form-status.ok{color:#c3eeba!important}
+#contact .ctabox .form-status.err{color:#ffd3ca!important}
+#contact #form .phone-error.show{color:#ffd3ca!important}
+footer{background:#252f24!important;color:#fff!important}
+footer .foot{color:#d0d9cd!important}
+footer .foot b,footer .foot-social-btn{color:#fff!important}
+footer .foot-social-btn{border-color:rgba(255,255,255,.2)!important}
+footer .foot-social-btn:hover{background:#71864c!important}
+@media(max-width:760px){
+  header .nav{background:rgba(255,255,255,.96)!important}
+  .hero .hero-title.hero-title-long .hero-title-copy{color:#333b30!important}
+  #contact .ctabox{background:#252f24!important}
+}
+
+</style>
 </head>
 <body>
 <div class="intro" id="intro"><div class="panel l"></div><div class="panel r"></div><div class="intro-center"><div class="intro-logo"><span class="shiftmark"><img class="webwork-mark" src="/assets/webwork-mark.svg?v=20261013-olive" width="80" height="56" alt="" aria-hidden="true"></span><span class="wordclip"><span class="brand-word"><i>WEB</i><i class="brand-work">WORK</i></span></span></div></div><div class="intro-meta"><span>Стратегія / Дизайн / Розробка / performance marketing</span><div class="progress"><i></i></div><span id="count">00</span></div></div>

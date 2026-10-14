@@ -29,13 +29,14 @@ iframe{width:100%;height:calc(100dvh - 118px);border:0;background:#0a0a0b;displa
 'use strict';
 var themes=[
 {id:'original',name:'Оригінал',dark:'#0A0A0B',paper:'#F1EFE8',accent:'#B5C24A',blue:'#5570FF',red:'#FF513A',card:'#101011'},
+{id:'olive',name:'Чорний / оливковий',dark:'#0B0D0B',paper:'#EEEFE5',accent:'#9BB46A',blue:'#576C4A',red:'#B8AD87',card:'#1B2019'},
 {id:'ice',name:'Льодовий',dark:'#131B23',paper:'#F2F5F7',accent:'#8CD8F3',blue:'#5E92ED',red:'#B3ADF9',card:'#202B35'},
 {id:'orange',name:'Помаранчевий',dark:'#201B19',paper:'#F8EFE5',accent:'#FFA46A',blue:'#BA8B73',red:'#EF6E45',card:'#342821'},
 {id:'mint',name:'Мʼятний',dark:'#0F2222',paper:'#E9F3EE',accent:'#8BE5C3',blue:'#468E91',red:'#B2DFA1',card:'#163534'},
 {id:'violet',name:'Ліловий',dark:'#1C1929',paper:'#F4F0FA',accent:'#C7ACFF',blue:'#8478E9',red:'#DD8FBD',card:'#2B253D'},
 {id:'gold',name:'Золотий',dark:'#1A1D1E',paper:'#F5F0E6',accent:'#EFD186',blue:'#899FB3',red:'#D8A05F',card:'#2A2D2C'}
 ];
-var frame=document.getElementById('preview'),bar=document.getElementById('choices'),title=document.getElementById('selected'),current='original';
+var frame=document.getElementById('preview'),bar=document.getElementById('choices'),title=document.getElementById('selected'),current=(new URLSearchParams(location.search).get('theme')||'original');
 function rgba(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'}
 function getCSS(t){
 var a=t.accent,b=t.blue,d=t.dark,p=t.paper,c=t.card;

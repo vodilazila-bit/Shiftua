@@ -74,9 +74,51 @@ window.gtag('config','G-CZ9YTRCWV7');
       .navcta.modernCta .modernArrow{width:34px;height:34px;flex-basis:34px}
     }
   `;
+  // The fixed animated dark mesh belongs only to WEBWORK's former dark theme.
+  // It creates a gray/black scrim over the light white-and-olive hero.
+  const whiteOliveTheme=Boolean(document.getElementById('webwork-white-olive-theme'));
+  if(whiteOliveTheme){
+    ui.textContent+=`
+      html body, html body .hero{background:#fff!important;color:#1b211a!important}
+      html body .hero:before{
+        background:radial-gradient(circle at 81% 24%,rgba(147,170,113,.075),transparent 34%),#fff!important;
+        opacity:1!important;pointer-events:none!important
+      }
+      html body .hero .grid{display:block!important;opacity:.16!important;
+        background-image:linear-gradient(rgba(37,47,36,.09) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(37,47,36,.09) 1px,transparent 1px)!important}
+      html body .hero .hero-title-long .hero-title-main{color:#252f24!important}
+      html body .hero .hero-title-long .hero-title-copy{color:#333b30!important}
+      html body #services.what{background:#fff!important;color:#202820!important}
+      html body #concepts.cases{background:#fff!important;color:#202820!important}
+      html body #concepts .section-title,
+      html body #concepts .section-title em{color:#252f24!important}
+      html body #concepts .section-copy{color:#596459!important}
+      html body #concepts .cases-note{color:#5a6759!important}
+      html body #deliverables{background:#f5f6f0!important;color:#252f24!important}
+      html body #deliverables .section-title,
+      html body #deliverables .section-title em{color:#252f24!important}
+      html body #faq{background:#fff!important;color:#252f24!important}
+      html body #prices{background:#fff!important;color:#252f24!important}
+      html body #process{background:#fff!important;color:#252f24!important}
+      html body #contact{background:#fff!important}
+      html body .ticker{background:#f5f6f0!important}
+      html body .ticker-item{color:#52614d!important}
+      html body header .nav{background:rgba(255,255,255,.96)!important}
+      html body header .navcta.modernCta:hover{background:#71864c!important;color:#fff!important}
+      html body header .navcta.modernCta:hover .modernArrow{color:#252f24!important;background:#f5f6f0!important}
+      html body #siteMesh{display:none!important}
+    `;
+  }
   document.head.appendChild(ui);
 
   document.getElementById('heroMesh')?.remove();
+  if(whiteOliveTheme){
+    document.getElementById('siteMesh')?.remove();
+    return; // keep all later pricing, navigation and lead-form logic intact
+  }
+
+  document.getElementById('siteMesh')?.remove();
   document.getElementById('siteMesh')?.remove();
 
   const canvas=document.createElement('canvas');

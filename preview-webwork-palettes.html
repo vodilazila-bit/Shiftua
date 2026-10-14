@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="uk"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>WEBWORK — Палітри чинного дизайну</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#161819;color:#fff;font:13px Arial,sans-serif}
+header{padding:13px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #454a49}
+.logo{font-size:17px;letter-spacing:-.04em;font-weight:800;white-space:nowrap}.logo b{color:#b5c24a}
+.colors{display:flex;gap:7px;flex:1;justify-content:center;flex-wrap:wrap}
+.colors button{display:flex;align-items:center;gap:8px;border-radius:10px;background:#242829;border:1px solid #525958;color:#f1f1ec;padding:10px 11px;cursor:pointer;font-size:12px;font-weight:600}
+.colors button[aria-pressed=true]{background:#fff;color:#151718;border-color:#fff}
+.sample{display:flex;width:35px;height:16px;border-radius:4px;overflow:hidden}.sample i{flex:1}
+.live{border-radius:10px;border:1px solid #525958;color:#fff;text-decoration:none;padding:10px 12px;font-size:12px;white-space:nowrap}
+.tip{padding:10px 20px;display:flex;justify-content:space-between;gap:14px;background:#272c2c;color:#c6d0c9;font-size:11px}.tip strong{color:#fff}
+iframe{width:100%;height:calc(100dvh - 118px);border:0;background:#0a0a0b;display:block}
+@media(max-width:970px){header{padding:12px;gap:8px}.colors{order:3;width:100%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:5px 0}.colors button{white-space:nowrap}.live{margin-left:auto}.tip{padding:8px 12px}iframe{height:calc(100dvh - 159px)}}
+@media(max-width:450px){.tip{font-size:10px}.colors button{padding:9px}.logo{font-size:15px}iframe{height:calc(100dvh - 178px)}}
+</style></head><body>
+<header>
+<div class="logo">WEB<b>WORK</b> <span style="color:#a5aaa8;font-size:12px">/ ПАЛІТРИ</span></div>
+<div class="colors" id="choices"></div>
+<a class="live" href="/" target="_blank" rel="noopener">Діючий сайт ↗</a>
+</header>
+<div class="tip"><span>Колірна схема: <strong id="selected">Оригінал</strong></span><span>Змінюються лише кольори. Можеш гортати сайт усередині вікна.</span></div>
+<iframe title="Той самий WEBWORK з обраною палітрою" src="/" id="preview"></iframe>
+<script>
+(function(){
+'use strict';
+var themes=[
+{id:'original',name:'Оригінал',dark:'#0A0A0B',paper:'#F1EFE8',accent:'#B5C24A',blue:'#5570FF',red:'#FF513A',card:'#101011'},
+{id:'ice',name:'Льодовий',dark:'#131B23',paper:'#F2F5F7',accent:'#8CD8F3',blue:'#5E92ED',red:'#B3ADF9',card:'#202B35'},
+{id:'orange',name:'Помаранчевий',dark:'#201B19',paper:'#F8EFE5',accent:'#FFA46A',blue:'#BA8B73',red:'#EF6E45',card:'#342821'},
+{id:'mint',name:'Мʼятний',dark:'#0F2222',paper:'#E9F3EE',accent:'#8BE5C3',blue:'#468E91',red:'#B2DFA1',card:'#163534'},
+{id:'violet',name:'Ліловий',dark:'#1C1929',paper:'#F4F0FA',accent:'#C7ACFF',blue:'#8478E9',red:'#DD8FBD',card:'#2B253D'},
+{id:'gold',name:'Золотий',dark:'#1A1D1E',paper:'#F5F0E6',accent:'#EFD186',blue:'#899FB3',red:'#D8A05F',card:'#2A2D2C'}
+];
+var frame=document.getElementById('preview'),bar=document.getElementById('choices'),title=document.getElementById('selected'),current='original';
+function rgba(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'}
+function getCSS(t){
+var a=t.accent,b=t.blue,d=t.dark,p=t.paper,c=t.card;
+return [
+':root{--bg:'+d+'!important;--paper:'+p+'!important;--ink:'+c+'!important;--acid:'+a+'!important;--blue:'+b+'!important;--red:'+t.red+'!important}',
+'body{background:'+d+'!important}',
+'.hero:before{background:radial-gradient(circle at 77% 24%,'+rgba(b,.27)+',transparent 29%),radial-gradient(circle at 20% 68%,'+rgba(a,.16)+',transparent 27%),'+d+'!important}',
+'.intro,.intro .panel{background:'+d+'!important}',
+'.nav{background:'+rgba(d,.87)+'!important;border-color:'+rgba(p,.2)+'!important}',
+'.hero .hero-title-long .hero-title-main{color:'+a+'!important}',
+'.hero .hero-title-long .hero-title-copy{color:'+p+'!important}',
+'.what{background:'+p+'!important;color:'+c+'!important}',
+'.whatcard,#approach .approach-grid{background:'+c+'!important}',
+'.orb{background:radial-gradient(circle at 28% 27%,'+a+','+rgba(b,.75)+' 45%,transparent 70%)!important}',
+'#services .section-title{color:'+c+'!important}',
+'#services .service .arr{border-color:'+rgba(c,.2)+'!important;color:'+c+'!important}',
+'#services .service:hover .arr{background:'+c+'!important;color:'+p+'!important}',
+'#deliverables,#concepts,#prices,#process,.faq{background:'+d+'!important}',
+'.deliverables:before{background:radial-gradient(circle at 78% 28%,'+rgba(b,.14)+',transparent 28%),radial-gradient(circle at 18% 80%,'+rgba(a,.08)+',transparent 24%)!important}',
+'.deliver-card,.growthitem{background:'+c+'!important}',
+'.deliver-card:hover,.growthitem:hover{border-color:'+rgba(a,.4)+'!important}',
+'.pricecard.featured{background:linear-gradient(180deg,'+rgba(a,.14)+','+rgba(p,.03)+')!important;border-color:'+rgba(a,.38)+'!important}',
+'.pricecard.featured .label,.pricecard.featured .pricecta,.case .case-open{background:'+a+'!important;color:'+c+'!important}',
+'.pricecard.featured .price{color:'+a+'!important}',
+'.rc-badge{background:'+a+'!important;color:'+c+'!important}',
+'.rc-block li:before{background:'+a+'!important}',
+'.rc-link:hover{color:'+a+'!important}',
+'.rc-frame,.rc-bar{background:'+c+'!important}',
+'.ctabox{background:'+p+'!important;color:'+c+'!important}',
+'.ctabox button[type=submit]{background:'+a+'!important;color:'+c+'!important}',
+'.case,.growthbox{background-color:'+c+'!important}',
+'.brand-word .brand-work{color:'+a+'!important}',
+'#approach .approach-mark,.ticker-item:after{color:'+a+'!important}',
+'.live{background:'+a+'!important;box-shadow:0 0 15px '+a+'!important}',
+'.mock-btn,.mock-commerce .mock-btn{background:'+a+'!important;color:'+c+'!important}'
+].join('\n')
+}
+function apply(){
+var t=themes.find(function(v){return v.id===current})||themes[0];
+title.textContent=t.name;
+bar.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-id')===current))});
+try{
+var doc=frame.contentDocument;if(!doc||!doc.head)return;
+doc.documentElement.classList.remove('show-intro');var intro=doc.querySelector('.intro');if(intro)intro.style.display='none';
+var s=doc.getElementById('preview-color-css');if(!s){s=doc.createElement('style');s.id='preview-color-css';doc.head.appendChild(s)}s.textContent=getCSS(t)
+}catch(e){title.textContent='Для кольорового перегляду потрібен той самий домен'}
+}
+themes.forEach(function(t,i){
+var btn=document.createElement('button');btn.type='button';btn.setAttribute('data-id',t.id);btn.setAttribute('aria-pressed',String(i===0));
+var sample=document.createElement('span');sample.className='sample';
+[t.dark,t.paper,t.accent].forEach(function(color){var item=document.createElement('i');item.style.backgroundColor=color;sample.appendChild(item)});
+var txt=document.createElement('span');txt.textContent=t.name;btn.appendChild(sample);btn.appendChild(txt);btn.addEventListener('click',function(){current=t.id;apply()});bar.appendChild(btn)
+});
+frame.addEventListener('load',function(){apply();setTimeout(apply,450);setTimeout(apply,1500)});
+setTimeout(apply,4000)
+})();
+</script></body></html>

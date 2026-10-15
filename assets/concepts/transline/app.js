@@ -10,7 +10,8 @@
   var END_AT = 0.965;             // scroll progress at which the last frame is reached
   var BG = '#ffffff';             // must equal body background
   var VIDEO_FPS = 30;             // fps of seq-*.mp4 (frames 0..WHITE_FROM-1, every frame a keyframe)
-  var LERP = 0.2;                 // smoothing toward the scroll target
+  var EASE = 9;                   // time-based smoothing toward the scroll target (per second)
+  var STEP = 2;                   // load every 2nd frame; in-between positions are cross-faded
   var HEAD = 60;                  // first frames loaded in order so the start is instantly smooth
   var KEY_STEP = 16;              // coarse keyframes kept decoded (low-res) as a never-blank fallback
 
@@ -38,7 +39,7 @@
   // so images are the default everywhere; the MP4 path stays available for A/B checks via ?seq=video.
   useVideo = useVideo && forced === 'video';
   // decoded full-res frames kept around the current one (memory: desktop ~3.7 MB, mobile ~2 MB each)
-  var BEHIND = small ? 14 : 20, AHEAD = small ? 36 : 50;
+  var BEHIND = small ? 24 : 30, AHEAD = small ? 60 : 80;
 
   // ---------- state ----------
   var blobs = new Array(FRAME_COUNT);     // compressed bytes (Blob) or HTMLImageElement in fallback
@@ -53,6 +54,7 @@
     var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     var W = Math.round(canvas.clientWidth * dpr), H = Math.round(canvas.clientHeight * dpr);
     if (W === cw && H === ch) return;
+    if (cw && W === cw && Math.abs(H - ch) < 160 * dpr && 'ontouchstart' in window) return;  // address bar show/hide
     cw = canvas.width = W; ch = canvas.height = H;     // resets context state, so set smoothing here once
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
     lastIdx = -1; lastSrc = null; render(true);
@@ -102,8 +104,23 @@
     cover(img, img.width || img.naturalWidth, img.height || img.naturalHeight);
     lastSrc = img; lastIdx = i; window.__tlFrame = img.__i;
   }
+  var lastBlend = -1;
   function render(force) {
-    var i = Math.round(current);
+    var i0 = Math.floor(current / STEP) * STEP, i1 = i0 + STEP, a = (current - i0) / STEP;
+    var b0 = bitmaps[i0], b1 = i1 < WHITE_FROM ? bitmaps[i1] : null;
+    if (!videoReady && cw && b0 && b1 && a > 0.02 && a < 0.98) {
+      var key = i0 + a;
+      if (!force && Math.abs(key - lastBlend) < 0.004) return;
+      cover(b0, b0.width, b0.height);
+      ctx.globalAlpha = a;
+      cover(b1, b1.width, b1.height);
+      ctx.globalAlpha = 1;
+      lastBlend = key; lastSrc = null; lastIdx = -1; window.__tlFrame = i0;
+      return;
+    }
+    lastBlend = -1;
+    var i = a >= 0.5 && i1 < FRAME_COUNT ? i1 : i0;
+    if (current >= WHITE_FROM) i = Math.round(current);
     if (force || i !== lastIdx) drawFrame(i, force);
   }
 
@@ -196,12 +213,12 @@
   var headDone = 0, keyTotal = Math.ceil(WHITE_FROM / KEY_STEP), keyDone = 0, inflight = 0, CONC = 6;
   function nextToFetch() {
     var i;
-    for (i = 0; i < HEAD; i++) if (!fetching[i]) return i;
+    for (i = 0; i < HEAD; i += STEP) if (!fetching[i]) return i;
     for (i = 0; i < WHITE_FROM; i += KEY_STEP) if (!fetching[i]) return i;
     if (useVideo) return -1;
     var c = Math.round(current), best = -1, bs = 1e9, s, d;
     for (i = 0; i < WHITE_FROM; i++) {
-      if (fetching[i]) continue;
+      if (fetching[i] || i % STEP) continue;
       d = i - c; s = (d * dirSign >= 0) ? Math.abs(d) : Math.abs(d) * 3;
       if (s < bs) { bs = s; best = i; }
     }
@@ -215,7 +232,7 @@
     }
   }
   function onFetched(i) {
-    if (i < HEAD) headDone++;
+    if (i < HEAD) headDone += STEP;
     if (i % KEY_STEP === 0) keyDone++;
     if (!useVideo) setProgress((headDone + keyDone) / (HEAD + keyTotal));
     else setProgress(0.25 * (headDone + keyDone) / (HEAD + keyTotal));
@@ -229,7 +246,7 @@
     if (p >= 1) loader.classList.add('done');
   }
   // decode scheduler: keyframes (low-res) + sliding window of full-res bitmaps, nearest-first in scroll direction
-  var decInflight = 0, DEC_CONC = 2, decScheduled = false;
+  var decInflight = 0, DEC_CONC = 3, decScheduled = false;
   var idle = window.requestIdleCallback || function (fn) { return setTimeout(fn, 16); };
   function scheduleDecode() {
     if (!hasBitmap || decScheduled) return;
@@ -243,8 +260,8 @@
     var c = Math.round(current), d, i, k;
     if (!videoReady) {
       for (d = 0; d <= AHEAD; d++) {
-        i = c + d * dirSign; if (i >= 0 && i < WHITE_FROM && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false];
-        if (d <= BEHIND) { i = c - d * dirSign; if (i >= 0 && i < WHITE_FROM && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false]; }
+        i = c + d * dirSign; if (i >= 0 && i < WHITE_FROM && !(i % STEP) && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false];
+        if (d <= BEHIND) { i = c - d * dirSign; if (i >= 0 && i < WHITE_FROM && !(i % STEP) && blobs[i] && !bitmaps[i] && !decoding[i]) return [i, false]; }
       }
     }
     for (k = 0; k < WHITE_FROM; k += KEY_STEP) if (blobs[k] && !keys[k] && !decoding[k]) return [k, true];
@@ -297,13 +314,16 @@
 
   // ---------- render loop (lerp toward target frame, stops when settled) ----------
   var running = false;
-  function tick() {
+  var lastT = 0;
+  function tick(now) {
+    var dt = lastT ? Math.min(0.05, (now - lastT) / 1000) : 1 / 60;
+    lastT = now;
     var diff = target - current;
-    current += diff * LERP;
-    if (Math.abs(diff) < 0.3) current = target;
+    current += diff * (1 - Math.exp(-EASE * dt));
+    if (Math.abs(diff) < 0.02) current = target;
     render(false);
     if (current !== target) requestAnimationFrame(tick);
-    else { running = false; scheduleDecode(); }
+    else { running = false; lastT = 0; scheduleDecode(); }
   }
   var lastTarget = 0;
   function onScroll() {

@@ -415,3 +415,15 @@ html.menu-open,html.menu-open body{overflow:hidden}
   .js .hero-title .wd{transform:none;animation:none}
   .js .hero-foot{opacity:1;animation:none}
 }
+
+/* narrow phones (360–400px): keep logo, CTA and menu on one line */
+@media (max-width:400px){
+  .header-inner{gap:10px;padding:0 6px 0 10px}
+  .header-actions{gap:6px}
+  .header-actions .btn-sm .btn-ico{display:none}
+  .header-actions .btn-sm.has-ico{padding:0 15px}
+  .menu-toggle{width:42px;height:42px}
+  .brand{gap:8px}
+  .brand-mark{width:30px;height:21px;flex-basis:30px}
+  .brand-word{font-size:17px}
+}

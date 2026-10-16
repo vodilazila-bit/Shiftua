@@ -17,7 +17,9 @@
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canvas = document.getElementById('seq');
-  var ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
+  var small = Math.min(screen.width, screen.height) < 768 || window.innerWidth < 900;
+  // desynchronized на частині Android вимикає GPU-композицію полотна — на телефонах не вмикаємо
+  var ctx = canvas.getContext('2d', small ? { alpha: false } : { alpha: false, desynchronized: true });
   var section = document.getElementById('scrolly');
   var shade = document.getElementById('shade');
   var hint = document.getElementById('hint');
@@ -26,9 +28,13 @@
   var topbar = document.getElementById('topbar');
   var beats = Array.prototype.slice.call(document.querySelectorAll('.beat'));
 
-  var small = Math.min(screen.width, screen.height) < 768 || window.innerWidth < 900;
   var iOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  var dir = BASE + (small ? 'frames/m/' : 'frames/d/');
+  // Телефон вертикально — окремі вертикальні кадри (frames/p, 540x1170): фура на всю ширину,
+  // а не вирізаний шматок борту з альбомного кадру. Горизонтально — як було (frames/m).
+  function isPortrait() { return small && window.innerHeight > window.innerWidth; }
+  var portrait = isPortrait();
+  var P_W = 540, P_H = 1170;      // розмір frames/p
+  var dir = BASE + (portrait ? 'frames/p/' : small ? 'frames/m/' : 'frames/d/');
   function src(i) { return dir + String(i).padStart(4, '0') + '.webp'; }
   var hasBitmap = typeof createImageBitmap === 'function' && typeof fetch === 'function';
   var probe = document.createElement('video');
@@ -39,7 +45,8 @@
   // so images are the default everywhere; the MP4 path stays available for A/B checks via ?seq=video.
   useVideo = useVideo && forced === 'video';
   // decoded full-res frames kept around the current one (memory: desktop ~3.7 MB, mobile ~2 MB each)
-  var BEHIND = small ? 24 : 30, AHEAD = small ? 60 : 80;
+  // На телефонах вікно менше: кожен кадр 540x1170 — ~2,5 МБ памʼяті, а iOS вбиває вкладку при перевитраті
+  var BEHIND = small ? 14 : 30, AHEAD = small ? 40 : 80;
 
   // ---------- state ----------
   var blobs = new Array(FRAME_COUNT);     // compressed bytes (Blob) or HTMLImageElement in fallback
@@ -51,19 +58,27 @@
   // ---------- canvas sizing (DPR aware, only on resize) ----------
   var cw = 0, ch = 0;
   function resize() {
+    if (small && isPortrait() !== portrait) { switchSet(); }
     var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     var W = Math.round(canvas.clientWidth * dpr), H = Math.round(canvas.clientHeight * dpr);
+    if (small && W > 0) {
+      // Полотно не більше за самі кадри: малюємо майже 1:1 (швидке копіювання),
+      // а до розміру екрана розтягує вже GPU-композитор. Раніше кожен кадр
+      // перемасштабовувався з «high»-якістю — на телефоні це 30–90 мс на кадр.
+      var maxW = portrait ? P_W : 960;
+      if (W > maxW) { H = Math.round(H * maxW / W); W = maxW; }
+    }
     if (W === cw && H === ch) return;
     if (cw && W === cw && Math.abs(H - ch) < 160 * dpr && 'ontouchstart' in window) return;  // address bar show/hide
     cw = canvas.width = W; ch = canvas.height = H;     // resets context state, so set smoothing here once
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    lastIdx = -1; lastSrc = null; render(true);
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = small ? 'low' : 'high';
+    lastIdx = -1; lastSrc = null; lastBlend = -1; render(true);
   }
 
   // ---------- drawing (object-fit: cover) ----------
   function cover(img, iw, ih) {
     var s = Math.max(cw / iw, ch / ih), dw = iw * s, dh = ih * s;
-    var fx = cw < ch ? 0.56 : 0.5;   // portrait: keep the truck a bit right of centre
+    var fx = portrait ? 0.5 : cw < ch ? 0.56 : 0.5;   // вертикальні кадри вже скомпоновані по центру
     ctx.drawImage(img, (cw - dw) * fx, (ch - dh) / 2, dw, dh);
   }
   function white() { ctx.fillStyle = BG; ctx.fillRect(0, 0, cw, ch); }
@@ -177,12 +192,14 @@
   }
 
   // ---------- image pipeline (fetch blob -> decode in window) ----------
+  var gen = 0;   // номер набору кадрів; після повороту телефона старі запити ігноруються
   function loadOne(i) {
     fetching[i] = 1;
+    var g = gen;
     if (hasBitmap) {
       return fetch(src(i)).then(function (r) { return r.ok ? r.blob() : null; })
-        .then(function (b) { if (b) blobs[i] = b; }, function () {})
-        .then(function () { fetching[i] = 2; onFetched(i); });
+        .then(function (b) { if (b && g === gen) blobs[i] = b; }, function () {})
+        .then(function () { if (g !== gen) return; fetching[i] = 2; onFetched(i); });
     }
     return new Promise(function (res) {
       var img = new Image(); img.decoding = 'async';
@@ -194,7 +211,9 @@
   function decodeOne(i, low) {
     decoding[i] = 1;
     var opts = low ? { resizeWidth: small ? 480 : 640, resizeQuality: 'medium' } : undefined;
+    var g = gen;
     return (opts ? createImageBitmap(blobs[i], opts) : createImageBitmap(blobs[i])).then(function (bm) {
+      if (g !== gen) { if (bm.close) bm.close(); return; }
       bm.__i = i;
       if (low) keys[i] = bm;
       else if (inWindow(i)) bitmaps[i] = bm;
@@ -274,6 +293,19 @@
       decInflight++;
       decodeOne(n[0], n[1]).then(function () { decInflight--; scheduleDecode(); });
     }
+  }
+
+  // Поворот телефона: перемикаємо набір кадрів (p <-> m) і вантажимо заново
+  function switchSet() {
+    portrait = isPortrait(); gen++;
+    dir = BASE + (portrait ? 'frames/p/' : 'frames/m/');
+    for (var i = 0; i < FRAME_COUNT; i++) {
+      if (bitmaps[i] && bitmaps[i].close) bitmaps[i].close();
+      if (keys[i] && keys[i].close && keys[i] !== bitmaps[i]) keys[i].close();
+      bitmaps[i] = keys[i] = blobs[i] = null; fetching[i] = 0; decoding[i] = 0;
+    }
+    headDone = 0; keyDone = 0; lastSrc = null; lastIdx = -1; lastBlend = -1;
+    pumpFetch();
   }
 
   // ---------- scroll -> progress ----------

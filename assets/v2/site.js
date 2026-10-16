@@ -84,6 +84,31 @@
     if (select) select.value = a.getAttribute('data-service');
   });
 
+  /* ---------- "Як ми працюємо": the approach list slides out ---------- */
+  var approachSec = document.getElementById('approach');
+  var approachList = document.getElementById('approach-list');
+  var approachBtn = approachSec && approachSec.querySelector('.approach-toggle');
+  function setApproach(open, scroll) {
+    if (!approachList) return;
+    approachList.classList.toggle('is-open', open);
+    approachList.toggleAttribute('inert', !open);
+    if (approachBtn) {
+      approachBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      approachBtn.querySelector('.approach-toggle-t').textContent = open ? 'Згорнути список' : 'Показати список';
+    }
+    if (scroll && approachSec && (open || approachSec.getBoundingClientRect().top < 0)) {
+      approachSec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+  if (approachList && root.classList.contains('js')) setApproach(location.hash === '#approach', false);
+  if (approachBtn) approachBtn.addEventListener('click', function () {
+    setApproach(!approachList.classList.contains('is-open'), true);
+  });
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href="#approach"]');
+    if (link) setApproach(true, false);
+  });
+
   /* ---------- live screenshot of a client site: typographic fallback if it fails ---------- */
   [].forEach.call(document.querySelectorAll('[data-shot]'), function (box) {
     var img = box.querySelector('img');

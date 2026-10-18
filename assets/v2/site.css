@@ -488,3 +488,25 @@ html.menu-open,html.menu-open body{overflow:hidden}
 @media (min-width:900px) and (min-aspect-ratio:21/20){
   .hero-title{font-size:clamp(52px,6.4vw,130px);font-size:clamp(52px,min(6.4vw,11.5vh),130px);line-height:1.08}
 }
+
+/* WEBWORK hero: тёмна сцена з цифровим ядром (Three.js, hero-core.js). */
+.hero{background:#1e1f1b;color:#f3f4ee}
+.hero .core-stage{position:absolute;inset:0;z-index:0;overflow:hidden;background:#1e1f1b;cursor:default}
+.hero .core-stage canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.1s ease}
+.hero .core-stage.is-live canvas{opacity:1}
+.hero .core-stage.is-fallback{background:radial-gradient(circle at 62% 46%,rgba(185,213,49,.16),rgba(185,213,49,0) 34%),#1e1f1b}
+.hero .hero-title{color:#f3f4ee;text-shadow:none}
+.hero .hero-copy{color:#b9bdb0}
+.hero .hero-scroll{color:#b9bdb0}
+.hero .hero-scroll i{background:rgba(243,244,238,.25)}
+.hero .hero-scroll i::after{background:#b9d531}
+.hero .btn-dark{background:#f3f4ee;color:#1e1f1b}
+.hero .btn-dark .btn-ico{background:#b9d531;color:#1e1f1b}
+.hero .btn-line{color:#f3f4ee;border-color:rgba(243,244,238,.32);background:transparent}
+@media (hover:hover){.hero .btn-dark:hover{background:#ffffff}.hero .btn-line:hover{border-color:#f3f4ee;background:rgba(243,244,238,.06)}}
+html:not(.is-scrolled) .site-header .brand,html:not(.is-scrolled) .site-header .header-nav a,html:not(.is-scrolled) .site-header .menu-toggle{color:#f3f4ee}
+html:not(.is-scrolled) .site-header .menu-toggle{border-color:rgba(243,244,238,.32)}
+html:not(.is-scrolled) .site-header .brand-mark path{fill:#f3f4ee}
+html:not(.is-scrolled) .site-header .brand-mark .tip{fill:#b9d531}
+html:not(.is-scrolled) .site-header .btn-dark{background:#f3f4ee;color:#1e1f1b}
+html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:#1e1f1b}

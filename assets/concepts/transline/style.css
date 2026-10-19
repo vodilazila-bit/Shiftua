@@ -176,3 +176,24 @@ a{color:inherit}
   .beat-hero{opacity:1;visibility:visible}
   *{transition:none!important;animation:none!important}
 }
+
+/* Телефон/планшет вертикально: відео — чітка смуга на всю ширину одразу під шапкою (без розмиття),
+   нижче — суцільне темне тло, на якому стоїть текст. Смугу і поля малює app.js. */
+@media (max-width:899px) and (orientation:portrait){
+  .sticky{background:#14171c}
+  .shade{background:linear-gradient(0deg,rgba(10,12,16,.55) 0%,rgba(10,12,16,0) 38%)}
+}
+@media (max-width:767px) and (orientation:portrait){
+  .beat-hero{bottom:calc(4svh + env(safe-area-inset-bottom))}
+  .beat-hero h1{font-size:clamp(26px,7.6vw,34px)}
+  .lead{font-size:15px;margin-bottom:16px}
+  .cta-row{flex-direction:row;flex-wrap:wrap;gap:8px}
+  .cta-row .btn{width:auto;flex:1 1 auto;min-height:46px;padding:0 14px;font-size:15px}
+  .beat-side,.beat-right{bottom:calc(5svh + env(safe-area-inset-bottom))}
+}
+@media (max-width:380px) and (orientation:portrait){
+  .cta-row .btn{font-size:14px;padding:0 12px}
+}
+@media (max-width:767px) and (orientation:portrait) and (max-height:600px){
+  .beat-hero .lead{display:none}
+}

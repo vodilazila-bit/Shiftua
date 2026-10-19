@@ -29,13 +29,17 @@
   var beats = Array.prototype.slice.call(document.querySelectorAll('.beat'));
 
   var iOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  // Телефон вертикально — окремі вертикальні кадри (frames/p, 540x1170): фура на всю ширину,
-  // а не вирізаний шматок борту з альбомного кадру. Горизонтально — як було (frames/m).
+  // Телефон вертикально — окремі кадри (frames/p, 540x474): смуга з фурою на всю ширину,
+  // яку малюємо одразу під шапкою, без розмиття; поля над і під нею — суцільний темний колір.
+  // Горизонтально — як було (frames/m).
   function isPortrait() { return small && window.innerHeight > window.innerWidth; }
   var portrait = isPortrait();
-  var P_W = 540, P_H = 1170;      // розмір frames/p
+  var P_W = 540, P_H = 474;       // розмір frames/p
+  var P_VER = '?v=20261019';      // нові кадри frames/p — не брати старі з кешу
+  var SURROUND = [20, 23, 28];    // #14171c — тло навколо смуги на вертикальному телефоні
+  var bandTop = 0;                // висота шапки в пікселях полотна
   var dir = BASE + (portrait ? 'frames/p/' : small ? 'frames/m/' : 'frames/d/');
-  function src(i) { return dir + String(i).padStart(4, '0') + '.webp'; }
+  function src(i) { return dir + String(i).padStart(4, '0') + '.webp' + (portrait ? P_VER : ''); }
   var hasBitmap = typeof createImageBitmap === 'function' && typeof fetch === 'function';
   var probe = document.createElement('video');
   var useVideo = !small && !iOS && !reduce && typeof fetch === 'function' &&
@@ -72,14 +76,31 @@
     if (cw && W === cw && Math.abs(H - ch) < 160 * dpr && 'ontouchstart' in window) return;  // address bar show/hide
     cw = canvas.width = W; ch = canvas.height = H;     // resets context state, so set smoothing here once
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = small ? 'low' : 'high';
+    bandTop = portrait ? Math.round(topbar.offsetHeight * cw / Math.max(1, canvas.clientWidth)) : 0;
     lastIdx = -1; lastSrc = null; lastBlend = -1; render(true);
   }
 
   // ---------- drawing (object-fit: cover) ----------
   function cover(img, iw, ih) {
+    if (portrait) { band(img); return; }
     var s = Math.max(cw / iw, ch / ih), dw = iw * s, dh = ih * s;
-    var fx = portrait ? 0.5 : cw < ch ? 0.56 : 0.5;   // вертикальні кадри вже скомпоновані по центру
+    var fx = cw < ch ? 0.56 : 0.5;
     ctx.drawImage(img, (cw - dw) * fx, (ch - dh) / 2, dw, dh);
+  }
+  // Вертикальний телефон: кадр на всю ширину одразу під шапкою, без розмиття.
+  // Заливаємо лише поля над і під смугою — так перехресне згасання кадрів лишається чистим.
+  function band(img) {
+    var dh = Math.round(cw * P_H / P_W), top = Math.min(bandTop, Math.max(0, ch - dh));
+    ctx.fillStyle = surround();
+    if (top > 0) ctx.fillRect(0, 0, cw, top);
+    if (top + dh < ch) ctx.fillRect(0, top + dh, cw, ch - top - dh);
+    ctx.drawImage(img, 0, top, cw, dh);
+  }
+  // наприкінці ролик вибілюється (кадри ~462–471) — поля вибілюються разом із ним
+  function surround() {
+    var k = Math.min(1, Math.max(0, (current - 462) / 9));
+    k = k * k * (3 - 2 * k);
+    return 'rgb(' + SURROUND.map(function (c) { return Math.round(c + (255 - c) * k); }).join(',') + ')';
   }
   function white() { ctx.fillStyle = BG; ctx.fillRect(0, 0, cw, ch); }
   function nearestDecoded(i) {
@@ -340,7 +361,8 @@
   }
   function updateTopbar(p) {
     var r = section.getBoundingClientRect();
-    var solid = (p === undefined ? progress() : p) > 0.9 || r.bottom < 80;
+    // на вертикальному телефоні шапка світлішає разом із полями навколо смуги (кадри ~462–471)
+    var solid = (p === undefined ? progress() : p) > (portrait ? 0.935 : 0.9) || r.bottom < 80;
     topbar.classList.toggle('solid', solid);
   }
 

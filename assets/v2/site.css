@@ -491,7 +491,8 @@ html.menu-open,html.menu-open body{overflow:hidden}
 
 /* WEBWORK hero: тёмна сцена з цифровим ядром (Three.js, hero-core.js). */
 .hero{background:#1e1f1b;color:#f3f4ee}
-.hero .core-stage{position:absolute;inset:0;z-index:0;overflow:hidden;background:#1e1f1b;cursor:default}
+.hero .core-stage{position:absolute;inset:0;z-index:0;overflow:hidden;cursor:default;background:radial-gradient(circle at 74% 50%,rgba(185,213,49,.13),rgba(185,213,49,0) 24%),#1e1f1b}
+@media (max-aspect-ratio:9/10){.hero .core-stage{background:radial-gradient(circle at 50% 37%,rgba(185,213,49,.13),rgba(185,213,49,0) 34%),#1e1f1b}}
 .hero .core-stage canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.1s ease}
 .hero .core-stage.is-live canvas{opacity:1}
 .hero .core-stage.is-fallback{background:radial-gradient(circle at 62% 46%,rgba(185,213,49,.16),rgba(185,213,49,0) 34%),#1e1f1b}

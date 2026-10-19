@@ -513,6 +513,9 @@ class LightShaftsPass extends Pass {
 async function createDigitalCore(container, cfg = CONFIG) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarse = window.matchMedia('(pointer: coarse)').matches;
+  // телефони й планшети — легший режим: менша роздільність, без тіней і променів, блюм у чверть роздільності
+  const lite = coarse || Math.min(screen.width, screen.height) < 768;
+  const yieldMain = () => new Promise((r) => setTimeout(r, 0));
   const motion = reduceMotion ? 0 : 1;
   const G = cfg.glow ?? 1; // загальна яскравість світлових ефектів
 
@@ -523,12 +526,13 @@ async function createDigitalCore(container, cfg = CONFIG) {
     container.classList.add('is-fallback');
     return null;
   }
-  let dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.75 : 2);
+  let dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.25 : 2);
+  const DPR_MIN = lite ? 0.85 : 1;
   renderer.setPixelRatio(dpr);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.08;
-  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.enabled = !lite;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   container.appendChild(renderer.domElement);
 
@@ -542,6 +546,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   const pmrem = new THREE.PMREMGenerator(renderer);
   const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   pmrem.dispose();
+  await yieldMain();
 
   // базовий ракурс камери: трохи згори і праворуч, як на референсі
   const AZ = THREE.MathUtils.degToRad(28), EL = THREE.MathUtils.degToRad(16);
@@ -556,7 +561,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   // світло
   const key = new THREE.DirectionalLight(0xfff0d8, 3.2);
   key.position.set(-6.5, 10, 7.5);
-  key.castShadow = true;
+  key.castShadow = !lite;
   const smap = coarse ? 1024 : 2048;
   key.shadow.mapSize.set(smap, smap);
   Object.assign(key.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
@@ -673,10 +678,11 @@ async function createDigitalCore(container, cfg = CONFIG) {
   };
   glassMat.customProgramCacheKey = () => 'webwork-glass';
 
+  await yieldMain();
   // геометрія і розкладка
   const layout = buildLayout(rng, toCam, right, up);
   const records = layout.cubes;
-  const cubeGeo = new RoundedBoxGeometry(1, 1, 1, 3, 0.065);
+  const cubeGeo = new RoundedBoxGeometry(1, 1, 1, lite ? 2 : 3, 0.065);
   const groups = { cream: [], dark: [], glass: [] };
   const featured = {};
   for (const c of records) {
@@ -710,8 +716,8 @@ async function createDigitalCore(container, cfg = CONFIG) {
     instanced.push(mesh);
     return mesh;
   };
-  makeInstanced(groups.cream, creamMat, true);
-  makeInstanced(groups.dark, darkMat, true);
+  makeInstanced(groups.cream, creamMat, !lite);
+  makeInstanced(groups.dark, darkMat, !lite);
   const glassMesh = makeInstanced(groups.glass, glassMat, false);
   glassMesh.renderOrder = 1;
 
@@ -727,7 +733,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     }));
     const side = isDark ? plainDark : plainCream;
     const mesh = new THREE.Mesh(cubeGeo, [side, side, side, side, iconMat, side]);
-    mesh.castShadow = mesh.receiveShadow = true;
+    mesh.castShadow = mesh.receiveShadow = !lite;
     c.obj = mesh;
     c.iconMat = iconMat;
     c.actAt = -100;
@@ -1075,14 +1081,19 @@ async function createDigitalCore(container, cfg = CONFIG) {
   // постобробка
   const ext = renderer.extensions;
   const floatRT = ext.has('EXT_color_buffer_float') || ext.has('EXT_color_buffer_half_float');
-  const rt = new THREE.WebGLRenderTarget(1, 1, { type: floatRT ? THREE.HalfFloatType : THREE.UnsignedByteType, samples: coarse ? 2 : 4 });
+  const rt = new THREE.WebGLRenderTarget(1, 1, { type: floatRT ? THREE.HalfFloatType : THREE.UnsignedByteType, samples: lite ? 2 : 4 });
   const composer = new EffectComposer(renderer, rt);
   composer.addPass(new RenderPass(scene, camera));
   // промені світла від ядра крізь щілини між кубами (у половинній роздільності)
-  const shafts = new LightShaftsPass(coarse ? 32 : 48);
-  composer.addPass(shafts);
+  const shafts = lite ? null : new LightShaftsPass(48);   // на телефонах без променів — мінус три проходи
+  if (shafts) composer.addPass(shafts);
   const bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.55, 0.35, 1.0);
   composer.addPass(bloom);
+  if (lite) {
+    // блюм у чверть роздільності: сяйво так само м'яке, а пікселів у 4 рази менше
+    const setBloomSize = bloom.setSize.bind(bloom);
+    bloom.setSize = (w, h) => setBloomSize(Math.max(2, Math.round(w / 2)), Math.max(2, Math.round(h / 2)));
+  }
   composer.addPass(new OutputPass());
   const finish = new ShaderPass({
     uniforms: { tDiffuse: { value: null }, uTime: { value: 0 }, uGrain: { value: 0.022 }, uCA: { value: 0.7 }, uRes: { value: new THREE.Vector2(1, 1) } },
@@ -1120,7 +1131,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     camera.updateProjectionMatrix();
     uScale.value = renderer.domElement.height / (2 * Math.tan(fovRad / 2));
     finish.uniforms.uRes.value.set(renderer.domElement.width, renderer.domElement.height);
-    shafts.uniforms.uAspect.value = camera.aspect;
+    if (shafts) shafts.uniforms.uAspect.value = camera.aspect;
   }
   resize();
   new ResizeObserver(resize).observe(container);
@@ -1210,12 +1221,14 @@ async function createDigitalCore(container, cfg = CONFIG) {
     floorMat.uniforms.uCenter.value.set(rig.position.x, rig.position.z);
     bloom.strength = (0.55 + 0.18 * Math.min(pulse, 1.5)) * G;
     _w.setFromMatrixPosition(rig.matrixWorld).project(camera);
-    shafts.uniforms.uLight.value.set(_w.x * 0.5 + 0.5, _w.y * 0.5 + 0.5);
-    shafts.uniforms.uAmount.value = (1.8 + 1.8 * pulse) * Math.min(ign, 1.5) * G;
-    shafts.uniforms.uTime.value = t;
-    const uvPerUnit = 1 / (2 * dist * Math.tan(fovRad / 2));
-    shafts.uniforms.uCoreR.value = 0.75 * uvPerUnit;
-    shafts.uniforms.uFall.value = 2.8 * uvPerUnit;
+    if (shafts) {
+      shafts.uniforms.uLight.value.set(_w.x * 0.5 + 0.5, _w.y * 0.5 + 0.5);
+      shafts.uniforms.uAmount.value = (1.8 + 1.8 * pulse) * Math.min(ign, 1.5) * G;
+      shafts.uniforms.uTime.value = t;
+      const uvPerUnit = 1 / (2 * dist * Math.tan(fovRad / 2));
+      shafts.uniforms.uCoreR.value = 0.75 * uvPerUnit;
+      shafts.uniforms.uFall.value = 2.8 * uvPerUnit;
+    }
 
     const waveAmp = beatStrength * motion;
     const waveR = bt * WAVE;
@@ -1303,25 +1316,38 @@ async function createDigitalCore(container, cfg = CONFIG) {
     haze.quaternion.copy(camera.quaternion);
   }
 
-  // адаптивна якість: якщо пристрій не тягне 45+ fps — знижуємо роздільність
+  // адаптивна якість: якщо пристрій не тягне ~45 fps — швидко знижуємо роздільність,
+  // далі вимикаємо промені й тіні (перевірка щосекунди, починаючи з 1,2 с)
   let perfAcc = 0, perfFrames = 0, perfChecks = 0;
   function adapt(dt) {
-    if (t < 4 || perfChecks > 6) return;
+    if (t < 1.2 || perfChecks > 12) return;
     perfAcc += dt;
     perfFrames++;
-    if (perfAcc < 2) return;
+    if (perfAcc < 1) return;
     const avg = perfAcc / perfFrames;
     perfAcc = 0; perfFrames = 0; perfChecks++;
-    if (avg > 1 / 42 && dpr > 1) {
-      dpr = Math.max(1, dpr - 0.35);
+    if (avg > 1 / 45 && dpr > DPR_MIN + 0.01) {
+      dpr = Math.max(DPR_MIN, dpr * 0.8);
       renderer.setPixelRatio(dpr);
       resize();
-    } else if (avg > 1 / 34 && key.castShadow) {
+    } else if (avg > 1 / 40 && shafts && shafts.enabled) {
+      shafts.enabled = false;
+    } else if (avg > 1 / 36 && key.castShadow) {
       key.castShadow = false;
     }
   }
 
+  // шейдери сцени компілюємо саме для рендеру в буфер постобробки (лінійний колір) —
+  // інакше перший кадр компілює їх удруге, і на телефоні все підвисає
+  renderer.setRenderTarget(composer.readBuffer);
   await renderer.compileAsync(scene, camera);
+  renderer.setRenderTarget(null);
+  await yieldMain();
+  // прогрів: перший кадр з усією постобробкою малюємо, поки полотно ще невидиме, —
+  // компіляція решти шейдерів не «гальмує» вже видиму анімацію
+  update(0);
+  composer.render(0);
+  await new Promise((r) => requestAnimationFrame(() => r()));
   container.classList.add('is-live');
 
   let raf = 0, last = performance.now(), visible = true;
@@ -1352,10 +1378,24 @@ async function createDigitalCore(container, cfg = CONFIG) {
   stage.className = 'core-stage';
   stage.setAttribute('aria-hidden', 'true');
   hero.insertBefore(stage, hero.firstChild);
-  createDigitalCore(stage).then(function (api) {
-    if (api) stage.core = api;
-  }).catch(function (err) {
-    console.error(err);
-    stage.classList.add('is-fallback');
-  });
+  // 3D запускаємо, коли сторінка вже завантажилась і браузер вільний (але не пізніше ніж за 2,5 с),
+  // щоб важка ініціалізація не заважала першому показу сторінки й прокрутці
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    createDigitalCore(stage).then(function (api) {
+      if (api) stage.core = api;
+    }).catch(function (err) {
+      console.error(err);
+      stage.classList.add('is-fallback');
+    });
+  }
+  function whenIdle() {
+    if (window.requestIdleCallback) requestIdleCallback(start, { timeout: 1200 });
+    else setTimeout(start, 150);
+  }
+  if (document.readyState === 'complete') whenIdle();
+  else window.addEventListener('load', whenIdle, { once: true });
+  setTimeout(start, 2500);
 })();

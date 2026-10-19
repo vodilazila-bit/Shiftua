@@ -18,6 +18,7 @@ const CONFIG = {
   shiftX: 0.24,           // 0…0.3 — зсунути ядро вправо (частка ширини), коли зліва текст
   seed: 20261017,         // інше число — інша форма кластера
   beatEvery: [4.8, 7.0],  // інтервал «серцебиття» ядра, секунди
+  glow: 0.6,              // яскравість світла й сяйва: 1 — як було, менше — спокійніше
 };
 
 const TAU = Math.PI * 2;
@@ -513,6 +514,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   const motion = reduceMotion ? 0 : 1;
+  const G = cfg.glow ?? 1; // загальна яскравість світлових ефектів
 
   let renderer;
   try {
@@ -1197,19 +1199,19 @@ async function createDigitalCore(container, cfg = CONFIG) {
     const ign = ignite(t);
     const shimmer = 1 + 0.05 * Math.sin(t * 17.3) * Math.sin(t * 7.1) * motion;
     const core = ign * (1 + 0.14 * Math.sin(t * 1.3) + 1.1 * pulse) * shimmer;
-    coreLight.intensity = 6 * core;
-    heartMat.color.copy(heartBase).multiplyScalar((2.8 + 2.2 * core) * clamp(ign, 0, 1));
+    coreLight.intensity = 6 * core * G;
+    heartMat.color.copy(heartBase).multiplyScalar((2.8 + 2.2 * core) * clamp(ign, 0, 1) * G);
     heart.rotation.x += dt * 0.35 * motion;
     heart.rotation.y += dt * 0.55 * motion;
-    coreGlow.material.color.copy(lime).multiplyScalar(0.38 * core);
-    streak.material.color.setRGB(1, 1, 0.78).multiplyScalar((0.09 + 0.22 * pulse) * Math.min(ign, 1.4));
-    hazeMat.uniforms.uI.value = core;
-    floorMat.uniforms.uGlow.value = core;
+    coreGlow.material.color.copy(lime).multiplyScalar(0.38 * core * G);
+    streak.material.color.setRGB(1, 1, 0.78).multiplyScalar((0.09 + 0.22 * pulse) * Math.min(ign, 1.4) * G);
+    hazeMat.uniforms.uI.value = core * G;
+    floorMat.uniforms.uGlow.value = core * G;
     floorMat.uniforms.uCenter.value.set(rig.position.x, rig.position.z);
-    bloom.strength = 0.55 + 0.18 * Math.min(pulse, 1.5);
+    bloom.strength = (0.55 + 0.18 * Math.min(pulse, 1.5)) * G;
     _w.setFromMatrixPosition(rig.matrixWorld).project(camera);
     shafts.uniforms.uLight.value.set(_w.x * 0.5 + 0.5, _w.y * 0.5 + 0.5);
-    shafts.uniforms.uAmount.value = (1.8 + 1.8 * pulse) * Math.min(ign, 1.5);
+    shafts.uniforms.uAmount.value = (1.8 + 1.8 * pulse) * Math.min(ign, 1.5) * G;
     shafts.uniforms.uTime.value = t;
     const uvPerUnit = 1 / (2 * dist * Math.tan(fovRad / 2));
     shafts.uniforms.uCoreR.value = 0.75 * uvPerUnit;
@@ -1218,7 +1220,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     const waveAmp = beatStrength * motion;
     const waveR = bt * WAVE;
     glassU.uCore.value.setFromMatrixPosition(rig.matrixWorld);
-    glassU.uCoreI.value = 0.6 * core;
+    glassU.uCoreI.value = 0.6 * core * G;
     glassU.uBeatR.value = waveR;
     glassU.uBeatAmp.value = beatStrength * Math.exp(-bt * 0.5);
     lineU.uTime.value = t;
@@ -1231,7 +1233,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     const sp = t > 4 ? ((t - 4) % 10.5) / 3.4 : 2;
     if (motion && sp < 1) {
       sweep.position.copy(toCam).multiplyScalar(6.5).addScaledVector(right, lerp(-7, 7, easeInOutCubic(sp))).addScaledVector(up, 2.2);
-      sweep.intensity = 18 * Math.sin(Math.PI * sp);
+      sweep.intensity = 18 * G * Math.sin(Math.PI * sp);
     } else sweep.intensity = 0;
 
     // ковзання окремих блоків по осі
@@ -1257,7 +1259,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     for (const c of featuredList) {
       const u = t - c.actAt;
       const env = u > 0 ? (1 - Math.exp(-u * 14)) * Math.exp(-u * 1.5) : 0;
-      c.iconMat.emissiveIntensity = 0.03 + 3.0 * env;
+      c.iconMat.emissiveIntensity = 0.03 + 3.0 * env * G;
       c.pop = 0.03 * env * motion;
       if (u > 0 && !c.sparked && c.scaleNow) {
         c.sparked = true;

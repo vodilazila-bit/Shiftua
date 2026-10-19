@@ -12,8 +12,8 @@
   var VIDEO_FPS = 30;             // fps of seq-*.mp4 (frames 0..WHITE_FROM-1, every frame a keyframe)
   var EASE = 9;                   // time-based smoothing toward the scroll target (per second)
   var STEP = 2;                   // load every 2nd frame; in-between positions are cross-faded
-  var HEAD = 60;                  // first frames loaded in order so the start is instantly smooth
-  var KEY_STEP = 16;              // coarse keyframes kept decoded (low-res) as a never-blank fallback
+  var HEAD = 40;                  // first frames loaded in order so the start is instantly smooth
+  var KEY_STEP = 8;               // «каркас»: кожен 8-й кадр по всьому ролику, тримається декодованим (зменшеним)
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canvas = document.getElementById('seq');
@@ -140,23 +140,32 @@
     cover(img, img.width || img.naturalWidth, img.height || img.naturalHeight);
     lastSrc = img; lastIdx = i; window.__tlFrame = img.__i;
   }
-  var lastBlend = -1;
+  var lastBlend = -1, lastPair = '';
+  // готовий кадр для індексу: повнорозмірний, а поки його нема — зменшений «каркасний»
+  function readyAt(i) { return bitmaps[i] || keys[i] || null; }
   function render(force) {
-    var i0 = Math.floor(current / STEP) * STEP, i1 = i0 + STEP, a = (current - i0) / STEP;
-    var b0 = bitmaps[i0], b1 = i1 < WHITE_FROM ? bitmaps[i1] : null;
-    if (!videoReady && cw && b0 && b1 && a > 0.02 && a < 0.98) {
-      var key = i0 + a;
-      if (!force && Math.abs(key - lastBlend) < 0.004) return;
-      cover(b0, b0.width, b0.height);
-      ctx.globalAlpha = a;
-      cover(b1, b1.width, b1.height);
-      ctx.globalAlpha = 1;
-      lastBlend = key; lastSrc = null; lastIdx = -1; window.__tlFrame = i0;
-      return;
+    if (!videoReady && cw && current < WHITE_FROM - 1) {
+      // Найближчі готові кадри позаду й попереду — між ними плавне перетікання.
+      // Поки ролик ще докачується, картинка рухається, а не стоїть і не стрибає «слайдами».
+      var c0 = Math.floor(current), lo = -1, hi = -1, j;
+      for (j = c0; j >= 0 && j > c0 - 48; j--) if (readyAt(j)) { lo = j; break; }
+      for (j = c0 + 1; j < WHITE_FROM && j < c0 + 48; j++) if (readyAt(j)) { hi = j; break; }
+      if (lo >= 0 && hi > lo) {
+        var a = (current - lo) / (hi - lo), b0 = readyAt(lo), b1 = readyAt(hi);
+        if (a > 0.02 && a < 0.98) {
+          var pair = lo + ':' + hi + ':' + (b0 === bitmaps[lo]) + (b1 === bitmaps[hi]);
+          if (!force && pair === lastPair && Math.abs(current - lastBlend) < 0.004) return;
+          cover(b0, b0.width, b0.height);
+          ctx.globalAlpha = a;
+          cover(b1, b1.width, b1.height);
+          ctx.globalAlpha = 1;
+          lastBlend = current; lastPair = pair; lastSrc = null; lastIdx = -1; window.__tlFrame = a < 0.5 ? lo : hi;
+          return;
+        }
+      }
     }
-    lastBlend = -1;
-    var i = a >= 0.5 && i1 < FRAME_COUNT ? i1 : i0;
-    if (current >= WHITE_FROM) i = Math.round(current);
+    lastBlend = -1; lastPair = '';
+    var i = Math.min(FRAME_COUNT - 1, Math.round(current));
     if (force || i !== lastIdx) drawFrame(i, force);
   }
 
@@ -250,20 +259,31 @@
     return dirSign >= 0 ? (i >= c - BEHIND && i <= c + AHEAD) : (i <= c + BEHIND && i >= c - AHEAD);
   }
   // fetch order: head frames, then keyframes, then frames ahead of the reader (images only if no video)
-  var headDone = 0, keyTotal = Math.ceil(WHITE_FROM / KEY_STEP), keyDone = 0, inflight = 0, CONC = 6;
+  var headDone = 0, keyTotal = Math.ceil(WHITE_FROM / KEY_STEP), keyDone = 0, inflight = 0, CONC = 10;
+  // Порядок: початок ролика → «каркас» (кожен 8-й кадр по всьому ролику, найближчі до читача першими:
+  // у будь-якому місці є між чим плавно перетікати) → кожен 4-й → кожен 2-й. Повільний інтернет
+  // не встигає за швидкою прокруткою, тож спершу покриваємо весь ролик, а вже потім густішаємо.
   function nextToFetch() {
-    var i;
+    var i, n, c = Math.round(current + dirSign * lead());
     for (i = 0; i < HEAD; i += STEP) if (!fetching[i]) return i;
-    for (i = 0; i < WHITE_FROM; i += KEY_STEP) if (!fetching[i]) return i;
+    if ((n = nearestMissing(c, KEY_STEP)) >= 0) return n;
     if (useVideo) return -1;
-    var c = Math.round(current), best = -1, bs = 1e9, s, d;
-    for (i = 0; i < WHITE_FROM; i++) {
-      if (fetching[i] || i % STEP) continue;
+    if ((n = nearestMissing(c, 4)) >= 0) return n;
+    return nearestMissing(c, STEP);
+  }
+  // найближчий ще не запитаний кадр із кроком step; позаду читача — утричі «далі»
+  function nearestMissing(c, step) {
+    var best = -1, bs = 1e9, i, d, s;
+    for (i = 0; i < WHITE_FROM; i += step) {
+      if (fetching[i]) continue;
       d = i - c; s = (d * dirSign >= 0) ? Math.abs(d) : Math.abs(d) * 3;
       if (s < bs) { bs = s; best = i; }
     }
     return best;
   }
+  // на скільки кадрів читач проїде, поки прийде запит (~0,3 с), — вантажимо з таким запасом
+  var vel = 0, lastScrollT = 0;
+  function lead() { return performance.now() - lastScrollT > 300 ? 0 : Math.min(48, vel * 0.3); }
   function pumpFetch() {
     while (inflight < CONC) {
       var i = nextToFetch(); if (i < 0) return;
@@ -381,8 +401,11 @@
   }
   var lastTarget = 0;
   function onScroll() {
-    var p = progress();
+    var p = progress(), prev = target;
     target = Math.min(1, p / END_AT) * (FRAME_COUNT - 1);
+    var now = performance.now(), dts = (now - lastScrollT) / 1000;
+    if (lastScrollT && dts > 0.004) vel += (Math.min(400, Math.abs(target - prev) / dts) - vel) * 0.25;
+    lastScrollT = now;
     if (target !== lastTarget) { dirSign = target > lastTarget ? 1 : -1; lastTarget = target; }
     updateOverlays(p);
     updateTopbar(p);

@@ -205,7 +205,13 @@ html.menu-open,html.menu-open body{overflow:hidden}
   .case-more figure{grid-column:1/-1}
 }
 
-.work-grid{display:grid;gap:clamp(44px,5vw,72px) clamp(20px,2.2vw,36px);margin-top:clamp(80px,9vw,150px)}
+.work-grid{display:grid;gap:clamp(44px,5vw,72px) clamp(20px,2.2vw,36px)}
+/* ZaiSun — така сама картка, як інші кейси, з телефоном і бейджем поверх фото */
+.card-zaisun .card-media{background:#b98a5c}
+.card-zaisun .card-media > img{object-position:64% 50%}
+.card-zaisun .case-phone{width:26%;right:7%;bottom:-16%;border-radius:clamp(14px,1.6vw,26px)}
+.card-zaisun .case-phone img{position:static;border-radius:calc(clamp(14px,1.6vw,26px) - clamp(4px,.5vw,7px));transform:none!important}
+@media (hover:hover){.card-zaisun:hover .case-phone{transform:rotate(-3deg) translateY(-4%)}}
 .card{display:block;text-decoration:none;color:inherit}
 .card-media{position:relative;display:block;border-radius:var(--r-l);overflow:hidden;aspect-ratio:16/10;background:#d9dcd4}
 .card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}

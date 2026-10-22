@@ -1,13 +1,18 @@
 /*! WEBWORK hero: цифрове ядро на Three.js (WebGL). Ініціалізується в секції [data-hero]. */
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js';
 import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/geometries/RoundedBoxGeometry.js';
-import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/environments/RoomEnvironment.js';
-import { EffectComposer } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/OutputPass.js';
-import { ShaderPass } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/ShaderPass.js';
 import { Pass, FullScreenQuad } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/Pass.js';
+
+const mobileQuality = matchMedia('(pointer: coarse)').matches || Math.min(screen.width, screen.height) < 768;
+// Do not download desktop-only postprocessing modules on phones.
+const [RoomEnvironment, EffectComposer, RenderPass, UnrealBloomPass, OutputPass, ShaderPass] = mobileQuality ? [] : await Promise.all([
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/environments/RoomEnvironment.js').then(m => m.RoomEnvironment),
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/EffectComposer.js').then(m => m.EffectComposer),
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/RenderPass.js').then(m => m.RenderPass),
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/UnrealBloomPass.js').then(m => m.UnrealBloomPass),
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/OutputPass.js').then(m => m.OutputPass),
+  import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/postprocessing/ShaderPass.js').then(m => m.ShaderPass)
+]);
 
 // ───────────── Налаштування ─────────────
 const CONFIG = {
@@ -514,7 +519,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   // телефони й планшети — легший режим: менша роздільність, без тіней і променів, блюм у чверть роздільності
-  const lite = coarse || Math.min(screen.width, screen.height) < 768;
+  const lite = mobileQuality;
   const yieldMain = () => new Promise((r) => setTimeout(r, 0));
   const motion = reduceMotion ? 0 : 1;
   const G = cfg.glow ?? 1; // загальна яскравість світлових ефектів
@@ -526,8 +531,8 @@ async function createDigitalCore(container, cfg = CONFIG) {
     container.classList.add('is-fallback');
     return null;
   }
-  let dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.25 : 2);
-  const DPR_MIN = lite ? 0.85 : 1;
+  let dpr = Math.min(window.devicePixelRatio || 1, lite ? 1 : 1.5);
+  const DPR_MIN = lite ? 0.65 : 1;
   renderer.setPixelRatio(dpr);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -543,9 +548,15 @@ async function createDigitalCore(container, cfg = CONFIG) {
   scene.fog = new THREE.FogExp2(bg.clone(), 0.014);
   const lime = new THREE.Color(cfg.lime);
 
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  pmrem.dispose();
+  // Mobile lighting uses the existing lights; avoid synchronous PMREM renders.
+  let envTex = null;
+  if (!lite) {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const room = new RoomEnvironment();
+    envTex = pmrem.fromScene(room, 0.04).texture;
+    room.dispose();
+    pmrem.dispose();
+  }
   await yieldMain();
 
   // базовий ракурс камери: трохи згори і праворуч, як на референсі
@@ -682,7 +693,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   // геометрія і розкладка
   const layout = buildLayout(rng, toCam, right, up);
   const records = layout.cubes;
-  const cubeGeo = new RoundedBoxGeometry(1, 1, 1, lite ? 2 : 3, 0.065);
+  const cubeGeo = new RoundedBoxGeometry(1, 1, 1, lite ? 1 : 3, 0.065);
   const groups = { cream: [], dark: [], glass: [] };
   const featured = {};
   for (const c of records) {
@@ -1081,21 +1092,19 @@ async function createDigitalCore(container, cfg = CONFIG) {
   // постобробка
   const ext = renderer.extensions;
   const floatRT = ext.has('EXT_color_buffer_float') || ext.has('EXT_color_buffer_half_float');
-  const rt = new THREE.WebGLRenderTarget(1, 1, { type: floatRT ? THREE.HalfFloatType : THREE.UnsignedByteType, samples: lite ? 2 : 4 });
-  const composer = new EffectComposer(renderer, rt);
-  composer.addPass(new RenderPass(scene, camera));
+  const rt = lite ? null : new THREE.WebGLRenderTarget(1, 1, { type: floatRT ? THREE.HalfFloatType : THREE.UnsignedByteType, samples: lite ? 2 : 4 });
+  const composer = lite ? null : new EffectComposer(renderer, rt);
+  if (composer) composer.addPass(new RenderPass(scene, camera));
   // промені світла від ядра крізь щілини між кубами (у половинній роздільності)
   const shafts = lite ? null : new LightShaftsPass(48);   // на телефонах без променів — мінус три проходи
   if (shafts) composer.addPass(shafts);
-  const bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.55, 0.35, 1.0);
-  composer.addPass(bloom);
-  if (lite) {
-    // блюм у чверть роздільності: сяйво так само м'яке, а пікселів у 4 рази менше
-    const setBloomSize = bloom.setSize.bind(bloom);
-    bloom.setSize = (w, h) => setBloomSize(Math.max(2, Math.round(w / 2)), Math.max(2, Math.round(h / 2)));
+  // The glow sprites remain on mobile, without the multi-pass bloom pipeline.
+  const bloom = lite ? null : new UnrealBloomPass(new THREE.Vector2(512, 512), 0.55, 0.35, 1.0);
+  if (composer) {
+    composer.addPass(bloom);
+    composer.addPass(new OutputPass());
   }
-  composer.addPass(new OutputPass());
-  const finish = new ShaderPass({
+  const finish = lite ? null : new ShaderPass({
     uniforms: { tDiffuse: { value: null }, uTime: { value: 0 }, uGrain: { value: 0.022 }, uCA: { value: 0.7 }, uRes: { value: new THREE.Vector2(1, 1) } },
     vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     fragmentShader: /* glsl */`
@@ -1110,7 +1119,8 @@ async function createDigitalCore(container, cfg = CONFIG) {
         gl_FragColor = vec4(col, 1.0);
       }`,
   });
-  composer.addPass(finish);
+  if (composer) composer.addPass(finish);
+  const render = (dt) => composer ? composer.render(dt) : renderer.render(scene, camera);
 
   // розмір і кадрування
   let baseDist = 18;
@@ -1118,8 +1128,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
   function resize() {
     const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight);
     renderer.setSize(w, h, false);
-    composer.setPixelRatio(dpr);
-    composer.setSize(w, h);
+    if (composer) { composer.setPixelRatio(dpr); composer.setSize(w, h); }
     camera.aspect = w / h;
     const hFov = 2 * Math.atan(Math.tan(fovRad / 2) * camera.aspect);
     baseDist = 4.9 / Math.sin(Math.min(fovRad, hFov) / 2);
@@ -1130,7 +1139,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     else camera.clearViewOffset();
     camera.updateProjectionMatrix();
     uScale.value = renderer.domElement.height / (2 * Math.tan(fovRad / 2));
-    finish.uniforms.uRes.value.set(renderer.domElement.width, renderer.domElement.height);
+    if (finish) finish.uniforms.uRes.value.set(renderer.domElement.width, renderer.domElement.height);
     if (shafts) shafts.uniforms.uAspect.value = camera.aspect;
   }
   resize();
@@ -1219,7 +1228,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     hazeMat.uniforms.uI.value = core * G;
     floorMat.uniforms.uGlow.value = core * G;
     floorMat.uniforms.uCenter.value.set(rig.position.x, rig.position.z);
-    bloom.strength = (0.55 + 0.18 * Math.min(pulse, 1.5)) * G;
+    if (bloom) bloom.strength = (0.55 + 0.18 * Math.min(pulse, 1.5)) * G;
     _w.setFromMatrixPosition(rig.matrixWorld).project(camera);
     if (shafts) {
       shafts.uniforms.uLight.value.set(_w.x * 0.5 + 0.5, _w.y * 0.5 + 0.5);
@@ -1240,7 +1249,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     lineU.uBeatT.value = bt;
     lineU.uBeatAmp.value = beatStrength;
     lineU.uReveal.value = motion ? easeInOutCubic(clamp((t - 1.6) / 1.5, 0, 1)) : 1;
-    finish.uniforms.uTime.value = t;
+    if (finish) finish.uniforms.uTime.value = t;
 
     // світлова «розгортка» по фасаду
     const sp = t > 4 ? ((t - 4) % 10.5) / 3.4 : 2;
@@ -1326,7 +1335,7 @@ async function createDigitalCore(container, cfg = CONFIG) {
     if (perfAcc < 1) return;
     const avg = perfAcc / perfFrames;
     perfAcc = 0; perfFrames = 0; perfChecks++;
-    if (avg > 1 / 45 && dpr > DPR_MIN + 0.01) {
+    if (avg > 1 / (lite ? 24 : 45) && dpr > DPR_MIN + 0.01) {
       dpr = Math.max(DPR_MIN, dpr * 0.8);
       renderer.setPixelRatio(dpr);
       resize();
@@ -1339,33 +1348,47 @@ async function createDigitalCore(container, cfg = CONFIG) {
 
   // шейдери сцени компілюємо саме для рендеру в буфер постобробки (лінійний колір) —
   // інакше перший кадр компілює їх удруге, і на телефоні все підвисає
-  renderer.setRenderTarget(composer.readBuffer);
+  renderer.setRenderTarget(composer ? composer.readBuffer : null);
   await renderer.compileAsync(scene, camera);
   renderer.setRenderTarget(null);
   await yieldMain();
   // прогрів: перший кадр з усією постобробкою малюємо, поки полотно ще невидиме, —
   // компіляція решти шейдерів не «гальмує» вже видиму анімацію
   update(0);
-  composer.render(0);
+  render(0);
   await new Promise((r) => requestAnimationFrame(() => r()));
   container.classList.add('is-live');
 
   let raf = 0, last = performance.now(), visible = true;
+  const frameInterval = 1000 / (lite ? 30 : 60);
   function loop(now) {
     raf = 0;
-    if (!visible) return;
+    if (!visible || document.hidden || reduceMotion) return;
     raf = requestAnimationFrame(loop);
-    const dt = Math.min(Math.max((now - last) / 1000, 0), 1 / 20);
+    const elapsed = now - last;
+    if (elapsed < frameInterval - 1) return;
     last = now;
+    const dt = Math.min(elapsed / 1000, 0.1);
     update(dt);
-    composer.render(dt);
+    render(dt);
     adapt(dt);
+  }
+  function resume() {
+    if (visible && !document.hidden && !reduceMotion && !raf) {
+      last = performance.now();
+      raf = requestAnimationFrame(loop);
+    } else if ((!visible || document.hidden) && raf) {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    }
   }
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    if (visible && !raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+    resume();
   }).observe(container);
-  raf = requestAnimationFrame(loop);
+  document.addEventListener('visibilitychange', resume);
+  if (reduceMotion) new ResizeObserver(() => { update(0); render(0); }).observe(container);
+  resume();
 
   return { pulse: () => triggerBeat(1.35) };
 }

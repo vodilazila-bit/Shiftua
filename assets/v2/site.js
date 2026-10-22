@@ -94,7 +94,6 @@
     approachList.toggleAttribute('inert', !open);
     if (approachBtn) {
       approachBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      approachBtn.querySelector('.approach-toggle-t').textContent = open ? 'Згорнути список' : 'Показати список';
     }
     if (scroll && approachSec && (open || approachSec.getBoundingClientRect().top < 0)) {
       approachSec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });

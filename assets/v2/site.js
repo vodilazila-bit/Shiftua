@@ -118,4 +118,34 @@
     img.addEventListener('load', function () { if (img.naturalWidth < 400) bad(); });
     if (img.complete && img.naturalWidth > 0 && img.naturalWidth < 400) bad();
   });
+
+  /* ---------- ціни: картки виїжджають зліва одна за одною, коли блок з'являється на екрані ---------- */
+  (function () {
+    var cards = [].slice.call(document.querySelectorAll('.price-card'));
+    if (!cards.length) return;
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still || !('IntersectionObserver' in window)) { cards.forEach(function (c) { c.classList.add('slide-in'); }); return; }
+    document.documentElement.classList.add('slide-ready');
+    var io = new IntersectionObserver(function (entries) {
+      var n = 0;
+      entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return cards.indexOf(a.target) - cards.indexOf(b.target); })
+        .forEach(function (e) {
+          e.target.style.transitionDelay = (n++ * 0.18) + 's';
+          e.target.classList.add('slide-in');
+          io.unobserve(e.target);
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    cards.forEach(function (c) { io.observe(c); });
+    // швидкий скрол може «перестрибнути» картку — тоді показуємо все, що вже вище за низ екрана
+    function catchUp() {
+      var left = 0;
+      cards.forEach(function (c) {
+        if (c.classList.contains('slide-in')) return;
+        if (c.getBoundingClientRect().top < innerHeight) { c.classList.add('slide-in'); io.unobserve(c); } else left++;
+      });
+      if (!left) removeEventListener('scroll', catchUp);
+    }
+    addEventListener('scroll', catchUp, { passive: true });
+  })();
 })();

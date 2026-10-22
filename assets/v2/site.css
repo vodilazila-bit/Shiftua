@@ -517,3 +517,20 @@ html:not(.is-scrolled) .site-header .brand-mark path{fill:#f3f4ee}
 html:not(.is-scrolled) .site-header .brand-mark .tip{fill:#b9d531}
 html:not(.is-scrolled) .site-header .btn-dark{background:#f3f4ee;color:#1e1f1b}
 html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:#1e1f1b}
+
+/* ── Кнопки-блоки в стилі заголовка й кубів: прямокутник із заокругленими кутами,
+      шрифт заголовка (WW Mono), об'єм як у граней кубів ── */
+.btn{--h:56px;border-radius:12px;font:400 13.5px/1.1 "WW Mono",var(--fd);letter-spacing:.02em;text-transform:uppercase;box-shadow:inset 0 -3px 0 rgba(0,0,0,.16)}
+.btn-line{box-shadow:none}
+.btn.has-ico{padding-right:7px}
+.btn-ico{border-radius:8px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.14),0 0 18px rgba(185,213,49,.35)}
+.header-inner{border-radius:16px}
+.header-nav a{border-radius:9px}
+.menu-toggle{border-radius:11px}
+.menu-links a{border-radius:12px;font:400 13px/1.1 "WW Mono",var(--fd);text-transform:uppercase;letter-spacing:.02em}
+.card-go,.qa-ico,.more-ico{border-radius:10px}
+.direct a{border-radius:12px}
+.skip{border-radius:10px}
+/* SHIFT: скрін уже обрізаний по краях — без наближення при наведенні */
+.card[href*="shiftua.com"]:hover .card-media img{transform:none}
+@media (max-width:380px){.btn{font-size:12px;gap:12px;padding-left:16px}}

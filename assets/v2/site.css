@@ -551,3 +551,7 @@ html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:
 .approach-toggle[aria-expanded="true"] .plus-ico::after{transform:rotate(0)}
 .approach-toggle[aria-expanded="true"] .btn-ico{transform:none}
 .intro .approach-grid{margin-top:clamp(36px,5vw,72px)}
+
+/* Кнопки: без зелених квадратиків — тільки текст і стрілка/плюс у кольорі тексту */
+.btn .btn-ico{background:transparent!important;box-shadow:none!important;color:inherit!important;--ico:30px;margin-right:6px}
+.btn .btn-ico svg{width:16px;height:16px;stroke-width:2}

@@ -533,3 +533,7 @@ html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:
 .skip{border-radius:10px}
 /* SHIFT: скрін уже обрізаний по краях — без наближення при наведенні */
 .card[href*="shiftua.com"]:hover .card-media img{transform:none}
+
+/* Послуги: заголовок — одне довге речення на всю ширину */
+.sec-head-wide{display:block}
+.h2-long{font-size:clamp(34px,4.6vw,76px);line-height:1.04;max-width:22ch}

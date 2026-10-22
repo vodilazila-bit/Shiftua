@@ -178,10 +178,17 @@ a{color:inherit}
 }
 
 /* Телефон/планшет вертикально: відео — чітка смуга на всю ширину одразу під шапкою (без розмиття),
-   нижче — суцільне темне тло, на якому стоїть текст. Смугу і поля малює app.js. */
+   нижче — біле тло, на якому стоїть темний текст. Смугу і поля малює app.js (SURROUND = білий). */
 @media (max-width:899px) and (orientation:portrait){
-  .sticky{background:#14171c}
-  .shade{background:linear-gradient(0deg,rgba(10,12,16,.55) 0%,rgba(10,12,16,0) 38%)}
+  .sticky{background:#fff}
+  .shade{display:none}
+  .topbar,.topbar.solid{background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+  .beat{color:var(--ink);text-shadow:none}
+  .beat .lead,.beat-side p{color:var(--muted);opacity:1}
+  .eyebrow{color:var(--accent-ink)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid #d6d9df;backdrop-filter:none}
+  .btn-ghost:hover{background:var(--alt)}
+  .loader{background:var(--line)}
 }
 @media (max-width:767px) and (orientation:portrait){
   .beat-hero{bottom:calc(4svh + env(safe-area-inset-bottom))}

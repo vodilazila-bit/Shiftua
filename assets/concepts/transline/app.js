@@ -36,7 +36,7 @@
   var portrait = isPortrait();
   var P_W = 540, P_H = 474;       // розмір frames/p
   var P_VER = '?v=20261019';      // нові кадри frames/p — не брати старі з кешу
-  var SURROUND = [20, 23, 28];    // #14171c — тло навколо смуги на вертикальному телефоні
+  var SURROUND = [255, 255, 255]; // біле тло навколо смуги на вертикальному телефоні
   var bandTop = 0;                // висота шапки в пікселях полотна
   var dir = BASE + (portrait ? 'frames/p/' : small ? 'frames/m/' : 'frames/d/');
   function src(i) { return dir + String(i).padStart(4, '0') + '.webp' + (portrait ? P_VER : ''); }

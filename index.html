@@ -16,7 +16,7 @@
 <link rel="preload" href="/assets/v2/fonts/display-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/v2/fonts/text-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="/assets/v2/site.css?v=20261022-6">
+<link rel="stylesheet" href="/assets/v2/site.css?v=20261022-7">
 <script>document.documentElement.classList.add('js')</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18409542106"></script>
@@ -106,7 +106,31 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
     <p class="statement" data-statement>Роблю не набір макетів, а робочий інструмент: сайт приймає замовлення, проводить оплату й показує, яка реклама приносить гроші.</p>
     <div class="intro-aside">
       <p>Інтернет-магазини, лендінги й сайти для компаній — з оплатою, доставкою, аналітикою й рекламою, підключеними з першого дня.</p>
-      <a class="btn btn-dark has-ico" href="#approach"><span>Як ми працюємо</span><span class="btn-ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg></span></a>
+      <button class="btn btn-dark has-ico approach-toggle" type="button" aria-expanded="false" aria-controls="approach-list"><span>Як ми працюємо</span><span class="btn-ico" aria-hidden="true"><i class="plus-ico"></i></span></button>
+    </div>
+  </div>
+  <div class="wrap approach" id="approach">
+    <div class="approach-panel" id="approach-list">
+      <div class="approach-inner">
+      <div class="approach-grid">
+      <article class="approach-item">
+        <h3>Створюю магазини й розумію їхню щоденну роботу</h3>
+        <p>Я розробив інтернет-магазин для власного бренду ZaiSun і сам працюю з його продажами. Знаю, як пов’язані сайт, реклама, оплата й доставка.</p>
+      </article>
+      <article class="approach-item">
+        <h3>Реклама отримує дані про покупки</h3>
+        <p>Налаштовую автоматичну передачу каталогу в Google Покупки та відстеження замовлень для Google, Facebook та Instagram. Ви бачите, яка реклама приводить покупців, а рекламні системи оптимізуються під продажі.</p>
+      </article>
+      <article class="approach-item">
+        <h3>Оплата, доставка й чеки працюють разом</h3>
+        <p>Підключаю monobank або LiqPay, автоматичні чеки Checkbox і вибір відділення Нової Пошти під час замовлення. Якщо покупець залишив контакти й не завершив оформлення — ви отримаєте сповіщення і зможете допомогти йому з покупкою.</p>
+      </article>
+      <article class="approach-item">
+        <h3>ШІ прискорює розробку й зменшує витрати</h3>
+        <p>Використовую ШІ для коду та повторюваних задач. Структуру магазину, оплату й доставку продумую та перевіряю особисто. Обсяг, вартість і строк запуску погоджуємо до початку роботи.</p>
+      </article>
+    </div>
+    </div>
     </div>
   </div>
 </section>
@@ -165,37 +189,6 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
           <span class="card-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></span>
         </span>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="sec approach" id="approach">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2"><button class="approach-toggle approach-head" type="button" aria-expanded="false" aria-controls="approach-list">Як ми працюємо <i class="more-ico appr-ico" aria-hidden="true"></i></button></h2>
-      <p class="lead">Магазин продумую як одну систему — зручну для покупців і для вас.</p>
-    </div>
-    <div class="approach-panel" id="approach-list">
-      <div class="approach-inner">
-      <div class="approach-grid">
-      <article class="approach-item">
-        <h3>Створюю магазини й розумію їхню щоденну роботу</h3>
-        <p>Я розробив інтернет-магазин для власного бренду ZaiSun і сам працюю з його продажами. Знаю, як пов’язані сайт, реклама, оплата й доставка.</p>
-      </article>
-      <article class="approach-item">
-        <h3>Реклама отримує дані про покупки</h3>
-        <p>Налаштовую автоматичну передачу каталогу в Google Покупки та відстеження замовлень для Google, Facebook та Instagram. Ви бачите, яка реклама приводить покупців, а рекламні системи оптимізуються під продажі.</p>
-      </article>
-      <article class="approach-item">
-        <h3>Оплата, доставка й чеки працюють разом</h3>
-        <p>Підключаю monobank або LiqPay, автоматичні чеки Checkbox і вибір відділення Нової Пошти під час замовлення. Якщо покупець залишив контакти й не завершив оформлення — ви отримаєте сповіщення і зможете допомогти йому з покупкою.</p>
-      </article>
-      <article class="approach-item">
-        <h3>ШІ прискорює розробку й зменшує витрати</h3>
-        <p>Використовую ШІ для коду та повторюваних задач. Структуру магазину, оплату й доставку продумую та перевіряю особисто. Обсяг, вартість і строк запуску погоджуємо до початку роботи.</p>
-      </article>
-    </div>
-    </div>
     </div>
   </div>
 </section>
@@ -384,7 +377,7 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
   </div>
 </footer>
 
-<script src="/assets/v2/site.js?v=20261022-2" defer></script>
+<script src="/assets/v2/site.js?v=20261022-3" defer></script>
 <script src="/assets/v2/lead-form.js?v=20261015-1" defer></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js"}}</script>
 <script type="module" src="/assets/v2/hero-core.js?v=20261019-2"></script>

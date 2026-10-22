@@ -87,7 +87,7 @@
   /* ---------- "Як ми працюємо": the approach list slides out ---------- */
   var approachSec = document.getElementById('approach');
   var approachList = document.getElementById('approach-list');
-  var approachBtn = approachSec && approachSec.querySelector('.approach-toggle');
+  var approachBtn = document.querySelector('.approach-toggle');
   function setApproach(open, scroll) {
     if (!approachList) return;
     approachList.classList.toggle('is-open', open);
@@ -101,7 +101,12 @@
   }
   if (approachList && root.classList.contains('js')) setApproach(location.hash === '#approach', false);
   if (approachBtn) approachBtn.addEventListener('click', function () {
-    setApproach(!approachList.classList.contains('is-open'), true);
+    var open = !approachList.classList.contains('is-open');
+    setApproach(open, false);
+    // при згортанні, якщо кнопка вже вище екрана, повертаємо до неї
+    if (!open && approachBtn.getBoundingClientRect().top < 80) {
+      approachBtn.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    }
   });
   document.addEventListener('click', function (e) {
     var link = e.target.closest && e.target.closest('a[href="#approach"]');

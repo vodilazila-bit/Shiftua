@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18409542106"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18409542106');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14462f">
+<title>POSTAVA — запис до мануального терапевта</title>
+<meta name="description" content="Як застосунок: проблема, день і час — прямо на першому екрані. Демонстраційний концепт від WEBWORK.">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:site_name" content="WEBWORK">
+<meta property="og:title" content="POSTAVA — варіант 5 «Запис». Концепт сайту мануального терапевта">
+<meta property="og:description" content="Як застосунок: проблема, день і час — прямо на першому екрані. Демонстраційний концепт від WEBWORK.">
+<meta property="og:url" content="https://webwork.com.ua/concept-postava/zapys.html">
+<meta property="og:image" content="https://webwork.com.ua/concept-postava/assets/og-zapys.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+@font-face {
+  font-family: 'Wix Madefor Display Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url(assets/fonts/wix-madefor-display-cyrillic-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+@font-face {
+  font-family: 'Wix Madefor Display Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url(assets/fonts/wix-madefor-display-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Wix Madefor Text Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url(assets/fonts/wix-madefor-text-cyrillic-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;
+}
+@font-face {
+  font-family: 'Wix Madefor Text Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url(assets/fonts/wix-madefor-text-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{font-family:'Fixel Display';src:url(assets/fonts/FixelDisplay-Bold.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Fixel Text';src:url(assets/fonts/FixelText-Regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  --green:#14462f; --green-2:#1d5c40; --green-3:#2b7655; --bg:#e7eee8; --card:#fff; --ink:#10241b; --muted:#5a6d63; --faint:#8a9a91;
+  --line:#e2e8e3; --chip:#eef3ef; --mint:#d4e6da; --live:#35c27b;
+  --disp:'Wix Madefor Display Variable', system-ui, sans-serif; --text:'Wix Madefor Text Variable', system-ui, sans-serif;
+  --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--green-3);outline-offset:2px;border-radius:8px}
+.wrap{padding:0 16px;max-width:1240px;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);margin:0;letter-spacing:-.02em}
+h2{font-size:28px;line-height:1.12;font-weight:700}
+h3{font-weight:650}
+.ic{width:20px;height:20px;flex:none}
+
+/* header */
+.top{background:var(--green);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:14px;height:64px}
+.logo{display:inline-flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1;color:#fff}
+.logo-word{font:700 23px/1 'Fixel Display',sans-serif;letter-spacing:-.045em}
+.logo-sub{font:400 6.5px/1 'Fixel Text',sans-serif;letter-spacing:.42em;margin-top:5px;margin-right:-.42em;opacity:.7}
+.nav{display:none}
+.top .tel{display:none}
+.icon-btn{margin-left:auto;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;text-decoration:none}
+.burger{display:grid;place-content:center;gap:5px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.12);cursor:pointer;padding:0}
+.burger i{display:block;width:16px;height:1.8px;background:#fff;border-radius:2px;transition:transform .2s}
+.menu-open .burger i:first-child{transform:translateY(3.4px) rotate(45deg)}.menu-open .burger i:last-child{transform:translateY(-3.4px) rotate(-45deg)}
+.mmenu{display:none;position:fixed;inset:64px 0 0;z-index:40;background:var(--green);padding:20px 16px;flex-direction:column}
+.menu-open .mmenu{display:flex}
+.mmenu a{color:#fff;text-decoration:none;font:600 24px/1 var(--disp);padding:16px 4px;border-bottom:1px solid rgba(255,255,255,.12)}
+.mmenu .mmenu-tel{border:0;margin-top:auto;font-size:20px}
+
+/* hero */
+.hero{background:var(--green);color:#fff;padding:18px 0 120px;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:420px;height:420px;right:-180px;top:-140px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.10),transparent)}
+.hero h1{position:relative;font-size:38px;line-height:1.04;font-weight:700;letter-spacing:-.035em;max-width:360px}
+.hero .sub{position:relative;margin:14px 0 18px;font-size:16.5px;line-height:1.5;color:rgba(255,255,255,.78);max-width:420px}
+.live{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 14px 9px 12px;border-radius:999px;background:rgba(255,255,255,.1);font:600 14.5px/1.2 var(--text)}
+.live i{width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(53,194,123,.6);animation:live 2s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(53,194,123,.6)}70%{box-shadow:0 0 0 9px rgba(53,194,123,0)}100%{box-shadow:0 0 0 0 rgba(53,194,123,0)}}
+.hero-aside{display:none}
+
+/* booking widget */
+.booking{position:relative;z-index:2;margin:-100px 0 0}
+.bw{background:var(--card);border-radius:28px;padding:22px 18px 20px;box-shadow:0 1px 0 rgba(16,36,27,.04),0 30px 60px -30px rgba(16,36,27,.35)}
+.bw-step{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 12px}
+.bw-step h3{font-size:18px}
+.bw-step span{font-size:13px;color:var(--faint);font-weight:500}
+.bw-block{padding-bottom:20px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:0;cursor:pointer;padding:11px 14px;border-radius:14px;background:var(--chip);font:550 14.5px/1 var(--text);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--green);color:#fff}
+.days{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px 2px}
+.days::-webkit-scrollbar{display:none}
+.day{flex:none;width:58px;border:0;cursor:pointer;padding:10px 0 11px;border-radius:16px;background:var(--chip);text-align:center}
+.day b{display:block;font:700 20px/1.1 var(--disp);letter-spacing:-.02em}
+.day span{font-size:12.5px;color:var(--muted);font-weight:550}
+.day[aria-pressed="true"]{background:var(--green);color:#fff}
+.day[aria-pressed="true"] span{color:rgba(255,255,255,.75)}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.slot{border:0;cursor:pointer;padding:12px 0;border-radius:12px;background:var(--card);box-shadow:inset 0 0 0 1.5px var(--line);font:600 15px/1 var(--text);font-variant-numeric:tabular-nums}
+.slot[aria-pressed="true"]{background:var(--mint);box-shadow:inset 0 0 0 2px var(--green);color:var(--green)}
+.slot:disabled{cursor:not-allowed;color:#b8c3bd;background:repeating-linear-gradient(135deg,#f4f6f4 0 6px,#fff 6px 12px);box-shadow:none;text-decoration:line-through}
+.fields{display:grid;gap:10px}
+.fields input{font:500 16px/1 var(--text);padding:16px 16px;border-radius:14px;border:0;background:var(--chip);color:var(--ink);width:100%}
+.fields input::placeholder{color:var(--faint)}
+.fields input:focus{outline:2px solid var(--green-3);outline-offset:0}
+.go{margin-top:14px;width:100%;border:0;cursor:pointer;padding:18px 16px;border-radius:16px;background:var(--green);color:#fff;font:650 16.5px/1.25 var(--text);text-align:center}
+.go:hover{background:var(--green-2)}
+.go small{display:block;font-weight:500;font-size:13.5px;opacity:.75;margin-top:3px}
+.bw-note{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:13px;line-height:1.45;color:var(--muted)}
+.bw-note svg{flex:none;width:18px;height:18px;color:var(--green-3);margin-top:1px}
+
+.booking .wrap{display:flex;flex-direction:column}
+.booking .bw{order:1}.booking .left{order:2;margin-top:16px}
+/* doctor strip */
+.docstrip{display:flex;align-items:center;gap:14px;margin:16px 0 0;padding:14px;border-radius:20px;background:var(--card);text-decoration:none}
+.ava{flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden}
+.portrait-svg{width:100%;height:100%;display:block;--ph-bg:#d8e6dc;--ph-a:#a9c4b2;--ph-b:#94b5a0}
+.docstrip b{display:block;font:650 16px/1.25 var(--disp)}
+.docstrip span{font-size:13.5px;color:var(--muted);line-height:1.35;display:block}
+.docstrip .chev{margin-left:auto;color:var(--faint)}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.trust div{background:var(--card);border-radius:18px;padding:14px 12px}
+.trust b{display:block;font:700 22px/1 var(--disp);letter-spacing:-.03em;color:var(--green)}
+.trust span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block;margin-top:6px}
+
+/* sections */
+.sec{padding:52px 0 0}
+.sec-head{margin-bottom:18px}
+.sec-head p{margin:8px 0 0;color:var(--muted);font-size:15.5px}
+.list{background:var(--card);border-radius:var(--r);overflow:hidden}
+.li{display:flex;align-items:center;gap:14px;padding:15px 16px;text-decoration:none;border-bottom:1px solid var(--line)}
+.li:last-child{border-bottom:0}
+.li .ico{flex:none;width:40px;height:40px;border-radius:12px;background:var(--chip);display:grid;place-items:center;color:var(--green)}
+.li .ico svg{width:24px;height:24px}
+.rico rect,.rico path{fill:#c8d6cc}.rico .on{fill:var(--green)}
+.li b{display:block;font:650 16px/1.3 var(--disp);letter-spacing:-.01em}
+.li span{display:block;font-size:13.5px;color:var(--muted);line-height:1.4}
+.li .chev{margin-left:auto;flex:none;color:var(--faint)}
+
+.prices{display:grid;gap:10px}
+.price{background:var(--card);border-radius:var(--r);padding:18px 18px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:start}
+.price h3{font-size:17px;line-height:1.3}
+.price .amt{font:700 20px/1.2 var(--disp);letter-spacing:-.02em;white-space:nowrap}
+.price .amt small{font:500 13px var(--text);color:var(--muted);margin-left:2px;letter-spacing:0}
+.price p{grid-column:1/-1;margin:0;font-size:14px;line-height:1.45;color:var(--muted)}
+.price .meta{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.price .dur{font-size:13px;font-weight:600;color:var(--muted);background:var(--chip);padding:7px 10px;border-radius:10px}
+.price .book{font:650 14.5px/1 var(--text);color:var(--green);text-decoration:none;padding:10px 0}
+.price.course{background:var(--green);color:#fff}
+.price.course p,.price.course .amt small{color:rgba(255,255,255,.75)}
+.price.course .dur{background:rgba(255,255,255,.12);color:#fff}
+.price.course .book{color:#fff}
+.price.course .old{display:block;font:500 13px var(--text);text-decoration:line-through;color:rgba(255,255,255,.6);text-align:right}
+.badge{display:inline-block;font:700 12px/1 var(--text);padding:6px 9px;border-radius:8px;background:var(--live);color:#06281a;margin-bottom:10px}
+
+.steps{list-style:none;margin:0;padding:0;background:var(--card);border-radius:var(--r);padding:8px 18px}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:16px 0;position:relative}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:54px;bottom:-12px;width:2px;background:var(--mint)}
+.steps .n{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font:700 15px/1 var(--disp);position:relative;z-index:1}
+.steps b{display:block;font:650 17px/1.3 var(--disp)}
+.steps span{font-size:14.5px;color:var(--muted);line-height:1.5}
+
+.doctor{background:var(--card);border-radius:28px;overflow:hidden}
+.doctor .ph{position:relative;aspect-ratio:1/1;background:var(--mint)}
+.doctor .ph span{position:absolute;left:14px;bottom:14px;font-size:12.5px;background:rgba(255,255,255,.85);padding:6px 10px;border-radius:8px;color:var(--muted)}
+.doctor .in{padding:22px 18px 24px}
+.doctor h2{font-size:26px}
+.doctor .role{margin:4px 0 16px;color:var(--muted);font-size:15px}
+.doctor blockquote{margin:0 0 18px;padding:16px;border-radius:16px;background:var(--chip);font:550 16px/1.5 var(--disp)}
+.doctor ul{margin:0;padding:0;display:grid;gap:10px}
+.doctor li{list-style:none;display:flex;gap:10px;font-size:15px;line-height:1.4}
+.doctor li svg{flex:none;width:20px;height:20px;color:var(--green-3)}
+
+.revs{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}
+.revs::-webkit-scrollbar{display:none}
+.rev{flex:none;width:82%;scroll-snap-align:start;margin:0;background:var(--card);border-radius:var(--r);padding:20px;border:1.5px dashed #cfdcd3}
+.rev .head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.rev .ava2{width:36px;height:36px;border-radius:50%;background:var(--chip)}
+.rev .who{font:650 15px/1.2 var(--disp)}.rev .src{font-size:12.5px;color:var(--faint)}
+.rev p{margin:0;font-size:14.5px;line-height:1.5;color:var(--faint)}
+.revnote{margin:10px 0 0;font-size:13px;color:var(--muted)}
+
+.faq{background:var(--card);border-radius:var(--r);padding:4px 18px}
+details{border-bottom:1px solid var(--line)}
+details:last-child{border-bottom:0}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:17px 0;font:650 16px/1.35 var(--disp)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+details[open] summary::after{transform:rotate(225deg)}
+details p{margin:-4px 0 18px;font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+.contact{background:var(--card);border-radius:28px;overflow:hidden}
+.map{height:180px;--map-bg:#e9efe9;--map-block:#dbe5dc;--map-road:#fff;--map-water:#cfe0d6;--map-pin:#14462f}
+.map-svg{width:100%;height:100%;display:block}
+.contact .in{padding:18px}
+.contact .addr{font:650 18px/1.3 var(--disp)}
+.contact .hours{margin:10px 0 16px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:14.5px;color:var(--muted)}
+.contact .hours b{color:var(--ink);font-weight:550}
+.contact .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.contact .acts a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:var(--chip);text-decoration:none;font:650 14.5px/1 var(--text);color:var(--green)}
+
+#contacts{margin-top:44px}
+footer{padding:36px 0 110px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+footer .logo{color:var(--green)}
+
+/* sticky action bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:auto 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 -1px 0 rgba(16,36,27,.08);transition:transform .25s}
+.mbar.hide{transform:translateY(110%)}
+.mbar a{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:16px;font:650 16px/1 var(--text);height:54px}
+.mbar-call{width:54px;background:var(--chip);color:var(--green)}
+.mbar-call span{display:none}
+.mbar-book{background:var(--green);color:#fff}
+
+/* ---------- desktop ---------- */
+@media (min-width:960px){
+  body{font-size:17px}
+  footer{padding-bottom:30px}
+  .wrap{padding:0 40px}
+  .mbar,.burger,.icon-btn,.mmenu{display:none!important}
+  .top .wrap{height:84px;gap:34px}
+  .logo-word{font-size:30px}.logo-sub{font-size:8.5px;margin-top:6px}
+  .nav{display:flex;gap:26px;margin-left:auto;font:550 15px/1 var(--text);color:rgba(255,255,255,.8)}
+  .nav a{text-decoration:none}
+  .top .tel{display:block;font:650 16px/1 var(--text);text-decoration:none}
+  .hero{padding:40px 0 210px;border-radius:0 0 48px 48px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .hero h1{font-size:66px;max-width:600px}
+  .hero .sub{font-size:20px;margin:22px 0 26px}
+  .hero{padding-bottom:240px}
+  .hero .wrap>div{max-width:560px}
+  .booking{margin-top:-600px}
+  .booking .wrap{display:grid;grid-template-columns:1fr 540px;gap:60px;align-items:end}
+  .booking .bw{grid-column:2;grid-row:1}
+  .booking .left{grid-column:1;grid-row:1;margin:0;max-width:560px}
+  .bw{padding:30px 28px 26px}
+  .days{margin:0;padding:0}.day{width:auto;flex:1}
+  .trust{grid-template-columns:repeat(3,1fr);gap:12px}
+  .trust b{font-size:30px}
+  .sec{padding:100px 0 0}
+  h2{font-size:42px}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:30px}
+  .sec-head p{max-width:420px;margin:0}
+  .list{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .li{border-right:1px solid var(--line)}
+  .prices{grid-template-columns:repeat(3,1fr);gap:14px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:26px}
+  .steps li{grid-template-columns:1fr;padding:0}
+  .steps li:not(:last-child)::after{left:46px;right:0;top:17px;bottom:auto;width:auto;height:2px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  #contacts{margin-top:0}
+  .doctor{display:grid;grid-template-columns:1fr 1.1fr}
+  .doctor .ph{aspect-ratio:auto;min-height:100%}
+  .doctor .in{padding:36px}
+  .revs{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0}
+  .rev{width:auto}
+  .contact{display:grid;grid-template-columns:1.2fr 1fr}
+  .map{height:auto;min-height:280px}
+  .contact .in{padding:32px}
+  footer .wrap{flex-direction:row;align-items:center;gap:40px}
+}
+</style>
+</head>
+<body id="top">
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top" aria-label="POSTAVA, на головну">
+  <span class="logo-word">POSTAVA</span>
+  <span class="logo-sub">МАНУАЛЬНА ТЕРАПІЯ</span>
+</a>
+  <nav class="nav" aria-label="Розділи"><a href="#problems">Що лікуємо</a><a href="#prices">Послуги і ціни</a><a href="#doctor">Лікар</a><a href="#visit">Перший візит</a><a href="#faq">Питання</a><a href="#contacts">Контакти</a></nav>
+  <a class="tel" href="tel:+380670000000">+38 067 000 00 00</a>
+  <a class="icon-btn" href="tel:+380670000000" aria-label="Подзвонити"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" onclick="var o=document.body.classList.toggle('menu-open');this.setAttribute('aria-expanded',o)"><i></i><i></i></button>
+</div></header>
+<nav class="mmenu" aria-label="Меню">
+<a href="#problems" onclick="document.body.classList.remove('menu-open')">Що лікуємо</a><a href="#prices" onclick="document.body.classList.remove('menu-open')">Послуги і ціни</a><a href="#doctor" onclick="document.body.classList.remove('menu-open')">Лікар</a><a href="#visit" onclick="document.body.classList.remove('menu-open')">Перший візит</a><a href="#faq" onclick="document.body.classList.remove('menu-open')">Питання</a><a href="#contacts" onclick="document.body.classList.remove('menu-open')">Контакти</a>  <a class="mmenu-tel" href="tel:+380670000000">+38 067 000 00 00</a>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Спина болить? Прийом уже завтра.</h1>
+      <p class="sub">Мануальна терапія у лікаря-невролога. Оберіть, що турбує, і зручний час — підтвердимо запис у Telegram або Viber.</p>
+      <span class="live"><i></i>Найближчий вільний час: завтра, 10:00</span>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="wrap">
+    <div class="left">
+    <a class="docstrip" href="#doctor">
+      <span class="ava"><svg class="portrait-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Фото лікаря">
+  <defs>
+    <linearGradient id="pg-v5a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--ph-a)"/>
+      <stop offset="1" stop-color="var(--ph-b)"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="var(--ph-bg)"/>
+  <path fill="url(#pg-v5a)" d="M200 78c-46 0-80 38-80 92 0 36 14 66 34 82v30c-58 8-112 34-128 82-6 18-8 72-8 136h364c0-64-2-118-8-136-16-48-70-74-128-82v-30c20-16 34-46 34-82 0-54-34-92-80-92z"/>
+</svg></span>
+      <span><b>Андрій Савчук</b><span>Лікар-невролог, мануальний терапевт, 14 років практики</span></span>
+      <svg class="chev" width="10" height="16" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+    </a>
+    <div class="trust">
+      <div><b>14</b><span>років практики</span></div>
+      <div><b>6 800+</b><span>пацієнтів</span></div>
+      <div><b>45 хв</b><span>перший прийом</span></div>
+    </div>
+    </div>
+    <form class="bw" onsubmit="return false" aria-label="Онлайн-запис">
+      <div class="bw-block">
+        <div class="bw-step"><h3>Що турбує?</h3><span>Крок 1 з 3</span></div>
+        <div class="chips" role="group" aria-label="Що турбує">
+<button type="button" class="chip" aria-pressed="true">Поперек</button><button type="button" class="chip" aria-pressed="false">Шия</button><button type="button" class="chip" aria-pressed="false">Між лопатками</button><button type="button" class="chip" aria-pressed="false">Суглоби</button><button type="button" class="chip" aria-pressed="false">Голова</button><button type="button" class="chip" aria-pressed="false">Інше</button>        </div>
+      </div>
+      <div class="bw-block">
+        <div class="bw-step"><h3>Коли зручно?</h3><span>Крок 2 з 3</span></div>
+        <div class="days" role="group" aria-label="День">
+<button type="button" class="day" data-label="ср, 28 жовтня" aria-pressed="false"><b>28</b><span>Ср</span></button><button type="button" class="day" data-label="чт, 29 жовтня" aria-pressed="true"><b>29</b><span>Чт</span></button><button type="button" class="day" data-label="пт, 30 жовтня" aria-pressed="false"><b>30</b><span>Пт</span></button><button type="button" class="day" data-label="сб, 31 жовтня" aria-pressed="false"><b>31</b><span>Сб</span></button><button type="button" class="day" data-label="пн, 2 листопада" aria-pressed="false"><b>2</b><span>Пн</span></button><button type="button" class="day" data-label="вт, 3 листопада" aria-pressed="false"><b>3</b><span>Вт</span></button>        </div>
+        <div class="times" role="group" aria-label="Час">
+<button type="button" class="slot"  aria-pressed="false">9:00</button><button type="button" class="slot" disabled aria-label="10:30, зайнято" aria-pressed="false">10:30</button><button type="button" class="slot"  aria-pressed="true">12:00</button><button type="button" class="slot"  aria-pressed="false">14:00</button><button type="button" class="slot" disabled aria-label="15:30, зайнято" aria-pressed="false">15:30</button><button type="button" class="slot"  aria-pressed="false">17:00</button><button type="button" class="slot"  aria-pressed="false">18:30</button>        </div>
+      </div>
+      <div class="bw-step"><h3>Ваші контакти</h3><span>Крок 3 з 3</span></div>
+      <div class="fields">
+        <input aria-label="Ваше ім'я" placeholder="Ваше ім'я" autocomplete="name">
+        <input aria-label="Телефон" type="tel" placeholder="Телефон" autocomplete="tel" inputmode="tel">
+      </div>
+      <button class="go" type="submit">Записатися на чт, 29 жовтня, 12:00<small>Консультація з діагностикою — 700 грн</small></button>
+      <p class="bw-note"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>Лікар отримає ваш запит одразу, а ми підтвердимо час у месенджері. Перенести чи скасувати можна за 2 години.</p>
+    </form>
+  </div>
+</section>
+
+
+
+<section id="problems" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2>З чим допомагаємо</h2><p>Натисніть на проблему — вона одразу підставиться в запис.</p></div>
+    <div class="list">
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class="on"/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Біль у попереку</b><span>Тягнучий або гострий біль, що віддає в сідницю чи ногу.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class="on"/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class=""/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Шия і головний біль</b><span>Скутість шиї й біль у потилиці після дня за комп'ютером.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class="on"/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Протрузії та грижі</b><span>Працюємо після вивчення МРТ, без різких маніпуляцій.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class="on"/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class=""/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Біль між лопатками</b><span>Відчуття «кілка» в грудному відділі, важко вдихнути на повні груди.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class="on"/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class=""/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Оніміння рук і ніг</b><span>Поколювання, «мурашки», слабкість у кисті чи стопі.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class="on"/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class=""/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Сколіоз і постава</b><span>Корекція постави в дорослих і підлітків, план вправ додому.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class="on"/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class=""/>
+</svg></span><span><b>Скутість зранку</b><span>Коли тіло «розходиться» лише через годину після пробудження.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+      <a class="li" href="#book"><span class="ico"><svg class="rico" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="10" y="1.5" width="4" height="4.5" rx="1.6" class=""/>
+  <rect x="8" y="7" width="8" height="6.2" rx="2" class=""/>
+  <rect x="7.6" y="14.2" width="8.8" height="4.4" rx="1.8" class=""/>
+  <path d="M6 19.6h12l-2.2 3.4H8.2z" class="on"/>
+</svg></span><span><b>Біль у суглобах</b><span>Плече, коліно, кульшовий суглоб — після навантажень і травм.</span></span>
+        <svg class="chev" width="8" height="14" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="prices" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2>Ціни</h2><p>Оплата після прийому — карткою або готівкою.</p></div>
+    <div class="prices">
+      <div class="price course">
+        <div><span class="badge">Вигідно −550 грн</span><h3>Курс «Спина без болю»</h3></div>
+        <div class="amt"><span class="old">5 500 грн</span>4 950<small>грн</small></div>
+        <p>Консультація, п'ять сеансів мануальної терапії і програма вправ додому.</p>
+        <div class="meta"><span class="dur">5 сеансів</span><a class="book" href="#book">Обрати курс</a></div>
+      </div>
+      <div class="price"><h3>Консультація і діагностика</h3><div class="amt">700<small>грн</small></div><p>Огляд, функціональні й неврологічні тести, розбір МРТ чи рентгену, план лікування.</p>
+        <div class="meta"><span class="dur">45 хв</span><a class="book" href="#book">Записатися</a></div></div>
+      <div class="price"><h3>Сеанс мануальної терапії</h3><div class="amt">1 100<small>грн</small></div><p>Мобілізація суглобів, міофасціальний реліз, постізометрична релаксація.</p>
+        <div class="meta"><span class="dur">50 хв</span><a class="book" href="#book">Записатися</a></div></div>
+      <div class="price"><h3>Остеопатичний сеанс</h3><div class="amt">1 300<small>грн</small></div><p>М'яка робота з фасціями, вісцеральні й краніальні техніки.</p>
+        <div class="meta"><span class="dur">60 хв</span><a class="book" href="#book">Записатися</a></div></div>
+      <div class="price"><h3>Лікувальний масаж спини</h3><div class="amt">800<small>грн</small></div><p>Глибокий масаж напружених м'язів спини, шиї й плечового поясу.</p>
+        <div class="meta"><span class="dur">40 хв</span><a class="book" href="#book">Записатися</a></div></div>
+      <div class="price"><h3>Кінезіотейпування</h3><div class="amt">350<small>грн</small></div><p>Тейпи підтримують м'язи між сеансами і знімають набряк.</p>
+        <div class="meta"><span class="dur">15 хв</span><a class="book" href="#book">Записатися</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2>Як проходить прийом</h2><p>Перший візит триває близько години.</p></div>
+    <ol class="steps"><li><span class="n">1</span><div><b>Розмова</b><span>Розпитуємо, де і коли болить, що допомагає. Переглядаємо знімки й висновки.</span></div></li><li><span class="n">2</span><div><b>Огляд</b><span>Тести на рухливість, рефлекси й силу м'язів, оцінка постави.</span></div></li><li><span class="n">3</span><div><b>Лікування</b><span>Перший сеанс — того ж дня, якщо немає протипоказань.</span></div></li><li><span class="n">4</span><div><b>План</b><span>Скільки сеансів потрібно, вправи додому і поради щодо робочого місця.</span></div></li></ol>
+  </div>
+</section>
+
+<section id="doctor" class="sec">
+  <div class="wrap">
+    <div class="doctor">
+      <div class="ph"><svg class="portrait-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Фото лікаря">
+  <defs>
+    <linearGradient id="pg-v5b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--ph-a)"/>
+      <stop offset="1" stop-color="var(--ph-b)"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="var(--ph-bg)"/>
+  <path fill="url(#pg-v5b)" d="M200 78c-46 0-80 38-80 92 0 36 14 66 34 82v30c-58 8-112 34-128 82-6 18-8 72-8 136h364c0-64-2-118-8-136-16-48-70-74-128-82v-30c20-16 34-46 34-82 0-54-34-92-80-92z"/>
+</svg><span>Тут буде фото лікаря</span></div>
+      <div class="in">
+        <h2>Андрій Савчук</h2>
+        <p class="role">Лікар-невролог, мануальний терапевт</p>
+        <blockquote>«Спершу я шукаю, звідки береться біль. Лише потім працюю руками — м'яко і без поспіху.»</blockquote>
+        <ul><li><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>Вища медична освіта, спеціалізація з неврології</li><li><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>Спеціалізація з мануальної терапії</li><li><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>Навчання остеопатії, 5-річна програма</li><li><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>Щороку — курси в Україні та ЄС</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2>Відгуки</h2><p>Макет: сюди підтягнуться справжні відгуки з Google Maps.</p></div>
+    <div class="revs"><figure class="rev"><div class="head"><span class="ava2"></span><div><div class="who">Ім'я пацієнта</div><div class="src">Google Maps</div></div></div><p>Тут буде реальний відгук: з чим людина прийшла, скільки сеансів знадобилося і як вона почувається зараз.</p></figure><figure class="rev"><div class="head"><span class="ava2"></span><div><div class="who">Ім'я пацієнта</div><div class="src">Google Maps</div></div></div><p>Другий справжній відгук — краще короткий і конкретний, з деталями про проблему та результат.</p></figure><figure class="rev"><div class="head"><span class="ava2"></span><div><div class="who">Ім'я пацієнта</div><div class="src">Instagram</div></div></div><p>Третій відгук. Можна підтягувати автоматично з Google, щоб на сайті завжди були свіжі.</p></figure></div>
+  </div>
+</section>
+
+<section id="faq" class="sec">
+  <div class="wrap two">
+    <div>
+      <div class="sec-head"><h2>Питання</h2></div>
+      <div class="faq"><details open><summary>Це боляче?</summary><p>Ні. Ми працюємо м'якими техніками без різких ривків. Буває легкий дискомфорт у напружених м'язах — скажіть, і лікар змінить техніку.</p></details><details><summary>Чи потрібні МРТ або рентген?</summary><p>Якщо знімки є — візьміть їх. Якщо немає, лікар скаже на консультації, чи вони потрібні саме вам.</p></details><details><summary>Скільки сеансів знадобиться?</summary><p>Гострий біль часто минає за 2–3 сеанси. Хронічний потребує курсу з 5–8 сеансів і вправ удома.</p></details><details><summary>Чи можна при грижі диска?</summary><p>Так, після огляду і вивчення МРТ. Якщо мануальна терапія вам протипоказана, лікар скаже, до кого звернутися.</p></details><details><summary>Що взяти з собою?</summary><p>Зручний одяг і результати обстежень, якщо вони є. Рушники й одноразові простирадла — у кабінеті.</p></details></div>
+    </div>
+    <div id="contacts">
+      <div class="sec-head"><h2>Як дістатися</h2></div>
+      <div class="contact">
+        <div class="map"><svg class="map-svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <rect width="600" height="400" fill="var(--map-bg)"/>
+  <path d="M-20 300 C 120 260 220 330 360 280 S 560 250 640 270 L 640 420 L -20 420 Z" fill="var(--map-water)"/>
+  <g fill="var(--map-block)">
+    <rect x="30" y="30" width="110" height="70" rx="3"/><rect x="160" y="30" width="90" height="70" rx="3"/>
+    <rect x="270" y="30" width="130" height="70" rx="3"/><rect x="420" y="30" width="150" height="70" rx="3"/>
+    <rect x="30" y="120" width="110" height="90" rx="3"/><rect x="160" y="120" width="90" height="40" rx="3"/>
+    <rect x="160" y="172" width="90" height="38" rx="3"/><rect x="270" y="120" width="60" height="90" rx="3"/>
+    <rect x="345" y="120" width="55" height="90" rx="3"/><rect x="420" y="120" width="150" height="90" rx="3"/>
+    <rect x="30" y="228" width="160" height="30" rx="3"/><rect x="420" y="228" width="150" height="20" rx="3"/>
+  </g>
+  <g stroke="var(--map-road)" stroke-linecap="round" fill="none">
+    <path d="M0 110 H600" stroke-width="10"/><path d="M0 218 H600" stroke-width="7"/>
+    <path d="M150 0 V260" stroke-width="7"/><path d="M260 0 V250" stroke-width="5"/>
+    <path d="M410 0 V245" stroke-width="10"/><path d="M337 110 V218" stroke-width="4"/>
+  </g>
+  <g transform="translate(372 150)">
+    <circle r="30" fill="var(--map-pin)" opacity=".16"/>
+    <path d="M0-26c-11 0-19 8-19 19 0 14 19 33 19 33s19-19 19-33c0-11-8-19-19-19z" fill="var(--map-pin)"/>
+    <circle cy="-7" r="6.5" fill="var(--map-bg)"/>
+  </g>
+</svg></div>
+        <div class="in">
+          <div class="addr">вул. Шевченка, 24, 2 поверх</div>
+          <div class="hours"><b>Пн–Пт</b><span>9:00–19:00</span><b>Субота</b><span>10:00–15:00</span><b>Неділя</b><span>вихідний</span></div>
+          <div class="acts"><a href="#">Маршрут</a><a href="tel:+380670000000"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>Подзвонити</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a class="logo" href="#top" aria-label="POSTAVA, на головну">
+  <span class="logo-word">POSTAVA</span>
+  <span class="logo-sub">МАНУАЛЬНА ТЕРАПІЯ</span>
+</a><span>Демонстраційний концепт кабінету мануальної терапії / WEBWORK 2026. <a href="./" style="color:inherit">Усі 5 варіантів</a></span></div></footer>
+
+<div class="mbar" role="region" aria-label="Швидкі дії">
+  <a class="mbar-call" href="tel:+380670000000"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span>Подзвонити</span></a>
+  <a class="mbar-book" href="#book">Записатися онлайн</a>
+</div>
+<script>
+function single(group){group.forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;group.forEach(x=>x.setAttribute('aria-pressed',x===b));upd();}))}
+single([...document.querySelectorAll('.chip')]);single([...document.querySelectorAll('.day')]);single([...document.querySelectorAll('.slot')]);
+function upd(){const d=document.querySelector('.day[aria-pressed="true"]'),t=document.querySelector('.slot[aria-pressed="true"]');
+  if(d&&t)document.querySelector('.go').firstChild.textContent='Записатися на '+d.dataset.label+', '+t.textContent;}
+const bar=document.querySelector('.mbar'),bw=document.querySelector('.bw');
+if('IntersectionObserver' in window){new IntersectionObserver(e=>bar.classList.toggle('hide',e[0].isIntersecting),{threshold:.15}).observe(bw);}
+</script>
+<script>
+document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();
+var b=f.querySelector('button[type=submit],.go');if(b){b.textContent='Дякуємо — заявку прийнято';b.disabled=true;}});});
+</script>
+</body>
+</html>

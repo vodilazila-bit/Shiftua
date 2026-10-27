@@ -348,7 +348,9 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
 @media (min-width:900px){
   :root{--nav:78px}
   body{font-size:17px}
-  .wrap{width:min(1160px,calc(100% - 64px))}
+  .wrap{width:min(1520px,calc(100% - 80px))}
+  .cards,.mosaic,.steps,.tips,.warn-grid,.roles,.quotes,.videos{gap:36px}
+  .team{gap:40px}
   .burger,.mnav,.mbar{display:none!important}
   footer{padding-bottom:28px}
   .nav-links,.nav-cta{display:flex}
@@ -376,12 +378,20 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
   .tips{grid-template-columns:1fr 1fr 1fr}
 }
 @media (min-width:769px){
-  .slider{min-height:max(85vh,calc(100vh - var(--nav)));min-height:max(85vh,calc(100svh - var(--nav)))}
+  .slider{min-height:clamp(560px,78vh,720px)}
   .slide{overflow:hidden}
-  .slide .slide-fill{display:block;position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:blur(28px) brightness(.38);transform:scale(1.12)}
+  .slide .slide-fill{display:none}
   .slide picture{position:absolute;inset:0;z-index:1;display:block}
-  .slide picture img{width:100%;height:100%;object-fit:contain;object-position:center center}
+  .slide-ig3 picture img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+  .slide-ig1 picture img{width:100%;height:100%;object-fit:cover;object-position:center 26%}
+  .slide-ig2 picture img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
   .slider-copy{padding:0 80px 28px}
+  .svc-media{height:210px;overflow:hidden}
+  .svc-media img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+  .roundpic{transform:scale(1.48);transform-origin:center}
+}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  .svc:hover .svc-media img.roundpic,.mosaic figure:hover img.roundpic,.step:hover img.roundpic{transform:scale(1.54)}
 }
 @media (max-width:430px){
   .slider{min-height:560px}
@@ -482,11 +492,11 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
           <a class="shot-cap" href="#manual"><b>Мануальна терапія</b><i aria-hidden="true">→</i></a>
         </figure>
         <figure>
-          <img src="assets/img/massage.webp" alt="Лікувальний масаж у центрі" width="240" height="240">
+          <img class="roundpic" src="assets/img/massage.webp" alt="Лікувальний масаж у центрі" width="240" height="240">
           <a class="shot-cap" href="#massage"><b>Масаж</b><i aria-hidden="true">→</i></a>
         </figure>
         <figure>
-          <img src="assets/img/kinezo.webp" alt="Кінезотерапія у центрі" width="240" height="240">
+          <img class="roundpic" src="assets/img/kinezo.webp" alt="Кінезотерапія у центрі" width="240" height="240">
           <a class="shot-cap" href="#kinezo"><b>Кінезотерапія</b><i aria-hidden="true">→</i></a>
         </figure>
       </div>
@@ -503,12 +513,12 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
         <div class="in"><span class="step-n">01</span><h3>Огляд і розмова</h3><p>Спершу лікар оглядає руками. Скажіть про свої діагнози й ліки ще до сеансу.</p></div>
       </li>
       <li class="step reveal" style="--d:1">
-        <img src="assets/img/manual.webp" alt="" width="240" height="240">
+        <img class="roundpic" src="assets/img/manual.webp" alt="" width="240" height="240">
         <div class="veil" aria-hidden="true"></div>
         <div class="in"><span class="step-n">02</span><h3>Методика під вас</h3><p>Техніки обирають під стадію хвороби: мобілізація, м'язово-енергетичні, фасціальні, релаксаційні.</p></div>
       </li>
       <li class="step reveal" style="--d:2">
-        <img src="assets/img/kinezo.webp" alt="" width="240" height="240">
+        <img class="roundpic" src="assets/img/kinezo.webp" alt="" width="240" height="240">
         <div class="veil" aria-hidden="true"></div>
         <div class="in"><span class="step-n">03</span><h3>Сеанс і рух</h3><p>Сеанс мануальної терапії триває 15–30 хвилин. Вправи в центрі пояснюють і показують.</p></div>
       </li>
@@ -525,7 +535,7 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
     </div>
     <div class="cards s3">
       <article class="svc reveal" id="manual">
-        <div class="svc-media"><img src="assets/img/manual.webp" alt="Мануальна терапія у центрі" width="240" height="240"></div>
+        <div class="svc-media"><img class="roundpic" src="assets/img/manual.webp" alt="Мануальна терапія у центрі" width="240" height="240"></div>
         <div class="body">
           <span class="num">01</span>
           <h3>Мануальна терапія</h3>
@@ -535,7 +545,7 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
         </div>
       </article>
       <article class="svc reveal" id="kinezo" style="--d:1">
-        <div class="svc-media"><img src="assets/img/kinezo.webp" alt="Кінезотерапія у центрі" width="240" height="240"></div>
+        <div class="svc-media"><img class="roundpic" src="assets/img/kinezo.webp" alt="Кінезотерапія у центрі" width="240" height="240"></div>
         <div class="body">
           <span class="num">02</span>
           <h3>Кінезотерапія</h3>
@@ -545,7 +555,7 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
         </div>
       </article>
       <article class="svc reveal" id="massage" style="--d:2">
-        <div class="svc-media"><img src="assets/img/massage.webp" alt="Масаж у центрі" width="240" height="240"></div>
+        <div class="svc-media"><img class="roundpic" src="assets/img/massage.webp" alt="Масаж у центрі" width="240" height="240"></div>
         <div class="body">
           <span class="num">03</span>
           <h3>Лікувальний масаж</h3>
@@ -555,7 +565,7 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
         </div>
       </article>
       <article class="svc reveal" id="vacuum">
-        <div class="svc-media"><img src="assets/img/vacuum.webp" alt="Вакуумний масаж у центрі" width="240" height="240"></div>
+        <div class="svc-media"><img class="roundpic" src="assets/img/vacuum.webp" alt="Вакуумний масаж у центрі" width="240" height="240"></div>
         <div class="body">
           <span class="num">04</span>
           <h3>Вакуумно-роликовий масаж</h3>
@@ -565,7 +575,7 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
         </div>
       </article>
       <article class="svc reveal" id="hirudo" style="--d:1">
-        <div class="svc-media"><img src="assets/img/hirudo2.webp" alt="Гірудотерапія у центрі" width="360" height="360"></div>
+        <div class="svc-media"><img class="roundpic" src="assets/img/hirudo2.webp" alt="Гірудотерапія у центрі" width="360" height="360"></div>
         <div class="body">
           <span class="num">05</span>
           <h3>Гірудотерапія</h3>

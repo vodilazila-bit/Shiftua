@@ -52,6 +52,8 @@ gtag('config', 'AW-18409542106');
 @media(max-width:620px){
  .hero-stage{--tooth-motion-height:clamp(440px,155vw,650px);min-height:var(--tooth-motion-height)}
  .hero-stage .hero-film{height:100%;bottom:0}
+ /* Keep the crown visible below the sticky header when returning to #top. */
+ .hero-stage .hero-film video{top:-3%;height:110%;width:112%;object-fit:cover}
  .hero-stage>.tooth-caption{position:absolute;bottom:28px;left:18px;right:18px;margin:0;font-size:clamp(38px,10.7vw,54px);line-height:1.08;white-space:nowrap;text-shadow:0 1px 15px rgba(238,238,238,.75)}
 }
 @media(min-width:621px) and (max-width:980px){

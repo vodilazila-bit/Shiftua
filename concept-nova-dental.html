@@ -46,8 +46,8 @@ gtag('config', 'AW-18409542106');
   .hero-copy::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(238,238,238,.94) 0%,rgba(238,238,238,.64) 23%,rgba(238,238,238,.06) 43%,rgba(238,238,238,.06) 59%,rgba(238,238,238,.88) 83%,#eeeeee 100%)}
   .hero-copy .hero-lead{margin-top:auto;padding-top:32px;color:var(--ink)}
 }
-/* Centered dimensional title over the animated tooth. */
-.hero-stage>.tooth-caption{position:relative;z-index:2;margin:14px 0 0;text-align:center;font-size:clamp(38px,4.8vw,84px);line-height:1.08;font-weight:700;letter-spacing:-.065em;color:#56382f;text-shadow:0 1px 0 #fff,0 2px 0 #d9c8bd,0 3px 0 #bca79b,0 5px 2px rgba(65,40,32,.25),0 14px 25px rgba(65,40,32,.22);animation:toothTitleEntrance 1.3s cubic-bezier(.16,1,.3,1) .6s both}
+/* Clean NOVA Dental-style centered title over the animated tooth. */
+.hero-stage>.tooth-caption{position:relative;z-index:2;margin:14px 0 0;text-align:center;font-size:clamp(38px,4.8vw,84px);line-height:1.08;font-family:Manrope,Arial,sans-serif;font-weight:600;letter-spacing:-.075em;color:var(--ink);text-shadow:none;animation:toothTitleEntrance 1.3s cubic-bezier(.16,1,.3,1) .6s both}
 @keyframes toothTitleEntrance{0%{opacity:0;transform:translate3d(-50%,65px,0) scale(.91);filter:blur(12px)}65%{opacity:1;transform:translate3d(-50%,-7px,0) scale(1.02);filter:blur(0)}100%{opacity:1;transform:translate3d(-50%,0,0) scale(1);filter:blur(0)}}
 @media(max-width:620px){
  .hero-stage{--tooth-motion-height:clamp(440px,155vw,650px);min-height:var(--tooth-motion-height)}

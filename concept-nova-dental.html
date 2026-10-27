@@ -48,12 +48,12 @@ gtag('config', 'AW-18409542106');
 }
 /* Centered dimensional title over the animated tooth. */
 .hero-stage>.tooth-caption{position:relative;z-index:2;margin:14px 0 0;text-align:center;font-size:clamp(38px,4.8vw,84px);line-height:1.08;font-weight:700;letter-spacing:-.065em;color:#56382f;text-shadow:0 1px 0 #fff,0 2px 0 #d9c8bd,0 3px 0 #bca79b,0 5px 2px rgba(65,40,32,.25),0 14px 25px rgba(65,40,32,.22);animation:toothTitleEntrance 1.3s cubic-bezier(.16,1,.3,1) .6s both}
-@keyframes toothTitleEntrance{0%{opacity:0;transform:translate3d(0,65px,0) scale(.91);filter:blur(12px)}65%{opacity:1;transform:translate3d(0,-7px,0) scale(1.02);filter:blur(0)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+@keyframes toothTitleEntrance{0%{opacity:0;transform:translate3d(-50%,65px,0) scale(.91);filter:blur(12px)}65%{opacity:1;transform:translate3d(-50%,-7px,0) scale(1.02);filter:blur(0)}100%{opacity:1;transform:translate3d(-50%,0,0) scale(1);filter:blur(0)}}
 @media(max-width:620px){
  .hero-stage{--tooth-motion-height:clamp(440px,155vw,650px);min-height:var(--tooth-motion-height)}
  .hero-stage .hero-film{height:100%;bottom:0}
  .hero-stage .hero-film video{top:-3%;height:110%;width:112%;object-fit:cover}
- .hero-stage>.tooth-caption{position:absolute;bottom:28px;left:12px;right:12px;margin:0;text-align:center;font-size:clamp(36px,9.5vw,54px);line-height:1.08;white-space:nowrap}
+ .hero-stage>.tooth-caption{position:absolute;bottom:28px;left:50%;right:auto;width:max-content;max-width:calc(100% - 24px);margin:0;text-align:center;font-size:clamp(32px,8.7vw,50px);line-height:1.08;white-space:nowrap}
 }
 @media(min-width:621px) and (max-width:980px){.hero-stage>.tooth-caption{padding:0 24px}}
 @media(min-width:981px){
@@ -63,7 +63,7 @@ gtag('config', 'AW-18409542106');
  .hero-copy::before{display:none}
  .hero-copy .hero-lead{margin-top:20px;padding-top:0}
 }
-@media(prefers-reduced-motion:reduce){.hero-stage>.tooth-caption{animation:none;opacity:1;transform:none;filter:none}}
+@media(prefers-reduced-motion:reduce){.hero-stage>.tooth-caption{animation:none;opacity:1;transform:translateX(-50%);filter:none}}
 /* Compact two-line mobile navigation */
 .menu-toggle{display:none}
 .mobile-menu[hidden]{display:none!important}

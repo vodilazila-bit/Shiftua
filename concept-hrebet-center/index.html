@@ -111,7 +111,7 @@ p{margin:0}
 .mnav .sub{margin-top:auto;border:0;font:600 16px/1.3 var(--text)}
 
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.slider{position:relative;isolation:isolate;min-height:clamp(520px,74vh,720px);display:grid;place-items:center;overflow:hidden;background:#24343c;color:#fff}
+.slider{position:relative;isolation:isolate;min-height:clamp(520px,74vh,720px);display:grid;align-items:end;justify-items:center;overflow:hidden;background:#24343c;color:#fff}
 .slides,.slide{position:absolute;inset:0}
 .slide{opacity:0;z-index:0}
 .slide.is-on{opacity:1;z-index:1}
@@ -119,11 +119,12 @@ p{margin:0}
 .slide-ig3 img{object-position:center 22%}
 .slide-ig1 img{object-position:center 26%}
 .slide-ig2 img{object-position:center 46%}
-.slider-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,22,30,.42),rgba(8,16,24,.58));pointer-events:none}
-.slider-copy{position:relative;z-index:3;text-align:center;padding:36px 68px;width:min(860px,100%)}
-.slider .kicker{margin:0 0 14px;font:600 13px/1.45 var(--text);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.92)}
-.slider h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,76px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:14ch;margin:0 auto}
-.slider .lead{margin:16px auto 0;max-width:42ch;color:rgba(255,255,255,.9);font-size:17px}
+.slide-fill{display:none}
+.slider-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(6,14,20,.12) 0%,rgba(6,14,20,0) 42%,rgba(6,14,20,.55) 74%,rgba(6,14,20,.9) 100%);pointer-events:none}
+.slider-copy{position:relative;z-index:3;text-align:center;padding:12px 68px 28px;width:min(860px,100%)}
+.slider .kicker{margin:0 0 14px;font:600 13px/1.45 var(--text);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.92);text-shadow:0 2px 16px rgba(0,0,0,.35)}
+.slider h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,76px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:14ch;margin:0 auto;text-shadow:0 2px 16px rgba(0,0,0,.35)}
+.slider .lead{margin:16px auto 0;max-width:42ch;color:rgba(255,255,255,.92);font-size:17px;text-shadow:0 2px 16px rgba(0,0,0,.35)}
 .slider .btn{margin-top:26px;min-width:180px}
 .s-arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:52px;height:52px;border:0;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 18px rgba(8,20,28,.2)}
 .s-arrow:hover{background:var(--accent-2)}
@@ -239,14 +240,36 @@ p{margin:0}
 .myth s{text-decoration-color:rgba(141,46,40,.45);text-decoration-thickness:1.5px;color:var(--muted)}
 .myth p{margin-top:8px;color:var(--ink-2)}
 
-.faq{background:var(--card);border-radius:28px;padding:6px 18px;box-shadow:var(--shadow);border:1px solid rgba(16,40,24,.05)}
-details{border-bottom:1px solid var(--line)}
-details:last-child{border-bottom:0}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 0;font:650 16.5px/1.35 var(--disp)}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
-details[open] summary::after{transform:rotate(225deg)}
-details p{margin:-2px 0 16px;color:var(--muted)}
+.fold{background:var(--card);border-radius:28px;box-shadow:var(--shadow);border:1px solid rgba(16,40,24,.05)}
+.fold-h{margin:0}
+.fold-toggle,.acc-btn,.read-more,.show-more{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.fold-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 22px;text-align:left}
+.fold-label{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.fold-toggle .eyebrow{margin-bottom:8px}
+.fold-title{display:block;font:650 clamp(30px,3.5vw,46px)/1.08 var(--disp);letter-spacing:-.03em}
+.plus{position:relative;flex:none;width:48px;height:48px;border-radius:50%;background:var(--ink)}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:2px;border-radius:2px;background:#fff;transform:translate(-50%,-50%);transition:transform .3s ease}
+.plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fold-toggle[aria-expanded="true"] .plus::before,.acc-btn[aria-expanded="true"] .plus::before{transform:translate(-50%,-50%) rotate(45deg)}
+.fold-toggle[aria-expanded="true"] .plus::after,.acc-btn[aria-expanded="true"] .plus::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.fold-panel,.acc-panel,.more-quotes{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.fold-panel.is-open,.acc-panel.is-open,.more-quotes.is-open{grid-template-rows:1fr}
+.fold-inner,.acc-inner{overflow:hidden;min-height:0}
+.fold-body{padding:0 22px 22px}
+.fold-lead{color:var(--muted);max-width:62ch;margin-bottom:14px}
+.acc{border-top:1px solid var(--line)}
+.acc:first-child{border-top:0}
+.acc-h{margin:0;font-size:inherit}
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 2px;text-align:left;font:650 16.5px/1.35 var(--disp)}
+.plus.sm{width:32px;height:32px}
+.plus.sm::before,.plus.sm::after{width:12px}
+.acc-inner p{margin:0 0 16px;color:var(--muted);padding-right:40px}
+.read-more{padding:0;font:650 14px/1.2 var(--text);color:var(--lime-deep);text-align:left}
+.quote.feat .read-more{color:var(--lime)}
+q.can-expand{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-height:4.45em;transition:max-height .4s ease}
+q.can-expand.is-open{-webkit-line-clamp:unset;display:block;max-height:12em}
+.show-more{display:flex;width:100%;align-items:center;justify-content:center;min-height:48px;margin-top:14px;border-radius:999px;background:var(--soft);font:650 15px/1 var(--text)}
+.more-quotes .quotes{padding-top:12px}
 
 .quotes{display:grid;gap:12px}
 .quote{background:var(--card);border-radius:28px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(16,40,24,.05);display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -352,9 +375,17 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
   .cards.s3{grid-template-columns:1fr 1fr 1fr}
   .tips{grid-template-columns:1fr 1fr 1fr}
 }
+@media (min-width:769px){
+  .slider{min-height:max(85vh,calc(100vh - var(--nav)));min-height:max(85vh,calc(100svh - var(--nav)))}
+  .slide{overflow:hidden}
+  .slide .slide-fill{display:block;position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:blur(28px) brightness(.38);transform:scale(1.12)}
+  .slide picture{position:absolute;inset:0;z-index:1;display:block}
+  .slide picture img{width:100%;height:100%;object-fit:contain;object-position:center center}
+  .slider-copy{padding:20px 80px 44px}
+}
 @media (max-width:430px){
   .slider{min-height:560px}
-  .slider-copy{padding:28px 54px}
+  .slider-copy{padding:8px 54px 22px}
   .slider .kicker{font-size:11px;letter-spacing:.12em}
   .slider h1{font-size:38px}
   .s-arrow{width:42px;height:42px}
@@ -398,18 +429,21 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
 <section class="slider" aria-roledescription="карусель" aria-label="Фото центру">
   <div class="slides">
     <div class="slide slide-ig3 is-on">
+      <img class="slide-fill" src="assets/img/hero-ig3.webp" alt="" width="1440" height="1897" aria-hidden="true">
       <picture>
         <source srcset="assets/img/hero-ig3.webp" type="image/webp">
         <img src="assets/img/hero-ig3.jpg" alt="Терапевт займається з дівчинкою в Хребет Центрі" width="1440" height="1897" fetchpriority="high">
       </picture>
     </div>
     <div class="slide slide-ig1">
+      <img class="slide-fill" src="assets/img/hero-ig1.webp" alt="" width="1440" height="1484" aria-hidden="true">
       <picture>
         <source srcset="assets/img/hero-ig1.webp" type="image/webp">
         <img src="assets/img/hero-ig1.jpg" alt="Спеціалістка реабілітаційного комплексу Хребет Центр" width="1440" height="1484">
       </picture>
     </div>
     <div class="slide slide-ig2">
+      <img class="slide-fill" src="assets/img/hero-ig2.webp" alt="" width="1024" height="1024" aria-hidden="true">
       <picture>
         <source srcset="assets/img/hero-ig2.webp" type="image/webp">
         <img src="assets/img/hero-ig2.jpg" alt="Маленький пацієнт біля вивіски Хребет Центр" width="1024" height="1024">
@@ -711,46 +745,77 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
 
 <section class="sec" id="pytannya">
   <div class="wrap">
-    <div class="sec-head reveal"><p class="eyebrow">Питання</p><h2>Часті питання</h2></div>
-    <div class="faq reveal">
-      <details open><summary>Це боляче?</summary><p>Мета лікування — зняти біль, а не додати. Техніки лікар підбирає під ваш стан і силу болю. Під час гірудотерапії відчувається хіба що свербіж.</p></details>
-      <details><summary>Скільки потрібно сеансів?</summary><p>Одного сеансу зазвичай мало: помітний ефект з'являється після кількох відвідувань. За потреби лікар призначить повторний курс через кілька місяців.</p></details>
-      <details><summary>Скільки триває сеанс?</summary><p>Сеанс мануальної терапії — 15–30 хвилин.</p></details>
-      <details><summary>Чи потрібні МРТ або рентген?</summary><p>Не завжди. Спершу лікар оглядає руками і за потреби скерує на МРТ чи КТ. Якщо знімки вже є, візьміть їх із собою.</p></details>
-      <details><summary>Чи працюєте з дітьми?</summary><p>Так. Зокрема зі сколіозом і порушеннями постави: за методикою Сергійчука з корекційними вправами.</p></details>
-      <details><summary>Як записатися?</summary><p>Зателефонуйте за номером +38 068 214 49 28 або напишіть в Instagram у приватні повідомлення.</p></details>
+    <div class="fold reveal">
+      <h2 class="fold-h">
+        <button class="fold-toggle" type="button" aria-expanded="false" aria-controls="pytannya-panel">
+          <span class="fold-label"><span class="eyebrow">Питання</span><span class="fold-title">Часті питання</span></span>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="fold-panel" id="pytannya-panel">
+        <div class="fold-inner" inert>
+          <div class="fold-body">
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-1"><span>Це боляче?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-1"><div class="acc-inner" inert><p>Мета лікування — зняти біль, а не додати. Техніки лікар підбирає під ваш стан і силу болю. Під час гірудотерапії відчувається хіба що свербіж.</p></div></div></div>
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-2"><span>Скільки потрібно сеансів?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-2"><div class="acc-inner" inert><p>Одного сеансу зазвичай мало: помітний ефект з'являється після кількох відвідувань. За потреби лікар призначить повторний курс через кілька місяців.</p></div></div></div>
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-3"><span>Скільки триває сеанс?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-3"><div class="acc-inner" inert><p>Сеанс мануальної терапії — 15–30 хвилин.</p></div></div></div>
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-4"><span>Чи потрібні МРТ або рентген?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-4"><div class="acc-inner" inert><p>Не завжди. Спершу лікар оглядає руками і за потреби скерує на МРТ чи КТ. Якщо знімки вже є, візьміть їх із собою.</p></div></div></div>
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-5"><span>Чи працюєте з дітьми?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-5"><div class="acc-inner" inert><p>Так. Зокрема зі сколіозом і порушеннями постави: за методикою Сергійчука з корекційними вправами.</p></div></div></div>
+            <div class="acc"><h3 class="acc-h"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq-6"><span>Як записатися?</span><span class="plus sm" aria-hidden="true"></span></button></h3><div class="acc-panel" id="faq-6"><div class="acc-inner" inert><p>Зателефонуйте за номером +38 068 214 49 28 або напишіть в Instagram у приватні повідомлення.</p></div></div></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="sec" id="vidguky">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Відгуки</p>
-      <h2>Що кажуть про центр</h2>
-      <p>Опубліковані відгуки пацієнтів. Оцінка в усіх — 5 із 5. Імена автори не залишили, тож ми їх не вигадуємо.</p>
-    </div>
-    <div class="quotes">
-      <article class="quote feat reveal">
-        <div class="stars" aria-label="5 із 5">★★★★★</div>
-        <q>Проходжу профілактику (мануальна терапія та реабілітація) в Івана Михайловича з 2008 року! Результатом задоволений. Рекомендую</q>
-        <p class="who">Пацієнт · 21 жовтня 2025</p>
-      </article>
-      <article class="quote reveal" style="--d:1">
-        <div class="stars" aria-label="5 із 5">★★★★★</div>
-        <q>Ще 6 років назад травмував спину. Приїхав сюди на реабілітацію, бо порадив товариш із подібною проблемою. Тепер тільки тут, бо реабілітація справді на високому рівні. Рекомендую</q>
-        <p class="who">Пацієнт · 20 лютого 2026</p>
-      </article>
-      <article class="quote reveal" style="--d:2">
-        <div class="stars" aria-label="5 із 5">★★★★★</div>
-        <q>Дуже вдячна за допомогу. У персоналу професійний підхід та уважність до деталей. Дуже комфортна атмосфера.</q>
-        <p class="who">Пацієнтка · 20 лютого 2026</p>
-      </article>
-      <article class="quote reveal">
-        <div class="stars" aria-label="5 із 5">★★★★★</div>
-        <q>Хороший масаж, адекватні ціни, рекомендую!</q>
-        <p class="who">Пацієнт · 20 серпня 2025</p>
-      </article>
+    <div class="fold reveal">
+      <h2 class="fold-h">
+        <button class="fold-toggle" type="button" aria-expanded="false" aria-controls="vidguky-panel">
+          <span class="fold-label"><span class="eyebrow">Відгуки</span><span class="fold-title">Що кажуть про центр</span></span>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <div class="fold-panel" id="vidguky-panel">
+        <div class="fold-inner" inert>
+          <div class="fold-body">
+            <p class="fold-lead">Опубліковані відгуки пацієнтів. Оцінка в усіх — 5 із 5. Імена автори не залишили, тож ми їх не вигадуємо.</p>
+            <div class="quotes">
+              <article class="quote feat">
+                <div class="stars" aria-label="5 із 5">★★★★★</div>
+                <q class="can-expand" id="rev-1">Проходжу профілактику (мануальна терапія та реабілітація) в Івана Михайловича з 2008 року! Результатом задоволений. Рекомендую</q>
+                <button class="read-more" type="button" aria-expanded="false" aria-controls="rev-1">Читати повністю</button>
+                <p class="who">Пацієнт · 21 жовтня 2025</p>
+              </article>
+              <article class="quote">
+                <div class="stars" aria-label="5 із 5">★★★★★</div>
+                <q class="can-expand" id="rev-2">Ще 6 років назад травмував спину. Приїхав сюди на реабілітацію, бо порадив товариш із подібною проблемою. Тепер тільки тут, бо реабілітація справді на високому рівні. Рекомендую</q>
+                <button class="read-more" type="button" aria-expanded="false" aria-controls="rev-2">Читати повністю</button>
+                <p class="who">Пацієнт · 20 лютого 2026</p>
+              </article>
+            </div>
+            <div class="more-quotes" id="quotes-more">
+              <div class="fold-inner" inert>
+                <div class="quotes">
+                  <article class="quote">
+                    <div class="stars" aria-label="5 із 5">★★★★★</div>
+                    <q class="can-expand" id="rev-3">Дуже вдячна за допомогу. У персоналу професійний підхід та уважність до деталей. Дуже комфортна атмосфера.</q>
+                    <button class="read-more" type="button" aria-expanded="false" aria-controls="rev-3">Читати повністю</button>
+                    <p class="who">Пацієнтка · 20 лютого 2026</p>
+                  </article>
+                  <article class="quote">
+                    <div class="stars" aria-label="5 із 5">★★★★★</div>
+                    <q>Хороший масаж, адекватні ціни, рекомендую!</q>
+                    <p class="who">Пацієнт · 20 серпня 2025</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <button class="show-more" type="button" aria-expanded="false" aria-controls="quotes-more">Показати більше</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -920,6 +985,43 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
     show(0);
     start();
   }
+  function bindToggle(btn, panel){
+    if(!btn||!panel)return;
+    var inner=panel.querySelector(':scope > .fold-inner, :scope > .acc-inner');
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')!=='true';
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      panel.classList.toggle('is-open',open);
+      if(inner){
+        if(open)inner.removeAttribute('inert');
+        else inner.setAttribute('inert','');
+      }
+      if(btn.classList.contains('show-more'))btn.textContent=open?'Згорнути':'Показати більше';
+    });
+  }
+  [].slice.call(document.querySelectorAll('.fold-toggle, .acc-btn, .show-more')).forEach(function(btn){
+    bindToggle(btn, document.getElementById(btn.getAttribute('aria-controls')));
+  });
+  [].slice.call(document.querySelectorAll('.read-more')).forEach(function(btn){
+    var q=document.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click',function(){
+      var open=btn.getAttribute('aria-expanded')!=='true';
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      if(q)q.classList.toggle('is-open',open);
+      btn.textContent=open?'Згорнути':'Читати повністю';
+    });
+  });
+  function openFold(id){
+    var sec=document.getElementById(id);
+    if(!sec)return;
+    var btn=sec.querySelector('.fold-toggle');
+    if(btn&&btn.getAttribute('aria-expanded')!=='true')btn.click();
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href="#vidguky"], a[href="#pytannya"]');
+    if(a)openFold(a.getAttribute('href').slice(1));
+  });
+  if(location.hash==='#vidguky'||location.hash==='#pytannya')openFold(location.hash.slice(1));
 })();
 </script>
 </body>

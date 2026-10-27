@@ -119,7 +119,7 @@ h3{font-weight:650}
 .mmenu .mmenu-tel{border:0;padding-top:4px;font-size:22px}
 
 /* hero */
-.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky) 0,var(--sky-2) 100%);padding:14px 0 118px;border-radius:0 0 32px 32px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky) 0,var(--sky-2) 100%);padding:14px 0 22px;border-radius:0 0 32px 32px}
 .hero-spine{position:absolute;right:-18px;top:-8px;height:430px;pointer-events:none}
 .hero-spine .spine{height:100%;width:auto;display:block}
 .hero-spine .spine :is(.body,.arch,.tp){fill:none;stroke:rgba(18,21,24,.13);stroke-width:1.1}
@@ -163,7 +163,10 @@ h3{font-weight:650}
 .alt-link{display:block;text-align:center;margin-top:2px;padding:14px 0;font:600 14.5px/1 var(--text);color:var(--ink-2)}
 
 /* doctor strip + facts */
-.after{margin-top:16px}
+.after{margin-top:22px}
+.hero-cta{display:flex;gap:8px;margin-top:16px}
+.hero-cta .call{flex:1;margin:0}
+.igbtn{flex:none;display:grid;place-items:center;width:58px;border-radius:16px;background:#fff;color:var(--ink);text-decoration:none}
 .docstrip{display:flex;align-items:center;gap:14px;padding:14px;border-radius:20px;background:var(--card);text-decoration:none}
 .ava{flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden}
 .portrait-svg{width:100%;height:100%;display:block;--ph-bg:#dfe7ef;--ph-a:#b4c3d1;--ph-b:#a2b4c5}
@@ -246,6 +249,29 @@ h3{font-weight:650}
 .box.urgent li{border-top-color:rgba(143,32,24,.12)}
 .box .foot{margin:0;padding:12px 0 12px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
 
+.opener{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:0;cursor:pointer;background:var(--card);border-radius:var(--r);padding:16px;font:inherit;color:var(--ink);transition:transform .15s}
+.opener:active{transform:scale(.98)}
+.o-ic{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--chip);color:var(--ink-2)}
+.o-ic .si{width:20px;height:20px}
+.o-tx b{display:block;font:650 16px/1.3 var(--disp)}
+.o-tx span{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.o-go{margin-left:auto;flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--chip)}
+.o-go .si{width:18px;height:18px}
+.opener.red .o-ic{background:var(--red-soft);color:var(--red)}
+.sheet{border:0;padding:0;margin:auto auto 0;width:100%;max-width:560px;max-height:86vh;border-radius:26px 26px 0 0;background:var(--card);color:var(--ink);box-shadow:0 -20px 60px rgba(18,21,24,.25)}
+.sheet[open]{animation:up .28s cubic-bezier(.2,.8,.2,1)}
+.sheet::backdrop{background:rgba(18,21,24,.45);backdrop-filter:blur(2px)}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sh-head{position:sticky;top:0;display:flex;align-items:center;gap:12px;padding:20px 18px 14px;background:var(--card)}
+.sh-head h3{font-size:18px;line-height:1.25;flex:1}
+.sh-close{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:0;background:var(--chip);cursor:pointer}
+.sh-close .si{width:18px;height:18px}
+.sh-list{list-style:none;margin:0;padding:0 18px;display:grid;gap:8px}
+.sh-list li{padding:13px 14px;border-radius:14px;background:var(--chip);font-size:15.5px;line-height:1.35}
+.sheet.red .o-ic{background:var(--red-soft);color:var(--red)}
+.sheet.red .sh-list li{background:var(--red-soft);color:var(--red-ink)}
+.sh-foot{margin:14px 18px 22px;font-size:14px;color:var(--muted)}
+.sheet .call{margin:16px 18px calc(18px + env(safe-area-inset-bottom))}
 .tip{background:var(--card);border-radius:var(--r);padding:16px 18px}
 .tip h3{font-size:16.5px;margin-bottom:6px}
 .tip p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2)}
@@ -298,6 +324,7 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
   .chip{padding:11px 12px;font-size:14px}
 }
 /* ---------- desktop ---------- */
+@media (min-width:700px){.sheet{margin:auto;border-radius:26px}}
 @media (min-width:960px){
   body{font-size:17px}
   .wrap{padding:0 40px}
@@ -307,17 +334,16 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
   .nav{display:flex;gap:22px;margin-left:auto;font:550 15px/1 var(--text);color:var(--ink-2)}
   .nav a{text-decoration:none}
   .top .tel{display:block;font:650 16px/1 var(--text);text-decoration:none}
-  .hero{padding:44px 0 230px;border-radius:0 0 48px 48px}
+  .hero{padding:44px 0 56px;border-radius:0 0 48px 48px}
   .hero-spine{height:640px;right:auto;left:44%;top:-14px}
   .hero .wrap>div{max-width:520px}
   .kind{max-width:none;font-size:16px}
   .hero h1{font-size:68px;max-width:560px}
   .slogan{font-size:20px;margin-top:20px}
   .sub{font-size:18.5px;margin:14px 0 24px}
-  .triage{margin-top:-600px}
-  .triage .wrap{display:grid;grid-template-columns:1fr 520px;gap:60px;align-items:end}
-  .tw{grid-column:2;grid-row:1;padding:28px 26px 24px}
-  .after{grid-column:1;grid-row:1;margin:0;max-width:520px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:end}
+  .after{margin:0}
+  .hero-cta{max-width:440px}
   .trust b{font-size:28px}
   .secnav{margin-top:40px}
   .secnav .wrap{justify-content:center}
@@ -388,115 +414,12 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
       <a class="addr" href="https://www.google.com/maps/search/?api=1&query=%D0%9B%D1%83%D1%86%D1%8C%D0%BA%2C+%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%97%D0%B0%D1%85%D0%B8%D1%81%D0%BD%D0%B8%D0%BA%D1%96%D0%B2+%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8%2C+35" target="_blank" rel="noopener"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 <path d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/>
 </svg>вул. Захисників України, 35</a>
-    </div>
-  </div>
-</section>
-
-<section class="triage" aria-label="Що вас турбує">
-  <div class="wrap">
-    <div class="tw">
-      <h2>Що вас турбує?</h2>
-      <p class="hint">Оберіть — покажемо, чим допоможемо.</p>
-      <div class="chips" role="tablist" aria-label="Що турбує">
-<button type="button" class="chip" role="tab" id="tab-poperek" aria-controls="pan-poperek" aria-selected="true">Поперек</button><button type="button" class="chip" role="tab" id="tab-shyia" aria-controls="pan-shyia" aria-selected="false">Шия і голова</button><button type="button" class="chip" role="tab" id="tab-lopatky" aria-controls="pan-lopatky" aria-selected="false">Між лопатками</button><button type="button" class="chip" role="tab" id="tab-suhloby" aria-controls="pan-suhloby" aria-selected="false">Суглоби</button><button type="button" class="chip" role="tab" id="tab-skolioz" aria-controls="pan-skolioz" aria-selected="false">Сколіоз у дитини</button><button type="button" class="chip" role="tab" id="tab-varykoz" aria-controls="pan-varykoz" aria-selected="false">Варикоз і судини</button><button type="button" class="chip" role="tab" id="tab-travma" aria-controls="pan-travma" aria-selected="false">Після травми</button>      </div>
-      <div class="panel" role="tabpanel" id="pan-poperek" aria-labelledby="tab-poperek">
-        <p class="lead">Біль після сидіння, «прострел» при нахилі, грижі й протрузії, біль, що віддає в ногу.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Мануальна терапія</b><span>знімає м'язовий спазм і повертає рухливість хребцям</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Кінезотерапія і ЛФК</b><span>зміцнюють м'язовий корсет, щоб біль не повертався</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Лікувальний масаж</b><span>розслабляє перенапружені м'язи попереку</span></div></li></ul>
-        <p class="note warn"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Біль віддає в ногу, німіє чи слабшає нога? Не відкладайте візит: на ранньому етапі лікування дає кращий результат.</span></p>
+      <div class="hero-cta">
+        <a class="call" href="tel:+380682144928"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span>Подзвонити й записатися<small>+38 068 214 49 28</small></span></a>
+        <a class="igbtn" href="https://www.instagram.com/khrebet_center_lutsk/" target="_blank" rel="noopener" aria-label="Написати в Instagram"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>
+</svg></a>
       </div>
-      <div class="panel" role="tabpanel" id="pan-shyia" aria-labelledby="tab-shyia" hidden>
-        <p class="lead">Головний біль, скутість шиї, біль у потилиці. Часто причина в м'язах шиї, які тиснуть на нерви.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Мануальна терапія</b><span>пропрацьовує напружені м'язи і відновлює поставу</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Масаж</b><span>знімає напругу шиї та плечового пояса</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Вправи на декомпресійних тренажерах</b><span>м'яко витягують хребет під наглядом лікаря</span></div></li></ul>
-        <p class="note"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><span>Для шийного відділу в центрі є окрема корекційна методика.</span></p>
-      </div>
-      <div class="panel" role="tabpanel" id="pan-lopatky" aria-labelledby="tab-lopatky" hidden>
-        <p class="lead">Стріляючий біль між ребрами, що посилюється при русі, скутість у грудному відділі.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Мануальна терапія</b><span>знімає спазм м'язів грудного відділу</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Масаж</b><span>розслабляє міжреберні м'язи і спину</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>ЛФК і кінезотерапія</b><span>програма вправ, щоб напади не повторювалися</span></div></li></ul>
-        <p class="note warn"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Міжреберна невралгія за характером відрізняється від болю в серці. Якщо є сумнів, спершу перевірте серце.</span></p>
-      </div>
-      <div class="panel" role="tabpanel" id="pan-suhloby" aria-labelledby="tab-suhloby" hidden>
-        <p class="lead">Артроз, артрит, вивихи, зокрема плеча, відновлення кульшових суглобів.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Кінезотерапія</b><span>вчить м'язи тримати суглоб і знімати з нього навантаження</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Мануальна терапія суглобів</b><span>повертає рухливість</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Гірудотерапія</b><span>п'явки покращують кровообіг і зменшують набряк</span></div></li></ul>
-        <p class="note"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><span>Ранкова скутість пальців, набряк чи теплі на дотик суглоби бувають першими ознаками артриту.</span></p>
-      </div>
-      <div class="panel" role="tabpanel" id="pan-skolioz" aria-labelledby="tab-skolioz" hidden>
-        <p class="lead">Сколіоз на початку не болить, тому його легко пропустити. Найчастіше він трапляється в дошкільному і шкільному віці.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Методика Сергійчука</b><span>корекційні вправи: близько 7 хвилин щоранку</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Масаж при сколіозі</b><span>розслабляє м'язи і вирівнює навантаження на хребет</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>ЛФК</b><span>вчить правильно сидіти, стояти й ходити</span></div></li></ul>
-        <p class="note"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><span>Перевірте вдома: поставте дитину рівно. Плечі, ключиці й таз мають бути на одному рівні.</span></p>
-      </div>
-      <div class="panel" role="tabpanel" id="pan-varykoz" aria-labelledby="tab-varykoz" hidden>
-        <p class="lead">Важкість і набряки ніг, розширені вени, судинні проблеми.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Гірудотерапія</b><span>гірудин із слини п'явки знижує в'язкість крові</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Ефект</b><span>менше набряків, болю і запалення в стінках вен</span></div></li></ul>
-        <p class="note"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><span>Медичні п'явки вирощують на біофабриках і використовують один раз, після процедури їх утилізують.</span></p>
-      </div>
-      <div class="panel" role="tabpanel" id="pan-travma" aria-labelledby="tab-travma" hidden>
-        <p class="lead">Відновлення після травм, операцій і поранень, коли рух дається важко.</p>
-        <p class="helps-t">Що допомагає</p>
-        <ul class="mlist"><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Фізична терапія</b><span>індивідуальна програма з фізичним терапевтом</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>ЛФК і кінезотерапія</b><span>поступово повертають силу і рухливість</span></div></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><div><b>Масаж</b><span>покращує кровообіг і тонус м'язів</span></div></li></ul>
-        <p class="note"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M5 12.5l4.2 4.2L19 7"/>
-</svg><span>Програму складає фізичний терапевт під ваш стан, тому результат будується крок за кроком.</span></p>
-      </div>
-      <a class="call" href="tel:+380682144928"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span>Подзвонити й записатися<small>+38 068 214 49 28</small></span></a>
-      <a class="alt-link" href="https://www.instagram.com/khrebet_center_lutsk/" target="_blank" rel="noopener">або напишіть в Instagram</a>
     </div>
     <div class="after">
       <a class="docstrip" href="#likar">
@@ -521,6 +444,8 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
     </div>
   </div>
 </section>
+
+
 
 <nav class="secnav" aria-label="Розділи сторінки"><div class="wrap">
 <a href="#napryamy">Напрями</a><a href="#problemy">З чим звертаються</a><a href="#likar">Лікар</a><a href="#vizyt">Перший візит</a><a href="#protypokazannya">Протипоказання</a><a href="#porady">Поради</a><a href="#pyavky">П'явки</a><a href="#pytannya">Питання</a><a href="#kontakty">Контакти</a></div></nav>
@@ -649,40 +574,46 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
   <div class="wrap">
     <div class="sec-head"><h2>Протипоказання</h2><p>Мануальна терапія підходить не всім. Остаточне рішення лікар ухвалює на консультації.</p></div>
     <div class="cards c2">
-      <div class="box minus"><h3>Мануальна терапія протипоказана, якщо є</h3>
-        <ul><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Свіжі переломи хребта</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Ревматизм</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Нещодавно перенесений інсульт чи інфаркт</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Онкологічні захворювання</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Хвороба Бехтерєва</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Вагітність</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Гіпертонія</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M7 7l10 10M17 7L7 17"/>
-</svg><span>Гострі захворювання шлунка і кишківника</span></li></ul>
-        <p class="foot">Скажіть лікарю про свої діагнози й ліки ще до сеансу.</p></div>
-      <div class="box urgent"><h3>Не чекайте, звертайтеся до лікаря, якщо</h3>
-        <ul><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" class="opener" data-open="dlg-contra">
+        <span class="o-ic"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/>
+</svg></span>
+        <span class="o-tx"><b>Коли мануальна терапія протипоказана</b><span>8 станів, про які варто знати</span></span>
+        <span class="o-go"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 6v12M6 12h12"/>
+</svg></span>
+      </button>
+      <button type="button" class="opener red" data-open="dlg-urgent">
+        <span class="o-ic"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
 <path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Біль дуже сильний</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Порушилася чутливість, німіє нога</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>З'явилася слабкість у нозі</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Біль не минає 1–2 тижні</span></li><li><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
-</svg><span>Біль у грудях: спершу виключіть серце</span></li></ul></div>
+</svg></span>
+        <span class="o-tx"><b>Коли не варто чекати</b><span>Ознаки, з якими до лікаря — одразу</span></span>
+        <span class="o-go"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 6v12M6 12h12"/>
+</svg></span>
+      </button>
     </div>
   </div>
 </section>
+
+<dialog class="sheet" id="dlg-contra" aria-labelledby="dc-t">
+  <div class="sh-head"><span class="o-ic"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/>
+</svg></span><h3 id="dc-t">Мануальна терапія протипоказана, якщо є</h3><button type="button" class="sh-close" aria-label="Закрити"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M7 7l10 10M17 7L7 17"/>
+</svg></button></div>
+  <ul class="sh-list"><li>Свіжі переломи хребта</li><li>Ревматизм</li><li>Нещодавно перенесений інсульт чи інфаркт</li><li>Онкологічні захворювання</li><li>Хвороба Бехтерєва</li><li>Вагітність</li><li>Гіпертонія</li><li>Гострі захворювання шлунка і кишківника</li></ul>
+  <p class="sh-foot">Скажіть лікарю про свої діагнози й ліки ще до сеансу.</p>
+</dialog>
+<dialog class="sheet red" id="dlg-urgent" aria-labelledby="du-t">
+  <div class="sh-head"><span class="o-ic"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17.2v.3"/>
+</svg></span><h3 id="du-t">Не чекайте, звертайтеся до лікаря, якщо</h3><button type="button" class="sh-close" aria-label="Закрити"><svg class="si" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M7 7l10 10M17 7L7 17"/>
+</svg></button></div>
+  <ul class="sh-list"><li>Біль дуже сильний</li><li>Порушилася чутливість, німіє нога</li><li>З'явилася слабкість у нозі</li><li>Біль не минає 1–2 тижні</li><li>Біль у грудях: спершу виключіть серце</li></ul>
+  <a class="call" href="tel:+380682144928"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span>Подзвонити в центр<small>+38 068 214 49 28</small></span></a>
+</dialog>
 
 <section id="porady" class="sec">
   <div class="wrap">
@@ -771,11 +702,12 @@ footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 
 <script>
 (function(){
-  var tabs=[].slice.call(document.querySelectorAll('.chip[role=tab]'));
-  tabs.forEach(function(t){t.addEventListener('click',function(){
-    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
-  });});
-  var mbar=document.querySelector('.mbar'),tw=document.querySelector('.tw');
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){
+    var d=document.getElementById(b.dataset.open);if(d.showModal)d.showModal();else d.setAttribute('open','');});});
+  document.querySelectorAll('dialog.sheet').forEach(function(d){
+    d.querySelector('.sh-close').addEventListener('click',function(){d.close?d.close():d.removeAttribute('open');});
+    d.addEventListener('click',function(e){if(e.target===d)d.close();});});
+  var mbar=document.querySelector('.mbar'),tw=document.querySelector('.hero-cta');
   if('IntersectionObserver' in window&&mbar&&tw){new IntersectionObserver(function(e){mbar.classList.toggle('hide',e[0].isIntersecting);},{threshold:0}).observe(tw);}else if(mbar){mbar.classList.remove('hide');}
   var links=[].slice.call(document.querySelectorAll('.secnav a')),bar=document.querySelector('.secnav .wrap');
   if('IntersectionObserver' in window){

@@ -115,7 +115,10 @@ p{margin:0}
 .slides,.slide{position:absolute;inset:0}
 .slide{opacity:0;z-index:0}
 .slide.is-on{opacity:1;z-index:1}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-ig3 img{object-position:center 22%}
+.slide-ig1 img{object-position:center 26%}
+.slide-ig2 img{object-position:center 46%}
 .slider-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,22,30,.42),rgba(8,16,24,.58));pointer-events:none}
 .slider-copy{position:relative;z-index:3;text-align:center;padding:36px 68px;width:min(860px,100%)}
 .slider .kicker{margin:0 0 14px;font:600 13px/1.45 var(--text);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.92)}
@@ -394,14 +397,23 @@ footer{padding:8px 0 20px;color:var(--muted);font-size:14px}
 <main id="main">
 <section class="slider" aria-roledescription="карусель" aria-label="Фото центру">
   <div class="slides">
-    <div class="slide is-on">
-      <img src="assets/img/session.webp" alt="Сеанс мануальної терапії в Хребет Центрі" width="1000" height="750" fetchpriority="high">
+    <div class="slide slide-ig3 is-on">
+      <picture>
+        <source srcset="assets/img/hero-ig3.webp" type="image/webp">
+        <img src="assets/img/hero-ig3.jpg" alt="Терапевт займається з дівчинкою в Хребет Центрі" width="1440" height="1897" fetchpriority="high">
+      </picture>
     </div>
-    <div class="slide">
-      <img src="assets/img/massage.webp" alt="Лікувальний масаж у центрі" width="240" height="240">
+    <div class="slide slide-ig1">
+      <picture>
+        <source srcset="assets/img/hero-ig1.webp" type="image/webp">
+        <img src="assets/img/hero-ig1.jpg" alt="Спеціалістка реабілітаційного комплексу Хребет Центр" width="1440" height="1484">
+      </picture>
     </div>
-    <div class="slide">
-      <img src="assets/img/kinezo.webp" alt="Кінезотерапія у центрі" width="240" height="240">
+    <div class="slide slide-ig2">
+      <picture>
+        <source srcset="assets/img/hero-ig2.webp" type="image/webp">
+        <img src="assets/img/hero-ig2.jpg" alt="Маленький пацієнт біля вивіски Хребет Центр" width="1024" height="1024">
+      </picture>
     </div>
   </div>
   <div class="slider-veil" aria-hidden="true"></div>

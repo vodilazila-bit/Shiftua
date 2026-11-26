@@ -25,7 +25,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20261013-olive">
 <link rel="preload" href="/assets/v2/fonts/rubikmono-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/v2/fonts/text-cyr.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/v2/site.css?v=20261126-1">
+<link rel="stylesheet" href="/assets/v2/site.css?v=20261126-2">
 <script>document.documentElement.classList.add('js')</script>
 <script>
 /* Google tag (Ads + GA4) і Meta Pixel. Черги створюються одразу, а самі скрипти вантажаться
@@ -203,10 +203,6 @@ fbq('track', 'PageView');
     </div>
 
 
-    <div class="work-controls" hidden>
-      <button type="button" aria-controls="concepts" aria-label="Попередній кейс">←</button>
-      <button type="button" aria-controls="concepts" aria-label="Наступний кейс">→</button>
-    </div>
     <div class="work-grid" id="concepts" role="region" aria-label="Кейси WEBWORK" tabindex="0">
       <a class="card card-zaisun" href="https://zaisun.com.ua/" target="_blank" rel="noopener">
         <span class="card-media"><img src="/assets/v2/img/zaisun-autumn-900.webp" srcset="/assets/v2/img/zaisun-autumn-640.webp 640w, /assets/v2/img/zaisun-autumn-900.webp 900w, /assets/v2/img/zaisun-autumn-1600.webp 1600w" sizes="(max-width: 760px) 84vw, 48vw" width="1600" height="900" alt="Осіння колекція ZaiSun: дитячий костюм із вушками" loading="lazy" decoding="async"><span class="case-phone"><img src="/assets/v2/img/zaisun-phone-catalog.webp" srcset="/assets/v2/img/zaisun-phone-catalog-300.webp 300w, /assets/v2/img/zaisun-phone-catalog.webp 540w" sizes="(max-width: 760px) 34vw, 20vw" width="540" height="1169" alt="Каталог ZaiSun на телефоні" loading="lazy" decoding="async"></span><span class="case-badge"><i></i>Магазин дитячого одягу</span></span>
@@ -262,6 +258,14 @@ fbq('track', 'PageView');
           <span class="card-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></span>
         </span>
       </a>
+    </div>
+    <div class="work-nav" hidden>
+      <p class="work-count" aria-hidden="true"><b>01</b><span>/ 06</span></p>
+      <div class="work-rail" aria-hidden="true"><i class="work-thumb"></i></div>
+      <div class="work-controls">
+        <button type="button" aria-controls="concepts" aria-label="Попередній кейс"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg></button>
+        <button type="button" aria-controls="concepts" aria-label="Наступний кейс"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      </div>
     </div>
   </div>
 </section>
@@ -452,7 +456,7 @@ fbq('track', 'PageView');
 
 <script src="/assets/v2/site.js?v=20261022-3" defer></script>
 <script src="/assets/v2/lead-form.js?v=20261015-1" defer></script>
-<script src="/assets/v2/work-showcase.js" defer></script>
+<script src="/assets/v2/work-showcase.js?v=20261126-2" defer></script>
 <script>
 /* Плавна прокрутка колесом миші (Lenis) — тільки на комп'ютері й після завантаження сторінки. */
 (() => {

@@ -562,12 +562,42 @@ html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:
 @media (max-width:640px){#main>section:not(.hero),.site-footer{background-size:100% 132px,auto 132px}}
 html.lenis{scroll-behavior:auto}
 
-/* Роботи: горизонтальна стрічка кейсів зі свайпом і стрілками (було work-showcase.css) */
+/* Роботи: горизонтальна стрічка кейсів зі свайпом (було work-showcase.css).
+   Замість системного скролбару — «креслярська лінійка» з лаймовим повзунком, лічильник і стрілки (work-showcase.js). */
 #concepts{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:87%;gap:clamp(16px,2vw,32px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 0 16px}
+#concepts.has-rail{scrollbar-width:none;padding-bottom:4px}
+#concepts.has-rail::-webkit-scrollbar{display:none}
+#concepts.is-dragging{scroll-snap-type:none}
 #concepts>.card{min-width:0;transform:none;scroll-snap-align:start}
 #concepts>.card:focus-visible{outline-offset:-3px}
-.work-controls{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px}
-.work-controls[hidden]{display:none}
-.work-controls button{width:44px;height:44px;border-radius:50%;border:1px solid currentColor;color:inherit;background:transparent;cursor:pointer;font-size:22px}
-.work-controls button:disabled{opacity:.32;cursor:default}
 @media (min-width:760px){#concepts{grid-auto-columns:calc((100% - clamp(16px,2vw,32px))/2)}}
+
+.work-nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,32px);margin-top:clamp(14px,1.8vw,26px)}
+.work-nav[hidden]{display:none}
+.work-count{flex:none;display:flex;align-items:baseline;gap:.5em;font:400 clamp(13px,1vw,15px)/1 "WW Mono",var(--fd);letter-spacing:.02em;color:var(--stone);font-variant-numeric:tabular-nums;white-space:nowrap}
+.work-count b{font-weight:400;color:#b9d531;min-width:2ch}
+.work-rail{--n:6;position:relative;flex:1;min-width:60px;height:30px;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;
+  background:
+    linear-gradient(90deg,rgba(236,238,232,.38) 0 1px,transparent 1px) 0 50%/calc(100% / var(--n)) 14px repeat-x,
+    linear-gradient(90deg,rgba(236,238,232,.38) 0 1px,transparent 1px) 100% 50%/1px 14px no-repeat,
+    linear-gradient(90deg,rgba(236,238,232,.15) 0 1px,transparent 1px) 0 50%/8px 6px repeat-x,
+    linear-gradient(rgba(236,238,232,.22),rgba(236,238,232,.22)) 0 50%/100% 1px no-repeat}
+.work-thumb{position:absolute;left:0;top:50%;width:33%;height:6px;margin-top:-3px;border-radius:3px;background:#b9d531;
+  box-shadow:0 0 0 2px #2a2c29,0 0 14px rgba(185,213,49,.45);cursor:grab;will-change:transform;
+  transition:height .25s var(--ease),margin-top .25s var(--ease),box-shadow .35s ease}
+.work-thumb::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:4px;transform:translate(-50%,-50%);background:repeating-linear-gradient(90deg,rgba(30,31,27,.6) 0 1px,transparent 1px 4px);opacity:0;transition:opacity .25s ease}
+.work-rail:hover .work-thumb,.work-rail.is-active .work-thumb{height:12px;margin-top:-6px}
+.work-rail:hover .work-thumb::after,.work-rail.is-active .work-thumb::after{opacity:1}
+.work-rail.is-moving .work-thumb,.work-rail.is-active .work-thumb{box-shadow:0 0 0 2px #2a2c29,0 0 26px rgba(185,213,49,.85)}
+.work-rail.is-active .work-thumb{cursor:grabbing}
+.work-controls{flex:none;display:flex;gap:8px}
+.work-controls button{display:grid;place-items:center;width:48px;height:48px;padding:0;border-radius:12px;border:1px solid var(--line-2);color:var(--ink);background:transparent;cursor:pointer;box-shadow:inset 0 -3px 0 rgba(0,0,0,.16);transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .25s var(--ease)}
+.work-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.work-controls button:active{transform:scale(.94)}
+.work-controls button:disabled{opacity:.28;cursor:default;box-shadow:none}
+@media (hover:hover){
+  .work-controls button:not(:disabled):hover{background:#b9d531;border-color:#b9d531;color:#1e1f1b}
+  .work-controls button:not(:disabled):hover:first-child svg{transform:translateX(-2px)}
+  .work-controls button:not(:disabled):hover:last-child svg{transform:translateX(2px)}
+}
+@media (max-width:520px){.work-controls button{width:44px;height:44px}.work-controls{gap:6px}}

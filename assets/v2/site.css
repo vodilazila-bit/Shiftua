@@ -566,13 +566,17 @@ html.lenis{scroll-behavior:auto}
 
 /* Роботи: горизонтальна стрічка кейсів зі свайпом (було work-showcase.css).
    Замість системного скролбару — «креслярська лінійка» з лаймовим повзунком, лічильник і стрілки (work-showcase.js). */
-#concepts{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:87%;gap:clamp(16px,2vw,32px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 0 16px}
+#concepts{display:grid;grid-auto-flow:column;grid-template-columns:none;--case-gap:clamp(10px,2vw,32px);grid-auto-columns:calc((100% - var(--case-gap))/2);gap:var(--case-gap);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 0 16px}
 #concepts.has-rail{scrollbar-width:none;padding-bottom:4px}
 #concepts.has-rail::-webkit-scrollbar{display:none}
 #concepts.is-dragging{scroll-snap-type:none}
 #concepts>.card{min-width:0;transform:none;scroll-snap-align:start}
 #concepts>.card:focus-visible{outline-offset:-3px}
-@media (min-width:760px){#concepts{grid-auto-columns:calc((100% - clamp(16px,2vw,32px))/2)}}
+@media (min-width:760px){#concepts{--case-gap:clamp(16px,2vw,32px)}}
+@media (max-width:759px){
+  #concepts .card-name{font-size:clamp(18px,4.6vw,24px);overflow-wrap:anywhere}
+  #concepts .case-badge{top:6px;left:6px;max-width:calc(100% - 12px);padding:4px 6px;gap:4px;font-size:10px}
+}
 
 .work-nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,32px);margin-top:clamp(14px,1.8vw,26px)}
 .work-nav[hidden]{display:none}

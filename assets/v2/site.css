@@ -491,6 +491,7 @@ html.menu-open,html.menu-open body{overflow:hidden}
 /* WEBWORK hero: темна сцена зі статичним рендером «цифрового ядра» (без WebGL — легка для телефонів). */
 .hero{--art:min(42vw,70vh);background:#1e1f1b;color:#f3f4ee}
 .hero-art{position:absolute;z-index:0;left:calc((100% - var(--art))*.83);top:calc((100% - var(--art))*.5);width:var(--art);height:var(--art);isolation:isolate;pointer-events:none;-webkit-user-select:none;user-select:none}
+.hero-art picture{display:contents}
 .hero-art-img{position:relative;z-index:1;display:block;width:100%;height:100%;max-width:none;-webkit-user-drag:none}
 /* телефон вертикально: ядро займає вільне місце між шапкою і текстом і не наїжджає на текст */
 @media (max-aspect-ratio:9/10){
@@ -618,6 +619,36 @@ html.lenis{scroll-behavior:auto}
 .core-draft .flow{inset:0;opacity:0;animation:var(--k) 2.6s cubic-bezier(.55,0,.45,1) var(--d) infinite}
 .core-draft .flow::before{content:"";position:absolute;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#dcef72;box-shadow:0 0 8px 2px rgba(185,213,49,.85)}
 @media (max-aspect-ratio:9/10){.core-draft .tag{font-size:8px;letter-spacing:.04em;gap:4px}.core-draft .tag::before{width:4px;height:4px}}
+/* координати виносок (десктоп і планшет) */
+.core-draft .m1{left:4.5%;top:5%}.core-draft .m2{left:95.5%;top:5%}.core-draft .m3{left:4.5%;top:95%}.core-draft .m4{left:95.5%;top:95%}
+.core-draft .bl.c1{left:88%;top:10%;width:27.24%;transform:rotate(122.41deg)}
+.core-draft .bl.c2{left:92%;top:63%;width:13.93%;transform:rotate(-125.06deg)}
+.core-draft .bl.c3{left:84%;top:92%;width:19.05%;transform:rotate(-140.96deg)}
+.core-draft .bl.c4{left:12%;top:94%;width:29.32%;transform:rotate(-55.98deg)}
+.core-draft .pt.c1{left:73.4%;top:33%}.core-draft .pt.c2{left:84%;top:51.6%}.core-draft .pt.c3{left:69.2%;top:80%}.core-draft .pt.c4{left:28.4%;top:69.7%}
+.core-draft .tag.c1{left:88%;top:10%}.core-draft .tag.c2{left:92%;top:63%}.core-draft .tag.c3{left:84%;top:92%}.core-draft .tag.c4{left:12%;top:94%}
+.core-draft .flow.c1{--k:draft-f1}.core-draft .flow.c2{--k:draft-f2}.core-draft .flow.c3{--k:draft-f3}.core-draft .flow.c4{--k:draft-f4}
+/* телефон вертикально: ядро на всю ширину екрана, підписи — плашками всередині кадру, щоб не вилазили за край */
+@media (max-aspect-ratio:9/10) and (max-width:600px){
+  .hero-art{width:100%;height:auto;margin-top:-4vw}
+  .core-draft .m1{left:3.5%;top:4%}.core-draft .m2{left:96.5%;top:4%}.core-draft .m3{left:3.5%;top:96%}.core-draft .m4{left:96.5%;top:96%}
+  .core-draft .bl.c1{left:77%;top:11%;width:22.29%;transform:rotate(99.29deg)}
+  .core-draft .bl.c2{left:84%;top:41.6%;width:10%;transform:rotate(90deg)}
+  .core-draft .bl.c3{left:72%;top:91%;width:11.35%;transform:rotate(-104.28deg)}
+  .core-draft .bl.c4{left:5%;top:89%;width:30.33%;transform:rotate(-39.51deg)}
+  .core-draft .pt{width:10px;height:10px;margin:-5px 0 0 -5px}
+  .core-draft .tag{font-size:9.5px;letter-spacing:.05em;gap:5px;padding:4px 7px 4px 6px;background:rgba(30,31,27,.86);box-shadow:inset 0 0 0 1px rgba(185,213,49,.32);border-radius:2px;transform:translate(0,-50%)}
+  .core-draft .tag::before{width:5px;height:5px}
+  .core-draft .tag.c1{left:77%;top:11%}
+  .core-draft .tag.c2{left:96%;top:40%;transform:translate(-100%,-50%)}
+  .core-draft .tag.c3{left:72%;top:91%}
+  .core-draft .tag.c4{left:5%;top:89%}
+  .core-draft .flow.c1{--k:draft-m1}.core-draft .flow.c2{--k:draft-m2}.core-draft .flow.c3{--k:draft-m3}.core-draft .flow.c4{--k:draft-m4}
+}
+@keyframes draft-m1{0%{transform:translate(77%,11%);opacity:0}10%{opacity:1}55%{transform:translate(73.4%,33%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-m2{0%{transform:translate(84%,41.6%);opacity:0}10%{opacity:1}55%{transform:translate(84%,51.6%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-m3{0%{transform:translate(72%,91%);opacity:0}10%{opacity:1}55%{transform:translate(69.2%,80%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-m4{0%{transform:translate(5%,89%);opacity:0}10%{opacity:1}55%{transform:translate(28.4%,69.7%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
 @keyframes draft-line{to{transform:scaleX(1)}}
 @keyframes draft-pop{to{opacity:1;transform:scale(1)}}
 @keyframes draft-pt{to{transform:scale(1)}}

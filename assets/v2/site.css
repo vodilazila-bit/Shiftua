@@ -557,10 +557,10 @@ html:not(.is-scrolled) .site-header .btn-dark .btn-ico{background:#b9d531;color:
 #intro .statement,#intro .statement .w.on{color:var(--moss)}
 #intro .statement.is-split .w:not(.on){color:#757d49}
 :root{--wireframe-art:url("/assets/v2/img/wireframe-grid.svg")}
-#main>section:not(.hero),.site-footer{background-image:linear-gradient(to bottom,transparent 55%,var(--section-base,var(--fog))),var(--wireframe-art);background-position:top right;background-size:100% clamp(160px,29vw,480px);background-repeat:no-repeat}
+#main>section:not(.hero){background-image:linear-gradient(to bottom,transparent 55%,var(--section-base,var(--fog))),var(--wireframe-art);background-position:top right;background-size:100% clamp(160px,29vw,480px);background-repeat:no-repeat}
 #services,#deliverables{--section-base:var(--paper)}
 #contact,.site-footer{--section-base:var(--olive)}
-@media (max-width:640px){#main>section:not(.hero),.site-footer{background-size:100% 132px,auto 132px}}
+@media (max-width:640px){#main>section:not(.hero){background-size:100% 132px,auto 132px}}
 html.lenis{scroll-behavior:auto}
 
 /* Роботи: горизонтальна стрічка кейсів зі свайпом (було work-showcase.css).

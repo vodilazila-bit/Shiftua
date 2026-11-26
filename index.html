@@ -99,6 +99,23 @@ fbq('track', 'PageView');
   ]
 }
 </script>
+<style>
+/* Keep the section descriptions below the decorative browser windows. */
+#prices, #deliverables { --art-clearance: calc(clamp(160px, 29vw, 480px) * .65 + 24px); }
+@media (min-width: 900px) {
+  #prices .sec-head > .lead {
+    margin-top: max(0px, calc(var(--art-clearance) - clamp(88px, 11vw, 176px)));
+  }
+  #deliverables .sec-head > .lead { margin-top: var(--art-clearance); }
+  #prices .sec-head > h2, #deliverables .sec-head > h2 { align-self: start; }
+}
+@media (max-width: 899px) {
+  #prices, #deliverables { padding-top: var(--art-clearance); }
+}
+@media (max-width: 640px) {
+  #prices, #deliverables { --art-clearance: 112px; }
+}
+</style>
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></noscript>

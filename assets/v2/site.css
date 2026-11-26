@@ -630,3 +630,6 @@ html.lenis{scroll-behavior:auto}
 
 /* Картки кейсів без кнопок-стрілок: клікабельна вся картка */
 .card-meta{grid-template-columns:minmax(0,1fr)}
+/* Стрілки по краях лінійки: «назад» на лівому кінці, «вперед» на правому */
+.work-controls{display:contents}
+.work-controls button:first-child{order:-1}

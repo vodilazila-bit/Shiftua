@@ -43,59 +43,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none" alt=""
 src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></noscript>
 <!-- End Meta Pixel Code -->
-<style>
-.store-preview {
-  position: relative;
-  margin: 0 auto;
-  width: min(100%, 42rem);
-  padding: 0 6% 5% 0;
-  box-sizing: border-box;
-  align-self: center;
-}
-.store-window {
-  overflow: hidden;
-  border: 1px solid #52554b;
-  border-radius: 12px;
-  background: #30322c;
-  box-shadow: 0 14px 32px #0004;
-}
-.store-bar {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: 28px;
-  font: 12px/1 system-ui, sans-serif;
-  color: #d5d8cd;
-}
-.store-bar i {
-  position: absolute;
-  left: 12px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #929887;
-  box-shadow: 8px 0 #929887, 16px 0 #929887;
-}
-.store-window img { display: block; width: 100%; height: auto; }
-.store-phone {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 24%;
-  height: auto;
-  border: 4px solid #282a24;
-  border-radius: 16px;
-  box-sizing: border-box;
-  box-shadow: 0 8px 22px #0005;
-}
-@media (min-width: 900px) and (min-aspect-ratio: 21/20) {
-  .store-preview { grid-column: 2; grid-row: 1 / 3; }
-}
-@media (min-width: 900px) and (min-aspect-ratio: 21/20) and (prefers-reduced-motion: no-preference) {
-  .store-phone { animation: store-phone-enter .55s ease-out both; }
-  @keyframes store-phone-enter { from { transform: translateY(14px); } }
-}
-</style>
+<link rel="stylesheet" href="/assets/v2/work-showcase.css">
 </head>
 <body>
 <a class="skip" href="#main">Перейти до змісту</a>
@@ -149,13 +97,10 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
         <a class="btn btn-line" href="#work">Кейс ZaiSun</a>
       </div>
     </div>
-    <figure class="store-preview" aria-label="Інтернет-магазин дитячого одягу ZaiSun">
-      <div class="store-window">
-        <div class="store-bar" aria-hidden="true"><i></i><span>zaisun.com.ua</span></div>
-        <img src="/assets/v2/img/zaisun-autumn-900.webp" width="900" height="507" alt="Осіння колекція дитячого одягу ZaiSun">
-      </div>
-      <img class="store-phone" src="/assets/v2/img/zaisun-phone-catalog.webp" width="540" height="1169" alt="Каталог ZaiSun на телефоні">
-    </figure>
+    <div class="cube-scene" aria-hidden="true">
+      <img src="/assets/v2/img/webwork-cubes.webp" alt="" width="780" height="780" fetchpriority="high">
+      <i class="cube-satellite"></i><i class="cube-satellite"></i>
+    </div>
   </div>
   <a class="hero-scroll" href="#intro">Гортайте<i></i></a>
 </section>
@@ -202,13 +147,26 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
     </div>
 
 
-    <div class="work-grid" id="concepts">
+    <div class="work-controls" hidden>
+      <button type="button" aria-controls="concepts" aria-label="Попередній кейс">←</button>
+      <button type="button" aria-controls="concepts" aria-label="Наступний кейс">→</button>
+    </div>
+    <div class="work-grid" id="concepts" role="region" aria-label="Кейси WEBWORK" tabindex="0">
       <a class="card card-zaisun" href="https://zaisun.com.ua/" target="_blank" rel="noopener">
         <span class="card-media"><img src="/assets/v2/img/zaisun-autumn-1600.webp" srcset="/assets/v2/img/zaisun-autumn-900.webp 900w, /assets/v2/img/zaisun-autumn-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 48vw" width="1600" height="900" alt="Осіння колекція ZaiSun: дитячий костюм із вушками" loading="lazy" decoding="async"><span class="case-phone"><img src="/assets/v2/img/zaisun-phone-catalog.webp" width="540" height="1169" alt="Каталог ZaiSun на телефоні" loading="lazy" decoding="async"></span><span class="case-badge"><i></i>Магазин дитячого одягу</span></span>
         <span class="card-meta">
           <span class="card-tags">Інтернет-магазин • monobank і Нова Пошта • Google Ads і Meta</span>
           <span class="card-name">ZaiSun</span>
           <span class="card-desc">Магазин бренду дитячого одягу: 900+ товарів, оплата, доставка, чеки й аналітика.</span>
+          <span class="card-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></span>
+        </span>
+      </a>
+      <a class="card" href="https://snappy.com.ua/" target="_blank" rel="noopener">
+        <span class="card-media"><img src="/assets/v2/img/snappy-harvest.webp" width="1075" height="1440" alt="Іграшкова грядка з колекції Snappy" loading="lazy" decoding="async"></span>
+        <span class="card-meta">
+          <span class="card-tags">Інтернет-магазин • 3D-друк</span>
+          <span class="card-name">Snappy</span>
+          <span class="card-desc">Магазин іграшок власного 3D-друку. Каталог за колекціями, пошук товарів і кошик.</span>
           <span class="card-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></span>
         </span>
       </a>
@@ -438,5 +396,6 @@ src="https://www.facebook.com/tr?id=1934514473883374&ev=PageView&noscript=1"></n
 
 <script src="/assets/v2/site.js?v=20261022-3" defer></script>
 <script src="/assets/v2/lead-form.js?v=20261015-1" defer></script>
+<script src="/assets/v2/work-showcase.js" defer></script>
 </body>
 </html>

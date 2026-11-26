@@ -623,7 +623,10 @@ html.lenis{scroll-behavior:auto}
 @keyframes draft-pt{to{transform:scale(1)}}
 @keyframes draft-in{to{opacity:1}}
 @keyframes draft-ring{0%{transform:scale(.2);opacity:.95}100%{transform:scale(1.55);opacity:0}}
-@keyframes draft-f1{0%{transform:translate(88%,10%);opacity:0}10%{opacity:1}55%{transform:translate(72%,33%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
-@keyframes draft-f2{0%{transform:translate(92%,63%);opacity:0}10%{opacity:1}55%{transform:translate(84%,51%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
-@keyframes draft-f3{0%{transform:translate(84%,92%);opacity:0}10%{opacity:1}55%{transform:translate(69%,78%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
-@keyframes draft-f4{0%{transform:translate(12%,94%);opacity:0}10%{opacity:1}55%{transform:translate(28%,70%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-f1{0%{transform:translate(88%,10%);opacity:0}10%{opacity:1}55%{transform:translate(73.4%,33%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-f2{0%{transform:translate(92%,63%);opacity:0}10%{opacity:1}55%{transform:translate(84%,51.6%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-f3{0%{transform:translate(84%,92%);opacity:0}10%{opacity:1}55%{transform:translate(69.2%,80%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+@keyframes draft-f4{0%{transform:translate(12%,94%);opacity:0}10%{opacity:1}55%{transform:translate(28.4%,69.7%);opacity:1}88%{transform:translate(54%,51%);opacity:.9}100%{transform:translate(54%,51%);opacity:0}}
+
+/* Картки кейсів без кнопок-стрілок: клікабельна вся картка */
+.card-meta{grid-template-columns:minmax(0,1fr)}

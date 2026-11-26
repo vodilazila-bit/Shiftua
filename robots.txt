@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /google-apps-script/
+Disallow: /screens/
+Disallow: /tools/
+
+Sitemap: https://webwork.com.ua/sitemap.xml
